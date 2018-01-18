@@ -11,14 +11,15 @@ cd Clone
 
 2) Cloner le répertoire en local
 ```
-git clone https://github.com/nlep1367/ConcoursUbi2018.git
+git clone https://github.com/nlep1367/ConcoursUbi2018.git Clone
 ```
 
 3) Ajouter le répertoire qui sera le upstream, i.e. nlep1367/ConcoursUbi2018
 ```
 git remote add upstream https://github.com/nlep1367/ConcoursUbi2018.git
 ```
-
+* Pour vérifier si l'upstream est bien fait, git remote -v
+```
 4) Creer votre branche personnelle
 ```
 git checkout -b naomi_personal
