@@ -12,7 +12,7 @@ public class HostGameItem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        button.onClick.AddListener(HandleClick);
+        //button.onClick.AddListener(HandleClick);
 	}
 	
 	public void SetUp(Game currentGame, HostList currentList)
@@ -23,8 +23,8 @@ public class HostGameItem : MonoBehaviour {
         hostList = currentList;
     }
 
-    public void HandleClick()
-    {
-        hostList.AddGame(game);
-    }
+    //public void HandleClick()
+    //{
+    //    hostList.AddGame(game);
+    //}
 }

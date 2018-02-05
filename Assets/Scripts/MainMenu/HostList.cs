@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using UnityEngine.Networking.Match;
 
 [System.Serializable]
 public class Game
@@ -17,43 +17,41 @@ public class HostList : MonoBehaviour {
     public SimpleHostPool hostPool;
     public Text nameField;
 
-    private List<Game> gameList = new List<Game>();
+    private MatchMakingLobbyManager lobbyMgr;
 
     // Use this for initialization
     void Start()
     {
+        lobbyMgr = new MatchMakingLobbyManager();
         RefreshDisplay();
 	}
 
     public void RefreshDisplay()
     {
+        lobbyMgr.MMLMListMatches();
         RemoveGames();
         AddGames();
     }
 
     private void AddGames()
     {
-        foreach(Game g in gameList)
+        foreach(MatchInfoSnapshot g in lobbyMgr.matchesList)
         {
             GameObject newHost = hostPool.GetObject();
             newHost.transform.SetParent(contentPanel);
             newHost.transform.localScale = new Vector3(1, 1, 1);
 
             HostGameItem hostItem = newHost.GetComponent<HostGameItem>();
-            hostItem.SetUp(g, this);
+            //hostItem.SetUp(g, this);
         }
     }
 
     public void CreateGame()
     {
         // TODO: Disable input
-        Game game = new Game
-        {
-            name = nameField.text
-        };
+        lobbyMgr.MMLCreateMatch(nameField.text);
 
-        AddGame(game);
-        RefreshDisplay();        
+        // TODO: Enter game and leave Main Menu        
     }
 
     private void RemoveGames()
@@ -62,22 +60,6 @@ public class HostList : MonoBehaviour {
         {
             GameObject toRemove = transform.GetChild(0).gameObject;
             hostPool.ReturnObject(toRemove);
-        }
-    }
-
-    public void AddGame(Game gameToAdd)
-    {
-        gameList.Add(gameToAdd);
-    }
-
-    private void RemoveGame(Game gameToRemove)
-    {
-        for (int i = gameList.Count - 1; i <= 0; --i)
-        {
-            if(gameList[i] == gameToRemove)
-            {
-                gameList.RemoveAt(i);
-            }            
         }
     }
 }
