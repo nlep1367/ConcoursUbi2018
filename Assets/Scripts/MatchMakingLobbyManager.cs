@@ -1,28 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
 public class MatchMakingLobbyManager : NetworkLobbyManager
 {
-    public List<MatchInfoSnapshot> matchesList = new List<MatchInfoSnapshot>();
+    public Transform contentPanel;
+    public SimpleHostPool hostPool;
 
     // Use this for initialization
     void Start()
     {
-        MMLStart();
-        MMLMListMatches();
+        singleton.StartMatchMaker();
+        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+
+        GameObject.Find("CreateButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("CreateButton").GetComponent<Button>().onClick.AddListener(OnMMLMCreateMatch);
+
+        GameObject.Find("RefreshButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("RefreshButton").GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
     }
 
-    public void MMLStart()
-    {
-        StartMatchMaker();
-    }
 
-    public void MMLMListMatches()
+    public void OnMMLMRefreshMatches()
     {
-        matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+
+        ClearDisplayedMatches();
+
+        if (singleton.matches.Count > 0)
+        {
+            DisplayMatchesToList(matches);
+        }
     }
 
     public override void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
@@ -31,32 +42,37 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
         if (success)
         {
-            matchesList = matchList;
+            Debug.Log("Matches listed");
         }
     }
 
-    public void MMLCreateMatch(string matchName)
+    public void OnMMLMCreateMatch()
     {
-        matchMaker.CreateMatch(matchName, 15, true, "", "", "", 0, 0, OnMatchCreate);
+        string matchName = GameObject.Find("NewGameField").GetComponent<Text>().text;
+
+        if (matchName != "")
+        {
+            singleton.matchMaker.CreateMatch(matchName, 15, true, "", "", "", 0, 0, OnMatchCreate);
+        }
     }
 
     public override void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
     {
         base.OnMatchCreate(success, extendedInfo, matchInfo);
 
-        if (!success)
-        {
-            Debug.Log("Failed to create match: " + extendedInfo);
-        }
-        else
+        if (success)
         {
             Debug.Log("Successfully created a match: " + matchInfo.networkId);
         }
+        else
+        {
+            Debug.Log("Failed to create match: " + extendedInfo);
+        }
     }
 
-    public void MMLJoinMatch(MatchInfoSnapshot matchInfo)
+    public void OnMMLMJoinMatch(MatchInfoSnapshot matchInfo)
     {
-        matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
+        singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
     }
 
     public override void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
@@ -70,6 +86,28 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         else
         {
             Debug.Log("Successfully joined a match: " + matchInfo.networkId);
+        }
+    }
+
+    private void DisplayMatchesToList(List<MatchInfoSnapshot> matchesList)
+    {
+        foreach(MatchInfoSnapshot match in matchesList)
+        {
+            GameObject newHost = hostPool.GetObject();
+            newHost.transform.SetParent(contentPanel);
+            newHost.transform.localScale = new Vector3(1, 1, 1);
+
+            HostGameItem hostItem = newHost.GetComponent<HostGameItem>();
+            hostItem.SetUp(match, delegate { OnMMLMJoinMatch(match); });
+        }
+    }
+
+    private void ClearDisplayedMatches()
+    {
+        while (contentPanel.childCount > 0)
+        {
+            GameObject toRemove = transform.GetChild(0).gameObject;
+            hostPool.ReturnObject(toRemove);
         }
     }
 }

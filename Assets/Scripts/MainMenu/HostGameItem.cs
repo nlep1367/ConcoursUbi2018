@@ -1,30 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Networking.Match;
+
+
 public class HostGameItem : MonoBehaviour {
 
     public Button button;
     public Text gameName;
 
-    private Game game;
-    private HostList hostList;
+    private MatchInfoSnapshot match;
 
 	// Use this for initialization
-	void Start () {
-        //button.onClick.AddListener(HandleClick);
-	}
-	
-	public void SetUp(Game currentGame, HostList currentList)
+	void Start ()
     {
-        game = currentGame;
-        gameName.text = game.name;
+	}
 
-        hostList = currentList;
+    public void SetUp(MatchInfoSnapshot currentMatch, UnityAction callback)
+    {
+        match = currentMatch;
+        gameName.text = currentMatch.name;
+
+        button.onClick.AddListener(callback);
     }
-
-    //public void HandleClick()
-    //{
-    //    hostList.AddGame(game);
-    //}
 }
