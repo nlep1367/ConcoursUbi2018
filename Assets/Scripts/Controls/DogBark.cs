@@ -5,19 +5,15 @@ using UnityEngine;
 
 public class DogBark : MonoBehaviour {
     public float BarkRange;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.E))
+		if(Input.GetButton("Fire1"))
         {
             Bark((IBarkListener l) => l.ReactToAngryBark());
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButton("Fire2"))
         {
             Bark((IBarkListener l) =>  l.ReactToSoftBark());
         }
