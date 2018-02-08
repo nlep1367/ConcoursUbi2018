@@ -28,7 +28,7 @@ public class FollowTarget : BaseCamera {
     }
 
     // Update is called once per frame
-    void Update() {
+    void LateUpdate() {
         float Distance = (ActualTarget - TargetToFollow.position).magnitude;
 
         if (Distance > float.Epsilon)
