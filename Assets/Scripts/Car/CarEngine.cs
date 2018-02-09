@@ -7,17 +7,34 @@ public class CarEngine : MonoBehaviour {
     public Transform path;
     public float maxSteer = 45f;
     public float maxMotorTorque = 150f;
+    public float maxBreakTorque = 500f;
     public float maxSpeed = 100f;
     public float currentSpeed = 0f;
+
+    // Max Distance between car and waypoint to advance
     public float distanceTolerance = 2f;
+    public Vector3 centerOfMass;
+
+    [Header("Wheel Coliders")]
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
+    public WheelCollider wheelRL;
+    public WheelCollider wheelRR;
+    public bool isBreaking = false;
+    public Texture2D textureNormal;
+    public Texture2D textureBreaking;
+    public Renderer carRenderer; // Should be Renderer
+
+    [Header("Sensors")]
+    public float sensorLength = 5f;
 
     private List<Transform> wayPoints;
     private int currentWayPoint = 0;
 
 	// Use this for initialization
 	void Start () {
+        GetComponent<Rigidbody>().centerOfMass = centerOfMass;
+
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         wayPoints = new List<Transform>();
 
@@ -29,12 +46,19 @@ public class CarEngine : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(centerOfMass + transform.position, 0.1f);        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         ApplySteer();
         Drive();
         CheckWayPointDistance();
+        Breaking();
 	}
 
     private void ApplySteer()
@@ -50,7 +74,7 @@ public class CarEngine : MonoBehaviour {
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
 
-        if(currentSpeed < maxSpeed)
+        if(currentSpeed < maxSpeed && !isBreaking)
         {
             wheelFL.motorTorque = maxMotorTorque;
             wheelFR.motorTorque = maxMotorTorque;
@@ -70,4 +94,22 @@ public class CarEngine : MonoBehaviour {
             currentWayPoint = (++currentWayPoint) % wayPoints.Count;            
         }
     }
+
+    private void Breaking()
+    {
+        if (isBreaking)
+        {
+            carRenderer.material.mainTexture = textureBreaking;
+            wheelRL.brakeTorque = maxBreakTorque;
+            wheelRR.brakeTorque = maxBreakTorque;
+        }
+        else
+        {
+            carRenderer.material.mainTexture = textureNormal;
+            wheelRL.brakeTorque = 0;
+            wheelRR.brakeTorque = 0;
+        }
+    }
+
+    private void Sensors
 }
