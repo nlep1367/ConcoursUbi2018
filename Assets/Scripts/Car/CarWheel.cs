@@ -12,13 +12,7 @@ public class CarWheel : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         targetWheel.GetWorldPose(out wheelPosition, out wheelRotation);
-
-        Quaternion copy = wheelRotation;
-        /*
-        wheelRotation.x = 0;
-        wheelRotation.y = copy.x;
-        wheelRotation.z = 0;
-        */
+        
         transform.position = wheelPosition;
         transform.rotation = wheelRotation;
     }

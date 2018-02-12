@@ -1053,21 +1053,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   maxSteer: 45
+  turnSpeed: 5
   maxMotorTorque: 150
   maxBreakTorque: 500
   maxSpeed: 100
   currentSpeed: 0
   distanceTolerance: 2
   centerOfMass: {x: 0, y: -0.2, z: 0.5}
+  textureNormal: {fileID: 2800000, guid: 219a981f3b63c28498b931b2b77cf4a0, type: 3}
+  textureBreaking: {fileID: 2800000, guid: 7edaf02766ed8d141b033f288d70a7c1, type: 3}
+  carRenderer: {fileID: 23710975305184978}
   wheelFL: {fileID: 146322823728807370}
   wheelFR: {fileID: 146005397624654970}
   wheelRL: {fileID: 146710364902051736}
   wheelRR: {fileID: 146267527630483688}
   isBreaking: 0
-  textureNormal: {fileID: 2800000, guid: 219a981f3b63c28498b931b2b77cf4a0, type: 3}
-  textureBreaking: {fileID: 2800000, guid: 7edaf02766ed8d141b033f288d70a7c1, type: 3}
-  carRenderer: {fileID: 23710975305184978}
   sensorLength: 5
+  frontSensorPosition: {x: 0, y: 0, z: 0.5}
+  frontSideSensorPosition: 0.2
+  fontSensorAngle: 30
 --- !u!114 &114974926861382034
 MonoBehaviour:
   m_ObjectHideFlags: 1

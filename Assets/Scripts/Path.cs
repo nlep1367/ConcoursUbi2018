@@ -21,6 +21,7 @@ public class Path : MonoBehaviour {
             {
                 if (pathTransforms[i] != transform)
                 {
+                    if(!Application.isPlaying) pathTransforms[i].name = "WayPoint_" + i.ToString();
                     wayPoints.Add(pathTransforms[i]);
                 }
             }
@@ -78,5 +79,4 @@ public class Path : MonoBehaviour {
             previous = current;
         }
     }
-
 }
