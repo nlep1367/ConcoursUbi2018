@@ -26,9 +26,10 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
     public void OnMMLMRefreshMatches()
     {
-        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
-
         ClearDisplayedMatches();
+
+        //Fills Network Manager matches
+        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
 
         if (singleton.matches.Count > 0)
         {
@@ -36,6 +37,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         }
     }
 
+    //For debug
     public override void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
         base.OnMatchList(success, extendedInfo, matchList);
@@ -63,6 +65,14 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         if (success)
         {
             Debug.Log("Successfully created a match: " + matchInfo.networkId);
+            OnMMLMRefreshMatches();
+
+            //Pop up "Waiting for other player to join game..."
+            while(numPlayers<2)
+            {
+                Debug.Log("Test");
+            }
+
         }
         else
         {
@@ -75,6 +85,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
     }
 
+    //For debug
     public override void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
     {
         base.OnMatchJoined(success, extendedInfo, matchInfo);
