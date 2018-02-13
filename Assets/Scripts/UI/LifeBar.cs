@@ -7,12 +7,11 @@ public class LifeBar : MonoBehaviour {
 
 	public float inValue;
 
-	//public RectTransform mask;
-
 	private int _maxWidth;
 	private float _oldValue;
 
 	private Tweener _tweener;
+	private float valueVariationDuration = 1F;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +26,7 @@ public class LifeBar : MonoBehaviour {
 		if (_oldValue != inValue) {
 			_tweener.SetBeginValue (_oldValue);
 			_tweener.SetEndValue (inValue);
-			_tweener.SetDuration (1F);
+			_tweener.SetDuration (valueVariationDuration);
 
 			_tweener.Start ();
 
