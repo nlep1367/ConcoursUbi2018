@@ -98,11 +98,16 @@ Faites reviser votre PR par un autre membre de l'équipe ; cette étape se veut 
 ! Petit plus pour les programmeurs : la personne revisant doit s'assurer que le code revisé est clair. Si vous avez des questions ou des sugestions, dites-le! Cela permettra de s'assurer à un certain point que le code produit sera compréhensible pour les autres. Ainsi, les modifications dans ce code seront moins difficiles pour les autres qui ne sont pas l'auteur.
 
 ### Vérifier l'historique des commits
-* Sur vos branches en locale pour voir l'ID du comiit, son auteur et un résumé des changements apportés.
+* Sur vos branches en locale pour voir l'ID du commit, son auteur et un résumé des changements apportés.
 ```
 git log
 ```
 _Note_ : cliquez sur q (testé sur linux though) pour sortir de la liste des logs.
+
+_Conseil d'un collègue_ : Les logs de Git sont parfois... peu explicites. Je recommande l'utilisation de :
+```
+git log --all --oneline --color --graph
+```
 
 * Pour le répertoire d'origine, allez directement sur Github.
 
