@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuUI.unity
     guid: 1b6996ef94e9c8343ab878e933d3863f
+  - enabled: 0
+    path: Assets/Scenes/Gym_Network.unity
+    guid: d25e6db0c88f10f4992e42440e6fbb8d
   - enabled: 1
     path: Assets/Scenes/Gym_Navigation.unity
     guid: f16b223597badf64ca28aff41566a742

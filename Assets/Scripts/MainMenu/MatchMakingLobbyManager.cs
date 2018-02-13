@@ -9,6 +9,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 {
     public Transform contentPanel;
     public SimpleHostPool hostPool;
+    public GameObject waitingPanel;
 
     // Use this for initialization
     void Start()
@@ -16,13 +17,15 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         singleton.StartMatchMaker();
         singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
 
+        waitingPanel = GameObject.Find("WaitingPanel");
+        waitingPanel.SetActive(false);
+
         GameObject.Find("CreateButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("CreateButton").GetComponent<Button>().onClick.AddListener(OnMMLMCreateMatch);
 
         GameObject.Find("RefreshButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("RefreshButton").GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
     }
-
 
     public void OnMMLMRefreshMatches()
     {
@@ -66,17 +69,20 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         {
             Debug.Log("Successfully created a match: " + matchInfo.networkId);
             OnMMLMRefreshMatches();
-
-            //Pop up "Waiting for other player to join game..."
-            while(numPlayers<2)
-            {
-                Debug.Log("Test");
-            }
-
         }
         else
         {
             Debug.Log("Failed to create match: " + extendedInfo);
+        }
+    }
+
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        base.OnServerAddPlayer(conn, playerControllerId);
+
+        if(ClientScene.localPlayers.Count < maxPlayers)
+        {
+            waitingPanel.SetActive(true);
         }
     }
 
