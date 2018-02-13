@@ -43,7 +43,7 @@ public class TrafficLight : MonoBehaviour {
         }
     }
 
-    public void PedestrianButton()
+    private void PedestrianButton()
     {
         StartCoroutine(ChangeLight());
     }
