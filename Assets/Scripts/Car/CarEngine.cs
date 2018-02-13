@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CarEngine : MonoBehaviour {
 
-    public Transform path;
+    public Path path;
     public float maxSteer = 45f;
     public float turnSpeed = 5f;
-    public float maxMotorTorque = 150f;
-    public float maxBreakTorque = 500f;
-    public float maxSpeed = 100f;
+    public float maxMotorTorque = 200f;
+    public float maxBreakTorque = 600f;
+    public float maxSpeed = 40f;
     public float currentSpeed = 0f;
 
     // Max Distance between car and waypoint to advance
-    public float distanceTolerance = 2f;
+    public float distanceTolerance = 1f;
     public Vector3 centerOfMass;
     public Texture2D textureNormal;
     public Texture2D textureBreaking;
@@ -24,16 +24,14 @@ public class CarEngine : MonoBehaviour {
     public WheelCollider wheelFR;
     public WheelCollider wheelRL;
     public WheelCollider wheelRR;
-    public bool isBreaking = false;
+    private bool isBreaking = false;
 
     [Header("Sensors")]
     public float sensorLength = 5f;
     public Vector3 frontSensorPosition = new Vector3(0f,0f, 2f);
-    public float frontSideSensorPosition = -1f;
-    public float fontSensorAngle = 30f;
-
-
-    private List<Transform> wayPoints;
+    public float frontSideSensorPosition = 1f;
+    public float frontSensorAngle = 30f;
+    
     private int currentWayPoint = 0;
     private bool avoiding = false;
     private float targetSteerAngle = 0;
@@ -41,17 +39,6 @@ public class CarEngine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
-
-        Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
-        wayPoints = new List<Transform>();
-
-        for (int i = 0; i < pathTransforms.Length; ++i)
-        {
-            if (pathTransforms[i] != path.transform)
-            {
-                wayPoints.Add(pathTransforms[i]);
-            }
-        }
     }
 
     private void OnDrawGizmosSelected()
@@ -66,6 +53,7 @@ public class CarEngine : MonoBehaviour {
         ApplySteer();
         Drive();
         CheckWayPointDistance();
+        CheckTrafficLight();
         Breaking();
         LerpToSteerAngle();
     }
@@ -74,7 +62,7 @@ public class CarEngine : MonoBehaviour {
     {
         if (avoiding) return;
 
-        Vector3 relativeVector = transform.InverseTransformPoint(wayPoints[currentWayPoint].position);
+        Vector3 relativeVector = transform.InverseTransformPoint(path.GetWayPoint(currentWayPoint).transform.position);
         float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteer;
 
         targetSteerAngle = newSteer;
@@ -98,9 +86,10 @@ public class CarEngine : MonoBehaviour {
 
     private void CheckWayPointDistance()
     {
-        if(Vector3.Distance(transform.position, wayPoints[currentWayPoint].position) < distanceTolerance)
+        if(Vector3.Distance(transform.position, path.GetWayPoint(currentWayPoint).transform.position) < distanceTolerance)
         {
-            currentWayPoint = (++currentWayPoint) % wayPoints.Count;            
+            currentWayPoint = path.GetNextWayPoint(currentWayPoint);
+            if (currentWayPoint == -1) gameObject.SetActive(false);
         }
     }
 
@@ -109,12 +98,16 @@ public class CarEngine : MonoBehaviour {
         if (isBreaking)
         {
             carRenderer.material.mainTexture = textureBreaking;
+            wheelFL.brakeTorque = maxBreakTorque;
+            wheelFR.brakeTorque = maxBreakTorque;
             wheelRL.brakeTorque = maxBreakTorque;
             wheelRR.brakeTorque = maxBreakTorque;
         }
         else
         {
             carRenderer.material.mainTexture = textureNormal;
+            wheelFL.brakeTorque = 0;
+            wheelFR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
@@ -138,18 +131,18 @@ public class CarEngine : MonoBehaviour {
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 avoiding = true;
-                avoidMultiplier += 1f;
+                avoidMultiplier -= 1f;
             }
         }
 
         // Front right angle Sensor
-        else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(-fontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
+        else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 avoiding = true;
-                avoidMultiplier += 0.5f;
+                avoidMultiplier -= 0.5f;
             }
         }
 
@@ -161,18 +154,18 @@ public class CarEngine : MonoBehaviour {
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 avoiding = true;
-                avoidMultiplier -= 1f;
+                avoidMultiplier += 1f;
             }
         }
 
         // Front left angle Sensor
-        else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(fontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
+        else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 avoiding = true;
-                avoidMultiplier -= 0.5f;
+                avoidMultiplier += 0.5f;
             }
         }
 
@@ -187,11 +180,11 @@ public class CarEngine : MonoBehaviour {
                     avoiding = true;
                     if(hit.normal.x < 0)
                     {
-                        avoidMultiplier += 1f;
+                        avoidMultiplier -= 1f;
                     }
                     else
                     {
-                        avoidMultiplier -= 1f;
+                        avoidMultiplier += 1f;
                     }
                 }
             }
@@ -207,5 +200,18 @@ public class CarEngine : MonoBehaviour {
     {
         wheelFL.steerAngle = Mathf.Lerp(wheelFL.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
         wheelFR.steerAngle = Mathf.Lerp(wheelFR.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
+    }
+
+    private void CheckTrafficLight()
+    {
+        if (path.GetWayPoint(currentWayPoint).ShouldStop(transform.position))
+        {
+            isBreaking = true;
+        }
+        else
+        {
+            isBreaking = false;
+        }
+        
     }
 }

@@ -420,8 +420,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952406144847552}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 37.6, y: 1.36, z: 96.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4529261564431920}
@@ -430,7 +430,7 @@ Transform:
   - {fileID: 4482775332127974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4482775332127974
 Transform:
   m_ObjectHideFlags: 1
@@ -454,13 +454,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768526188638554}
-  m_LocalRotation: {x: 0.21315138, y: -0.16953209, z: 0.037584357, w: 0.96146387}
-  m_LocalPosition: {x: 4.29, y: 5.14, z: -5.01}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.7, z: -6.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4309114176322824}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25, y: -20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4529802786807900
 Transform:
   m_ObjectHideFlags: 1
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331c8474f4803de43b30e2b63a830eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraOffsetDistance: 15
+  CameraOffsetDistance: 0
   CameraOffsetAngle: 70
   MinFollowSpeed: 1
   MaxFollowSpeed: 10
@@ -1054,9 +1054,9 @@ MonoBehaviour:
   path: {fileID: 0}
   maxSteer: 45
   turnSpeed: 5
-  maxMotorTorque: 150
-  maxBreakTorque: 500
-  maxSpeed: 100
+  maxMotorTorque: 200
+  maxBreakTorque: 600
+  maxSpeed: 40
   currentSpeed: 0
   distanceTolerance: 2
   centerOfMass: {x: 0, y: -0.2, z: 0.5}
@@ -1067,11 +1067,10 @@ MonoBehaviour:
   wheelFR: {fileID: 146005397624654970}
   wheelRL: {fileID: 146710364902051736}
   wheelRR: {fileID: 146267527630483688}
-  isBreaking: 0
-  sensorLength: 5
-  frontSensorPosition: {x: 0, y: 0, z: 0.5}
-  frontSideSensorPosition: 0.2
-  fontSensorAngle: 30
+  sensorLength: 4
+  frontSensorPosition: {x: 0, y: 0, z: 2}
+  frontSideSensorPosition: 1
+  frontSensorAngle: 30
 --- !u!114 &114974926861382034
 MonoBehaviour:
   m_ObjectHideFlags: 1
