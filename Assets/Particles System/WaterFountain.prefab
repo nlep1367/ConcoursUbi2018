@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198514396442327978}
   - component: {fileID: 199225517714172914}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: WaterFountain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

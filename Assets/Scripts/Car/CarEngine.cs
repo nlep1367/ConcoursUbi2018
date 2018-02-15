@@ -41,6 +41,16 @@ public class CarEngine : MonoBehaviour {
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
 
+    public void Initialize(Vector3 pos, Quaternion rotation, Path p)
+    {
+        transform.position = pos;
+        transform.rotation = rotation;
+        path = p;
+        currentWayPoint = 0;
+
+        // Can eventually assign random values to motor torque, etc...
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
@@ -53,9 +63,12 @@ public class CarEngine : MonoBehaviour {
         ApplySteer();
         Drive();
         CheckWayPointDistance();
-        CheckTrafficLight();
-        Breaking();
-        LerpToSteerAngle();
+        if (isActiveAndEnabled)
+        {
+            CheckTrafficLight();
+            Breaking();
+            LerpToSteerAngle();
+        }
     }
 
     private void ApplySteer()
