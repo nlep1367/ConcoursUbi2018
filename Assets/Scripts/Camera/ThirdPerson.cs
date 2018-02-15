@@ -7,11 +7,10 @@ public class ThirdPerson : BaseCamera {
     public float DistanceOffset = 5;
     public Vector3 PositionOffset;
 
-    public float LookUpSpeed;
-    public float LookUpMax;
+    public float UpAndDownSpeed;
+    public float CameraAngleDegreeMinMax;
 
-    public float Degree;
-    public float RotationSpeed;
+    public float CameranAngleDegree;
 
     public Transform Player;
 
@@ -20,7 +19,7 @@ public class ThirdPerson : BaseCamera {
    
 	// Use this for initialization
 	void Start () {
-        StartDegree = Degree;
+        StartDegree = CameranAngleDegree;
 
     }
 	
@@ -31,10 +30,9 @@ public class ThirdPerson : BaseCamera {
 
         if (VerticalRotation != 0)
         {
-            Degree += VerticalRotation * Time.deltaTime * LookUpSpeed;
-            Debug.Log("Horizontal Rotation: " + VerticalRotation);
+            CameranAngleDegree += VerticalRotation * Time.deltaTime * UpAndDownSpeed;
 
-            Degree = Mathf.Clamp(Degree, StartDegree - LookUpMax, StartDegree + LookUpMax);
+            CameranAngleDegree = Mathf.Clamp(CameranAngleDegree, StartDegree - CameraAngleDegreeMinMax, StartDegree + CameraAngleDegreeMinMax);
         }
 
 
@@ -45,7 +43,7 @@ public class ThirdPerson : BaseCamera {
 
         transform.position = ActualTarget;
 
-        float Radian = Mathf.Deg2Rad * Degree;
+        float Radian = Mathf.Deg2Rad * CameranAngleDegree;
 
         // CameraOffset
         Vector3 CalculatedOffset = -Player.forward * Mathf.Cos(Radian);
@@ -59,4 +57,9 @@ public class ThirdPerson : BaseCamera {
 
 
 	}
+
+    public void SetPlayer(Transform Player)
+    {
+        this.Player = Player;
+    }
 }
