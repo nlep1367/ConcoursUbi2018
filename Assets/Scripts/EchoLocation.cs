@@ -4,31 +4,44 @@ using UnityEngine;
 
 public class EchoLocation : MonoBehaviour {
 
-    private const int MAX_POINT = 10;
-
+    public int maxPoints = 20;
+    public float minDelayNextEcho = 0.1f;
+    public float maxDelayNextEcho = 0.2f;
     public float radius = 3.5f;
+
     private Vector3 positionWithOffset;
 
-    private List<Vector2> pointsEcho = new List<Vector2>();
+    private Queue<Vector2> pointsEcho = new Queue<Vector2>();
+    private float nextUpdate = 0.5f;
 
     
 	// Use this for initialization
 	void Start () {
        Vector3 size = GetComponent<MeshCollider>().bounds.size;
-        positionWithOffset = transform.position + new Vector3(0, - size.y / 2.0f, 0);
+       positionWithOffset = transform.position + new Vector3(0, - size.y / 2.0f, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        GeneratePoint();
+        if(Time.time >= nextUpdate)
+        {
+            if (pointsEcho.Count != maxPoints)
+            {
+                GeneratePoint();
+            }
+
+            nextUpdate += Random.Range(minDelayNextEcho, maxDelayNextEcho);
+        }
     }
 
     private void GeneratePoint()
     {
-        if(pointsEcho.Count != MAX_POINT)
+        Vector2 pos = new Vector2(transform.position.x, transform.position.z) + Random.insideUnitCircle * radius;
+        pointsEcho.Enqueue(pos);
+
+        if (pointsEcho.Count == maxPoints)
         {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.z) + Random.insideUnitCircle * radius;
-            pointsEcho.Add(pos);
+            pointsEcho.Dequeue();
         }
     }
 
@@ -38,8 +51,8 @@ public class EchoLocation : MonoBehaviour {
 
         foreach(Vector2 v in pointsEcho)
         {
-            Vector3 v3 = new Vector3(v.x, 270, v.y);
-            UnityEditor.Handles.DrawWireDisc(v3, transform.up, 1);
+            Vector3 v3 = new Vector3(v.x, positionWithOffset.y, v.y);
+            UnityEditor.Handles.DrawWireDisc(v3, transform.up, .5f);
         }
     }
 }
