@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
-    public float Speed;
+    public float MovementSpeed;
+
+    public float RotationSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -13,18 +16,33 @@ public class PlayerMovement : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        float HorizontalAxis = Input.GetAxis("Horizontal");
+
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
+        float HorizontalAxis = Input.GetAxis("Horizontal_Move");
 
         if(HorizontalAxis >= float.Epsilon || HorizontalAxis <= -float.Epsilon)
         {
-            transform.position += HorizontalAxis * Vector3.right * Speed * Time.deltaTime;
+            transform.position += HorizontalAxis * transform.right * MovementSpeed * Time.deltaTime;
         }
 
-        float VerticalAxis = Input.GetAxis("Vertical");
+        float VerticalAxis = Input.GetAxis("Vertical_Move");
 
         if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
         {
-            transform.position += VerticalAxis * Vector3.forward * Speed * Time.deltaTime;
+            transform.position += VerticalAxis * transform.forward * MovementSpeed * Time.deltaTime;
         }
+
+        float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
+
+        if (HorizontalRotation != 0)
+        {
+            transform.eulerAngles += new Vector3(0, Time.deltaTime * RotationSpeed * HorizontalRotation, 0 );
+        }
+
+
     }
 }
