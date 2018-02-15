@@ -51,14 +51,14 @@ public class EchoLocation : MonoBehaviour {
      */
     private void OnDrawGizmos()
     {            
-        UnityEditor.Handles.DrawWireDisc(positionWithOffset, transform.up, radius);
+        //UnityEditor.Handles.DrawWireDisc(positionWithOffset, transform.up, radius);
 
         foreach(Vector2 v in pointsEcho)
         {
             Vector3 centerEcho = new Vector3(v.x, positionWithOffset.y, v.y);
 
 
-            UnityEditor.Handles.DrawWireDisc(centerEcho, transform.up, .5f);
+          //  UnityEditor.Handles.DrawWireDisc(centerEcho, transform.up, .5f);
         }
     }
 }
