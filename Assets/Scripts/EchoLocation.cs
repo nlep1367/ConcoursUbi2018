@@ -45,14 +45,20 @@ public class EchoLocation : MonoBehaviour {
         }
     }
 
+    /*
+     * need to remove this function when MP's echolocation visual will be integrated and add another
+     * function to instanciate them.
+     */
     private void OnDrawGizmos()
     {            
         UnityEditor.Handles.DrawWireDisc(positionWithOffset, transform.up, radius);
 
         foreach(Vector2 v in pointsEcho)
         {
-            Vector3 v3 = new Vector3(v.x, positionWithOffset.y, v.y);
-            UnityEditor.Handles.DrawWireDisc(v3, transform.up, .5f);
+            Vector3 centerEcho = new Vector3(v.x, positionWithOffset.y, v.y);
+
+
+            UnityEditor.Handles.DrawWireDisc(centerEcho, transform.up, .5f);
         }
     }
 }
