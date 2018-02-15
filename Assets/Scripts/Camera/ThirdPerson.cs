@@ -31,7 +31,6 @@ public class ThirdPerson : BaseCamera {
         if (VerticalRotation != 0)
         {
             CameranAngleDegree += VerticalRotation * Time.deltaTime * UpAndDownSpeed;
-            Debug.Log("Horizontal Rotation: " + VerticalRotation);
 
             CameranAngleDegree = Mathf.Clamp(CameranAngleDegree, StartDegree - CameraAngleDegreeMinMax, StartDegree + CameraAngleDegreeMinMax);
         }
