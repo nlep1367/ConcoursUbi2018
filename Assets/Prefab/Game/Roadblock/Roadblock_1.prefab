@@ -36,7 +36,6 @@ GameObject:
   - component: {fileID: 4076790954302484}
   - component: {fileID: 33681293708117824}
   - component: {fileID: 23636799623911930}
-  - component: {fileID: 64120622726036196}
   m_Layer: 0
   m_Name: sm_RoadBlock_01
   m_TagString: Untagged
@@ -64,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448667646517208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.977, y: 0, z: 0}
+  m_LocalPosition: {x: 1.502466, y: 0.027472675, z: -0.0797348}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4076790954302484}
@@ -85,7 +84,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e358a30295087714aab2a30d6eebbd54, type: 2}
+  - {fileID: 2100000, guid: f5efd65c84882b44694c99aabea003da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,18 +110,4 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497596935006312}
-  m_Mesh: {fileID: 4300000, guid: 2197f5d402e844a4d9c6972e0d5664c4, type: 3}
---- !u!64 &64120622726036196
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1497596935006312}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 2197f5d402e844a4d9c6972e0d5664c4, type: 3}
