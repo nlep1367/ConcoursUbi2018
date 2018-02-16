@@ -27,30 +27,6 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         GameObject.Find("RefreshButton").GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
     }
 
-    public void OnMMLMRefreshMatches()
-    {
-        ClearDisplayedMatches();
-
-        //Fills Network Manager matches
-        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
-
-        if (singleton.matches.Count > 0)
-        {
-            DisplayMatchesToList(matches);
-        }
-    }
-
-    //For debug
-    public override void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
-    {
-        base.OnMatchList(success, extendedInfo, matchList);
-
-        if (success)
-        {
-            Debug.Log("Matches listed");
-        }
-    }
-
     public void OnMMLMCreateMatch()
     {
         string matchName = GameObject.Find("NewGameField").GetComponent<Text>().text;
@@ -61,27 +37,13 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         }
     }
 
-    public override void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
-    {
-        base.OnMatchCreate(success, extendedInfo, matchInfo);
-
-        if (success)
-        {
-            Debug.Log("Successfully created a match: " + matchInfo.networkId);
-            OnMMLMRefreshMatches();
-        }
-        else
-        {
-            Debug.Log("Failed to create match: " + extendedInfo);
-        }
-    }
-
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         base.OnServerAddPlayer(conn, playerControllerId);
 
         if(ClientScene.localPlayers.Count < maxPlayers)
         {
+            OnMMLMRefreshMatches();
             waitingPanel.SetActive(true);
         }
     }
@@ -91,18 +53,17 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
     }
 
-    //For debug
-    public override void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
-    {
-        base.OnMatchJoined(success, extendedInfo, matchInfo);
 
-        if (!success)
+    private void OnMMLMRefreshMatches()
+    {
+        ClearDisplayedMatches();
+
+        //Fills Network Manager matches
+        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+
+        if (singleton.matches.Count > 0)
         {
-            Debug.Log("Failed to join match: " + extendedInfo);
-        }
-        else
-        {
-            Debug.Log("Successfully joined a match: " + matchInfo.networkId);
+            DisplayMatchesToList(matches);
         }
     }
 

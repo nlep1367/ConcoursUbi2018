@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class CustomNetworlLobbyPlayer : NetworkLobbyPlayer
+public class CustomNetworkLobbyPlayer : NetworkLobbyPlayer
 {
-
     public override void OnClientEnterLobby()
     {
         base.OnClientEnterLobby();
 
-        readyToBegin = true;
-        SendReadyToBeginMessage();
-    }
+        //readyToBegin = true;
 
+        //SendReadyToBeginMessage();
+    }
 }
