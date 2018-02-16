@@ -46,7 +46,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     {
         base.OnServerAddPlayer(conn, playerControllerId);
 
-        if(ClientScene.localPlayers.Count < maxPlayers)
+        if (ClientScene.localPlayers.Count < maxPlayers)
         {
             OnMMLMRefreshMatches();
             waitingPanel.SetActive(true);
