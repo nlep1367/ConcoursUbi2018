@@ -37,6 +37,11 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         }
     }
 
+    public void OnMMLMJoinMatch(MatchInfoSnapshot matchInfo)
+    {
+        singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
+    }
+
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         base.OnServerAddPlayer(conn, playerControllerId);
@@ -48,9 +53,12 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         }
     }
 
-    public void OnMMLMJoinMatch(MatchInfoSnapshot matchInfo)
+    public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
     {
-        singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
+        Vector3 position = new Vector3(0, 15, 0);
+        playerPrefab = Instantiate(spawnPrefabs[conn.connectionId], position, Quaternion.identity);
+
+        return playerPrefab;
     }
 
 
