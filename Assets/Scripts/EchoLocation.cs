@@ -49,7 +49,7 @@ public class EchoLocation : MonoBehaviour {
      * need to remove this function when MP's echolocation visual will be integrated and add another
      * function to instanciate them.
      */
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {            
         //UnityEditor.Handles.DrawWireDisc(positionWithOffset, transform.up, radius);
 
@@ -60,5 +60,5 @@ public class EchoLocation : MonoBehaviour {
 
           //  UnityEditor.Handles.DrawWireDisc(centerEcho, transform.up, .5f);
         }
-    }
+    }*/
 }
