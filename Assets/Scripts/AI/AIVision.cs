@@ -29,7 +29,7 @@ public class AIVision : MonoBehaviour {
 
     public void Update()
     {
-        // Donne sin d'un cercle trigonométrique d'un angle calculé à partir de 90 degree 
+        // Given an angle from 90 degree we find the sin that we require to determine if something is in vision radius
         NormalizedDist = Mathf.Sin((90 - (SightDegreeAngle / 2)) * Mathf.Deg2Rad);
     }
 
