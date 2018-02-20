@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 195362748430270230}
   - component: {fileID: 114703121809470562}
   - component: {fileID: 114352955210566902}
+  - component: {fileID: 114128250508200102}
+  - component: {fileID: 114352827985839258}
   m_Layer: 0
   m_Name: Garde
   m_TagString: AI
@@ -405,6 +407,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114128250508200102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704704836532306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bd869ba3a7c0641ba5719f03d3c555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WanderMinDistance: 6
+  WanderMaxDistance: 8
+  WanderWaitingMin: 3
+  WanderWaitingMax: 5
+  WanderWaitingTime: 0
+--- !u!114 &114352827985839258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704704836532306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a26a8398574b54090169524878c308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority: 0
+  SightDegreeAngle: 160
+  SightDistance: 10
+  ViewAbleTags:
+  - Player
 --- !u!114 &114352955210566902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,11 +484,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChaseLeashRange: 15
   SoundLeashRange: 10
-  WanderMinDistance: 1
-  WanderMaxDistance: 5
-  WanderWaitingMin: 0.75
-  WanderWaitingMax: 1.5
-  WanderWaitingTime: 0.09812561
+  HearingRange: 0
+  ChaseSpeed: 7
+  NormalSpeed: 3.5
+  HearingSpeed: 4.5
+  AI_IdleBehaviour: {fileID: 114128250508200102}
+  Vision: {fileID: 114352827985839258}
 --- !u!114 &114703121809470562
 MonoBehaviour:
   m_ObjectHideFlags: 1

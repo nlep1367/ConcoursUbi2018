@@ -8,51 +8,64 @@ public class GuardAI : BaseAI {
     public float ChaseLeashRange;
     public float SoundLeashRange;
 
-    public float WanderMinDistance;
-    public float WanderMaxDistance;
+    public float HearingRange;
 
-    public float WanderWaitingMin;
-    public float WanderWaitingMax;
+    public float ChaseSpeed = 7.0f;
+    public float NormalSpeed = 3.5f;
+    public float HearingSpeed = 4.5f;
 
     private NavMeshAgent Agent;
     private Vector3 StartPosition;
 
-    private bool SeeSomething = false;
-    private Vector3 CurrentWanderVector;
+    public IdleBehaviour AI_IdleBehaviour;
 
-    public float WanderWaitingTime;
+    public AIVision Vision;
 
     // Use this for initialization
-    void Start () {
-        Agent = GetComponent<NavMeshAgent>();
+    void Start ()
+    {
         StartPosition = transform.position;
-
-        Vector2 wanderVector = Random.insideUnitCircle;
-        float wanderDistance = Random.Range(WanderMinDistance, WanderMaxDistance);
-
-        CurrentWanderVector = StartPosition + new Vector3(wanderVector.x * wanderDistance, 0, wanderVector.y * wanderDistance);
-
-        WanderWaitingTime = Random.Range(WanderWaitingMin, WanderWaitingMax);
+        Agent = GetComponent<NavMeshAgent>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if(!SeeSomething)
+
+        Vector3 EnemySeen;
+
+        if(!Vision.SeeSomething(out EnemySeen))
         {
-            if(CurrentStimuli != null && Vector3.Distance(StartPosition, CurrentStimuli.GetPosition()) < SoundLeashRange)
+            // Maybe I hear something
+            if(CurrentStimuli != null && // We have a stimuli
+                (transform.position - CurrentStimuli.GetPosition()).magnitude < HearingRange && // Hearing something around me
+                (transform.position - StartPosition).magnitude < SoundLeashRange) // Am I too far?
             {
                 Agent.destination = CurrentStimuli.GetPosition();
+                Agent.speed = HearingSpeed;
             }
             else
             {
-                Wander();
-                Agent.destination = CurrentWanderVector;
+                Agent.destination = AI_IdleBehaviour.Process();
+                Agent.speed = NormalSpeed;
+            }
+        }
+        else
+        {
+            // I see something
+            if((transform.position - StartPosition).magnitude < ChaseLeashRange)
+            {
+                Agent.destination = EnemySeen;
+                Agent.speed = ChaseSpeed;
+            }
+            else
+            {
+                Agent.destination = AI_IdleBehaviour.Process();
+                Agent.speed = NormalSpeed;
             }
 
         }
 	}
-
+    
     public override bool IsBusy() 
     {
         return false;
@@ -68,29 +81,10 @@ public class GuardAI : BaseAI {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(StartPosition, SoundLeashRange);
 
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, HearingRange);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(StartPosition, ChaseLeashRange);
-
-        Gizmos.color = Color.grey;
-        Gizmos.DrawWireSphere(CurrentWanderVector, 1.0f);
-    }
-
-    private void Wander()
-    {
-        float Distance = Vector3.Distance(CurrentWanderVector, transform.position);
-
-        if (Distance < 0.5f && WanderWaitingTime <= 0)
-        {
-            Vector2 wanderVector = Random.insideUnitCircle;
-            float wanderDistance = Random.Range(WanderMinDistance, WanderMaxDistance);
-
-            CurrentWanderVector = StartPosition + new Vector3(wanderVector.x * wanderDistance, 0, wanderVector.y * wanderDistance);
-
-            WanderWaitingTime = Random.Range(WanderWaitingMin, WanderWaitingMax);
-        }
-        else if (Distance < 0.5f)
-        {
-            WanderWaitingTime -= Time.deltaTime;
-        }
     }
 }

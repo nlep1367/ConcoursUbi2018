@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 114062705637526734}
   - component: {fileID: 114010725791841316}
   - component: {fileID: 114257838193189078}
+  - component: {fileID: 114422867108173338}
   m_Layer: 0
   m_Name: Fille
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +285,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstanciate: {fileID: 1947965496318792, guid: f4e257d3395845b47b6ba38b026f447d,
     type: 2}
+--- !u!114 &114422867108173338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b6ec1fbf78e954383f6bf3460fc300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114983938147061660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,7 +327,7 @@ MonoBehaviour:
     i14: 84
     i15: 234
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!136 &136026771799297648
 CapsuleCollider:
   m_ObjectHideFlags: 1
