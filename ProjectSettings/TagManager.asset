@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - AI-Manager
+  - AI
   - Terrain
   layers:
   - Default
