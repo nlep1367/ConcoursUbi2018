@@ -6,7 +6,7 @@ public class Path : MonoBehaviour {
 
     public Color lineColor;
     public bool display = true;
-    public bool isLooping;
+    public bool isLooping = false;
 
     private List<WayPoint> wayPoints;
 
@@ -17,7 +17,18 @@ public class Path : MonoBehaviour {
 
     public int GetNextWayPoint(int index)
     {
-        return (isLooping)? ((++index) % wayPoints.Count) : -1;
+        ++index;
+
+        if (isLooping)
+        {
+            return (index) % wayPoints.Count;
+        }
+        else if(index < wayPoints.Count)
+        {
+            return index;
+        }
+
+        return -1; // Not looping and reached the end of the path
     }
 
     private void Start()

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CarEngine : MonoBehaviour {
+public class CarEngine : NetworkBehaviour
+{
 
     public Path path;
     public float maxSteer = 45f;
@@ -41,6 +43,14 @@ public class CarEngine : MonoBehaviour {
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
 
+    public void Initialize(Path p)
+    {
+        path = p;
+        currentWayPoint = 0;
+
+        // Can eventually assign random values to motor torque, etc...
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
@@ -48,16 +58,21 @@ public class CarEngine : MonoBehaviour {
     }
 
     // Update is called once per frame
+    [Server]
     void FixedUpdate () {
         Sensors();
         ApplySteer();
         Drive();
         CheckWayPointDistance();
-        CheckTrafficLight();
-        Breaking();
-        LerpToSteerAngle();
+        if (isActiveAndEnabled)
+        {
+            CheckTrafficLight();
+            Breaking();
+            LerpToSteerAngle();
+        }
     }
 
+    [Server]
     private void ApplySteer()
     {
         if (avoiding) return;
@@ -68,6 +83,7 @@ public class CarEngine : MonoBehaviour {
         targetSteerAngle = newSteer;
     }
 
+    [Server]
     private void Drive()
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
@@ -84,15 +100,18 @@ public class CarEngine : MonoBehaviour {
         }
     }
 
+    [Server]
     private void CheckWayPointDistance()
     {
         if(Vector3.Distance(transform.position, path.GetWayPoint(currentWayPoint).transform.position) < distanceTolerance)
         {
             currentWayPoint = path.GetNextWayPoint(currentWayPoint);
-            if (currentWayPoint == -1) gameObject.SetActive(false);
+            if (currentWayPoint == -1)
+                NetworkSpawnerManager.Instance.CarSpawner.ReturnToPool(gameObject);
         }
     }
 
+    [Server]
     private void Breaking()
     {
         if (isBreaking)
@@ -113,6 +132,7 @@ public class CarEngine : MonoBehaviour {
         }
     }
 
+    [Server]
     private void Sensors()
     {
         RaycastHit hit;
@@ -196,12 +216,14 @@ public class CarEngine : MonoBehaviour {
         }
     }
 
+    [Server]
     private void LerpToSteerAngle()
     {
         wheelFL.steerAngle = Mathf.Lerp(wheelFL.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
         wheelFR.steerAngle = Mathf.Lerp(wheelFR.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
     }
 
+    [Server]
     private void CheckTrafficLight()
     {
         if (path.GetWayPoint(currentWayPoint).ShouldStop(transform.position))
