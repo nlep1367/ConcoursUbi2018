@@ -7,9 +7,13 @@ using UnityEngine.Networking.Match;
 
 public class MatchMakingLobbyManager : NetworkLobbyManager
 {
-    public Transform contentPanel;
     public SimpleHostPool hostPool;
     public GameObject waitingPanel;
+    public Transform content;
+
+    public GameObject createButton;
+    public GameObject refreshButton;
+    public GameObject newGameField;
 
     // Use this for initialization
     void Start()
@@ -17,19 +21,16 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         singleton.StartMatchMaker();
         singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
 
-        waitingPanel = GameObject.Find("WaitingPanel");
-        waitingPanel.SetActive(false);
+        createButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        createButton.GetComponent<Button>().onClick.AddListener(OnMMLMCreateMatch);
 
-        GameObject.Find("CreateButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("CreateButton").GetComponent<Button>().onClick.AddListener(OnMMLMCreateMatch);
-
-        GameObject.Find("RefreshButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("RefreshButton").GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
+        refreshButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        refreshButton.GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
     }
 
     public void OnMMLMCreateMatch()
     {
-        string matchName = GameObject.Find("NewGameField").GetComponent<Text>().text;
+        string matchName = newGameField.GetComponent<Text>().text;
 
         if (matchName != "")
         {
@@ -55,8 +56,8 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
     {
-        Vector3 position = new Vector3(0, 15, 0);
-        playerPrefab = Instantiate(spawnPrefabs[conn.connectionId], position, Quaternion.identity);
+        //Vector3 position = new Vector3(0, 15, 0);
+        playerPrefab = Instantiate(spawnPrefabs[conn.connectionId], GetStartPosition().position, Quaternion.identity);
 
         return playerPrefab;
     }
@@ -80,9 +81,10 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         foreach(MatchInfoSnapshot match in matchesList)
         {
             GameObject newHost = hostPool.GetObject();
-            newHost.transform.SetParent(contentPanel);
+            newHost.transform.SetParent(content);
             newHost.transform.localScale = new Vector3(1, 1, 1);
 
+            newHost.transform.localPosition = new Vector3(0f, 0f, 0f);
             HostGameItem hostItem = newHost.GetComponent<HostGameItem>();
             hostItem.SetUp(match, delegate { OnMMLMJoinMatch(match); });
         }
@@ -90,9 +92,9 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
     private void ClearDisplayedMatches()
     {
-        while (contentPanel.childCount > 0)
+        while (content.childCount > 0)
         {
-            GameObject toRemove = transform.GetChild(0).gameObject;
+            GameObject toRemove = content.GetChild(0).gameObject;
             hostPool.ReturnObject(toRemove);
         }
     }
