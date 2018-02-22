@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Stimuli
 {
@@ -41,7 +42,7 @@ public class Stimuli
     }
 }
 
-public class AIManager : MonoBehaviour {
+public class AIManager : NetworkBehaviour {
 
     public List<BaseAI> AllAI = new List<BaseAI>();
 
@@ -53,6 +54,7 @@ public class AIManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    [Server]
 	void Update () {
         // Update the Stimilus
 
@@ -95,7 +97,9 @@ public class AIManager : MonoBehaviour {
 
 	}
 
-    public void AddStimuli(float Duration, Vector3 Position, float Size)
+
+    [Command]
+    public void Cmd_AddStimuli(float Duration, Vector3 Position, float Size)
     {
         SoundStimulus.Add(new Stimuli(Duration, Position, Size));
     }

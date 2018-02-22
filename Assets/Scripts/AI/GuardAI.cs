@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 public class GuardAI : BaseAI {
     
@@ -14,12 +15,12 @@ public class GuardAI : BaseAI {
     public float NormalSpeed = 3.5f;
     public float HearingSpeed = 4.5f;
 
+    public IdleBehaviour AI_IdleBehaviour;
+    public AIVision Vision;
+
     private NavMeshAgent Agent;
     private Vector3 StartPosition;
-
-    public IdleBehaviour AI_IdleBehaviour;
-
-    public AIVision Vision;
+    private bool Busy = false;
 
     // Use this for initialization
     void Start ()
@@ -27,16 +28,18 @@ public class GuardAI : BaseAI {
         StartPosition = transform.position;
         Agent = GetComponent<NavMeshAgent>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    [Server]
+    void Update () {
 
         Vector3 EnemySeen;
 
         if(!Vision.SeeSomething(out EnemySeen))
         {
+            Busy = false;
             // Maybe I hear something
-            if(CurrentStimuli != null && // We have a stimuli
+            if (CurrentStimuli != null && // We have a stimuli
                 (transform.position - CurrentStimuli.GetPosition()).magnitude < HearingRange && // Hearing something around me
                 (transform.position - StartPosition).magnitude < SoundLeashRange) // Am I too far?
             {
@@ -51,8 +54,9 @@ public class GuardAI : BaseAI {
         }
         else
         {
+            Busy = true;
             // I see something
-            if((transform.position - StartPosition).magnitude < ChaseLeashRange)
+            if ((transform.position - StartPosition).magnitude < ChaseLeashRange)
             {
                 Agent.destination = EnemySeen;
                 Agent.speed = ChaseSpeed;
@@ -68,7 +72,7 @@ public class GuardAI : BaseAI {
     
     public override bool IsBusy() 
     {
-        return false;
+        return Busy;
     }
 
     private void OnDrawGizmosSelected()
