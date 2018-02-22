@@ -631,12 +631,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 960240bf-ffcf-489b-b783-457b2e7ed5c9
+  cloudProjectId: 0d5f459c-8647-40b3-b5ea-3e0b237e8cba
   projectName: Ubi2018
-  organizationId: sadmonster
+  organizationId: alexfrad
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
