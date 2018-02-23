@@ -14,6 +14,7 @@ public class Player : NetworkBehaviour
 
     public float MovementSpeed;
     public float RotationSpeed;
+    public float PushingMovementSpeed;
 
     public float ClimbingSpeed;
 
@@ -30,6 +31,7 @@ public class Player : NetworkBehaviour
             { StateEnum.GROUNDED, State},
             { StateEnum.CLIMBING, new PStateClimbing(this, ClimbingSpeed, RotationSpeed) },
             { StateEnum.GETTING_OFF_LADDER, new PStateScriptedLadder(this) },
+            { StateEnum.PUSHING, new PStatePushing(this, PushingMovementSpeed) }
             
         };
     }
@@ -47,11 +49,15 @@ public class Player : NetworkBehaviour
 
     public void ChangeState(StateEnum newStateEnum)
     {
+        ChangeState(newStateEnum, null);
+    }
+
+    public void ChangeState(StateEnum newStateEnum, Object o)
+    {
         if (States[newStateEnum] != State)
         {
             PreviousState = State;
-            State.ChangeState(States[newStateEnum]);
+            State.ChangeState(States[newStateEnum], o);
         }
     }
-
 }

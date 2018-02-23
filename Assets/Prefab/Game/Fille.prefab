@@ -350,9 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a7a4947e9a13542bf85dd9ce3863c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  RigidBody: {fileID: 0}
   MovementSpeed: 20
   RotationSpeed: 50
+  PushingMovementSpeed: 10
   ClimbingSpeed: 20
 --- !u!114 &114983938147061660
 MonoBehaviour:
