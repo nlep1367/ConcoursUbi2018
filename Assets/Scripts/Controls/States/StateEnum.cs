@@ -5,5 +5,6 @@ using UnityEngine;
 public enum StateEnum  {
     GROUNDED,
     CLIMBING,
-    GETTING_OFF_LADDER
+    GETTING_OFF_LADDER,
+    PUSHING,
 }
