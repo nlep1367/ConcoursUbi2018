@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PStateGrounded : PlayerState {
+    private const string AnimatorAction = "Moving";
+
     public float MovementSpeed;
     public float RotationSpeed;
 
@@ -35,5 +37,17 @@ public class PStateGrounded : PlayerState {
         {
             _player.transform.eulerAngles += new Vector3(0, Time.deltaTime * RotationSpeed * HorizontalRotation, 0);
         }
+
+        _player.Animator.SetFloat("Speed", _player.RigidBody.velocity.magnitude);
+    }
+
+    public override void OnEnter()
+    {
+        _player.Animator.SetBool(AnimatorAction, true);
+    }
+
+    public override void OnExit()
+    {
+        _player.Animator.SetBool(AnimatorAction, false);
     }
 }

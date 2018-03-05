@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PStateScriptedLadder : PlayerState {
+    private const string AnimatorAction = "ScriptedLadderEnding";
+
     Vector3 _forceUp = 10f * Vector3.up;
     Vector3 _forceForward = 10f * Vector3.forward;
 
@@ -18,10 +20,17 @@ public class PStateScriptedLadder : PlayerState {
 
     public override void OnEnter()
     {
+        _player.Animator.SetBool(AnimatorAction, true);
         _player.RigidBody.velocity = Vector3.zero;
         _time = 0.0f;
         _forceUp = 10f * _player.transform.up;
         _forceForward = 10f * _player.transform.forward;
+    }
+
+
+    public override void OnExit()
+    {
+        _player.Animator.SetBool(AnimatorAction, false);
     }
     public override void InterpretInput()
     {
@@ -41,5 +50,8 @@ public class PStateScriptedLadder : PlayerState {
         {
             _player.ChangeState(StateEnum.GROUNDED);
         }
+
+        _player.Animator.SetFloat("Speed", _player.RigidBody.velocity.magnitude);
+
     }
 }

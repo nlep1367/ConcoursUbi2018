@@ -18,10 +18,13 @@ public class Player : NetworkBehaviour
 
     public float ClimbingSpeed;
 
+    public Animator Animator;
+
     // Use this for initialization
     void Start()
     {
         RigidBody = GetComponent<Rigidbody>();
+        Animator = GetComponent<Animator>();
 
         //Initialize currentstate and possible states
         State = new PStateGrounded(this, MovementSpeed, RotationSpeed);
@@ -32,7 +35,6 @@ public class Player : NetworkBehaviour
             { StateEnum.CLIMBING, new PStateClimbing(this, ClimbingSpeed, RotationSpeed) },
             { StateEnum.GETTING_OFF_LADDER, new PStateScriptedLadder(this) },
             { StateEnum.PUSHING, new PStatePushing(this, PushingMovementSpeed) }
-            
         };
     }
 
