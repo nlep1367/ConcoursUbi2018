@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114639901010968718}
   - component: {fileID: 114232903826840394}
   - component: {fileID: 114782373351332984}
+  - component: {fileID: 114369320478988960}
   m_Layer: 0
   m_Name: Doggo
   m_TagString: Player
@@ -288,6 +289,23 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114369320478988960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618118339527476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e440df606884e794181760a4943b3fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogPosRef: {fileID: 4630758837119808}
+  BarkColor: {r: 1, g: 0, b: 0, a: 1}
+  MaxRad: 8
+  Duration: 3
+  StillDuration: 2
+  ContourBegin: 0.2
 --- !u!114 &114639901010968718
 MonoBehaviour:
   m_ObjectHideFlags: 1

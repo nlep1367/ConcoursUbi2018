@@ -174,7 +174,7 @@ Shader "Custom/DistShader" {
 			if (val > 0 && valBark < 1)
 			{
 				float4 test = tex2D(_MainTex, i.uv);
-				endcolor = fixed4(test.r*(val), test.g*(val), test.b*(val), 1) *_Color;
+				endcolor = fixed4(test.r*(val), test.g*(val), test.b*(val), test.a) *_Color;
 			}
 
 			return fixed4(endcolor.r, endcolor.g, endcolor.b, clamp(endcolor.a - invert, 0, 1));
@@ -182,5 +182,5 @@ Shader "Custom/DistShader" {
 		ENDCG
 		}
 	}
-			Fallback "Custom/Diffuse"
+			Fallback "Diffuse"
 }
