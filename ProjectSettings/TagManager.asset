@@ -9,6 +9,7 @@ TagManager:
   - Terrain
   - Fille
   - Doggo
+  - PickableObject
   layers:
   - Default
   - TransparentFX
