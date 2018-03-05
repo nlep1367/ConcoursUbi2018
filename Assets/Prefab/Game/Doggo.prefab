@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114639901010968718}
   m_Layer: 0
   m_Name: Doggo
-  m_TagString: Untagged
+  m_TagString: Doggo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
