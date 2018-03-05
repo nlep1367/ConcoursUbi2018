@@ -17,8 +17,8 @@ public class CarEngine : NetworkBehaviour
     // Max Distance between car and waypoint to advance
     public float distanceTolerance = 1f;
     public Vector3 centerOfMass;
-    public Texture2D textureNormal;
-    public Texture2D textureBreaking;
+    public Color ColorNoBrake;
+    public Color ColorBraking;
     public Renderer carRenderer; // Should be Renderer
 
     [Header("Wheel Coliders")]
@@ -34,7 +34,7 @@ public class CarEngine : NetworkBehaviour
     public float frontSideSensorPosition = 1f;
     public float frontSensorAngle = 30f;
     
-    private int currentWayPoint = 0;
+    public int currentWayPoint = 0;
     private bool avoiding = false;
     private float targetSteerAngle = 0;
 
@@ -116,7 +116,7 @@ public class CarEngine : NetworkBehaviour
     {
         if (isBreaking)
         {
-            carRenderer.material.mainTexture = textureBreaking;
+            carRenderer.material.SetColor("_EmissionColor", ColorNoBrake);
             wheelFL.brakeTorque = maxBreakTorque;
             wheelFR.brakeTorque = maxBreakTorque;
             wheelRL.brakeTorque = maxBreakTorque;
@@ -124,7 +124,7 @@ public class CarEngine : NetworkBehaviour
         }
         else
         {
-            carRenderer.material.mainTexture = textureNormal;
+            carRenderer.material.SetColor("_EmissionColor", ColorNoBrake);
             wheelFL.brakeTorque = 0;
             wheelFR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;

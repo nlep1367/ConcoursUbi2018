@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 114181913291084418}
   - component: {fileID: 114125487238847442}
   - component: {fileID: 114639901010968718}
+  - component: {fileID: 114232903826840394}
+  - component: {fileID: 114782373351332984}
   m_Layer: 0
   m_Name: Doggo
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,6 +273,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 50
   RotationSpeed: 50
+--- !u!114 &114232903826840394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618118339527476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977dd88e744e20b43bd8891954823adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHeight: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &114639901010968718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cafb19a66408494595ff11257a7f320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraToInstanciate: {fileID: 1947965496318792, guid: f4e257d3395845b47b6ba38b026f447d,
+  CameraToInstanciate: {fileID: 1538573636552538, guid: 014b6f1331c21ed4bbba563a749de61c,
     type: 2}
 --- !u!114 &114691176756873042
 MonoBehaviour:
@@ -316,6 +333,20 @@ MonoBehaviour:
     i15: 134
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114782373351332984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618118339527476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4807f2960ea25ff46beaeac43fe44b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FallModifier: 1
+  LowJumpModifier: 0.66
+  NormalGravityModifier: 1
 --- !u!136 &136868463329626546
 CapsuleCollider:
   m_ObjectHideFlags: 1
