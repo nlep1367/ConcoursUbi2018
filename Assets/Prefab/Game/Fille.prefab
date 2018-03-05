@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 114010725791841316}
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114646634269789370}
+  - component: {fileID: 114539870525776908}
+  - component: {fileID: 136138163852085334}
   m_Layer: 0
   m_Name: Fille
   m_TagString: Untagged
@@ -339,6 +341,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstanciate: {fileID: 1947965496318792, guid: f4e257d3395845b47b6ba38b026f447d,
     type: 2}
+--- !u!114 &114539870525776908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b298f50498e21846addb7f3838b5bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearState: 0
+  fearValue: 0
 --- !u!114 &114646634269789370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -393,6 +408,19 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961332459533206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136138163852085334
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
