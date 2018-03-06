@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class CarEngine : NetworkBehaviour
 {
 
+    public NetworkSpawner carSpawner;
     public Path path;
     public float maxSteer = 45f;
     public float turnSpeed = 5f;
@@ -45,8 +46,9 @@ public class CarEngine : NetworkBehaviour
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
 
-    public void Initialize(Path p)
+    public void Initialize(NetworkSpawner cs, Path p)
     {
+        carSpawner = cs;
         path = p;
         currentWayPoint = 0;
 
@@ -111,7 +113,7 @@ public class CarEngine : NetworkBehaviour
         {
             currentWayPoint = path.GetNextWayPoint(currentWayPoint);
             if (currentWayPoint == -1)
-                NetworkSpawnerManager.Instance.CarSpawner.ReturnToPool(gameObject);
+                carSpawner.ReturnToPool(gameObject);
         }
     }
 

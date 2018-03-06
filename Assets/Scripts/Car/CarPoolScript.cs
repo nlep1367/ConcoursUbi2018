@@ -8,19 +8,21 @@ public class CarPoolScript : NetworkBehaviour
 
     public float spawningTime = 5f;
     public Path path;
+    private NetworkSpawner carSpawner;
 
 	// Use this for initialization
 	void Start () {
+        carSpawner = GetComponentInParent<NetworkSpawner>();
         InvokeRepeating("Roll", 0, spawningTime);
 	}
 
     [Server]
     void Roll()
     {
-        GameObject obj = NetworkSpawnerManager.Instance.CarSpawner.GetFromPool();
+        GameObject obj = carSpawner.GetFromPool();
 
         CarEngine car = obj.GetComponent<CarEngine>();
-        car.Initialize(path);
+        car.Initialize(carSpawner, path);
 
         obj.GetComponent<ObjectSync>().Rpc_SetObjectActive(true);
     }
