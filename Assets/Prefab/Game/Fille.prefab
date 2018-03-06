@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114010725791841316}
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114646634269789370}
+  - component: {fileID: 114991559037419402}
   m_Layer: 0
   m_Name: Fille
   m_TagString: Fille
@@ -387,6 +388,18 @@ MonoBehaviour:
     i15: 234
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114991559037419402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8867ce45a4df4fa418133931a273f011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorPoint: {fileID: 0}
 --- !u!136 &136026771799297648
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -9,11 +9,6 @@ public class PickupObject : MonoBehaviour {
     GameObject carriedObject;
     public Transform anchorPoint;
 
-
-	// Use this for initialization
-	void Start () {
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		if(isCarryingObject)
@@ -56,7 +51,7 @@ public class PickupObject : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("PickableObject"))
         {
@@ -65,7 +60,7 @@ public class PickupObject : MonoBehaviour {
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("PickableObject"))
         {
