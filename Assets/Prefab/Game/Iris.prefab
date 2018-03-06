@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114646634269789370}
   - component: {fileID: 114194783908277058}
   m_Layer: 0
-  m_Name: Fille
+  m_Name: Iris
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 10
+  VisionRadius: 5
   PlayerPosRef: {fileID: 4821068656048232}
 --- !u!114 &114257838193189078
 MonoBehaviour:

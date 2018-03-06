@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114782373351332984}
   - component: {fileID: 114369320478988960}
   m_Layer: 0
-  m_Name: Doggo
+  m_Name: Echo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

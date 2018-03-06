@@ -668,7 +668,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 658506026}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999946
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1821,6 +1821,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 500905774}
+--- !u!1001 &631718617
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -101.044556
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 78.29004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724177368713870, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323787638579942, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &638676709
 GameObject:
   m_ObjectHideFlags: 0
@@ -5949,7 +5995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642268116
 GameObject:
@@ -7073,7 +7119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000040285944}
+  m_AnchoredPosition: {x: 0.000015258789, y: -0.000005490423}
   m_SizeDelta: {x: -59, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1820080630
@@ -8240,7 +8286,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1972243740
 MonoBehaviour:
@@ -8327,9 +8373,9 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   m_ShowLobbyGUI: 0
-  m_MaxPlayers: 2
+  m_MaxPlayers: 1
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 2
+  m_MinPlayers: 1
   m_LobbyPlayerPrefab: {fileID: 114059799678306186, guid: 0111da0d3e9c82847a3c2d943bd5786e,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea,
@@ -8380,7 +8426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4956024367747772, guid: 5142782ca1e6d6341927aaed1607c925, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114055644364376342, guid: 5142782ca1e6d6341927aaed1607c925,
         type: 2}
@@ -8483,7 +8529,7 @@ Transform:
   m_Children:
   - {fileID: 638676710}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2029679677
 GameObject:

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114067689220004236}
   - component: {fileID: 45487710958286744}
   m_Layer: 0
-  m_Name: DogCam
+  m_Name: EchoCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
