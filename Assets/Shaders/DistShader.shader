@@ -77,7 +77,7 @@ Shader "Custom/DistShader" {
 			//Alpha values
 			invert = (i.depth / _EchoRadius)*val;
 			//Visible radius
-			invert = invert < 0.1 ? 0 : invert;
+			invert = invert < 0.3 ? 0 : invert;
 
 			//If in bark echo calculate new alpha
 			invert = valBark > 0 ? 1 - (valBark - (valCirc*(dist / _BarkRadius))) : invert;
@@ -163,7 +163,7 @@ Shader "Custom/DistShader" {
 			//Alpha values
 			invert = (i.depth / _EchoRadius)*val;
 			//Visible radius
-			invert = invert < 0.1 ? 0 : invert;
+			invert = invert < 0.3 ? 0 : invert;
 
 			//If in bark echo calculate new alpha
 			invert = valBark > 0 ? 1 - (valBark - (valCirc*(dist / _BarkRadius))) : invert;

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114013414313323392}
   - component: {fileID: 114086726462427960}
   m_Layer: 0
-  m_Name: FilleCam
+  m_Name: IrisCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
