@@ -129,7 +129,5 @@ Shader "Custom/OutlineShader"
 	}
 	}
 	}
-
-
-		Fallback "Diffuse"
+		Fallback "Custom/EchoesShader"
 }

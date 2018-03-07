@@ -6,6 +6,7 @@ public class UpdateEcho : MonoBehaviour {
 
     public float VisionRadius = 10;
     public Transform PlayerPosRef;
+    public Camera Cam;
     void Start()
     {
         Shader.SetGlobalFloat("_EchoRadius", VisionRadius);
@@ -14,5 +15,6 @@ public class UpdateEcho : MonoBehaviour {
     void Update()
     {
         Shader.SetGlobalVector("_PlayerPosition", PlayerPosRef.position);
+        Shader.SetGlobalColor("_ColorBG", Cam.backgroundColor);
     }
 }
