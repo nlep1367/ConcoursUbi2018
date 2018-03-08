@@ -49,6 +49,6 @@ public class PStatePushing : PlayerState
     {
         _rigidBodyToPush.mass = _mass;
 
-        _player.Animator.SetBool(AnimatorAction, true);
+        _player.Animator.SetBool(AnimatorAction, false);
     }
 }

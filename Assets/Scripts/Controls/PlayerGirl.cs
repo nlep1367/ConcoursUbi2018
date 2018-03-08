@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGirl : Player {
 
     public float MovementSpeed = 10f;
-    public float RotationSpeed = 25f;
+    public float RotationSpeed = 45f;
     public float PushingMovementSpeed = 5f;
 
     public float ClimbingSpeed = 10f;

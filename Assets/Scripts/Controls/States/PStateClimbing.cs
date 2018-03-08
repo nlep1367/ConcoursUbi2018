@@ -35,7 +35,7 @@ public override void InterpretInput()
         _player.Animator.SetFloat("Speed",_player.RigidBody.velocity.magnitude);
     }
 
-    public override void OnEnter()
+    public override void OnEnter(object o)
     {
         _player.Animator.SetBool(AnimatorAction, true);
         _player.RigidBody.useGravity = false;

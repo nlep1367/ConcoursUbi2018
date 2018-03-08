@@ -17,7 +17,6 @@ public class CreateCamera : NetworkBehaviour {
 
             GetComponent<UpdateEcho>().Cam = cam.GetComponent<Camera>();
 
-
             Destroy(this);
         }
 	}

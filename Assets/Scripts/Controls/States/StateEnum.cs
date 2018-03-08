@@ -8,4 +8,5 @@ public enum StateEnum  {
     GETTING_OFF_LADDER,
     PUSHING,
     JUMPING,
+    FALLING,
 }
