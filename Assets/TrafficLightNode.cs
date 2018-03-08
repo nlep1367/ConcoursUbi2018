@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TrafficLightNode : MonoBehaviour {
+public class TrafficLightNode : NetworkBehaviour {
 
     public List<TrafficLight> horizontal;
     public List<TrafficLight> vertical;
@@ -12,9 +13,13 @@ public class TrafficLightNode : MonoBehaviour {
     public float redLightDuration = 3f;
     public float yellowLightDuration = 1f;
     public float greenLightDuration = 2f;
+    public float pedestrianLightDuration = 5f;
 
     private bool isReadyV = true;
     private bool isReadyH = true;
+
+    [SyncVar]
+    public bool hasPedestrian = false;
 
     public void Start()
     {
@@ -58,7 +63,7 @@ public class TrafficLightNode : MonoBehaviour {
         switch (tfs[0].lightState)
         {
             case TrafficLightState.Green:
-                timeToWait = greenLightDuration;
+                timeToWait = hasPedestrian ? greenLightDuration * pedestrianLightDuration : greenLightDuration;
                 break;
 
             case TrafficLightState.Yellow:
@@ -66,7 +71,7 @@ public class TrafficLightNode : MonoBehaviour {
                 break;
 
             case TrafficLightState.Red:
-                timeToWait = redLightDuration;
+                timeToWait = hasPedestrian ? greenLightDuration * pedestrianLightDuration + yellowLightDuration : redLightDuration;
                 break;
         }
 
