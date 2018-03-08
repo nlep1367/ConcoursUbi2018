@@ -13,10 +13,11 @@ public class TrafficLightNode : NetworkBehaviour {
     public float redLightDuration = 3f;
     public float yellowLightDuration = 1f;
     public float greenLightDuration = 2f;
-    public float pedestrianLightDuration = 5f;
+    public float pedestrianDurationMultiplicator = 5f;
 
     private bool isReadyV = true;
     private bool isReadyH = true;
+    private bool needResetPedestrian = false;
 
     [SyncVar]
     public bool hasPedestrian = false;
@@ -63,7 +64,7 @@ public class TrafficLightNode : NetworkBehaviour {
         switch (tfs[0].lightState)
         {
             case TrafficLightState.Green:
-                timeToWait = hasPedestrian ? greenLightDuration * pedestrianLightDuration : greenLightDuration;
+                timeToWait = hasPedestrian ? greenLightDuration * pedestrianDurationMultiplicator : greenLightDuration;
                 break;
 
             case TrafficLightState.Yellow:
@@ -71,9 +72,12 @@ public class TrafficLightNode : NetworkBehaviour {
                 break;
 
             case TrafficLightState.Red:
-                timeToWait = hasPedestrian ? greenLightDuration * pedestrianLightDuration + yellowLightDuration : redLightDuration;
+                timeToWait = hasPedestrian ? greenLightDuration * pedestrianDurationMultiplicator + yellowLightDuration : redLightDuration;
                 break;
         }
+
+        if (timeToWait > redLightDuration)
+            needResetPedestrian = true;
 
         StartCoroutine(Wait(timeToWait, tfs, isHorizontal));
     }
@@ -97,5 +101,11 @@ public class TrafficLightNode : NetworkBehaviour {
             isReadyH = true;
         else
             isReadyV = true;
+
+        if (needResetPedestrian)
+        {
+            //need command/rpclient
+            hasPedestrian = false;
+        }
     }
 }
