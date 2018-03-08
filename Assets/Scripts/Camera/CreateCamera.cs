@@ -14,6 +14,10 @@ public class CreateCamera : NetworkBehaviour {
         {
             GameObject cam = GameObject.Instantiate(CameraToInstanciate);
             cam.GetComponent<ThirdPerson>().SetPlayer(this.gameObject.transform);
+
+            GetComponent<UpdateEcho>().Cam = cam.GetComponent<Camera>();
+
+
             Destroy(this);
         }
 	}
