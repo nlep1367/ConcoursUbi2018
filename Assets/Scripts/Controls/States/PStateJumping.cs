@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PStateJumping : PlayerState {
-    private const string AnimatorAction = "Moving";
+    private const string AnimatorAction = "Jumping";
 
     private float _movementSpeed;
     private float _rotationSpeed;
