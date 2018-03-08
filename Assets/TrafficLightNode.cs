@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class TrafficLightNode : MonoBehaviour {
 
-
-    private List<TrafficLight> all = new List<TrafficLight>();
     public List<TrafficLight> horizontal;
     public List<TrafficLight> vertical;
 
