@@ -13,6 +13,9 @@ public class TrafficLightNode : MonoBehaviour {
     public float yellowLightDuration = 1f;
     public float greenLightDuration = 2f;
 
+    private bool isReadyV = true;
+    private bool isReadyH = true;
+
     public void Start()
     {
         foreach (TrafficLight tf in horizontal)
@@ -28,106 +31,66 @@ public class TrafficLightNode : MonoBehaviour {
         }
     }
 
-    private bool isReadyV = true;
-    private bool isReadyH = true;
-
     public void Update()
     {
         if (isReadyV)
         {
             isReadyV = false;
-            ShowNextLightVertical();
+            CountdownToNextLight(false);
         }
 
         if (isReadyH)
         {
             isReadyH = false;
-            ShowNextLightHorizontal();
+            CountdownToNextLight(true);
         }
     }
 
-    void ShowNextLightHorizontal()
+    void CountdownToNextLight(bool isHorizontal)
     {
-        if (horizontal.Count == 0)
+        List<TrafficLight> tfs = isHorizontal ? horizontal : vertical;
+
+        if (tfs.Count == 0)
             return;
 
-        switch (horizontal[0].lightState)
+        float timeToWait = 0.0f;
+
+        switch (tfs[0].lightState)
         {
             case TrafficLightState.Green:
-                StartCoroutine(Green(true));
+                timeToWait = greenLightDuration;
                 break;
 
             case TrafficLightState.Yellow:
-                StartCoroutine(Yellow(true));
+                timeToWait = yellowLightDuration;
                 break;
 
             case TrafficLightState.Red:
-                StartCoroutine(Red(true));
+                timeToWait = redLightDuration;
                 break;
         }
+
+        StartCoroutine(Wait(timeToWait, tfs, isHorizontal));
+    }
+   
+    public IEnumerator Wait(float timeToWait, List<TrafficLight> tfs, bool isHorizontal)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        SetNextLight(tfs, isHorizontal);
     }
 
-    void ShowNextLightVertical()
+    public void SetNextLight(List<TrafficLight> tfs, bool isHorizontal)
     {
-        if (vertical.Count == 0)
-            return;
-
-        switch (vertical[0].lightState)
+        foreach(TrafficLight tf in tfs)
         {
-            case TrafficLightState.Green:
-                StartCoroutine(Green(false));
-                break;
-
-            case TrafficLightState.Yellow:
-                StartCoroutine(Yellow(false));
-                break;
-
-            case TrafficLightState.Red:
-                StartCoroutine(Red(false));
-                break;
+            int nextVal = (int)tf.lightState + 1;
+            tf.lightState = (TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count);
+            tf.SetLightMaterial();
         }
-    }
 
-    public IEnumerator Red(bool isHorizontal)
-    {
-        yield return new WaitForSeconds(redLightDuration);
-        AdjustLight(isHorizontal);
-    }
-
-    public IEnumerator Yellow(bool isHorizontal)
-    {
-        yield return new WaitForSeconds(yellowLightDuration);
-        AdjustLight(isHorizontal);
-    }
-
-    public IEnumerator Green(bool isHorizontal)
-    {
-        yield return new WaitForSeconds(greenLightDuration);
-        AdjustLight(isHorizontal);
-    }
-
-    public void AdjustLight(bool isHorizontal)
-    {
-        if (isHorizontal)
-        {
-            foreach(TrafficLight tf in horizontal)
-            {
-                int nextVal = (int)tf.lightState + 1;
-                tf.lightState = (TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count);
-                tf.SetLightMaterial();
-            }
+        if(isHorizontal)
             isReadyH = true;
-        }
         else
-        {
-            foreach (TrafficLight tf in vertical)
-            {
-                int nextVal = (int)tf.lightState + 1;
-                tf.lightState = (TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count);
-                tf.SetLightMaterial();
-            }
             isReadyV = true;
-        }
     }
-
 }
