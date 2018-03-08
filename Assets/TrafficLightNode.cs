@@ -18,16 +18,16 @@ public class TrafficLightNode : MonoBehaviour {
     public void Start()
     {
         foreach (TrafficLight tf in horizontal)
+        {
             tf.lightState = TrafficLightState.Green;
+            tf.SetLightMaterial();
+        }
 
         foreach (TrafficLight tf in vertical)
+        {
             tf.lightState = TrafficLightState.Red;
-
-        all.AddRange(horizontal);
-        all.AddRange(vertical);
-
-        foreach (TrafficLight tf in all)
             tf.SetLightMaterial();
+        }
     }
 
     private bool isReadyV = true;
@@ -116,7 +116,6 @@ public class TrafficLightNode : MonoBehaviour {
             {
                 int nextVal = (int)tf.lightState + 1;
                 tf.lightState = (TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count);
-
                 tf.SetLightMaterial();
             }
             isReadyH = true;
@@ -133,26 +132,4 @@ public class TrafficLightNode : MonoBehaviour {
         }
     }
 
-    /*
-    void ShowNextLight()
-    {
-        foreach(TrafficLight tf in all)
-        {
-            switch (tf.lightState)
-            {
-                case TrafficLightState.Green:
-                    StartCoroutine(tf.SetYellow(greenLightDuration));
-                    break;
-
-                case TrafficLightState.Yellow:
-                    StartCoroutine(tf.SetRed(yellowLightDuration));
-                    break;
-
-                case TrafficLightState.Red:
-                    StartCoroutine(tf.SetGreen(redLightDuration));
-                    break;
-            }
-        }
-    }
-    */
 }
