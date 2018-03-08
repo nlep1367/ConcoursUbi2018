@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
 
-public class Player : NetworkBehaviour
+public abstract class Player : NetworkBehaviour
 {
     public Rigidbody RigidBody;
 
@@ -12,30 +12,13 @@ public class Player : NetworkBehaviour
 
     public Dictionary<StateEnum, PlayerState> States;
 
-    public float MovementSpeed;
-    public float RotationSpeed;
-    public float PushingMovementSpeed;
-
-    public float ClimbingSpeed;
-
     public Animator Animator;
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
         RigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
-
-        //Initialize currentstate and possible states
-        State = new PStateGrounded(this, MovementSpeed, RotationSpeed);
-        PreviousState = State;
-        States = new Dictionary<StateEnum, PlayerState>
-        {
-            { StateEnum.GROUNDED, State},
-            { StateEnum.CLIMBING, new PStateClimbing(this, ClimbingSpeed, RotationSpeed) },
-            { StateEnum.GETTING_OFF_LADDER, new PStateScriptedLadder(this) },
-            { StateEnum.PUSHING, new PStatePushing(this, PushingMovementSpeed) }
-        };
     }
 
     // Update is called once per frame

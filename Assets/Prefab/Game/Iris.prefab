@@ -39,11 +39,11 @@ GameObject:
   - component: {fileID: 4821068656048232}
   - component: {fileID: 54044941502602314}
   - component: {fileID: 114983938147061660}
-  - component: {fileID: 114062705637526734}
   - component: {fileID: 114010725791841316}
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114646634269789370}
   - component: {fileID: 114194783908277058}
+  - component: {fileID: 114718581776661096}
   m_Layer: 0
   m_Name: Iris
   m_TagString: Player
@@ -303,19 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
---- !u!114 &114062705637526734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486837572664584}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e03aa76d42aea439cf1735110c4cd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementSpeed: 20
-  RotationSpeed: 50
 --- !u!114 &114124819147340148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VisionRadius: 5
   PlayerPosRef: {fileID: 4821068656048232}
+  Cam: {fileID: 0}
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,11 +352,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a7a4947e9a13542bf85dd9ce3863c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SyncVarDirtyBits: 0
+  m_LastSendTime: 0
+  m_SyncVarGuard: 0
+  m_MyView: {fileID: 0}
   RigidBody: {fileID: 0}
   MovementSpeed: 20
   RotationSpeed: 50
   PushingMovementSpeed: 10
   ClimbingSpeed: 20
+  Animator: {fileID: 0}
+--- !u!114 &114718581776661096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da73a2f3b1700140ba7d8ffd4172370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RigidBody: {fileID: 0}
+  Animator: {fileID: 0}
+  MovementSpeed: 10
+  RotationSpeed: 25
+  PushingMovementSpeed: 5
+  ClimbingSpeed: 10
 --- !u!114 &114983938147061660
 MonoBehaviour:
   m_ObjectHideFlags: 1

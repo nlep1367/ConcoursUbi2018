@@ -3,20 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PStateGrounded : PlayerState {
+public class PStateJumping : PlayerState {
     private const string AnimatorAction = "Moving";
 
-    public float _movementSpeed;
-    public float _rotationSpeed;
+    private float _movementSpeed;
+    private float _rotationSpeed;
 
-    public PStateGrounded(Player player, float ms, float rs) : base(player)
+    private float _fallModifier;
+    private float _lowJumpModifier;
+
+    public PStateJumping(Player player, float ms, float rs, float fallModifier, float lowJumpModifier) : base(player)
     {
         _movementSpeed = ms;
         _rotationSpeed = rs;
+
+        _fallModifier = fallModifier;
+        _lowJumpModifier = lowJumpModifier;
     }
 
     public override void InterpretInput()
     {
+        // In air movement
         float HorizontalAxis = Input.GetAxis("Horizontal_Move");
 
         if (HorizontalAxis >= float.Epsilon || HorizontalAxis <= -float.Epsilon)
@@ -36,6 +43,18 @@ public class PStateGrounded : PlayerState {
         if (HorizontalRotation != 0)
         {
             _player.transform.eulerAngles += new Vector3(0, Time.deltaTime * _rotationSpeed * HorizontalRotation, 0);
+        }
+
+        //Gravity tampering
+        if (_player.RigidBody.velocity.y < 0)
+        {
+            Vector3 force = Vector3.up * Physics.gravity.y * _fallModifier * Time.deltaTime;
+            _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
+        }
+        else if (_player.RigidBody.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            Vector3 force = Vector3.up * Physics.gravity.y * _lowJumpModifier * Time.deltaTime;
+            _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
         }
 
         _player.Animator.SetFloat("Speed", _player.RigidBody.velocity.magnitude);
