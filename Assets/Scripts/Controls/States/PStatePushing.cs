@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PStatePushing : PlayerState
 {
+    private const string AnimatorAction = "Pushing";
+
     float _movementSpeed;
     Rigidbody _rigidBodyToPush;
     float _mass;
@@ -39,10 +41,14 @@ public class PStatePushing : PlayerState
         _rigidBodyToPush = (Rigidbody)o;
         _mass = _rigidBodyToPush.mass;
         _rigidBodyToPush.mass = 0.01f;
+
+        _player.Animator.SetBool(AnimatorAction, true);
     }
 
     public override void OnExit()
     {
         _rigidBodyToPush.mass = _mass;
+
+        _player.Animator.SetBool(AnimatorAction, false);
     }
 }
