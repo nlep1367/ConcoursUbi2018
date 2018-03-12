@@ -8,7 +8,7 @@ public class ReplacementShaderCam : MonoBehaviour {
     {
         if (ReplacementShader != null)
         {
-            GetComponent<Camera>().SetReplacementShader(ReplacementShader, "");
+            GetComponent<Camera>().SetReplacementShader(ReplacementShader, "RenderType");
         }
     }
 

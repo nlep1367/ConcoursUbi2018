@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: foam1
-  m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 86413ca65c0988f40802edb170538126, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -63,6 +63,8 @@ Material:
     - _Cutoff: 0.281
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
+    - _EchoRadius: 30
+    - _EchoWidth: 0.2
     - _GlossMapScale: 1
     - _Glossiness: 0.298
     - _GlossyReflections: 1
@@ -78,5 +80,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorBackGround: {r: 1, g: 1, b: 1, a: 1}
+    - _EchoCenter: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

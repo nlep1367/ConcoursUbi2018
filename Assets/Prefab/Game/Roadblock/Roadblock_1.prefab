@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4076790954302484}
   - component: {fileID: 33681293708117824}
   - component: {fileID: 23636799623911930}
+  - component: {fileID: 65905856679413748}
   m_Layer: 0
   m_Name: sm_RoadBlock_01
   m_TagString: Untagged
@@ -63,8 +64,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448667646517208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.502466, y: 0.027472675, z: -0.0797348}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -20.18042, y: 0.099999994, z: -52.57}
+  m_LocalScale: {x: 2, y: 2.5, z: 2}
   m_Children:
   - {fileID: 4076790954302484}
   m_Father: {fileID: 0}
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497596935006312}
   m_Mesh: {fileID: 4300000, guid: 2197f5d402e844a4d9c6972e0d5664c4, type: 3}
+--- !u!65 &65905856679413748
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497596935006312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.005234598, y: 0.020041607, z: 0.008000001}
+  m_Center: {x: 0.000016132486, y: 0, z: 0.0040000007}
