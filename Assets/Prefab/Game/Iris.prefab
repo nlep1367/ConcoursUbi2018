@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1486837572664584}
   m_IsPrefabParent: 1
+--- !u!1 &1012849824412158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4220400303057146}
+  m_Layer: 0
+  m_Name: Anchor Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1053475203216048
 GameObject:
   m_ObjectHideFlags: 1
@@ -115,6 +130,19 @@ Transform:
   m_Father: {fileID: 4250724424022388}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4220400303057146
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1012849824412158}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4821068656048232}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4239161961554440
 Transform:
   m_ObjectHideFlags: 1
@@ -126,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4821068656048232}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4250724424022388
 Transform:
@@ -141,7 +169,7 @@ Transform:
   - {fileID: 4079258051183466}
   - {fileID: 4646799281852080}
   m_Father: {fileID: 4821068656048232}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4646799281852080
 Transform:
@@ -163,9 +191,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486837572664584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.52784, y: 2, z: 10.96}
+  m_LocalPosition: {x: 0.9877815, y: 2.71, z: 17.254898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4220400303057146}
   - {fileID: 4250724424022388}
   - {fileID: 4239161961554440}
   m_Father: {fileID: 0}
@@ -341,6 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VisionRadius: 5
   PlayerPosRef: {fileID: 4821068656048232}
+  Cam: {fileID: 0}
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8867ce45a4df4fa418133931a273f011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorPoint: {fileID: 0}
+  anchorPoint: {fileID: 4220400303057146}
 --- !u!136 &136026771799297648
 CapsuleCollider:
   m_ObjectHideFlags: 1
