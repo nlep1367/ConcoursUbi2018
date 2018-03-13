@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 95385710751052886}
   m_Layer: 0
   m_Name: Echo
-  m_TagString: Player
+  m_TagString: Doggo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
