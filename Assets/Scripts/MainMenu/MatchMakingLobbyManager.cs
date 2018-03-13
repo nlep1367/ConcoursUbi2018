@@ -108,7 +108,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
         ClearDisplayedMatches();
 
         //Fills Network Manager matches
-        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+        singleton.matchMaker.ListMatches(0, 10, "", true, 0, 0, OnMatchList);
 
         if (singleton.matches.Count > 0)
         {
