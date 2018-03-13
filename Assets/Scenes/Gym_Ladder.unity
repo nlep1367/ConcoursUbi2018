@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea,
+  m_PlayerPrefab: {fileID: 1618118339527476, guid: 9a13cf03ee6930645bd97174c5c78686,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
@@ -5239,25 +5239,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 897369538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &942335596 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1155546741358308, guid: 5ca4ed4965bcb854291f0d544c228b5e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1195572952}
---- !u!64 &942335598
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 942335596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!1 &945059312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5666,25 +5647,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4004858046543520, guid: a35d1a1d7325c05449611584c8b1562a,
     type: 2}
   m_PrefabInternal: {fileID: 702515966}
---- !u!1 &1034016697 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1921894906245196, guid: 5ca4ed4965bcb854291f0d544c228b5e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1195572952}
---- !u!64 &1034016699
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1034016697}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!1 &1034957519
 GameObject:
   m_ObjectHideFlags: 0
@@ -5728,8 +5690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f47699eeb105f04b890d726c9cb2d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortBarMaterial: {fileID: 2100000, guid: 571bfbe0d623afe46a9fe8643837ed09, type: 2}
-  longBarMaterial: {fileID: 2100000, guid: 3dc55fc3f66c19e4fb1e54b38fb62f2e, type: 2}
+  ShortBarMaterial: {fileID: 0}
+  LongBarMaterial: {fileID: 0}
 --- !u!23 &1034957522
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6238,25 +6200,6 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
---- !u!1 &1157555378 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1197496316545238, guid: 5ca4ed4965bcb854291f0d544c228b5e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1195572952}
---- !u!64 &1157555380
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157555378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
@@ -8130,25 +8073,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1490429834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1538819131 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1845318537353632, guid: 5ca4ed4965bcb854291f0d544c228b5e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1195572952}
---- !u!64 &1538819133
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1538819131}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!1 &1540417753
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,7 +9581,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4997038740930816, guid: 6d83c7aadfb05af41b6f404a49c94362, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1813633081110800, guid: 6d83c7aadfb05af41b6f404a49c94362, type: 2}
       propertyPath: m_Name

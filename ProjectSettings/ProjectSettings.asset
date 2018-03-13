@@ -638,9 +638,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 960240bf-ffcf-489b-b783-457b2e7ed5c9
-  projectName: Ubi2018
-  organizationId: sadmonster
+  cloudProjectId: 052ce57d-9112-4a92-923d-8a5b6e0ef744
+  projectName: Ubi2018 (1)
+  organizationId: alexfrad
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

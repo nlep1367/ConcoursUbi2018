@@ -23,9 +23,9 @@ public class MainMenuController : MonoBehaviour {
         //new key
     #if !EMM_ES2
         PlayerPrefs.SetInt("quickSaveSlot", quickSaveSlotID);
-    #else
+#else
         ES2.Save(quickSaveSlotID, "quickSaveSlot");
-    #endif
+#endif
     }
 
 #region Open Different panels
@@ -59,9 +59,12 @@ public class MainMenuController : MonoBehaviour {
         //play click sfx
         playClickSound();
 
+        MatchMakingLobbyManager m = GameObject.Find("LobbyManager").GetComponent<MatchMakingLobbyManager>();
+        m.InitComponents();
+
         //enable BLUR
         //Camera.main.GetComponent<Animator>().Play("BlurOn");
-        
+
     }
 
     public void openOptions_Game()
@@ -93,33 +96,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void newGame()
     {
-        //if we don't have this component
-        if (!GetComponent<LevelSelectManager>())
-        {
-            //loads a specific scene
-            #if !EMM_ES2
-            PlayerPrefs.SetString("sceneToLoad", newGameSceneName);
-            #else
-            ES2.Save(newGameSceneName, "sceneToLoad");
-            #endif
         
-            //load level via fader
-            Fader fader = FindObjectOfType<Fader>();
-            fader.FadeIntoLevel("LoadingScreen");
-
-        }
-        //open the level select screen
-        else
-        {
-            GetComponent<LevelSelectManager>().openLevelSelect();
-        }
-
-        //delete slot id
-        #if !EMM_ES2
-        PlayerPrefs.DeleteKey("slotLoaded_");
-        #else
-        ES2.Delete("slotLoaded_");
-        #endif
 
     }
     #endregion

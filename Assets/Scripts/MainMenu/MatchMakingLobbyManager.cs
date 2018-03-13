@@ -11,26 +11,86 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     public GameObject waitingPanel;
     public Transform content;
 
-    public GameObject createButton;
-    public GameObject refreshButton;
-    public GameObject newGameField;
+    public Button createButton;
+    public Button refreshButton;
+    public Text newGameField;
 
     // Use this for initialization
     void Start()
     {
+    }
+
+    public void InitComponents()
+    { 
+        hostPool = GameObject.Find("HostGamePool").GetComponent<SimpleHostPool>();
+        GameObject allOptionsPanel = GameObject.Find("AllOptionsPanel");
+        Transform[] children = allOptionsPanel.GetComponentsInChildren<Transform>(true);
+        
+        for (int i=0; i<children.Length; ++i)
+        {
+            if (children[i].name == "WaitingPanel") waitingPanel = children[i].gameObject;
+        }
+        
+        content = GameObject.Find("GamesListContent").transform;
+        createButton = GameObject.Find("CreateButton").GetComponent<Button>();
+        refreshButton = GameObject.Find("RefreshButton").GetComponent<Button>();
+        newGameField = GameObject.Find("NewGameField").GetComponent<Text>();
+
+        SetComponents();
+    }
+    void SetComponents()
+    {
         singleton.StartMatchMaker();
         singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
 
-        createButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        createButton.GetComponent<Button>().onClick.AddListener(OnMMLMCreateMatch);
+        createButton.onClick.RemoveAllListeners();
+        createButton.onClick.AddListener(OnMMLMCreateMatch);
 
-        refreshButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        refreshButton.GetComponent<Button>().onClick.AddListener(OnMMLMRefreshMatches);
+        refreshButton.onClick.RemoveAllListeners();
+        refreshButton.onClick.AddListener(OnMMLMRefreshMatches);
+    }
+
+    public override void OnLobbyClientDisconnect(NetworkConnection conn)
+    {
+        base.OnLobbyClientDisconnect(conn);
+        ExitMatch();
+    }
+    public override void OnLobbyServerDisconnect(NetworkConnection conn)
+    {
+        base.OnLobbyServerDisconnect(conn);
+        ExitMatch();
+    }
+
+    public void ExitMatch()
+    {
+        NetworkManager.singleton.StopClient();
+        NetworkManager.singleton.StopHost();
+
+        MatchMakingLobbyManager.singleton.StopClient();
+        MatchMakingLobbyManager.singleton.StopServer();
+
+        NetworkServer.DisconnectAll();
+        //Network.Disconnect ();
+
+        StartCoroutine(ExitDelay());
+    }
+
+    IEnumerator ExitDelay()
+    {
+        yield return new WaitForSeconds(0.1f);//attends un peu
+
+        //Fader fader = new Fader();
+        //fader.FadeIntoLevel("MainMenu");
+        if (SendReturnToLobby())
+        {
+            InitComponents();
+        }
+        InitComponents();
     }
 
     public void OnMMLMCreateMatch()
     {
-        string matchName = newGameField.GetComponent<Text>().text;
+        string matchName = newGameField.text;
 
         if (matchName != "")
         {
@@ -42,6 +102,21 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     {
         singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
     }
+
+    private void OnMMLMRefreshMatches()
+    {
+        ClearDisplayedMatches();
+
+        //Fills Network Manager matches
+        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+
+        if (singleton.matches.Count > 0)
+        {
+            DisplayMatchesToList(matches);
+        }
+    }
+
+
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
@@ -63,18 +138,6 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     }
 
 
-    private void OnMMLMRefreshMatches()
-    {
-        ClearDisplayedMatches();
-
-        //Fills Network Manager matches
-        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
-
-        if (singleton.matches.Count > 0)
-        {
-            DisplayMatchesToList(matches);
-        }
-    }
 
     private void DisplayMatchesToList(List<MatchInfoSnapshot> matchesList)
     {

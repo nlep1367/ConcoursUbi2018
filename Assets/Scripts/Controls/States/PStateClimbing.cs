@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PStateClimbing : PlayerState
 {
+    private const string AnimatorAction = "Climbing";
+
     public float RotationSpeed;
     public float ClimbingSpeed;
 
@@ -29,15 +31,19 @@ public override void InterpretInput()
         {
             _player.transform.eulerAngles += new Vector3(0, Time.deltaTime * RotationSpeed * HorizontalRotation, 0);
         }
+
+        _player.Animator.SetFloat("Speed",_player.RigidBody.velocity.magnitude);
     }
 
-    public override void OnEnter()
+    public override void OnEnter(object o)
     {
+        _player.Animator.SetBool(AnimatorAction, true);
         _player.RigidBody.useGravity = false;
     }
 
     public override void OnExit()
     {
+        _player.Animator.SetBool(AnimatorAction, false);
         _player.RigidBody.useGravity = true;
     }
 }
