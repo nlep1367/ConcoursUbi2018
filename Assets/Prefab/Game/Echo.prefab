@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 114369320478988960}
   - component: {fileID: 114229654856111154}
   - component: {fileID: 95385710751052886}
+  - component: {fileID: 114655472766187984}
   m_Layer: 0
   m_Name: Echo
   m_TagString: Player
@@ -1800,6 +1801,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstanciate: {fileID: 1538573636552538, guid: 014b6f1331c21ed4bbba563a749de61c,
     type: 2}
+--- !u!114 &114655472766187984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618118339527476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95385710751052886}
+  m_ParameterSendBits: 15
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114691176756873042
 MonoBehaviour:
   m_ObjectHideFlags: 1

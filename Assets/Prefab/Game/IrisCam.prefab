@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 81012237468761724}
   - component: {fileID: 114013414313323392}
   - component: {fileID: 114086726462427960}
+  - component: {fileID: 114277144784766134}
   m_Layer: 0
   m_Name: IrisCam
   m_TagString: MainCamera
@@ -116,6 +117,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReplacementShader: {fileID: 4800000, guid: d32bdf3947673e44a8f5ed7f12256e64, type: 3}
+--- !u!114 &114277144784766134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947965496318792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b51ea0a74447943ab2ba14ad561089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Positive:
+  - {r: 0.92941177, g: 0.8862745, b: 0.6862745, a: 0}
+  - {r: 0.79607844, g: 0.9490196, b: 0.60784316, a: 0}
+  - {r: 0.61960787, g: 0.7490196, b: 0.77254903, a: 0}
+  - {r: 0.8862745, g: 0.69411767, b: 0.69411767, a: 0}
+  Negative:
+  - {r: 0.08235294, g: 0.14509805, b: 0.2, a: 0}
+  - {r: 0.7137255, g: 0.29803923, b: 0.27058825, a: 0}
+  duration: 3
+  Cam: {fileID: 20099646163380150}
 --- !u!124 &124920534089462484
 Behaviour:
   m_ObjectHideFlags: 1
