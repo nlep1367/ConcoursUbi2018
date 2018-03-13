@@ -27,7 +27,8 @@ public class CarEngine : NetworkBehaviour
     public WheelCollider wheelFR;
     public WheelCollider wheelRL;
     public WheelCollider wheelRR;
-    private bool isBreaking = false;
+    public bool isBreaking = false;
+    public bool hasObstacle = false;
 
     [Header("Sensors")]
     public float sensorLength = 5f;
@@ -41,9 +42,11 @@ public class CarEngine : NetworkBehaviour
 
     public Color[] RandomColor;
 
+    public Rigidbody Mybody;
+
 	// Use this for initialization
 	void Start () {
-        GetComponent<Rigidbody>().centerOfMass = centerOfMass;
+        Mybody.centerOfMass = centerOfMass;
     }
 
     public void Initialize(NetworkSpawner cs, Path p)
@@ -58,9 +61,34 @@ public class CarEngine : NetworkBehaviour
     }
 
     private void OnDrawGizmosSelected()
-    {
+    {/*
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(centerOfMass + transform.position, 0.1f);        
+        Gizmos.DrawSphere(centerOfMass + transform.position, 0.1f);
+
+        Vector3 sensorStartPos = transform.position + centerOfMass;
+        sensorStartPos += transform.forward * frontSensorPosition.z;
+        sensorStartPos += transform.up * frontSensorPosition.y;
+        //center
+        Gizmos.DrawLine(sensorStartPos, sensorStartPos + new Vector3(0, 0, sensorLength));
+        //right-1
+        sensorStartPos += transform.right * frontSideSensorPosition/2;
+        Gizmos.DrawLine(sensorStartPos, sensorStartPos + new Vector3(0, 0, sensorLength));
+        //right
+        sensorStartPos += transform.right * frontSideSensorPosition/2;
+        Gizmos.DrawLine(sensorStartPos, sensorStartPos + new Vector3(0, 0, sensorLength));
+        //left
+        sensorStartPos -= transform.right * frontSideSensorPosition*2;
+        Gizmos.DrawLine(sensorStartPos, sensorStartPos + new Vector3(0, 0, sensorLength));
+        //left-1
+        sensorStartPos += transform.right * frontSideSensorPosition/2;
+        Gizmos.DrawLine(sensorStartPos, sensorStartPos + new Vector3(0, 0, sensorLength));
+        */
+
+        if (path)
+        {
+            WayPoint w = path.GetWayPoint(currentWayPoint);
+            Gizmos.DrawCube(w.transform.position, new Vector3(3,3,3));
+        }
     }
 
     // Update is called once per frame
@@ -92,12 +120,17 @@ public class CarEngine : NetworkBehaviour
     [Server]
     private void Drive()
     {
-        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
+        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60f / 1000f;
 
-        if(!isBreaking && currentSpeed < maxSpeed)
+        if(!isBreaking && !hasObstacle && currentSpeed < maxSpeed)
         {
             wheelFL.motorTorque = maxMotorTorque;
             wheelFR.motorTorque = maxMotorTorque;
+        }
+        else if (isBreaking || hasObstacle)
+        {
+            wheelFL.motorTorque = -maxMotorTorque;
+            wheelFR.motorTorque = -maxMotorTorque;
         }
         else
         {
@@ -120,7 +153,7 @@ public class CarEngine : NetworkBehaviour
     [Server]
     private void Breaking()
     {
-        if (isBreaking)
+        if (isBreaking || hasObstacle)
         {
             carRenderer.material.SetColor("_EmissionColor", ColorNoBrake);
             wheelFL.brakeTorque = maxBreakTorque;
@@ -136,13 +169,14 @@ public class CarEngine : NetworkBehaviour
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
-    }
+        
+    }   
 
     [Server]
     private void Sensors()
     {
         RaycastHit hit;
-        Vector3 sensorStartPos = transform.position;
+        Vector3 sensorStartPos = transform.position + centerOfMass;
         sensorStartPos += transform.forward * frontSensorPosition.z;
         sensorStartPos += transform.up * frontSensorPosition.y;
 
@@ -221,7 +255,7 @@ public class CarEngine : NetworkBehaviour
             targetSteerAngle = maxSteer * avoidMultiplier;
         }
     }
-
+    
     [Server]
     private void LerpToSteerAngle()
     {

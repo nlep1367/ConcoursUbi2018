@@ -7,6 +7,9 @@ TagManager:
   - AI-Manager
   - AI
   - Terrain
+  - Fille
+  - Doggo
+  - PickableObject
   layers:
   - Default
   - TransparentFX

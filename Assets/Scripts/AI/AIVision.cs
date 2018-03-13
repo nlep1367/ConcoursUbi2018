@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class AIVision : MonoBehaviour {
 
-    public enum SightPriority
-    {
-        Nearest,
-        Farthest
-    }
-
-    public SightPriority Priority;
-
     public float SightDegreeAngle = 160.0f;
     public float SightDistance = 10.0f;
+    public float GirlDogProximityDistance = 5.0f;
     
     public string[] ViewAbleTags = { "Players" };
 
@@ -21,10 +14,14 @@ public class AIVision : MonoBehaviour {
 
     private List<Transform> Players;
 
+    private Transform GirlTransform;
+    private Transform DoggoTransform;
 
-	// Use this for initialization
-	void Start () {
-        Players = new List<Transform>();
+
+    // Use this for initialization
+    void Start () {
+        GirlTransform = GameObject.FindGameObjectWithTag("Fille").transform;
+        DoggoTransform = GameObject.FindGameObjectWithTag("Doggo").transform;
     }
 
     public void Update()
@@ -43,111 +40,31 @@ public class AIVision : MonoBehaviour {
         return Vector3.Dot(transform.forward, DistanceVector.normalized) > NormalizedDist;
     }
 
-    public void InitializePlayerList()
-    {
-        Players.Clear();
-
-        for (int j = 0; j < ViewAbleTags.Length; ++j)
-        {
-            GameObject[] GOs = GameObject.FindGameObjectsWithTag(ViewAbleTags[j]);
-
-            for (int i = 0; i < GOs.Length; ++i)
-            {
-                Players.Add(GOs[i].transform);
-            }
-        }
-    }
-    
     public bool SeeSomething(out Vector3 Target)
     {
-        if (Players == null)
-        { 
+        if (Vector3.Distance(GirlTransform.position, DoggoTransform.position) < GirlDogProximityDistance)
+        {
             Target = transform.position;
             return false;
         }
 
-        if (Players.Count == 0)
-        {
-            InitializePlayerList();
-        }
-
-        switch(Priority)
-        {
-            case SightPriority.Farthest :
-                return Furthest(out Target);
-            case SightPriority.Nearest:
-                return Nearest(out Target);
-            default :
-                Target = transform.position;
-                return false;
-        }
-
-
+        return IsDoggoInSight(out Target);
     }
     
-    public bool Furthest(out Vector3 Target)
+    public bool IsDoggoInSight(out Vector3 Target)
     {
-        Transform CurrentTarget = null;
-
-        foreach (Transform target in Players)
-        {
-            Vector3 Result = target.position - transform.position;
-            float targetDistance = Result.magnitude;
+        Vector3 Result =   DoggoTransform.position - transform.position;
+        float targetDistance = Result.magnitude;
             
-            if (targetDistance > SightDistance) // Too far
-                continue;
-            if (!InsideVision(Result)) // not inside the sight radius
-                continue;
-            else if (CurrentTarget == null) // First target found within range
-                CurrentTarget = target;
-            else if (targetDistance < (CurrentTarget.position - transform.position).magnitude) // Is the new target further and the one we have right now
-                CurrentTarget = target;
-            else // The target is not the furthest
-                continue;
-        }
-        
-        if (CurrentTarget == null)
-        { 
-            Target = transform.position;
-            return false;
+        if (targetDistance < SightDistance && InsideVision(Result)) //Guard see the doggo
+        {
+            Target = DoggoTransform.position;
+            return true;
         }
         else
         {
-            Target = CurrentTarget.position;
-            return true;
-        }
-    }
-
-    public bool Nearest(out Vector3 Target)
-    {
-        Transform CurrentTarget = null;
-
-        foreach (Transform target in Players)
-        {
-            Vector3 Result = target.position - transform.position;
-            float targetDistance = Result.magnitude;
-
-            if (targetDistance > SightDistance) // Too far
-                continue;
-            if (!InsideVision(Result)) // not inside the sight radius
-                continue;
-            else if (CurrentTarget == null) // First target found within range
-                CurrentTarget = target;
-            else if (targetDistance > (CurrentTarget.position - transform.position).magnitude) // Is the new target further and the one we have right now
-                CurrentTarget = target;
-            else // The target is not the furthest
-                continue;
-        }
-
-        if (CurrentTarget == null)
-        {
             Target = transform.position;
             return false;
-        }
-        else
-        {
-            Target = CurrentTarget.position;
-            return true;
         }
     }
 
