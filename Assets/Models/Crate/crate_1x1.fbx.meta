@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 137c41bed2588584b84f579844385bb3
-timeCreated: 1518726264
+guid: c985a9851e19128468d522645d1e1ef9
+timeCreated: 1520900689
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: Material.003
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane
+    4300000: Crate_01
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
