@@ -6,37 +6,47 @@ using UnityEngine;
 public class DoorState : NetworkBehaviour {
     Animator Anim;
 
-    public bool CloseTest = false;
-    public bool OpenTest = false;
+    public Collider RelatedKey;
 
     private bool Opened = false;
     private bool Idle = false;
+
+    private bool Locked = false;
+    private bool MatchingKeyInserted = false;
+    private bool WrongKey = false;
+
+    private bool IsGirlInRange = false;
 
     private ObjectSync Os;
 
     private void Update()
     {
-        if(OpenTest)
-        {
-            OpenTest = false;
-            OpenDoor();
-        }
-        
-        if(CloseTest)
-        {
-            CloseTest = false;
-            CloseDoor();
-        }
+        if (Opened)
+            Close();
+        else
+            Open();
     }
 
     void Start()
     {
         Anim = GetComponent<Animator>();
 
+        if (RelatedKey != null)
+            Locked = true;
+
         if (!isServer)
         { 
             Destroy(Anim);
             Destroy(this);
+        }
+    }
+
+    private void OnGUI()
+    {
+        if(WrongKey)
+        {
+            GUI.Box(new Rect(0, 60, 200, 25), "Wrong key");
+            WrongKey = false;
         }
     }
 
@@ -63,5 +73,58 @@ public class DoorState : NetworkBehaviour {
         Anim.Play("Door_Close");
         Idle = false;
         Opened = false;
+    }
+
+    void Open()
+    {
+        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
+        {
+            if(Locked && MatchingKeyInserted)
+            {
+                Locked = false;
+                OpenDoor();
+            }
+            else
+            {
+                OpenDoor();
+            }
+        }
+    }
+
+    void Close()
+    {
+        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
+        {
+            CloseDoor();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider == RelatedKey)
+        {
+            GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
+            Destroy(collision.gameObject);
+            MatchingKeyInserted = true;
+        }
+
+        if (collision.gameObject.CompareTag("PickableObject"))
+        {
+            WrongKey = true;
+        }
+
+        if (collision.gameObject.CompareTag("Fille"))
+        {
+            IsGirlInRange = true;
+        }
+
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Fille"))
+        {
+            IsGirlInRange = false;
+        }
     }
 }
