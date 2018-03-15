@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class TrafficLightNode : NetworkBehaviour {
 
+    private List<TrafficLight> all;
     public List<TrafficLight> horizontal;
     public List<TrafficLight> vertical;
 
@@ -17,41 +19,71 @@ public class TrafficLightNode : NetworkBehaviour {
 
     private bool isReadyV = true;
     private bool isReadyH = true;
-    private bool needResetPedestrian = false;
-
-    [SyncVar]
+    private bool isReadyP = true;
     public bool hasPedestrian = false;
 
-    public void Start()
+    public override void OnStartServer()
+    {
+        InitLight();
+
+        all = horizontal.Concat(vertical).ToList();
+    }
+
+    public void InitLight()
     {
         foreach (TrafficLight tf in horizontal)
         {
-            tf.lightState = TrafficLightState.Green;
-            tf.SetLightMaterial();
+            tf.SetState(TrafficLightState.Green);
+            tf.Rpc_SendStateToServer(TrafficLightState.Green);
         }
 
         foreach (TrafficLight tf in vertical)
         {
-            tf.lightState = TrafficLightState.Red;
-            tf.SetLightMaterial();
+            tf.SetState(TrafficLightState.Red);
+            tf.Rpc_SendStateToServer(TrafficLightState.Red);
         }
     }
 
+    [Server]
     public void Update()
     {
-        if (isReadyV)
+        if (!hasPedestrian)
         {
-            isReadyV = false;
-            CountdownToNextLight(false);
+            if (isReadyV)
+            {
+                isReadyV = false;
+                CountdownToNextLight(false);
+            }
+
+            if (isReadyH)
+            {
+                isReadyH = false;
+                CountdownToNextLight(true);
+            }
+        }
+        else
+        {
+            if (isReadyP)
+            {
+                isReadyP = false;
+                CountdownPedestrian();
+            }   
         }
 
-        if (isReadyH)
-        {
-            isReadyH = false;
-            CountdownToNextLight(true);
-        }
     }
 
+    [Server]
+    void CountdownPedestrian()
+    {
+        foreach (TrafficLight tf in all)
+        {
+            tf.Rpc_SendStateToServer(TrafficLightState.Red);
+        }
+
+        StartCoroutine(Wait());
+    }
+
+    [Server]
     void CountdownToNextLight(bool isHorizontal)
     {
         List<TrafficLight> tfs = isHorizontal ? horizontal : vertical;
@@ -61,10 +93,10 @@ public class TrafficLightNode : NetworkBehaviour {
 
         float timeToWait = 0.0f;
 
-        switch (tfs[0].lightState)
+        switch (tfs[0].getLightState())
         {
             case TrafficLightState.Green:
-                timeToWait = hasPedestrian ? greenLightDuration * pedestrianDurationMultiplicator : greenLightDuration;
+                timeToWait = greenLightDuration;
                 break;
 
             case TrafficLightState.Yellow:
@@ -72,40 +104,54 @@ public class TrafficLightNode : NetworkBehaviour {
                 break;
 
             case TrafficLightState.Red:
-                timeToWait = hasPedestrian ? greenLightDuration * pedestrianDurationMultiplicator + yellowLightDuration : redLightDuration;
+                timeToWait = redLightDuration;
                 break;
         }
 
-        if (timeToWait > redLightDuration)
-            needResetPedestrian = true;
-
         StartCoroutine(Wait(timeToWait, tfs, isHorizontal));
     }
-   
+
+    [Server]
     public IEnumerator Wait(float timeToWait, List<TrafficLight> tfs, bool isHorizontal)
     {
         yield return new WaitForSeconds(timeToWait);
         SetNextLight(tfs, isHorizontal);
     }
 
+    [Server]
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(redLightDuration * pedestrianDurationMultiplicator);
+        SetNextLight();
+    }
+
+    [Server]
     public void SetNextLight(List<TrafficLight> tfs, bool isHorizontal)
     {
         foreach(TrafficLight tf in tfs)
         {
-            int nextVal = (int)tf.lightState + 1;
-            tf.lightState = (TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count);
-            tf.SetLightMaterial();
+            int nextVal = (int)tf.getLightState() + 1;
+            if(!hasPedestrian)
+                tf.Rpc_SendStateToServer((TrafficLightState)Enum.ToObject(typeof(TrafficLightState), nextVal % (int)TrafficLightState.Count));
         }
 
         if(isHorizontal)
             isReadyH = true;
         else
             isReadyV = true;
+    }
 
-        if (needResetPedestrian)
-        {
-            //need command/rpclient
-            hasPedestrian = false;
-        }
+    [Server]
+    public void SetNextLight()
+    {
+        InitLight();
+
+        isReadyH = isReadyV = isReadyP = true;
+        hasPedestrian = false;
+    }
+
+    public void HitPedestrianButton()
+    {
+        hasPedestrian = true;
     }
 }

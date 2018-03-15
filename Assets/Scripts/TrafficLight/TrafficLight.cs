@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public enum TrafficLightState
 {
@@ -10,46 +11,75 @@ public enum TrafficLightState
     Count,
 }
 
-public class TrafficLight : MonoBehaviour {
+public class TrafficLight : NetworkBehaviour {
 
-    public Renderer RedLight;
-    public Material RedMaterial;
+    [SyncVar]
+    public TrafficLightState syncState;
+    private TrafficLightState lastState = TrafficLightState.Count;
 
-    public Renderer YellowLight;
-    public Material YellowMaterial;
-
-    public Renderer GreenLight;
-    public Material GreenMaterial;
-
-    public Material DefaultMaterial;
-
-    public TrafficLightState lightState;
+    private Material lights;
 
     // Use this for initialization
-    void Start () {
-        GreenLight.material = DefaultMaterial;
-        YellowLight.material = DefaultMaterial;
-        RedLight.material = DefaultMaterial;
+    void Awake () {
+        lights = GetComponent<Renderer>().materials[1];
     }
 
-    public void SetLightMaterial()
+    public TrafficLightState getLightState()
     {
-        switch (lightState)
+        return syncState;
+    }
+
+    [ClientRpc]
+    public void Rpc_SendStateToServer(TrafficLightState tls)
+    {
+        syncState = tls;
+        SetLightMaterial();
+    }
+
+    public void SetState(TrafficLightState tls)
+    {
+        syncState = tls;
+        SetLightMaterial();
+    }
+
+/*
+[ClientCallback]
+void SendState()
+{
+    if (syncState != lastState)
+    {
+        Cmd_SendStateToServer(syncState);
+        lastState = syncState;
+    }
+}
+*/
+public void SetLightMaterial()
+    {
+        if (syncState != lastState)
         {
-            case TrafficLightState.Green:
-                GreenLight.material = GreenMaterial;
-                RedLight.material = DefaultMaterial;
-                break;
+            switch (syncState)
+            {
+                case TrafficLightState.Green:
+                    lights.mainTextureOffset = new Vector2(0.75f, 0);
+                    break;
 
-            case TrafficLightState.Yellow:
-                YellowLight.material = YellowMaterial;
-                GreenLight.material = DefaultMaterial;
-                break;
+                case TrafficLightState.Yellow:
+                    lights.mainTextureOffset = new Vector2(0, 0);
+                    break;
 
-            case TrafficLightState.Red:
-                RedLight.material = RedMaterial;
-                YellowLight.material = DefaultMaterial;
-                break;
+                case TrafficLightState.Red:
+                    if(GetComponentInParent<TrafficLightNode>().hasPedestrian)
+                    {
+                        lights.mainTextureOffset = new Vector2(0.25f, 0);
+                    }
+                    else
+                    {
+                        lights.mainTextureOffset = new Vector2(0.50f, 0);
+                    }
+                    
+                    break;
+            }
+            lastState = syncState;
         }
     }
 }
