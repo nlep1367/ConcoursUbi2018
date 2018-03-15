@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerDog : Player
 {
-    public float Acceleration = 15f;
 
     public float MovementSpeed = 15f;
     public float RotationSpeed = 25f;
+    public float Acceleration = 30f;
 
     public float MaxHeight = 5f;
 
@@ -18,9 +18,12 @@ public class PlayerDog : Player
 
     new void Start()
     {
+        GroundedState = new PStateGroundedDog(this, Acceleration, MovementSpeed, RotationSpeed, MaxHeight);
+        State = GroundedState;
         base.Start();
-        //Initialize currentstate and possible states
-        State = new PStateGroundedDog(this, Acceleration, MovementSpeed, RotationSpeed, MaxHeight);
+
+        //Initialize currentstate and possible states;
+
         PreviousState = State;
         States = new Dictionary<StateEnum, PlayerState>
         {

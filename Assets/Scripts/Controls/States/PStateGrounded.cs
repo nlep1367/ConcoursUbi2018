@@ -6,40 +6,22 @@ using UnityEngine;
 public class PStateGrounded : PlayerState {
     private const string AnimatorAction = "Moving";
 
-    public float _movementSpeed;
-    public float _rotationSpeed;
+    private float _maxSpeed;
+    private float _rotationSpeed;
+    private float _acceleration;
+    private Camera _camera;
 
-    public PStateGrounded(Player player, float ms, float rs) : base(player)
+    public PStateGrounded(Player player, float acceleration, float ms, float rs) : base(player)
     {
-        _movementSpeed = ms;
+        _acceleration = acceleration;
+        _maxSpeed = ms;
         _rotationSpeed = rs;
     }
 
     public override void InterpretInput()
     {
-        float HorizontalAxis = Input.GetAxis("Horizontal_Move");
-
-        if (HorizontalAxis >= float.Epsilon || HorizontalAxis <= -float.Epsilon)
-        {
-            _player.RigidBody.AddForce(HorizontalAxis * _player.transform.right * _movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        }
-
-        float VerticalAxis = Input.GetAxis("Vertical_Move");
-
-        if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
-        {
-            _player.RigidBody.AddForce(VerticalAxis * _player.transform.forward * _movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        }
-
-        float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
-
-        if (HorizontalRotation != 0)
-        {
-            _player.transform.eulerAngles += new Vector3(0, Time.deltaTime * _rotationSpeed * HorizontalRotation, 0);
-        }
-
-        _player.Animator.SetFloat("Speed", _player.RigidBody.velocity.magnitude);
-    }   
+        MovementMode.ForwardModeCamRelative(_player, _acceleration, _maxSpeed, _rotationSpeed, _camera);
+    }
 
     public override void OnEnter(object o)
     {
@@ -49,5 +31,10 @@ public class PStateGrounded : PlayerState {
     public override void OnExit()
     {
         _player.Animator.SetBool(AnimatorAction, false);
+    }
+
+    public void SetCamera(Camera camera)
+    {
+        _camera = camera;
     }
 }
