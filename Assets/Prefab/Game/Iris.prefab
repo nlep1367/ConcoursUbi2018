@@ -2551,7 +2551,7 @@ Transform:
   m_GameObject: {fileID: 1486837572664584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 23.260822, y: 20.293797, z: -27.035515}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4487648032559392}
   - {fileID: 4239161961554440}
@@ -2830,10 +2830,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 0}
   Animator: {fileID: 0}
-  MovementSpeed: 10
+  MovementSpeed: 25
   RotationSpeed: 60
   PushingMovementSpeed: 5
   ClimbingSpeed: 10
+  shaderActivated: 1
 --- !u!114 &114603672696637660
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,6 +10,8 @@ public class PlayerGirl : Player {
 
     public float ClimbingSpeed = 10f;
 
+    public bool shaderActivated = true;
+
     new void Start()
     {
         base.Start();
@@ -23,5 +25,17 @@ public class PlayerGirl : Player {
             { StateEnum.GETTING_OFF_LADDER, new PStateScriptedLadder(this) },
             { StateEnum.PUSHING, new PStatePushing(this, PushingMovementSpeed) }
         };
+    }
+
+    new void Update()
+    {
+        base.Update();
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Camera cam= GetComponent<UpdateEcho>().Cam;
+            shaderActivated = !shaderActivated;
+            cam.GetComponent<ReplacementShaderCam>().enabled = shaderActivated;
+        }
     }
 }
