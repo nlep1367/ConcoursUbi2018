@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class AddAIToManager : MonoBehaviour {
 
 	[MenuItem("Custom/AI/Add all AI")]
     static void AddAllAi()
