@@ -414,10 +414,10 @@ GameObject:
   - component: {fileID: 114691176756873042}
   - component: {fileID: 114125487238847442}
   - component: {fileID: 114639901010968718}
-  - component: {fileID: 114369320478988960}
   - component: {fileID: 114229654856111154}
   - component: {fileID: 95385710751052886}
-  - component: {fileID: 114655472766187984}
+  - component: {fileID: 114333644976389282}
+  - component: {fileID: 114677638501129618}
   m_Layer: 0
   m_Name: Echo
   m_TagString: Doggo
@@ -1771,23 +1771,18 @@ MonoBehaviour:
   InAirMovementSpeed: 5
   FallModifier: 1.5
   LowJumpModifier: 1
---- !u!114 &114369320478988960
+--- !u!114 &114333644976389282
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1618118339527476}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e440df606884e794181760a4943b3fd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a9b14867ffad6a4cac45a74ff4c31c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DogPosRef: {fileID: 4630758837119808}
-  BarkColor: {r: 1, g: 0, b: 0, a: 1}
-  MaxRad: 8
-  Duration: 3
-  StillDuration: 2
-  ContourBegin: 0.2
+  BarkRange: 0
 --- !u!114 &114639901010968718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1801,7 +1796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstanciate: {fileID: 1538573636552538, guid: 014b6f1331c21ed4bbba563a749de61c,
     type: 2}
---- !u!114 &114655472766187984
+--- !u!114 &114677638501129618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

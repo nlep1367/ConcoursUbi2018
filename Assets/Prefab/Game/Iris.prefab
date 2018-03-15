@@ -718,7 +718,8 @@ GameObject:
   - component: {fileID: 114463547729033316}
   - component: {fileID: 95794001824668072}
   - component: {fileID: 114603672696637660}
-  - component: {fileID: 114194816821541898}
+  - component: {fileID: 114091528639082618}
+  - component: {fileID: 114009191638688670}
   m_Layer: 0
   m_Name: Iris
   m_TagString: Fille
@@ -2552,7 +2553,7 @@ Transform:
   m_GameObject: {fileID: 1486837572664584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 23.260822, y: 20.293797, z: -27.035515}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4487648032559392}
   - {fileID: 4239161961554440}
@@ -2768,6 +2769,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114009191638688670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95794001824668072}
+  m_ParameterSendBits: 15
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114010725791841316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2780,6 +2800,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!114 &114091528639082618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e440df606884e794181760a4943b3fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogPosRef: {fileID: 0}
+  MaxRad: 8
+  Duration: 3
+  StillDuration: 2
+  ContourBegin: 0.2
 --- !u!114 &114124819147340148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2802,28 +2838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 5
+  VisionRadius: 10
   PlayerPosRef: {fileID: 4821068656048232}
   Cam: {fileID: 0}
---- !u!114 &114194816821541898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486837572664584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 95794001824668072}
-  m_ParameterSendBits: 15
-  param0: 
-  param1: 
-  param2: 
-  param3: 
-  param4: 
-  param5: 
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2850,10 +2867,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 0}
   Animator: {fileID: 0}
-  MovementSpeed: 10
+  MovementSpeed: 25
   RotationSpeed: 60
   PushingMovementSpeed: 5
   ClimbingSpeed: 10
+  shaderActivated: 1
 --- !u!114 &114603672696637660
 MonoBehaviour:
   m_ObjectHideFlags: 1

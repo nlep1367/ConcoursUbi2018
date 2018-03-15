@@ -14,7 +14,7 @@
 			}
 			LOD 200
 		ZWrite Off
-		ZTest Always
+		//ZTest Always
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		

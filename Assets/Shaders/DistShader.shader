@@ -9,6 +9,7 @@ Shader "Custom/DistShader" {
 		_MainTex("Texture", 2D) = "white"
 		_EchoRadius("Radius", float) = 30.0
 		_BarkRadius("Bark Radius", float) = 0.0
+		_MinimumOpaqueAlpha("Opaque Alpha", float) = 0.3
 		_ContourWidth("Width of Bark Contour", float) = 0.2
 		_DogPosition("Dog Position", vector) = (0,0,0,0)
 		_PlayerPosition("Player Position", vector) = (0,0,0,0)
@@ -38,6 +39,7 @@ Shader "Custom/DistShader" {
 			uniform float _BarkRadius;
 			uniform float _ContourWidth;
 			uniform float4 _DogPosition;
+			uniform float _MinimumOpaqueAlpha;
 			
 		struct appdata
 		{
@@ -79,7 +81,7 @@ Shader "Custom/DistShader" {
 			//Alpha values
 			invert = (i.depth / _EchoRadius)*val;
 			//Visible radius
-			invert = invert < 0.1 ? 0 : invert;
+			invert = invert < _MinimumOpaqueAlpha ? 0 : invert;
 
 			//If in bark echo calculate new alpha
 			invert = valBark > 0 ? 1 - (valBark - (valCirc*(dist / _BarkRadius))) : invert;
@@ -189,5 +191,5 @@ Shader "Custom/DistShader" {
 		ENDCG
 		}
 	}
-	Fallback "Custom/OutlineShader"
+	Fallback "Custom/Test"
 }
