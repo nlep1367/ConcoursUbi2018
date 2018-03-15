@@ -16,7 +16,8 @@ public class BlockerAI : MonoBehaviour {
         Vector3 Target;
         if (Vision.SeeSomething(out Target))
         {
-
+            Vector3 Path = EndPosition - StartPosition;
+            Mathf 
         }
 
 	}
