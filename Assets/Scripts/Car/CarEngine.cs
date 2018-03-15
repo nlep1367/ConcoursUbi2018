@@ -42,11 +42,13 @@ public class CarEngine : NetworkBehaviour
 
     public Color[] RandomColor;
 
-    public Rigidbody Mybody;
+    private Rigidbody Mybody;
 
 	// Use this for initialization
 	void Start () {
+        Mybody = GetComponent<Rigidbody>();
         Mybody.centerOfMass = centerOfMass;
+        carRenderer.material.color = RandomColor[Random.Range(0, RandomColor.Length - 1)];
     }
 
     public void Initialize(NetworkSpawner cs, Path p)
@@ -54,8 +56,6 @@ public class CarEngine : NetworkBehaviour
         carSpawner = cs;
         path = p;
         currentWayPoint = 0;
-
-        carRenderer.material.color = RandomColor[Random.Range(0, RandomColor.Length - 1)];
 
         // Can eventually assign random values to motor torque, etc...
     }
