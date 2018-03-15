@@ -2812,13 +2812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DogPosRef: {fileID: 0}
-  BarkColor: {r: 0, g: 0, b: 0, a: 0}
   MaxRad: 8
   Duration: 3
   StillDuration: 2
   ContourBegin: 0.2
-  BeginBark: 0
-  Color: 0
 --- !u!114 &114124819147340148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2841,7 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 5
+  VisionRadius: 10
   PlayerPosRef: {fileID: 4821068656048232}
   Cam: {fileID: 0}
 --- !u!114 &114257838193189078

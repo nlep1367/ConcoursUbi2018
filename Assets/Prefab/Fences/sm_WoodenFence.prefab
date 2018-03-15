@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64870920349844004}
   m_Layer: 0
   m_Name: sm_WoodenFence
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,6 +16,7 @@ public class StartGame : MonoBehaviour {
     [MenuItem("Custom/StartGame &s")]
     static void GotoMainMenu()
     {
+        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
         EditorPrefs.SetString("MapName", EditorSceneManager.GetActiveScene().name);
         
         EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");

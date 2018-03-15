@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 81012237468761724}
   - component: {fileID: 114013414313323392}
   - component: {fileID: 114086726462427960}
+  - component: {fileID: 114958185135378210}
   m_Layer: 0
   m_Name: IrisCam
   m_TagString: MainCamera
@@ -116,6 +117,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReplacementShader: {fileID: 4800000, guid: d32bdf3947673e44a8f5ed7f12256e64, type: 3}
+--- !u!114 &114958185135378210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947965496318792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b51ea0a74447943ab2ba14ad561089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorStart: {r: 1, g: 1, b: 1, a: 1}
+  ColorEnd: {r: 0.9191176, g: 0.8920848, b: 0.9191176, a: 1}
+  duration: 2
+  Cam: {fileID: 20099646163380150}
 --- !u!124 &124920534089462484
 Behaviour:
   m_ObjectHideFlags: 1
