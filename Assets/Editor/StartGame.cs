@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour {
         EditorApplication.playModeStateChanged += Test;
     }
 
-    [MenuItem("Custom/StartGame")]
+    [MenuItem("Custom/StartGame &s")]
     static void GotoMainMenu()
     {
         EditorPrefs.SetString("MapName", EditorSceneManager.GetActiveScene().name);
