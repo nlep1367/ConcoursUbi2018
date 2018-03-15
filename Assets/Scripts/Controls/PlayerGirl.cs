@@ -6,6 +6,7 @@ public class PlayerGirl : Player {
 
     public float MovementSpeed = 10f;
     public float RotationSpeed = 45f;
+    public float Acceleration = 30f;
     public float PushingMovementSpeed = 5f;
 
     public float ClimbingSpeed = 10f;
@@ -14,9 +15,11 @@ public class PlayerGirl : Player {
 
     new void Start()
     {
+        GroundedState = new PStateGroundedGirl(this, Acceleration, MovementSpeed, RotationSpeed);
+        State = GroundedState;
         base.Start();
         //Initialize currentstate and possible states
-        State = new PStateGrounded(this, MovementSpeed, RotationSpeed);
+
         PreviousState = State;
         States = new Dictionary<StateEnum, PlayerState>
         {

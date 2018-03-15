@@ -7,7 +7,6 @@ public class CreateCamera : NetworkBehaviour {
 
     public GameObject CameraToInstanciate;
 
-
 	// Use this for initialization
 	void Start () {
 		if(isLocalPlayer)
@@ -15,8 +14,14 @@ public class CreateCamera : NetworkBehaviour {
             GameObject cam = GameObject.Instantiate(CameraToInstanciate);
             cam.GetComponent<ThirdPerson>().SetPlayer(this.gameObject.transform);
 
-            GetComponent<UpdateEcho>().Cam = cam.GetComponent<Camera>();
+            Camera camera = cam.GetComponent<Camera>();
 
+            if (this.GetComponent<PlayerGirl>())
+            {
+                this.GetComponent<UpdateEcho>().Cam = camera;
+            }
+
+            this.GetComponent<Player>().Camera = camera;
             Destroy(this);
         }
 	}

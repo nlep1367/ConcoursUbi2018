@@ -13,12 +13,15 @@ public abstract class Player : NetworkBehaviour
     public Dictionary<StateEnum, PlayerState> States;
 
     public Animator Animator;
-
+    public PStateGrounded GroundedState;
+    public Camera Camera;
     // Use this for initialization
     public virtual void Start()
     {
         RigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
+
+        GroundedState.SetCamera(Camera);
     }
 
     // Update is called once per frame

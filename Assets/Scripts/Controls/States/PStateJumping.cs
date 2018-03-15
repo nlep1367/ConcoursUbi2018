@@ -34,27 +34,9 @@ public class PStateJumping : PlayerState {
 
     public override void InterpretInput()
     {
-        //// In air movement
-        //float HorizontalAxis = Input.GetAxis("Horizontal_Move");
+        //// In air movement to be implemented
+        //MovementMode.ForwardMode(_player, _movementSpeed, _movementSpeed, _rotationSpeed);
 
-        //if (HorizontalAxis >= float.Epsilon || HorizontalAxis <= -float.Epsilon)
-        //{
-        //    _player.RigidBody.AddForce(HorizontalAxis * _player.transform.right * _movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        //}
-
-        //float VerticalAxis = Input.GetAxis("Vertical_Move");
-
-        //if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
-        //{
-        //    _player.RigidBody.AddForce(VerticalAxis * _player.transform.forward * _movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        //}
-
-        //float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
-
-        //if (HorizontalRotation != 0)
-        //{
-        //    _player.transform.eulerAngles += new Vector3(0, Time.deltaTime * _rotationSpeed * HorizontalRotation, 0);
-        //}
 
         if (_player.RigidBody.velocity.y < 0)
         {
