@@ -41,7 +41,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     void SetComponents()
     {
         singleton.StartMatchMaker();
-        singleton.matchMaker.ListMatches(0, 1, "", true, 0, 0, OnMatchList);
+        singleton.matchMaker.ListMatches(0, 10, "", true, 0, 0, OnMatchList);
 
         createButton.onClick.RemoveAllListeners();
         createButton.onClick.AddListener(OnMMLMCreateMatch);

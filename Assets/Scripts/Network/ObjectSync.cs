@@ -90,4 +90,15 @@ public class ObjectSync : NetworkBehaviour
     {
         gameObject.SetActive(isActive);
     }
+
+    [ClientRpc]
+    public void Rpc_SetRotation(Quaternion rot)
+    {
+        if (objTransform)
+        {
+            objTransform.rotation = rot;
+        }
+        syncYRot = rot.eulerAngles.y;
+        lastYRot = rot;
+    }
 }

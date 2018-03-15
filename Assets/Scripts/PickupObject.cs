@@ -22,6 +22,14 @@ public class PickupObject : MonoBehaviour {
         }
 	}
 
+    private void OnGUI()
+    {
+        if(isPickableObjectInRange)
+        {
+            GUI.Box(new Rect(0, 60, 200, 25), "Press E to pickup");
+        }
+    }
+
     void Carry(GameObject obj)
     {
         obj.transform.position = anchorPoint.position;
@@ -36,9 +44,14 @@ public class PickupObject : MonoBehaviour {
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
-                carriedObject.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
+    }
+
+    public void InsertKeyInDoor()
+    {
+        isCarryingObject = false;
+        carriedObject = null;
     }
 
     void Drop()
@@ -46,7 +59,6 @@ public class PickupObject : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             isCarryingObject = false;
-            carriedObject.GetComponent<Rigidbody>().isKinematic = false;
             carriedObject = null;
         }
     }
