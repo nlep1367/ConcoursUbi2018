@@ -718,6 +718,8 @@ GameObject:
   - component: {fileID: 114463547729033316}
   - component: {fileID: 95794001824668072}
   - component: {fileID: 114603672696637660}
+  - component: {fileID: 114091528639082618}
+  - component: {fileID: 114009191638688670}
   m_Layer: 0
   m_Name: Iris
   m_TagString: Fille
@@ -2767,6 +2769,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114009191638688670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95794001824668072}
+  m_ParameterSendBits: 15
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114010725791841316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2779,6 +2800,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!114 &114091528639082618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e440df606884e794181760a4943b3fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogPosRef: {fileID: 0}
+  BarkColor: {r: 0, g: 0, b: 0, a: 0}
+  MaxRad: 8
+  Duration: 3
+  StillDuration: 2
+  ContourBegin: 0.2
+  BeginBark: 0
+  Color: 0
 --- !u!114 &114124819147340148
 MonoBehaviour:
   m_ObjectHideFlags: 1

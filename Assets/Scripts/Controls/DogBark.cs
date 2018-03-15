@@ -2,27 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DogBark : MonoBehaviour {
+
+public class DogBark : NetworkBehaviour {
     public float BarkRange;
-
+    private DogBarkEcho Echo;
+    
 	// Update is called once per frame
 	void Update () {
+        if (!hasAuthority)
+            return;
+
 		if(Input.GetButton("Fire1"))
         {
-            Bark((IBarkListener l) => l.ReactToAngryBark());
+            Cmd_StartBark(Color.green);
+           // Bark((IBarkListener l) => l.ReactToAngryBark());
         }
 
         if (Input.GetButton("Fire2"))
         {
-            Bark((IBarkListener l) =>  l.ReactToSoftBark());
+            Cmd_StartBark(Color.red);
+            //Bark((IBarkListener l) =>  l.ReactToSoftBark());
         }
 
     }
 
-    void Bark(Action<IBarkListener> barkReaction)
+
+    [Command]
+    public void Cmd_StartBark(Color color)
     {
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, BarkRange);
+        if (!Echo)
+            Echo = GameObject.FindGameObjectWithTag("Fille").GetComponent<DogBarkEcho>();
+
+        Echo.StartBark(color);
+    }
+
+        void Bark(Action<IBarkListener> barkReaction)
+    {
+      /*  Collider[] colliders = Physics.OverlapSphere(this.transform.position, BarkRange);
 
         foreach(Collider c in colliders)
         {
@@ -33,6 +51,6 @@ public class DogBark : MonoBehaviour {
                 barkReaction(listener);
             }
         }
-
+        */
     }
 }
