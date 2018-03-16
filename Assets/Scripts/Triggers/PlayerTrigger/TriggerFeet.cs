@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerFeet : MonoBehaviour {
     Player _player;
 
+    public StateEnum SwapState;
     void Start()
     {
         _player = this.GetComponentInParent<Player>();
@@ -15,7 +16,7 @@ public class TriggerFeet : MonoBehaviour {
         MeshRenderer ground = other.GetComponentInParent<MeshRenderer>();
         if (ground != null)
         {
-            _player.ChangeState(StateEnum.GROUNDED);
+            _player.ChangeState(SwapState);
         }
     }
 }

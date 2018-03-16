@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114086726462427960}
   - component: {fileID: 114958185135378210}
   - component: {fileID: 114164231333411938}
+  - component: {fileID: 114403219913355138}
   m_Layer: 0
   m_Name: IrisCam
   m_TagString: MainCamera
@@ -119,6 +120,20 @@ MonoBehaviour:
   ReturnSpeed: 0.1
   MaxY: 0.8
   MinY: -0.2
+--- !u!114 &114403219913355138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947965496318792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisionRadius: 10
+  PlayerPosRef: {fileID: 0}
+  Cam: {fileID: 0}
 --- !u!114 &114958185135378210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,8 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b51ea0a74447943ab2ba14ad561089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Positive: []
-  Negative: []
+  Positive:
+  - {r: 0.93333334, g: 0.8862745, b: 0.6901961, a: 0}
+  - {r: 0.8, g: 0.9490196, b: 0.60784316, a: 0}
+  - {r: 0.61960787, g: 0.7490196, b: 0.8, a: 0}
+  - {r: 0.8862745, g: 0.69803923, b: 0.69803923, a: 0}
+  Negative:
+  - {r: 0.08235294, g: 0.14509805, b: 0.20392157, a: 0}
+  - {r: 0.7176471, g: 0.29803923, b: 0.26666668, a: 0}
   duration: 2
   Cam: {fileID: 20099646163380150}
 --- !u!124 &124920534089462484

@@ -57,8 +57,6 @@ public static class MovementMode {
         {
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(velocityProjection), Time.deltaTime * 10);
         }
-
-        player.Animator.SetFloat("Speed", player.RigidBody.velocity.magnitude);
     }
 
     public static void ForwardModeCamRelative(Player player, float acceleration, float maxSpeed, float rotationSpeed, Camera camera)
@@ -97,7 +95,5 @@ public static class MovementMode {
         {
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(velocityProjection), Time.deltaTime * 10);
         }
-
-        player.Animator.SetFloat("Speed", player.RigidBody.velocity.magnitude);
     }
 }

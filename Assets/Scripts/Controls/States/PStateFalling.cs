@@ -26,7 +26,7 @@ public class PStateFalling : PlayerState {
     public override void InterpretInput()
     {
         //Gravity tampering
-        Vector3 force = Vector3.up * Physics.gravity.y * _fallModifier * Time.deltaTime;
+        Vector3 force = Physics.gravity * _fallModifier * Time.deltaTime;
         _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
     }
     

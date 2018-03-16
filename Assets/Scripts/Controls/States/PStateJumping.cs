@@ -9,19 +9,22 @@ public class PStateJumping : PlayerState {
 
     private float _movementSpeed;
     private float _rotationSpeed;
+    private float _acceleration;
 
     private float _lowJumpModifier;
 
     private float _clipLength;
 
-    public PStateJumping(Player player, float ms, float rs, float lowJumpModifier) : base(player)
+    private Camera _camera;
+
+    public PStateJumping(Player player, float acceleration, float ms, float rs, float lowJumpModifier) : base(player)
     {
+        _acceleration = acceleration;
         _movementSpeed = ms;
         _rotationSpeed = rs;
 
         _lowJumpModifier = lowJumpModifier;
 
-        
         foreach (AnimationClip clip in _player.Animator.runtimeAnimatorController.animationClips)
         {
             if (clip.name == ClipName)
@@ -34,8 +37,8 @@ public class PStateJumping : PlayerState {
 
     public override void InterpretInput()
     {
-        //// In air movement to be implemented
-        //MovementMode.ForwardMode(_player, _movementSpeed, _movementSpeed, _rotationSpeed);
+        // In air movement to be implemented
+        MovementMode.ForwardModeCamRelative(_player, _movementSpeed, _movementSpeed, _rotationSpeed, _camera);
 
 
         if (_player.RigidBody.velocity.y < 0)
@@ -79,5 +82,10 @@ public class PStateJumping : PlayerState {
     public override void OnExit()
     {
         _player.Animator.SetBool(AnimatorAction, false);
+    }
+
+    public void SetCamera(Camera camera)
+    {
+        _camera = camera;
     }
 }
