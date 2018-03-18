@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 20099646163380150}
   - component: {fileID: 124920534089462484}
   - component: {fileID: 81012237468761724}
-  - component: {fileID: 114013414313323392}
   - component: {fileID: 114086726462427960}
-  - component: {fileID: 114277144784766134}
+  - component: {fileID: 114958185135378210}
+  - component: {fileID: 114164231333411938}
   m_Layer: 0
   m_Name: IrisCam
   m_TagString: MainCamera
@@ -88,23 +88,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1947965496318792}
   m_Enabled: 1
---- !u!114 &114013414313323392
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947965496318792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67583ddf56e441c438e6d8e6bb32e30c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DistanceOffset: 5
-  PositionOffset: {x: 0.5, y: 0, z: 0}
-  UpAndDownSpeed: 50
-  CameraAngleDegreeMinMax: 15
-  CameranAngleDegree: 30
-  Player: {fileID: 0}
 --- !u!114 &114086726462427960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +100,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReplacementShader: {fileID: 4800000, guid: d32bdf3947673e44a8f5ed7f12256e64, type: 3}
---- !u!114 &114277144784766134
+--- !u!114 &114164231333411938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947965496318792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14d84828476c6444b5bb695fb167357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  DistanceOffset: 5
+  BaseOffsetVector: {x: 0, y: 1, z: 0}
+  VerticalSpeed: 5
+  LateralSpeed: 5
+  ReturnSpeed: 0.1
+  MaxY: 0.8
+  MinY: -0.2
+--- !u!114 &114958185135378210
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -129,14 +131,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Positive:
-  - {r: 0.92941177, g: 0.8862745, b: 0.6862745, a: 0}
-  - {r: 0.79607844, g: 0.9490196, b: 0.60784316, a: 0}
-  - {r: 0.61960787, g: 0.7490196, b: 0.77254903, a: 0}
-  - {r: 0.8862745, g: 0.69411767, b: 0.69411767, a: 0}
+  - {r: 0.9333334, g: 0.8862746, b: 0.6901961, a: 0}
+  - {r: 0.8000001, g: 0.9490197, b: 0.60784316, a: 0}
+  - {r: 0.61960787, g: 0.7490196, b: 0.77647066, a: 0}
+  - {r: 0.8862746, g: 0.69803923, b: 0.69803923, a: 0}
   Negative:
-  - {r: 0.08235294, g: 0.14509805, b: 0.2, a: 0}
-  - {r: 0.7137255, g: 0.29803923, b: 0.27058825, a: 0}
-  duration: 3
+  - {r: 0.08235294, g: 0.14509805, b: 0.20392159, a: 0}
+  - {r: 0.7176471, g: 0.29803923, b: 0.26666668, a: 0}
+  duration: 2
   Cam: {fileID: 20099646163380150}
 --- !u!124 &124920534089462484
 Behaviour:

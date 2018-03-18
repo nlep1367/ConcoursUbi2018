@@ -20,6 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4121168587754580}
   - component: {fileID: 114282966240529000}
+  - component: {fileID: 114475150641622922}
+  - component: {fileID: 135292312731439950}
+  - component: {fileID: 114176249729034490}
+  - component: {fileID: 114140039041828794}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -519,6 +523,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114140039041828794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005489940019678}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b122708c1349fce43915d7787f93c370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replacementShader: {fileID: 4800000, guid: a6a1a3bc6e1d85147b6ad9f31e3cf4be, type: 3}
+--- !u!114 &114176249729034490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005489940019678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc859353c23ee2b44997ce37be6f7529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114282966240529000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -532,16 +559,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RedLight: {fileID: 23937744624277654}
   RedMaterial: {fileID: 2100000, guid: 2f77700e6da4bf4428ea83c3d92cccb8, type: 2}
-  redLightDuration: 5
   YellowLight: {fileID: 23889947178271036}
   YellowMaterial: {fileID: 2100000, guid: 9e4511b0110bb0946841c70941ed7428, type: 2}
-  yellowLightDuration: 1
   GreenLight: {fileID: 23247067523053498}
   GreenMaterial: {fileID: 2100000, guid: 4b06135e1bf77fc4595d355f29c6daa3, type: 2}
-  greenLightDuration: 0.5
   DefaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  pedestrianTrigger: 0
-  lightState: 1
+--- !u!114 &114475150641622922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005489940019678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 127
+    i1: 250
+    i2: 91
+    i3: 93
+    i4: 10
+    i5: 21
+    i6: 118
+    i7: 84
+    i8: 170
+    i9: 160
+    i10: 78
+    i11: 2
+    i12: 0
+    i13: 0
+    i14: 7
+    i15: 51
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!135 &135292312731439950
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005489940019678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136163089828924952
 CapsuleCollider:
   m_ObjectHideFlags: 1

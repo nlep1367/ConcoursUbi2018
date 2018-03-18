@@ -34,7 +34,7 @@ public class WayPoint : MonoBehaviour {
         {
             float distance = Vector3.Distance(transform.position, carPosition);
 
-            switch (trafficLight.lightState)
+            switch (trafficLight.getLightState())
             {
                 case TrafficLightState.Red:
                     if (distance < redLightDistance) return true;

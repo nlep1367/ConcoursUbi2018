@@ -1876,12 +1876,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0694df71def9dd949ad9c0eaab0b286b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5201a5a1a4a32948bf1ef145ed9c5e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.8, y: 7.24}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4049,7 +4049,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8542c03f34c367c4ea273524452d1f30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0781d2e6ad244614e8ce1ef447fe94c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8246,7 +8246,7 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea, type: 2}
   - {fileID: 1618118339527476, guid: 9a13cf03ee6930645bd97174c5c78686, type: 2}
-  - {fileID: 1952406144847552, guid: 2e36be0614d476c4caf508f48d2d4cca, type: 2}
+  - {fileID: 1132496175100986, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
