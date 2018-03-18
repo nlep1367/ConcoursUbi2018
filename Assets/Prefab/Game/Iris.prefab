@@ -2838,7 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 10
+  VisionRadius: 4
   PlayerPosRef: {fileID: 4821068656048232}
   Cam: {fileID: 0}
 --- !u!114 &114257838193189078
@@ -2867,8 +2867,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 0}
   Animator: {fileID: 0}
+  Camera: {fileID: 0}
   MovementSpeed: 25
   RotationSpeed: 60
+  Acceleration: 30
   PushingMovementSpeed: 5
   ClimbingSpeed: 10
   shaderActivated: 1
