@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114086726462427960}
   - component: {fileID: 114958185135378210}
   - component: {fileID: 114164231333411938}
+  - component: {fileID: 114403219913355138}
   m_Layer: 0
   m_Name: IrisCam
   m_TagString: MainCamera
@@ -119,6 +120,20 @@ MonoBehaviour:
   ReturnSpeed: 0.1
   MaxY: 0.8
   MinY: -0.2
+--- !u!114 &114403219913355138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947965496318792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisionRadius: 10
+  PlayerPosRef: {fileID: 0}
+  Cam: {fileID: 0}
 --- !u!114 &114958185135378210
 MonoBehaviour:
   m_ObjectHideFlags: 1

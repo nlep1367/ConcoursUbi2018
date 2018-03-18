@@ -1,35 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDog : Player
 {
-
-    public float MovementSpeed = 15f;
+    public float MaxSpeed = 15f;
     public float RotationSpeed = 25f;
     public float Acceleration = 30f;
 
+    public float LandingTime = 0.5f;
     public float MaxHeight = 5f;
 
-    public float InAirMovementSpeed = 5f;
+    public float InAirAcceleration = 5f;
 
     public float FallModifier = 1.5f;
     public float LowJumpModifier = 1f;
 
-    new void Start()
+    new private void Awake()
     {
-        GroundedState = new PStateGroundedDog(this, Acceleration, MovementSpeed, RotationSpeed, MaxHeight);
-        State = GroundedState;
-        base.Start();
+        base.Awake();
 
-        //Initialize currentstate and possible states;
-
+        State = new PStateGroundedDog(this, Acceleration, MaxSpeed, RotationSpeed, MaxHeight); ;
         PreviousState = State;
+
         States = new Dictionary<StateEnum, PlayerState>
         {
             { StateEnum.GROUNDED, State},
-            { StateEnum.JUMPING, new PStateJumping(this, InAirMovementSpeed, RotationSpeed, LowJumpModifier) },
-            { StateEnum.FALLING, new PStateFalling(this, FallModifier) }
+            { StateEnum.JUMPING, new PStateJumping(this, InAirAcceleration, MaxSpeed, RotationSpeed, LowJumpModifier) },
+            { StateEnum.FALLING, new PStateFalling(this, FallModifier) },
+            { StateEnum.LANDING, new PStateLanding(this, Acceleration, MaxSpeed, RotationSpeed, LandingTime) }
         };
+    }
+
+    public override void SetCamera(Camera camera)
+    {
+        ((PStateGroundedDog)States[StateEnum.GROUNDED]).SetCamera(camera);
+        ((PStateJumping)States[StateEnum.JUMPING]).SetCamera(camera);
+        ((PStateLanding)States[StateEnum.LANDING]).SetCamera(camera);
     }
 }
