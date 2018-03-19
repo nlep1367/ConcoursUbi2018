@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class BlockerAI : MonoBehaviour {
+public class BlockerAI : BaseAI {
 
     public Transform StartPosition;
     public Transform EndPosition;
+    public Transform IdleLookAt;
 
     public AIVision Vision;
     public IdleBehaviour Idle;
 
     private Vector3 Destination;
-    public float MinDistance = 1;
+    public float MinDistance = 0.1f;
 
     public float speed;
 
@@ -24,26 +25,37 @@ public class BlockerAI : MonoBehaviour {
     void Update ()
     {
         Vector3 Target;
+        Vector3 LookAt;
         
         if (Vision.SeeSomething(out Target))
         {
             Vector3 Path = EndPosition.position - StartPosition.position;
-            float dot = Vector3.Dot(StartPosition.position - Target, Path);
+            float Magnitude = Path.magnitude;
+            Path.Normalize();
+            
+            float dot = Vector3.Dot((Target - StartPosition.position), Path);
 
-            if (dot > 1)
-                dot = 1;
+            if (dot > Magnitude)
+                dot = Magnitude;
 
             if (dot > 0)
             {
                 Destination = StartPosition.position + (dot * Path);
             }
+            else if (dot < 0)
+            {
+                Destination = StartPosition.position;
+            }
+
+            LookAt = Target;
         }
         else
         {
             Destination = Idle.Process();
+            LookAt = IdleLookAt.position;
         }
 
-        Vector3 Direction = transform.position - Destination;
+        Vector3 Direction = Destination - transform.position;
 
         if((Direction).magnitude > MinDistance)
         {
@@ -52,7 +64,7 @@ public class BlockerAI : MonoBehaviour {
             transform.position += (Direction * speed * Time.deltaTime);
         }
 
-        transform.LookAt(Target);
+        transform.LookAt(new Vector3(Target.x, transform.position.y, Target.z));
 	}
 
     private void OnDrawGizmosSelected()

@@ -419,8 +419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartPosition: {fileID: 0}
   EndPosition: {fileID: 0}
-  Vision: {fileID: 0}
-  Idle: {fileID: 0}
+  Vision: {fileID: 114352827985839258}
+  Idle: {fileID: 114563373075430868}
   MinDistance: 1
   speed: 0
 --- !u!114 &114352827985839258
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8038f6f94f8d14881db27b35208ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Point: {x: 0, y: 0, z: 0}
+  Point: {fileID: 0}
 --- !u!114 &114703121809470562
 MonoBehaviour:
   m_ObjectHideFlags: 1

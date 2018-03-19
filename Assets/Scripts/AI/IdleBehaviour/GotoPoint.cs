@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GotoPoint : IdleBehaviour
 {
-    public Vector3 Point;
+    public Transform Point;
 
     public override Vector3 Process()
     {
-        return Point;
+        return Point.position;
     }
 }
