@@ -8,11 +8,21 @@ public class ControlsUI : MonoBehaviour {
     public GameObject IrisControls;
 
     bool isActive = false;
-    bool isIris;
+    bool isIris = false;
 
-    private void Start()
+    public GameObject Iris;
+
+    private void Update()
     {
-        isIris = GameObject.FindGameObjectWithTag("Fille").GetComponent<ObjectSync>().hasAuthority;
+        if(Iris == null)
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("Fille");
+            if(temp != null)
+            {
+                Iris = temp;
+                isIris = Iris.GetComponent<ObjectSync>().hasAuthority;
+            }
+        }
     }
 
     public void ToggleControls()
