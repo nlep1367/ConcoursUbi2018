@@ -10,6 +10,8 @@ public class InGameUI : MonoBehaviour {
     public StoryUI storyUI;
     public ControlsUI controlsUI;
 
+    public GameObject fille;
+
     // Cheats:
     List<string> objectives = new List<string>();
 
@@ -20,6 +22,17 @@ public class InGameUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(fille == null)
+        {
+            fille = GameObject.FindGameObjectWithTag("Fille");
+
+            if(fille != null && fille.GetComponent<ObjectSync>().hasAuthority)
+            {
+                Destroy(GetComponent<Transform>().Find("ScaredEffect").gameObject);
+            }
+        }
+
         //Cheats to test UI
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Player : NetworkBehaviour
 {
+    protected Camera Camera;
     public Rigidbody RigidBody;
 
     public PlayerState State;

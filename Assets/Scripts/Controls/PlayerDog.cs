@@ -35,6 +35,7 @@ public class PlayerDog : Player
 
     public override void SetCamera(Camera camera)
     {
+        Camera = camera;
         ((PStateGroundedDog)States[StateEnum.GROUNDED]).SetCamera(camera);
         ((PStateJumping)States[StateEnum.JUMPING]).SetCamera(camera);
         ((PStateLanding)States[StateEnum.LANDING]).SetCamera(camera);

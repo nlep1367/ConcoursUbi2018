@@ -13,6 +13,7 @@ public class PlayerGirl : Player {
 
     public bool shaderActivated = true;
 
+    private GameObject doggo;
 
     new private void Awake()
     {
@@ -40,10 +41,23 @@ public class PlayerGirl : Player {
             shaderActivated = !shaderActivated;
             cam.GetComponent<ReplacementShaderCam>().enabled = shaderActivated;
         }
+
+        if(Camera != null)
+        {
+            if (doggo == null)
+            {
+                doggo = GameObject.FindGameObjectWithTag("Doggo");
+            }
+            else
+            {
+                doggo.GetComponent<ObjectSync>().Rpc_SetScaredEffectColor(Camera.backgroundColor);
+            }
+        }
     }
 
     public override void SetCamera(Camera camera)
     {
+        Camera = camera;
         ((PStateGrounded)States[StateEnum.GROUNDED]).SetCamera(camera);
     }
 }
