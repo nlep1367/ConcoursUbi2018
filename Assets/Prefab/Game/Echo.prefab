@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 95566204552694556}
   - component: {fileID: 114349675333428414}
   - component: {fileID: 114660821322061762}
+  - component: {fileID: 114505696558802078}
   m_Layer: 8
   m_Name: Echo
   m_TagString: Doggo
@@ -1798,6 +1799,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstantiate: {fileID: 1538573636552538, guid: 014b6f1331c21ed4bbba563a749de61c,
     type: 2}
+--- !u!114 &114505696558802078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960027674469962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91cfeb24edff9943a477972f8376d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114660821322061762
 MonoBehaviour:
   m_ObjectHideFlags: 1
