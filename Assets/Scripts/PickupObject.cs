@@ -55,9 +55,14 @@ public class PickupObject : MonoBehaviour {
     }
 
     void Drop()
-    {
+    {   
         if (Input.GetKeyDown(KeyCode.E))
         {
+            ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
+            if (thrownable != null)
+            {
+                thrownable.ThrowAway();
+            }
             isCarryingObject = false;
             carriedObject = null;
         }
