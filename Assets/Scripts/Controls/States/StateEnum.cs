@@ -9,4 +9,5 @@ public enum StateEnum  {
     PUSHING,
     JUMPING,
     FALLING,
+    LANDING,
 }

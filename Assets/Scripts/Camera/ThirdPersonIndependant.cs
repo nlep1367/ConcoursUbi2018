@@ -41,7 +41,7 @@ public class ThirdPersonIndependant : ThirdPerson {
             GoBackToFront();
         }
 
-        this.transform.position = Player.transform.position + offset;
+        this.transform.position = Player.transform.position + SpringCamera(offset);
         this.transform.LookAt(Player);
     }
 
@@ -51,8 +51,18 @@ public class ThirdPersonIndependant : ThirdPerson {
         _offsetVector = -Player.forward;
     }
 
-    public void GoBackToFront()
+    private void GoBackToFront()
     {
         _offsetVector = Vector3.RotateTowards(_offsetVector, -Player.forward, ReturnSpeed, 0.0f);
+    }
+
+    private Vector3 SpringCamera(Vector3 offset)
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(Player.transform.position, offset, out hit, DistanceOffset, LayerMask.GetMask("Default")))
+        {
+            return offset.normalized * hit.distance;
+        }
+        return offset;
     }
 }
