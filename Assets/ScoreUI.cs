@@ -33,7 +33,7 @@ public class ScoreUI : MonoBehaviour {
         {
             GameObject temp = GameObject.FindGameObjectWithTag("ScoreManager");
 
-            if(scoreManager != null)
+            if(temp != null)
             {
                 scoreManager = temp.GetComponent<NetworkScoreManager>();
                 scoreManager.displayAddScore += AddScore;
