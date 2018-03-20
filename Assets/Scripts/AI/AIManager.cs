@@ -81,7 +81,7 @@ public class AIManager : NetworkBehaviour {
             {
                 float dist = Vector3.Distance(s.GetPosition(), ai.transform.position);
 
-                if(dist < CurrentDist)
+                if(dist < CurrentDist && dist <= ai.HearingRange)
                 {
                     NearestStimuli = s;
                     CurrentDist = dist;

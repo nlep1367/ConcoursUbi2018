@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 using UnityEngine;
 
 public class BlockerAI : BaseAI {
@@ -22,6 +23,7 @@ public class BlockerAI : BaseAI {
     }
 
     // Update is called once per frame
+    [Server]
     void Update ()
     {
         Vector3 Target;
@@ -51,8 +53,16 @@ public class BlockerAI : BaseAI {
         }
         else
         {
+            if (CurrentStimuli != null)
+            {
+                LookAt = CurrentStimuli.GetPosition();
+            }
+            else
+            {
+                LookAt = IdleLookAt.position;
+            }
+
             Destination = Idle.Process();
-            LookAt = IdleLookAt.position;
         }
 
         Vector3 Direction = Destination - transform.position;
