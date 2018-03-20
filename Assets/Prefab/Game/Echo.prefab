@@ -1763,8 +1763,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401d6d3a13338f94c8e715ceeb7312d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RigidBody: {fileID: 0}
-  Animator: {fileID: 0}
+  RigidBody: {fileID: 54837018881914724}
+  Animator: {fileID: 95566204552694556}
   MaxSpeed: 15
   RotationSpeed: 25
   Acceleration: 15
