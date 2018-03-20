@@ -146,7 +146,10 @@ public class CarEngine : NetworkBehaviour
         {
             currentWayPoint = path.GetNextWayPoint(currentWayPoint);
             if (currentWayPoint == -1)
+            {
+                currentWayPoint = 0;
                 carSpawner.ReturnToPool(gameObject);
+            }
         }
     }
 

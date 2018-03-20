@@ -47,4 +47,9 @@ public abstract class Player : NetworkBehaviour
     }
 
     public abstract void SetCamera(Camera camera);
+
+    public bool isActivePlayer()
+    {
+        return GetComponentInChildren<Camera>() == null;
+    }
 }
