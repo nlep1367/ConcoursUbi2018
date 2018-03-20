@@ -7,35 +7,38 @@ public struct ScoreObj
 {
     public int points;
     public string reason;
+
+    public override string ToString()
+    {
+        string message = (points >= 0) ? "+" : "-";
+        return message + points.ToString() + " " + reason;
+    }
 }
 
 public class NetworkScoreManager : NetworkBehaviour {
 
     int gameScore = 0;
-
-    private void OnGUI()
-    {
-        GUI.Box(new Rect(0, 60, 200, 25), gameScore.ToString());
-    }
+    public System.Action<ScoreObj> displayAddScore;
+    public System.Action<ScoreObj> displayLoseScore;
 
     [ClientRpc]
     public void Rpc_AddPoints(ScoreObj score)
     {
         AddPoints(score);
+        displayAddScore.Invoke(score);
     }
 
     [ClientRpc]
     public void Rpc_LosePoints(ScoreObj score)
     {
         LosePoints(score);
+        displayLoseScore.Invoke(score);
     }
 
 
     public void AddPoints(ScoreObj score)
     {
         gameScore += score.points;
-
-        //do someting with the reason
     }
 
     public void LosePoints(ScoreObj score)
@@ -50,7 +53,5 @@ public class NetworkScoreManager : NetworkBehaviour {
         {
             gameScore = currentScore;
         }
-
-        //do something with the reason
     }
 }

@@ -27,10 +27,10 @@ public class InGameUI : MonoBehaviour {
             objectives.Add(s);
             UpdateObjective(objectives);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        /*else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            AddScore(100, "Good boi");
-        }
+            //AddScore(100, "Good boi");
+        }*/
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             DisplayHint(KeyCode.B, "Interact B");
@@ -54,10 +54,10 @@ public class InGameUI : MonoBehaviour {
         objectivesUI.UpdateObjectives(messages);
     }
 
-    public void AddScore(int points, string message)
+    /*public void AddScore(int points, string message)
     {
-        scoreUI.AddScore(Random.Range(0,200), "new score");
-    }
+        //scoreUI.AddScore(Random.Range(0,200), "new score");
+    }*/
 
     public void DisplayHint(KeyCode button, string action)
     {

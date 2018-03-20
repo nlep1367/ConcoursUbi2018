@@ -3,32 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Point
-{
-    public int score = 0;
-    public string content;
-
-    public Point(int p, string c = "")
-    {
-        score = p;
-        content = c;
-    }
-
-    public override string ToString()
-    {
-        string message = (score >= 0) ? "+" : "-";
-        return message + score.ToString() + " " + content;
-    }
-}
-
-
 public class ScoreUI : MonoBehaviour {
 
     public GameObject NewPointsPanel;
     public Text scoreText;
 
     private int score = 0;
-    private Queue<Point> pointsToShow;
+    private Queue<ScoreObj> pointsToShow;
 
     float duration = 0f;
     public float normalDuration = 1.5f;
@@ -37,14 +18,29 @@ public class ScoreUI : MonoBehaviour {
     float currentTime = 0;
     bool isShowing = false;
 
+    private NetworkScoreManager scoreManager;
+
     // Use this for initialization
     void Start () {
-        pointsToShow = new Queue<Point>();
-        duration = normalDuration;
-	}
+        pointsToShow = new Queue<ScoreObj>();
+        duration = normalDuration;        
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (scoreManager == null)
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("ScoreManager");
+
+            if(scoreManager != null)
+            {
+                scoreManager = temp.GetComponent<NetworkScoreManager>();
+                scoreManager.displayAddScore += AddScore;
+                scoreManager.displayLoseScore += LoseScore;
+            }
+        }
+
         if (pointsToShow.Count > 0)
         {
             currentTime += Time.deltaTime;
@@ -79,12 +75,18 @@ public class ScoreUI : MonoBehaviour {
 
     public void UpdateScore()
     {
-        score += pointsToShow.Peek().score;
+        score += pointsToShow.Peek().points;
         scoreText.text = score.ToString() + " pts";
     }
 
-    public void AddScore(int newScore, string reason)
+    public void AddScore(ScoreObj scoreObj)
     {
-        pointsToShow.Enqueue(new Point(newScore, reason));
+        pointsToShow.Enqueue(scoreObj);
+    }
+
+    public void LoseScore(ScoreObj scoreObj)
+    {
+        scoreObj.points = -scoreObj.points;
+        pointsToShow.Enqueue(scoreObj);
     }
 }

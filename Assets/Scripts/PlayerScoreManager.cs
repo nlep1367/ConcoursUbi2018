@@ -9,11 +9,20 @@ public class PlayerScoreManager : NetworkBehaviour {
 
     public void Start()
     {
-        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<NetworkScoreManager>();
     }
 
+    [Client]
     private void Update()
     {
+        if(scoreManager == null)
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("ScoreManager");
+            if(temp != null)
+            {
+                scoreManager = temp.GetComponent<NetworkScoreManager>();
+            }
+        }
+
         if(Input.GetKeyDown(KeyCode.U))
         {
             ScoreObj bob = new ScoreObj();
