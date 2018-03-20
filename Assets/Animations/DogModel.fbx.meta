@@ -176,7 +176,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.16153845
+        functionName: Footstep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c7b6ec1fbf78e954383f6bf3460fc300,
+          type: 3}
+        floatParameter: 0
+        intParameter: 5
+        messageOptions: 0
+      - time: 0.72303057
+        functionName: Footstep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c7b6ec1fbf78e954383f6bf3460fc300,
+          type: 3}
+        floatParameter: 0
+        intParameter: 10
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -288,7 +304,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.056441147
+        functionName: Footstep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c7b6ec1fbf78e954383f6bf3460fc300,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.28707135
+        functionName: Footstep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c7b6ec1fbf78e954383f6bf3460fc300,
+          type: 3}
+        floatParameter: 0
+        intParameter: 14
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
