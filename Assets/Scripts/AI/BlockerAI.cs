@@ -10,6 +10,8 @@ public class BlockerAI : BaseAI {
     public Transform EndPosition;
     public Transform IdleLookAt;
 
+    public GameObject InvisibleColission;
+
     public AIVision Vision;
     public IdleBehaviour Idle;
 
@@ -20,21 +22,23 @@ public class BlockerAI : BaseAI {
 
     private void Start()
     {
+        InvisibleColission.transform.localScale = new Vector3((EndPosition.position - StartPosition.position).magnitude, 5, 0);
     }
 
     // Update is called once per frame
     [Server]
-    void Update ()
+    void Update()
     {
         Vector3 Target;
         Vector3 LookAt;
-        
+
         if (Vision.SeeSomething(out Target))
         {
+            Rpc_SetActiveWall(true);
             Vector3 Path = EndPosition.position - StartPosition.position;
             float Magnitude = Path.magnitude;
             Path.Normalize();
-            
+
             float dot = Vector3.Dot((Target - StartPosition.position), Path);
 
             if (dot > Magnitude)
@@ -55,10 +59,12 @@ public class BlockerAI : BaseAI {
         {
             if (CurrentStimuli != null)
             {
+                Rpc_SetActiveWall(true);
                 LookAt = CurrentStimuli.GetPosition();
             }
             else
             {
+                Rpc_SetActiveWall(false);
                 LookAt = IdleLookAt.position;
             }
 
@@ -67,15 +73,21 @@ public class BlockerAI : BaseAI {
 
         Vector3 Direction = Destination - transform.position;
 
-        if((Direction).magnitude > MinDistance)
+        if ((Direction).magnitude > MinDistance)
         {
             Direction.Normalize();
 
             transform.position += (Direction * speed * Time.deltaTime);
         }
 
-        transform.LookAt(new Vector3(Target.x, transform.position.y, Target.z));
-	}
+        transform.LookAt(LookAt);
+    }
+
+    [ClientRpc]
+    public void Rpc_SetActiveWall(bool val)
+    {
+        InvisibleColission.SetActive(val);
+    }
 
     private void OnDrawGizmosSelected()
     {
