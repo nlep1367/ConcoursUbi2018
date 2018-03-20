@@ -97,9 +97,7 @@ public class AIManager : NetworkBehaviour {
 
 	}
 
-
-    [Command]
-    public void Cmd_AddStimuli(float Duration, Vector3 Position, float Size)
+    public void AddStimuli(float Duration, Vector3 Position, float Size)
     {
         SoundStimulus.Add(new Stimuli(Duration, Position, Size));
     }

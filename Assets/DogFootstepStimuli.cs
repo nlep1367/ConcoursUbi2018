@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 
 [System.Flags]
@@ -13,7 +14,7 @@ public enum Paws
     BackLeft = 8
 }
 
-public class DogFootstepStimuli : MonoBehaviour {
+public class DogFootstepStimuli : NetworkBehaviour {
 
     public Transform Paw_FrontLeft;
     public Transform Paw_FrontRight;
@@ -30,22 +31,21 @@ public class DogFootstepStimuli : MonoBehaviour {
         AIManager = Manager.GetComponent<AIManager>();
     }
 
+    [Server]
     public void Footstep(int paw)
     {
         Paws paws = (Paws)paw;
 
         if((paws & Paws.FrontLeft) != Paws.None)
-            AIManager.Cmd_AddStimuli(Duration, Paw_FrontLeft.position, 2.0f);
+            AIManager.AddStimuli(Duration, Paw_FrontLeft.position, 2.0f);
 
         if ((paws & Paws.FrontRight) != Paws.None)
-            AIManager.Cmd_AddStimuli(Duration, Paw_FrontRight.position, 2.0f);
+            AIManager.AddStimuli(Duration, Paw_FrontRight.position, 2.0f);
 
         if ((paws & Paws.BackRight) != Paws.None)
-            AIManager.Cmd_AddStimuli(Duration, Paw_BackRight.position, 2.0f);
+            AIManager.AddStimuli(Duration, Paw_BackRight.position, 2.0f);
 
         if ((paws & Paws.BackLeft) != Paws.None)
-            AIManager.Cmd_AddStimuli(Duration, Paw_BackLeft.position, 2.0f);
-
-        // Call paw sound
+            AIManager.AddStimuli(Duration, Paw_BackLeft.position, 2.0f);
     }
 }
