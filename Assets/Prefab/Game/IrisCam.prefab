@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 10
+  VisionRadius: 2
   PlayerPosRef: {fileID: 0}
   Cam: {fileID: 0}
 --- !u!114 &114958185135378210

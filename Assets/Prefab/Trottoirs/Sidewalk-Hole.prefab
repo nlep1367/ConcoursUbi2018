@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4601251902140408}
+  - component: {fileID: 65508463067805970}
   m_Layer: 0
   m_Name: Sidewalk-Hole
   m_TagString: Terrain
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018056066806986}
   m_Mesh: {fileID: 4300000, guid: 1d2059714d04f41458cf89bbd64be7b7, type: 3}
+--- !u!65 &65508463067805970
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1622624961033420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0.5, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
