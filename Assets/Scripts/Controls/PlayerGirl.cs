@@ -18,7 +18,7 @@ public class PlayerGirl : Player {
     new private void Awake()
     {
         base.Awake();
-
+        GameEssentials.PlayerGirl = this;
         State = new PStateGroundedGirl(this, Acceleration, MovementSpeed, RotationSpeed);
         PreviousState = State;
 

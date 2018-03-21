@@ -20,6 +20,7 @@ public class PlayerDog : Player
     new private void Awake()
     {
         base.Awake();
+        GameEssentials.PlayerDog = this;
 
         State = new PStateGroundedDog(this, Acceleration, MaxSpeed, RotationSpeed, MaxHeight); ;
         PreviousState = State;
