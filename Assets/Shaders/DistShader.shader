@@ -51,7 +51,7 @@ Shader "Custom/DistShader" {
 		{
 			float4 vertex : SV_POSITION;
 			float2 uv : TEXCOORD0;
-			float depth : DEPTH;
+			float3 depth : TEXCOORD2;
 			float3 bark : TEXCOORD1;
 		};
 
@@ -60,17 +60,19 @@ Shader "Custom/DistShader" {
 			v2f o;
 			o.uv = v.uv;
 			o.vertex = UnityObjectToClipPos(v.vertex);
-			o.depth = distance(_PlayerPosition, mul(unity_ObjectToWorld, v.vertex).xyz);
+			o.depth = mul(unity_ObjectToWorld, v.vertex).xyz;
 			o.bark = mul(unity_ObjectToWorld, v.vertex).xyz;
 			return o;
 		}
 
 		fixed4 frag(v2f i) : SV_Target
 		{
-			float dist, valBark, val, valCirc, invert;
+			float distGirl, dist, valBark, val, valCirc, invert;
 			float barkContour = _BarkRadius - _ContourWidth;
+			//Distance from girl 
+			distGirl = distance(_PlayerPosition, i.depth);
 			//Girl Radius
-			val = step(i.depth, _EchoRadius);
+			val = step(distGirl, _EchoRadius);
 			//Distance for the bark
 			dist = distance(i.bark, _DogPosition);
 			//Edge of the bark radius
@@ -79,7 +81,7 @@ Shader "Custom/DistShader" {
 			valCirc = step(dist, barkContour);
 
 			//Alpha values
-			invert = (i.depth / _EchoRadius)*val;
+			invert = (distGirl / _EchoRadius)*val;
 			//Visible radius
 			invert = invert < _MinimumOpaqueAlpha ? 0 : invert;
 
@@ -139,7 +141,7 @@ Shader "Custom/DistShader" {
 		{
 			float4 vertex : SV_POSITION;
 			float2 uv : TEXCOORD0;
-			float depth : DEPTH;
+			float3 depth : TEXCOORD2;
 			float3 bark : TEXCOORD1;
 		};
 
@@ -148,17 +150,19 @@ Shader "Custom/DistShader" {
 			v2f o;
 			o.uv = v.uv;
 			o.vertex = UnityObjectToClipPos(v.vertex);
-			o.depth = distance(_PlayerPosition, mul(unity_ObjectToWorld, v.vertex).xyz);
+			o.depth = mul(unity_ObjectToWorld, v.vertex).xyz;
 			o.bark = mul(unity_ObjectToWorld, v.vertex).xyz;
 			return o;
 		}
 
 		fixed4 frag(v2f i) : SV_Target
 		{
-			float dist, valBark, val, valCirc, invert;
+			float distGirl, dist, valBark, val, valCirc, invert;
 			float barkContour = _BarkRadius - _ContourWidth;
+			//Distance from girl
+			distGirl = distance(i.depth, _PlayerPosition);
 			//Girl Radius
-			val = step(i.depth, _EchoRadius);
+			val = step(distGirl, _EchoRadius);
 			//Distance for the bark
 			dist = distance(i.bark, _DogPosition);
 			//Edge of the bark radius
@@ -167,7 +171,7 @@ Shader "Custom/DistShader" {
 			valCirc = step(dist, barkContour);
 
 			//Alpha values
-			invert = (i.depth / _EchoRadius)*val;
+			invert = (distGirl / _EchoRadius)*val;
 			//Visible radius
 			invert = invert < 0.1 ? 0 : invert;
 
