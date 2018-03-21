@@ -9,6 +9,7 @@ public class ObjectSync : NetworkBehaviour
     private const float ROT_Y_DIFF_THRESHOLD = 5f;
 
     private Transform objTransform;
+    private InGameUI inGameUi;
 
     [SyncVar]
     private Vector3 syncPos;
@@ -23,6 +24,7 @@ public class ObjectSync : NetworkBehaviour
     void Start()
     {
         objTransform = GetComponent<Transform>();
+        inGameUi = FindObjectOfType<InGameUI>();
     }
 
     void FixedUpdate()
@@ -100,5 +102,25 @@ public class ObjectSync : NetworkBehaviour
         }
         syncYRot = rot.eulerAngles.y;
         lastYRot = rot;
+    }
+
+    [ClientRpc]
+    public void Rpc_Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    public void Rpc_SetScaredEffectColor(Color c)
+    {
+        if(inGameUi != null)
+        {
+            ScaredEffect se = inGameUi.GetComponentInChildren<ScaredEffect>();
+
+            if(se != null)
+            {
+                se.MaskColor = c;
+            }
+        }
     }
 }

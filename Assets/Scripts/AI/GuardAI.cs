@@ -8,9 +8,7 @@ public class GuardAI : BaseAI {
     
     public float ChaseLeashRange;
     public float SoundLeashRange;
-
-    public float HearingRange;
-
+    
     public float ChaseSpeed = 7.0f;
     public float NormalSpeed = 3.5f;
     public float HearingSpeed = 4.5f;

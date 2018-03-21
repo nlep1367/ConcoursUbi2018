@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Player : NetworkBehaviour
 {
+    protected Camera Camera;
     public Rigidbody RigidBody;
 
     public PlayerState State;
@@ -13,15 +14,12 @@ public abstract class Player : NetworkBehaviour
     public Dictionary<StateEnum, PlayerState> States;
 
     public Animator Animator;
-    public PStateGrounded GroundedState;
-    public Camera Camera;
+
     // Use this for initialization
-    public virtual void Start()
+    public virtual void Awake()
     {
         RigidBody = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
-
-        GroundedState.SetCamera(Camera);
     }
 
     // Update is called once per frame
@@ -47,5 +45,12 @@ public abstract class Player : NetworkBehaviour
             PreviousState = State;
             State.ChangeState(States[newStateEnum], o);
         }
+    }
+
+    public abstract void SetCamera(Camera camera);
+
+    public bool isActivePlayer()
+    {
+        return GetComponentInChildren<Camera>() == null;
     }
 }

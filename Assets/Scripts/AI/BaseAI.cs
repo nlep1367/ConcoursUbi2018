@@ -7,6 +7,8 @@ public class BaseAI : NetworkBehaviour {
 
     protected Stimuli CurrentStimuli;
 
+    public float HearingRange;
+
     public virtual bool IsBusy()
     {   
         return false;

@@ -10,11 +10,26 @@ public class Tweener {
 		Smooth = 2
 	}
 
-	private bool _isActive;
+	private bool _isActive = false;
+
+	private bool _isRepeating = false;
+	public bool IsRepeating {
+		get { return _isRepeating; }
+		set { _isRepeating = value;}
+	}
+
+	private bool _stopRepeating = false;
+	public bool StopRepeating {
+		get { return _stopRepeating; }
+		set { _stopRepeating = value;}
+	}
+
+
 	private float _currentTime;
 	private EaseType _easeType;
 	private float _beginValue;
 	private float _endValue;
+	private bool _bounceDone;
 	private float _currentValue;
 	private float _duration; // In seconds
 
@@ -23,6 +38,7 @@ public class Tweener {
 		_beginValue = 0F;
 		_endValue = 0F;
 		_duration = 0F;
+		_bounceDone = true;
 	}
 
 	public Tweener(EaseType easeType, float beginValue, float endValue, float duration) {
@@ -30,6 +46,7 @@ public class Tweener {
 		_beginValue = beginValue;
 		_endValue = endValue;
 		_duration = duration;
+		_bounceDone = true;
 	}
 
 	// Use this for initialization
@@ -43,7 +60,6 @@ public class Tweener {
 
 	public void Stop() {
 		_isActive = false;
-		_currentValue = _endValue;
 	}
 	
 	// Update is called once per frame
@@ -56,7 +72,17 @@ public class Tweener {
 		if (_currentTime < _duration) {
 			Interpolate ();
 		} else {
-			Stop ();
+			_currentValue = _endValue;
+			_bounceDone = !_bounceDone;
+			if (IsRepeating && (!_stopRepeating || !_bounceDone)) {
+				_endValue = _beginValue;
+				_beginValue = _currentValue;
+				_currentTime = 0;
+			} else {
+				Stop ();
+				if (_stopRepeating)
+					_stopRepeating = false;
+			}
 		}
 	}
 
