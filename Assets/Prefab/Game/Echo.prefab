@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 4984299425305548}
   - component: {fileID: 33161646933248750}
   - component: {fileID: 65900997767724824}
-  - component: {fileID: 114883456219094386}
+  - component: {fileID: 114720827071653202}
   m_Layer: 8
   m_Name: Feet
   m_TagString: Untagged
@@ -829,6 +829,7 @@ GameObject:
   - component: {fileID: 114349675333428414}
   - component: {fileID: 114660821322061762}
   - component: {fileID: 114505696558802078}
+  - component: {fileID: 114694318552069788}
   m_Layer: 8
   m_Name: Echo
   m_TagString: Doggo
@@ -1810,6 +1811,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91cfeb24edff9943a477972f8376d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SyncVarDirtyBits: 0
+  m_LastSendTime: 0
+  m_SyncVarGuard: 0
+  m_MyView: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!114 &114660821322061762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1829,7 +1835,18 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
---- !u!114 &114883456219094386
+--- !u!114 &114694318552069788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960027674469962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae7161860bed2d4d9b708cff45997c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114720827071653202
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1837,7 +1854,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1941089412862410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b172439e47c1b45ba9f74b43931588, type: 3}
+  m_Script: {fileID: 11500000, guid: ade8f101f951c4f48a12add6c1199cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SwapState: 6

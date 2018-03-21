@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,26 @@ public class ObjectivesUI : MonoBehaviour {
     private void Start()
     {
         objectives = new List<GameObject>();
+        GameEssentials.ObjectiveManager.PropertyChanged += ObjectiveManager_PropertyChanged;
+    }
+
+    private void ObjectiveManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        //Letting it there if we wish to be more performant
+        //if(e.PropertyName == "Add")
+        //{
+
+        //}
+        //else if (e.PropertyName == "Complete")
+        //{
+
+        //}
+        //else if (e.PropertyName == "Fail")
+        //{
+
+        //}
+        IEnumerable<string> objs = GameEssentials.ObjectiveManager.CurrentObjectives.Select<Objective, string>(obj => obj.Title);
+        UpdateObjectives(objs);
     }
 
     private void ClearObjectives()
@@ -26,15 +47,15 @@ public class ObjectivesUI : MonoBehaviour {
         }
     }
 
-    public void UpdateObjectives(List<string> objs)
+    public void UpdateObjectives(IEnumerable<string> objs)
     {
         ClearObjectives();
 
-        foreach(string s in objs)
+        foreach(string obj in objs)
         {
             // Create Objective
             GameObject objective = Instantiate(ObjectiveModel);
-            objective.GetComponentInChildren<Text>().text = s;
+            objective.GetComponentInChildren<Text>().text = obj;
 
             objective.transform.SetParent(ObjectiveList.transform);
             objective.transform.localScale = new Vector3(1, 1, 1);
