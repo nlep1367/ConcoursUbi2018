@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 public class DogBark : NetworkBehaviour {
     public float BarkRange;
     private DogBarkEcho Echo;
+
+    public Action<Vector3> HasBarked;
     
 	// Update is called once per frame
 	void Update () {
@@ -17,15 +19,14 @@ public class DogBark : NetworkBehaviour {
 		if(Input.GetButton("Fire1"))
         {
             Cmd_StartBark(Color.green);
-           // Bark((IBarkListener l) => l.ReactToAngryBark());
+            HasBarked.Invoke(transform.position);
         }
 
         if (Input.GetButton("Fire2"))
         {
             Cmd_StartBark(Color.red);
-            //Bark((IBarkListener l) =>  l.ReactToSoftBark());
+            HasBarked.Invoke(transform.position);
         }
-
     }
 
 
@@ -36,21 +37,6 @@ public class DogBark : NetworkBehaviour {
             Echo = GameObject.FindGameObjectWithTag("Fille").GetComponent<DogBarkEcho>();
 
         Echo.StartBark(color);
-    }
-
-        void Bark(Action<IBarkListener> barkReaction)
-    {
-      /*  Collider[] colliders = Physics.OverlapSphere(this.transform.position, BarkRange);
-
-        foreach(Collider c in colliders)
-        {
-            IBarkListener listener = c.gameObject.GetComponent<IBarkListener>();
-            if(listener != null)
-            {
-                listener.ReactToBark();
-                barkReaction(listener);
-            }
-        }
-        */
+        HasBarked.Invoke(transform.position);
     }
 }
