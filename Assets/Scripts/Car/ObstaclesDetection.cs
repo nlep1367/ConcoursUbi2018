@@ -16,7 +16,7 @@ public class ObstaclesDetection : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if(!(other.GetComponent<DangerZone>() || other.CompareTag("Terrain") || other.GetComponent<ObstaclesDetection>()))
+        if(other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
         {
             //obstacle = other;
             counter++;
@@ -27,7 +27,7 @@ public class ObstaclesDetection : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if (!(other.GetComponent<DangerZone>() || other.CompareTag("Terrain") || other.GetComponent<ObstaclesDetection>()))
+        if (other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
         {
             //obstacle = null;
             counter--;

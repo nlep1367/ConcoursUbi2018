@@ -16,12 +16,32 @@ public class NetworkSpawner : NetworkBehaviour {
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
 
+    private bool isSpawnObstructed = false;
+
     void Start()
     {
         if (NetworkServer.active)
         {
             spawnPosition = spawnPoint.transform.position;
             spawnRotation = Quaternion.Euler(0, angleSpawn, 0);
+        }
+    }
+
+    [Server]
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            isSpawnObstructed = true;
+        }
+    }
+
+    [Server]
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            isSpawnObstructed = false;
         }
     }
 
@@ -37,6 +57,9 @@ public class NetworkSpawner : NetworkBehaviour {
     [Server]
     public GameObject GetFromPool()
     {
+        if (isSpawnObstructed)
+            return null;
+
         GameObject go = (availables.Count == 0) ? InstantiatePrefab() : availables.Dequeue();
 
         go.transform.position = spawnPosition;
