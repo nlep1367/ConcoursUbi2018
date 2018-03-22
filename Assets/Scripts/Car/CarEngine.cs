@@ -159,6 +159,7 @@ public class CarEngine : NetworkBehaviour
         if (isBreaking || hasObstacle)
         {
             carRenderer.material.SetColor("_EmissionColor", ColorNoBrake);
+            GetComponentInParent<Rigidbody>().isKinematic = true;
             wheelFL.brakeTorque = maxBreakTorque;
             wheelFR.brakeTorque = maxBreakTorque;
             wheelRL.brakeTorque = maxBreakTorque;
@@ -167,6 +168,8 @@ public class CarEngine : NetworkBehaviour
         else
         {
             carRenderer.material.SetColor("_EmissionColor", ColorNoBrake);
+
+            GetComponentInParent<Rigidbody>().isKinematic = false;
             wheelFL.brakeTorque = 0;
             wheelFR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;

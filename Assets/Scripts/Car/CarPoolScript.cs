@@ -21,6 +21,9 @@ public class CarPoolScript : NetworkBehaviour
     {
         GameObject obj = carSpawner.GetFromPool();
 
+        if (obj == null)
+            return;
+
         CarEngine car = obj.GetComponent<CarEngine>();
         car.Initialize(carSpawner, path);
 
