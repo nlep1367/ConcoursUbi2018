@@ -28,6 +28,8 @@ public class FleeAI : MonoBehaviour
     private FadeMaterial Killer;
     private DogBark Woofer;
 
+    public System.Action WasSpooked;
+
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -40,6 +42,9 @@ public class FleeAI : MonoBehaviour
     {
         if (Vector3.Distance(SpookyLocation, transform.position) > Woofer.BarkRange)
             return;
+
+        if (WasSpooked != null)
+            WasSpooked.Invoke();
 
         switch (Mode)
         {
