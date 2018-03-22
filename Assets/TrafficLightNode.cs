@@ -49,6 +49,7 @@ public class TrafficLightNode : NetworkBehaviour {
     {
         if (!hasPedestrian)
         {
+            /*
             if (isReadyV)
             {
                 isReadyV = false;
@@ -60,6 +61,7 @@ public class TrafficLightNode : NetworkBehaviour {
                 isReadyH = false;
                 CountdownToNextLight(true);
             }
+            */
         }
         else
         {

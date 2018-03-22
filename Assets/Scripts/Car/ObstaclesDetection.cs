@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObstaclesDetection : MonoBehaviour {
 
-    CarEngine engine;
+    CarAI engine;
     // Collider obstacle;
     int counter = 0;
 
     private void Start()
     {
-        engine = GetComponentInParent<CarEngine>();
+        engine = GetComponentInParent<CarAI>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +20,7 @@ public class ObstaclesDetection : MonoBehaviour {
         {
             //obstacle = other;
             counter++;
-            engine.hasObstacle = counter !=0;
+            engine.isBreaking = true;
         }
 
     }
@@ -31,7 +31,8 @@ public class ObstaclesDetection : MonoBehaviour {
         {
             //obstacle = null;
             counter--;
-            engine.hasObstacle = counter !=0;
+            if (counter == 0)
+                engine.isBreaking = false;
         }            
     }
 

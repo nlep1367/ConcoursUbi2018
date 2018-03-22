@@ -91,6 +91,17 @@ public class CarEngine : NetworkBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            WheelCollider[] wheelColliders = GetComponentsInChildren<WheelCollider>();
+
+            for (int i = 0; i < wheelColliders.Length; ++i)
+                Physics.IgnoreCollision(collision.collider, wheelColliders[i], true);
+        }      
+    }
+
     // Update is called once per frame
     [Server]
     void FixedUpdate () {

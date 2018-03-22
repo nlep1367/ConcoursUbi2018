@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 114972645596128576}
   m_Layer: 8
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Fille
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 136897398531848906}
   m_Layer: 8
   m_Name: GirlModel
-  m_TagString: Untagged
+  m_TagString: Fille
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
