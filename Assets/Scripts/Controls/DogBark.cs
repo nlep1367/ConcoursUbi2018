@@ -16,13 +16,13 @@ public class DogBark : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
-		if(Input.GetButton("Fire1"))
+		if(Input.GetButtonDown("Fire1"))
         {
             Cmd_StartBark(Color.green);
             HasBarked.Invoke(transform.position);
         }
 
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
             Cmd_StartBark(Color.red);
             HasBarked.Invoke(transform.position);
