@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33752472188056820}
   - component: {fileID: 23280966040726186}
   - component: {fileID: 64892172546326204}
+  - component: {fileID: 65343012747105462}
   m_Layer: 0
   m_Name: sm_WiredFence
   m_TagString: Terrain
@@ -91,9 +92,21 @@ MeshCollider:
   m_GameObject: {fileID: 1181672637031922}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1e3a10df28b31ce4c822fa32cd3a4a1f, type: 3}
+--- !u!65 &65343012747105462
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181672637031922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00043464097, y: 0.019999996, z: 0.019999996}
+  m_Center: {x: -0.000067320485, y: 0.009999998, z: 0.009999998}
