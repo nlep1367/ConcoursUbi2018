@@ -17,7 +17,6 @@ public class AIVision : MonoBehaviour {
     private Transform GirlTransform;
     private Transform DoggoTransform;
 
-
     // Use this for initialization
     void Start () {
         GirlTransform = GameObject.FindGameObjectWithTag("Fille").transform;
