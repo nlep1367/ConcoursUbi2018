@@ -16,7 +16,7 @@ public class NetworkSpawner : NetworkBehaviour {
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
 
-    private bool isSpawnObstructed = false;
+    private int obstructedCounter = 0;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class NetworkSpawner : NetworkBehaviour {
     {
         if (other.CompareTag("Car"))
         {
-            isSpawnObstructed = true;
+            obstructedCounter++;
         }
     }
 
@@ -41,7 +41,7 @@ public class NetworkSpawner : NetworkBehaviour {
     {
         if (other.CompareTag("Car"))
         {
-            isSpawnObstructed = false;
+            obstructedCounter--;
         }
     }
 
@@ -49,6 +49,7 @@ public class NetworkSpawner : NetworkBehaviour {
     GameObject InstantiatePrefab()
     {
         GameObject go = Instantiate(prefab, spawnPosition, spawnRotation);
+        instances.Add(go);
         NetworkServer.Spawn(go);
 
         return go;
@@ -57,7 +58,7 @@ public class NetworkSpawner : NetworkBehaviour {
     [Server]
     public GameObject GetFromPool()
     {
-        if (isSpawnObstructed)
+        if (obstructedCounter != 0 || maxInstances == instances.Count)
             return null;
 
         GameObject go = (availables.Count == 0) ? InstantiatePrefab() : availables.Dequeue();
