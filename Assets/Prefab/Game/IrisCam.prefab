@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   DistanceOffset: 5
-  BaseOffsetVector: {x: 0, y: 1, z: 0}
+  BaseOffsetVector: {x: 0, y: 0.3, z: 0}
   VerticalSpeed: 5
   LateralSpeed: 5
   ReturnSpeed: 0.1
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e096d953a4ff6a48986f49d65be8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 10
+  VisionRadius: 2
   PlayerPosRef: {fileID: 0}
   Cam: {fileID: 0}
 --- !u!114 &114958185135378210
@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Positive:
-  - {r: 0.9333334, g: 0.8862746, b: 0.6901961, a: 0}
-  - {r: 0.8000001, g: 0.9490197, b: 0.60784316, a: 0}
-  - {r: 0.61960787, g: 0.7490196, b: 0.77647066, a: 0}
-  - {r: 0.8862746, g: 0.69803923, b: 0.69803923, a: 0}
+  - {r: 0.9333334, g: 0.8862746, b: 0.6901961, a: 1}
+  - {r: 0.8000001, g: 0.9490197, b: 0.60784316, a: 1}
+  - {r: 0.61960787, g: 0.7490196, b: 0.77647066, a: 1}
+  - {r: 0.8862746, g: 0.69803923, b: 0.69803923, a: 1}
   Negative:
-  - {r: 0.08235294, g: 0.14509805, b: 0.20392159, a: 0}
-  - {r: 0.7176471, g: 0.29803923, b: 0.26666668, a: 0}
+  - {r: 0.08235294, g: 0.14509805, b: 0.20392159, a: 1}
+  - {r: 0.7176471, g: 0.29803923, b: 0.26666668, a: 1}
   duration: 2
   Cam: {fileID: 20099646163380150}
 --- !u!124 &124920534089462484
