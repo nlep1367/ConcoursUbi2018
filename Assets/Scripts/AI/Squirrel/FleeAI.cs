@@ -19,8 +19,9 @@ public class FleeAI : MonoBehaviour
     public Transform FirstPoint;
     public Transform SecondPoint;
     public Transform ThirdPoint;
+
+    public Transform LastPoint;
     
-    public float SpookStrenght;
     public bool SPOOOKY;
 
     private Transform CurrentPoint;
@@ -102,8 +103,7 @@ public class FleeAI : MonoBehaviour
 
     void FinalFlee(Vector3 SpookyLocation)
     {
-        Vector3 Dest = transform.position + ((transform.position - SpookyLocation) * SpookStrenght);
-        Agent.SetDestination(Dest);
+        Agent.SetDestination(LastPoint.position);
 
         Mode = SquirrelMode.Over;
         Killer.Rpc_Kill();
