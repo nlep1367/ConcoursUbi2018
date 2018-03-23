@@ -8247,7 +8247,7 @@ MonoBehaviour:
   - {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea, type: 2}
   - {fileID: 1960027674469962, guid: 9a13cf03ee6930645bd97174c5c78686, type: 2}
   - {fileID: 1132496175100986, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
-  m_CustomConfig: 0
+  m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
     m_PacketSize: 1440
