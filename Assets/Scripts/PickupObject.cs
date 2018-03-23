@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PickupObject : MonoBehaviour {
+public class PickupObject : NetworkBehaviour {
     bool isCarryingObject = false;
     bool isPickableObjectInRange = false;
     GameObject pickableObject;
     GameObject carriedObject;
+    GameObject dropedObject;
     public Transform anchorPoint;
+
+    private float oldObjectMass = 1.0f;
 
 	// Update is called once per frame
 	void Update () {
@@ -44,6 +48,8 @@ public class PickupObject : MonoBehaviour {
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
+
+                CmdDisableRigidBody();
             }
         }
     }
@@ -58,6 +64,10 @@ public class PickupObject : MonoBehaviour {
     {   
         if (Input.GetKeyDown(KeyCode.E))
         {
+            dropedObject = carriedObject;
+
+            CmdEnableRigidBody();
+
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null)
             {
@@ -68,18 +78,56 @@ public class PickupObject : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    [Command]
+    void CmdDisableRigidBody()
     {
-        if(collision.gameObject.CompareTag("PickableObject"))
+        RpcDisableRigidBody();
+    }
+
+    [Command]
+    void CmdEnableRigidBody()
+    {
+        RpcEnableRigidBody();
+    }
+
+    [ClientRpc]
+    void RpcDisableRigidBody()
+    {
+        Rigidbody pickableRigidBody = pickableObject.GetComponent<Rigidbody>();
+        if (pickableRigidBody != null)
         {
-            isPickableObjectInRange = true;
-            pickableObject = collision.gameObject;
+            oldObjectMass = pickableRigidBody.mass;
+            Destroy(pickableRigidBody);
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    [ClientRpc]
+    void RpcEnableRigidBody()
     {
-        if (collision.gameObject.CompareTag("PickableObject"))
+        if(dropedObject != null)
+        {
+            dropedObject.AddComponent<Rigidbody>();
+
+            Rigidbody carriedNewRigidBody = carriedObject.GetComponent<Rigidbody>();
+            carriedNewRigidBody.useGravity = true;
+            carriedNewRigidBody.mass = oldObjectMass;
+
+            dropedObject = null;
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.CompareTag("PickableObject"))
+        {
+            isPickableObjectInRange = true;
+            pickableObject = collider.gameObject;
+        }
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("PickableObject"))
         {
             isPickableObjectInRange = false;
             pickableObject = null;
