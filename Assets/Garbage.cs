@@ -10,7 +10,7 @@ public class Garbage : MonoBehaviour {
 
         if (thrownable != null)
         {
-            thrownable.SetIsInThrownZone(true);
+            thrownable.IsInThrownZone = true;
         }
     }
 
@@ -20,7 +20,7 @@ public class Garbage : MonoBehaviour {
 
         if (thrownable != null)
         {
-            thrownable.SetIsInThrownZone(false);
+            thrownable.IsInThrownZone = false;
         }
     }
 }

@@ -3,6 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerPushable : MonoBehaviour {
+
+    private HintUI hintUI;
+
+    private void Start()
+    {
+        hintUI = FindObjectOfType<HintUI>();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        ObjectSync os = other.GetComponentInParent<ObjectSync>();
+
+        if (os != null && os.hasAuthority && (os.CompareTag("Doggo") || os.CompareTag("Fille")))
+        {
+            hintUI.Display(KeyCode.A, "Push the box");
+        }
+    }
+
     public void OnTriggerStay(Collider other)
     {
         TriggerFeet triggerFeet = other.GetComponent<TriggerFeet>();
@@ -22,11 +40,17 @@ public class TriggerPushable : MonoBehaviour {
 
                     player.ChangeState(StateEnum.PUSHING, this.GetComponentInParent<Rigidbody>());
                 }
-                else
-                {
-                    //Display cmd prompt?   
-                }
             }
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        ObjectSync os = other.GetComponentInParent<ObjectSync>();
+
+        if (os != null && os.hasAuthority && (os.CompareTag("Doggo") || os.CompareTag("Fille")))
+        {
+            hintUI.Hide();
         }
     }
 }

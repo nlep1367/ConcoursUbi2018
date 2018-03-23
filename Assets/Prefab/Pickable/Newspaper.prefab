@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65076803135641696}
   - component: {fileID: 54653810109841150}
   - component: {fileID: 65143790052146448}
+  - component: {fileID: 114605767264423838}
   m_Layer: 0
   m_Name: Newspaper
   m_TagString: PickableObject
@@ -167,6 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!114 &114605767264423838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674478797990748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae3cfd34559169469dfee97c541640f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInThrownZone: 0
 --- !u!114 &114811112478996742
 MonoBehaviour:
   m_ObjectHideFlags: 1

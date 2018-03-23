@@ -5,16 +5,10 @@ using UnityEngine.Networking;
 
 public class ThrownableObject : NetworkBehaviour {
 
-    bool isInThrownZone = false;
+    public bool IsInThrownZone = false;
 
     public void ThrowAway()
     {
-        if (isInThrownZone)
-            gameObject.GetComponent<ObjectSync>().Rpc_Destroy();
-    }
-
-    public void SetIsInThrownZone(bool val)
-    {
-        isInThrownZone = val;
+        gameObject.GetComponent<ObjectSync>().Rpc_Destroy();
     }
 }
