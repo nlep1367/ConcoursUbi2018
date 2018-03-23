@@ -1,22 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PickupObject : NetworkBehaviour {
+public class PickupObject : MonoBehaviour {
     bool isCarryingObject = false;
-    bool isPickableObjectInRange = false;
     GameObject pickableObject;
     GameObject carriedObject;
-    GameObject dropedObject;
     public Transform anchorPoint;
+    private HintUI hintUI;
 
-    private float oldObjectMass = 1.0f;
+    private void Start()
+    {
+        hintUI = FindObjectOfType<HintUI>();
+    }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 		if(isCarryingObject)
         {
+            ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
+            if (thrownable != null && thrownable.IsInThrownZone)
+            {
+                hintUI.Display(KeyCode.A, "Throw in the garbage");
+            }
+            else
+            {
+                hintUI.Display(KeyCode.A, "Drop the object");
+            }
+
             Carry(carriedObject);
             Drop();
         }
@@ -25,14 +36,6 @@ public class PickupObject : NetworkBehaviour {
             Pickup();
         }
 	}
-
-    private void OnGUI()
-    {
-        if(isPickableObjectInRange)
-        {
-            GUI.Box(new Rect(0, 60, 200, 25), "Press E to pickup");
-        }
-    }
 
     void Carry(GameObject obj)
     {
@@ -44,12 +47,10 @@ public class PickupObject : NetworkBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(isPickableObjectInRange && pickableObject != null)
+            if(pickableObject != null)
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
-
-                CmdDisableRigidBody();
             }
         }
     }
@@ -64,72 +65,31 @@ public class PickupObject : NetworkBehaviour {
     {   
         if (Input.GetKeyDown(KeyCode.E))
         {
-            dropedObject = carriedObject;
-
-            CmdEnableRigidBody();
-
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
-            if (thrownable != null)
+            if (thrownable != null && thrownable.IsInThrownZone)
             {
                 thrownable.ThrowAway();
+                hintUI.Hide();
             }
             isCarryingObject = false;
             carriedObject = null;
         }
     }
 
-    [Command]
-    void CmdDisableRigidBody()
+    private void OnTriggerEnter(Collider collision)
     {
-        RpcDisableRigidBody();
-    }
-
-    [Command]
-    void CmdEnableRigidBody()
-    {
-        RpcEnableRigidBody();
-    }
-
-    [ClientRpc]
-    void RpcDisableRigidBody()
-    {
-        Rigidbody pickableRigidBody = pickableObject.GetComponent<Rigidbody>();
-        if (pickableRigidBody != null)
+        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
         {
-            oldObjectMass = pickableRigidBody.mass;
-            Destroy(pickableRigidBody);
+            hintUI.Display(KeyCode.A, "Pick up " + collision.gameObject.name);
+            pickableObject = collision.gameObject;
         }
     }
 
-    [ClientRpc]
-    void RpcEnableRigidBody()
+    private void OnTriggerExit(Collider collision)
     {
-        if(dropedObject != null)
+        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
         {
-            dropedObject.AddComponent<Rigidbody>();
-
-            Rigidbody carriedNewRigidBody = carriedObject.GetComponent<Rigidbody>();
-            carriedNewRigidBody.useGravity = true;
-            carriedNewRigidBody.mass = oldObjectMass;
-
-            dropedObject = null;
-        }
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        if(collider.gameObject.CompareTag("PickableObject"))
-        {
-            isPickableObjectInRange = true;
-            pickableObject = collider.gameObject;
-        }
-    }
-
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("PickableObject"))
-        {
-            isPickableObjectInRange = false;
+            hintUI.Hide();
             pickableObject = null;
         }
     }
