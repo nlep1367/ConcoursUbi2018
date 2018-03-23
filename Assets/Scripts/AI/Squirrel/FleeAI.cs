@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 using UnityEngine;
 
 public enum SquirrelMode
@@ -12,15 +13,16 @@ public enum SquirrelMode
 }
 
 [RequireComponent(typeof(NavMeshAgent), typeof(FadeMaterial))]
-public class FleeAI : MonoBehaviour
+public class FleeAI : NetworkBehaviour
 {
     public SquirrelMode Mode;
 
     public Transform FirstPoint;
     public Transform SecondPoint;
     public Transform ThirdPoint;
+
+    public Transform LastPoint;
     
-    public float SpookStrenght;
     public bool SPOOOKY;
 
     private Transform CurrentPoint;
@@ -42,6 +44,7 @@ public class FleeAI : MonoBehaviour
         Agent.transform.position = FirstPoint.position;
     }
     
+    [Server]
     void Spook(Vector3 SpookyLocation)
     {
         if (Vector3.Distance(SpookyLocation, transform.position) > Woofer.BarkRange)
@@ -100,12 +103,15 @@ public class FleeAI : MonoBehaviour
 
     }
 
+
+
     void FinalFlee(Vector3 SpookyLocation)
     {
-        Vector3 Dest = transform.position + ((transform.position - SpookyLocation) * SpookStrenght);
-        Agent.SetDestination(Dest);
+        Agent.SetDestination(LastPoint.position);
 
         Mode = SquirrelMode.Over;
+
+        Woofer.HasBarked -= Spook;
         Killer.Rpc_Kill();
     }
 }

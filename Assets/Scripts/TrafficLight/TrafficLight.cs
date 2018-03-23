@@ -17,11 +17,11 @@ public class TrafficLight : NetworkBehaviour {
     public TrafficLightState syncState;
     private TrafficLightState lastState = TrafficLightState.Count;
 
-    private Material lights;
+    public Material lights;
 
     // Use this for initialization
     void Awake () {
-        lights = GetComponent<Renderer>().materials[1];
+        //lights = GetComponent<Renderer>().materials[1];
     }
 
     public TrafficLightState getLightState()
