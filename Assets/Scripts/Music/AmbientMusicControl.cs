@@ -30,7 +30,6 @@ public class AmbientMusicControl : MonoBehaviour {
 	private float m_QuarterNote;
 	private float m_CurrentTime;
 
-	private bool m_IsPlayingStress = false;
 	private bool m_IsTransitionning = false;
 
 	private bool[] m_AreAmbiantClipsPlaying;
@@ -64,7 +63,6 @@ public class AmbientMusicControl : MonoBehaviour {
 		// Start scared effect
 		if (ToStartStress) {
 			m_StressController.OnPlayStress (m_AmbientAudioClipIndex);
-			m_IsPlayingStress = true;
 			ToStartStress = false;
 		}
 
@@ -80,8 +78,7 @@ public class AmbientMusicControl : MonoBehaviour {
 			ToNextAmbient = false;
 		}
 			
-		if (m_IsPlayingStress)
-			m_StressController.Tick ();
+		m_StressController.Tick ();
 
 		if (m_IsTransitionning) {
 			m_CurrentTime += Time.deltaTime;

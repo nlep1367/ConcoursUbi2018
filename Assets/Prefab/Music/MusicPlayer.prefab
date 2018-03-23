@@ -544,7 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outOfStress:
   - {fileID: 24500006, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
-  - {fileID: 245166424409504992, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
+  - {fileID: 245480492499243182, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   - {fileID: 245166424409504992, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   - {fileID: 245753495304132964, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   inStress:

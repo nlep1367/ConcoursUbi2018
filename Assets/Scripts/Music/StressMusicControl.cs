@@ -53,6 +53,7 @@ public class StressMusicControl : MonoBehaviour {
 	public void OnStopStress(int index)
 	{
 		if (m_playingStress && !m_stopping) {
+			m_stopping = true;
 			outOfStress[index].TransitionTo (TransitionOut);
 			m_currentTime = 0;
 		}
