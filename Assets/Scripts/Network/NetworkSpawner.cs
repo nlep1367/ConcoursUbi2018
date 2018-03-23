@@ -16,6 +16,8 @@ public class NetworkSpawner : NetworkBehaviour {
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
 
+    private int obstructedCounter = 0;
+
     void Start()
     {
         if (NetworkServer.active)
@@ -26,9 +28,28 @@ public class NetworkSpawner : NetworkBehaviour {
     }
 
     [Server]
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            obstructedCounter++;
+        }
+    }
+
+    [Server]
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Car"))
+        {
+            obstructedCounter--;
+        }
+    }
+
+    [Server]
     GameObject InstantiatePrefab()
     {
         GameObject go = Instantiate(prefab, spawnPosition, spawnRotation);
+        instances.Add(go);
         NetworkServer.Spawn(go);
 
         return go;
@@ -37,6 +58,9 @@ public class NetworkSpawner : NetworkBehaviour {
     [Server]
     public GameObject GetFromPool()
     {
+        if (obstructedCounter != 0 || maxInstances == instances.Count)
+            return null;
+
         GameObject go = (availables.Count == 0) ? InstantiatePrefab() : availables.Dequeue();
 
         go.transform.position = spawnPosition;

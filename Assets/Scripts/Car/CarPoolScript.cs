@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class CarPoolScript : NetworkBehaviour
 {
-
     public float spawningTime = 5f;
     public Path path;
     private NetworkSpawner carSpawner;
@@ -21,7 +20,10 @@ public class CarPoolScript : NetworkBehaviour
     {
         GameObject obj = carSpawner.GetFromPool();
 
-        CarEngine car = obj.GetComponent<CarEngine>();
+        if (obj == null)
+            return;
+
+        CarAI car = obj.GetComponent<CarAI>();
         car.Initialize(carSpawner, path);
 
         obj.GetComponent<ObjectSync>().Rpc_SetObjectActive(true);

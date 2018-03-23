@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4239421299839684}
   m_Layer: 0
   m_Name: Roadblock_1
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,14 +63,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448667646517208}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.18042, y: 0.099999994, z: -52.57}
-  m_LocalScale: {x: 2, y: 2.5, z: 2}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
+  m_LocalPosition: {x: 74, y: 0, z: 55.5}
+  m_LocalScale: {x: 2.352941, y: 2.9411764, z: 2.352941}
   m_Children:
   - {fileID: 4076790954302484}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!23 &23636799623911930
 MeshRenderer:
   m_ObjectHideFlags: 1

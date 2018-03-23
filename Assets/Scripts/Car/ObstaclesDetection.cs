@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class ObstaclesDetection : MonoBehaviour {
 
-    CarEngine engine;
+    CarAI engine;
     // Collider obstacle;
     int counter = 0;
 
     private void Start()
     {
-        engine = GetComponentInParent<CarEngine>();
+        engine = GetComponentInParent<CarAI>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if(!(other.GetComponent<DangerZone>() || other.CompareTag("Terrain") || other.GetComponent<ObstaclesDetection>()))
+        if(other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
         {
             //obstacle = other;
             counter++;
-            engine.hasObstacle = counter !=0;
+            engine.isBreaking = true;
         }
 
     }
     private void OnTriggerExit(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if (!(other.GetComponent<DangerZone>() || other.CompareTag("Terrain") || other.GetComponent<ObstaclesDetection>()))
+        if (other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
         {
             //obstacle = null;
             counter--;
-            engine.hasObstacle = counter !=0;
+            if (counter == 0)
+                engine.isBreaking = false;
         }            
     }
 

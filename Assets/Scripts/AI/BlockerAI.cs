@@ -20,8 +20,10 @@ public class BlockerAI : BaseAI {
 
     public float speed;
 
+    public Animator Animator;
     private void Start()
     {
+        Animator = GetComponent<Animator>();
         InvisibleColission.transform.localScale = new Vector3((EndPosition.position - StartPosition.position).magnitude, 5, 0);
     }
 
@@ -80,6 +82,7 @@ public class BlockerAI : BaseAI {
             transform.position += (Direction * speed * Time.deltaTime);
         }
 
+        Animator.SetFloat("Speed", Direction.magnitude > MinDistance? 1 : 0);
         transform.LookAt(LookAt);
     }
 

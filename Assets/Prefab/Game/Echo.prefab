@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 114918211619297742}
   m_Layer: 8
   m_Name: DogModel
-  m_TagString: Untagged
+  m_TagString: Doggo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 114720827071653202}
   m_Layer: 8
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Doggo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
