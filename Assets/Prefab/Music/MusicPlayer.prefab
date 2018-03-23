@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1471484593503672}
   m_IsPrefabParent: 1
+--- !u!1 &1079420576365708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4202918205032844}
+  - component: {fileID: 82332209001187346}
+  m_Layer: 0
+  m_Name: StingPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1435672743286396
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +92,19 @@ Transform:
   m_Father: {fileID: 4717266487428902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4202918205032844
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079420576365708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4717266487428902}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4335486127491780
 Transform:
   m_ObjectHideFlags: 1
@@ -101,6 +130,7 @@ Transform:
   m_Children:
   - {fileID: 4191504995589284}
   - {fileID: 4335486127491780}
+  - {fileID: 4202918205032844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -509,6 +539,87 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!82 &82332209001187346
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079420576365708}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243491979497157622, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 775d66a34515949f68dc8422788a5890, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114373563748388068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -521,15 +632,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToStartStress: 0
-  ToNextAmbient: 0
   ToStopStress: 0
+  ToNextAmbient: 0
+  ToWin: 0
+  ToFail: 0
+  ToAction1: 0
+  ToAction2: 0
+  ToAction3: 0
+  ToAction4: 0
   clipTransitions:
   - {fileID: 24500006, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   - {fileID: 245480492499243182, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   - {fileID: 245166424409504992, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
   - {fileID: 245753495304132964, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
-  ObjectiveSting: []
-  stingSource: {fileID: 0}
+  StartSting: {fileID: 8300000, guid: 775d66a34515949f68dc8422788a5890, type: 3}
+  WinSting: {fileID: 8300000, guid: 4eb22de3f5c0046a68192d286b07eb2c, type: 3}
+  FailSting: {fileID: 8300000, guid: 9f3a4323906d64ab99daf3ba5b30cc17, type: 3}
+  ActionSting1: {fileID: 8300000, guid: 36dee999b60d54d4795ddb2c24da9c30, type: 3}
+  ActionSting2: {fileID: 8300000, guid: b442a34273f1e445f80665031ef17912, type: 3}
+  ActionSting3: {fileID: 8300000, guid: 5bb666b210e7a490fa0a476c0241eee5, type: 3}
+  ActionSting4: {fileID: 8300000, guid: 6779799bc2ea947bf9aa01be42f1c188, type: 3}
   bpm: 53
 --- !u!114 &114807481595782682
 MonoBehaviour:
