@@ -7,21 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshAgent))]
 public class CarAI : NetworkBehaviour {
 
-    public Color[] RandomColor;
-
+    public Material[] RandomColor;
     public bool isBreaking = false;
-    private Path path;
     public float Speed;
-
-    private int CurrentWaypoint;
-    private float DistanceFromWaypoint = 5;
     public NavMeshAgent Agent;
     public Renderer Render;
+    public Animator Anim;
+    public NetworkAnimator Animdsa;
+
+    private Path path;
+    private int CurrentWaypoint;
+    private float DistanceFromWaypoint = 5;
     private NetworkSpawner carSpawner;
+    
 
     // Use this for initialization
     void Awake() {
-        Render.material.color = RandomColor[Random.Range(0, RandomColor.Length)];
+        Render.material = RandomColor[Random.Range(0, RandomColor.Length)];
+        Animdsa.SetParameterAutoSend(0, true);
     }
 	
 	// Update is called once per frame
@@ -37,7 +40,9 @@ public class CarAI : NetworkBehaviour {
             Agent.speed = Speed;
         }
 
-		if(Vector3.Distance(path.GetWayPoint(CurrentWaypoint).transform.position, transform.position) < DistanceFromWaypoint)
+        Anim.SetFloat("Speed", Agent.speed);
+
+        if (Vector3.Distance(path.GetWayPoint(CurrentWaypoint).transform.position, transform.position) < DistanceFromWaypoint)
         {
             CurrentWaypoint = path.GetNextWayPoint(CurrentWaypoint);
 

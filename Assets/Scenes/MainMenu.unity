@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 638676710}
   - component: {fileID: 638676712}
   - component: {fileID: 638676711}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,13 +1820,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 638676709}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
   m_LocalPosition: {x: 13, y: 16, z: 351}
   m_LocalScale: {x: 61.109562, y: 61.10959, z: 61.10959}
   m_Children: []
   m_Father: {fileID: 2005311286}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!111 &638676711
 Animation:
   m_ObjectHideFlags: 0
@@ -6660,7 +6660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 3.0999756, y: 0}
+  m_AnchoredPosition: {x: 3.1000977, y: 0}
   m_SizeDelta: {x: 307, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1764326014
