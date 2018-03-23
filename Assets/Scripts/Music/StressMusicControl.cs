@@ -3,23 +3,16 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class StressMusicControl : MonoBehaviour {
-	// TO DO : 
-	//	-	Ajuster transitions
 
-	public bool ToStart = false;
-	public bool ToStop = false;
+	public AudioMixerSnapshot[] outOfStress;
+	public AudioMixerSnapshot[] inStress;
 
-	public AudioMixerSnapshot outOfStress;
-	public AudioMixerSnapshot inStress;
-//	public AudioClip[] stings;
-//	public AudioSource stingSource;
-	public float bpm = 53;
+	public float TransitionIn;
+	public float TransitionOut;
 
-	AudioSource m_StressAudioSource;
+	private GameObject m_StressPlayer;
 
-	private float m_TransitionIn;
-	private float m_TransitionOut;
-	private float m_QuarterNote;
+	private AudioSource m_StressAudioSource;
 
 	private float m_currentTime;
 
@@ -29,55 +22,38 @@ public class StressMusicControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		m_QuarterNote = 60 / bpm;
-		m_TransitionIn = m_QuarterNote * 4;
-		m_TransitionOut = m_QuarterNote * 16;
-
-		m_StressAudioSource = GetComponents<AudioSource>()[1];
-
+		m_StressPlayer = transform.Find  ("StressPlayer").gameObject;
+		m_StressAudioSource = m_StressPlayer.GetComponent<AudioSource>();
 	}
 
-	// Update is called once per frame
-	void Update () 
+	// Tick is called by the AmbientMusicControl::Update if necessary
+	public void Tick () 
 	{
-		// Start scared effect
-		if (ToStart) {
-			OnPlayStress ();
-			ToStart = false;
-		}
-
-		// Stop scared effect
-		if (ToStop) {
-			OnStopStress ();
-			ToStop = false;
-		}
-
 		if (!m_playingStress)
 			return;
 
 		if (m_stopping) {
 			m_currentTime += Time.deltaTime;
 
-			if (m_currentTime > m_TransitionOut) {
+			if (m_currentTime > TransitionOut) {
 				OnConcludeStress ();
 			} 
 		}
 	}
 
-	void OnPlayStress()
+	public void OnPlayStress(int index)
 	{
 		if (!m_playingStress) {
 			m_playingStress = true;
 			m_StressAudioSource.Play();
-			inStress.TransitionTo(m_TransitionIn);
-			PlaySting();
+			inStress[index].TransitionTo(TransitionIn);
 		}
 	}
 
-	void OnStopStress()
+	public void OnStopStress(int index)
 	{
 		if (m_playingStress && !m_stopping) {
-			outOfStress.TransitionTo (m_TransitionOut);
+			outOfStress[index].TransitionTo (TransitionOut);
 			m_currentTime = 0;
 		}
 	}
@@ -88,12 +64,5 @@ public class StressMusicControl : MonoBehaviour {
 		m_stopping = false;
 
 		m_StressAudioSource.Stop();
-	}
-
-	void PlaySting()
-	{
-//		int randClip = Random.Range (0, stings.Length);
-//		stingSource.clip = stings[randClip];
-//		stingSource.Play();
 	}
 }
