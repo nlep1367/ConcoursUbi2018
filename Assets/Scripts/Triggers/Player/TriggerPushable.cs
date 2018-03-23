@@ -17,6 +17,7 @@ public class TriggerPushable : MonoBehaviour {
                 {
                     
                     Vector3 pushDirection = this.transform.parent.position - this.transform.position;
+                    pushDirection.y = 0;
                     player.transform.forward = pushDirection;
 
                     player.ChangeState(StateEnum.PUSHING, this.GetComponentInParent<Rigidbody>());
