@@ -19,13 +19,14 @@ public class DogBark : NetworkBehaviour {
 		if(Input.GetButtonDown("Fire1"))
         {
             Cmd_StartBark(Color.green);
-            HasBarked.Invoke(transform.position);
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             Cmd_StartBark(Color.red);
-            HasBarked.Invoke(transform.position);
+
+            if(HasBarked != null)
+                HasBarked.Invoke(transform.position);
         }
     }
 

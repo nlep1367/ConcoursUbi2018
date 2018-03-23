@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 114336451965304826}
   m_Layer: 8
   m_Name: Squirrel
-  m_TagString: Doggo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 1669009477016776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32712585, y: 0.0084999725, z: 4.4377446}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4568021147569136}
   m_Father: {fileID: 0}
@@ -945,7 +945,7 @@ MonoBehaviour:
   FirstPoint: {fileID: 0}
   SecondPoint: {fileID: 0}
   ThirdPoint: {fileID: 0}
-  SpookStrenght: 0
+  LastPoint: {fileID: 0}
   SPOOOKY: 0
 --- !u!114 &114976408638674034
 MonoBehaviour:

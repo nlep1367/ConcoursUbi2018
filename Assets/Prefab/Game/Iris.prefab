@@ -2857,7 +2857,7 @@ MonoBehaviour:
   MovementSpeed: 25
   RotationSpeed: 60
   Acceleration: 30
-  PushingMovementSpeed: 5
+  PushingMovementSpeed: 10
   ClimbingSpeed: 10
   shaderActivated: 1
 --- !u!114 &114603672696637660

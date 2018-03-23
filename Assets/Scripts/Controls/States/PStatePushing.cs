@@ -27,8 +27,8 @@ public class PStatePushing : PlayerState
         }
         else if (VerticalAxis >= float.Epsilon)
         {
-            Vector3 force = VerticalAxis * _player.transform.forward * _movementSpeed * Time.deltaTime;
-            _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
+           // Vector3 force = VerticalAxis * _player.transform.forward * _movementSpeed * Time.deltaTime;
+            _player.RigidBody.velocity = _player.transform.forward * _movementSpeed * VerticalAxis;
         }
         else if (VerticalAxis <= -0.3f || HorizontalAxis <= -0.3f || HorizontalAxis >= 0.3f)
         {
