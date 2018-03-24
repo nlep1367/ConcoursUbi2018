@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour {
 
     Animator anim;
+    MainMenu_KeyboardController controller;
 
     public string newGameSceneName;
     public int quickSaveSlotID;
 
     [Header("Options Panel")]
+    public GameObject MainPanel;
     public GameObject MainOptionsPanel;
     public GameObject StartGameOptionsPanel;
-    public GameObject GamePanel;
+    public GameObject AudioPanel;
     public GameObject GfxPanel;
 
     // Use this for initialization
@@ -35,21 +37,19 @@ public class MainMenuController : MonoBehaviour {
         //enable respective panel
         MainOptionsPanel.SetActive(true);
         StartGameOptionsPanel.SetActive(false);
+        MainPanel.SetActive(false);
 
         //play anim for opening main options panel
         anim.Play("buttonTweenAnims_on");
 
         //play click sfx
-        playClickSound();
-
-        //enable BLUR
-        //Camera.main.GetComponent<Animator>().Play("BlurOn");
-       
+        playClickSound();       
     }
 
     public void openStartGameOptions()
     {
         //enable respective panel
+        MainPanel.SetActive(false);
         MainOptionsPanel.SetActive(false);
         StartGameOptionsPanel.SetActive(true);
 
@@ -61,17 +61,15 @@ public class MainMenuController : MonoBehaviour {
 
         MatchMakingLobbyManager m = GameObject.Find("LobbyManager").GetComponent<MatchMakingLobbyManager>();
         m.InitComponents();
-
-        //enable BLUR
-        //Camera.main.GetComponent<Animator>().Play("BlurOn");
-
     }
 
     public void openOptions_Game()
     {
         //enable respective panel
-        GamePanel.SetActive(true);
+        AudioPanel.SetActive(true);
         GfxPanel.SetActive(false);
+        MainOptionsPanel.SetActive(false);
+        MainPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
@@ -83,8 +81,10 @@ public class MainMenuController : MonoBehaviour {
     public void openOptions_Gfx()
     {
         //enable respective panel
-        GamePanel.SetActive(false);
+        AudioPanel.SetActive(false);
+        MainOptionsPanel.SetActive(false);
         GfxPanel.SetActive(true);
+        MainPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
@@ -105,11 +105,9 @@ public class MainMenuController : MonoBehaviour {
 
     public void back_options()
     {
+        MainPanel.SetActive(true);
         //simply play anim for CLOSING main options panel
         anim.Play("buttonTweenAnims_off");
-
-        //disable BLUR
-       // Camera.main.GetComponent<Animator>().Play("BlurOff");
 
         //play click sfx
         playClickSound();
@@ -118,6 +116,7 @@ public class MainMenuController : MonoBehaviour {
     public void back_options_panels()
     {
         //simply play anim for CLOSING main options panel
+        MainOptionsPanel.SetActive(true);
         anim.Play("OptTweenAnim_off");
         
         //play click sfx

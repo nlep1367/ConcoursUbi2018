@@ -99,286 +99,6 @@ public class OptionsController_Graphics : MonoBehaviour {
     }
 
     /// <summary>
-    /// Toggle AnisoFiltering
-    /// </summary>
-    public void gfx_AnisoFiltering()
-    {
-
-        //disable
-        if (toggleAnisoFilt == 0) {
-            toggleAnisoFilt = 1;
-            AnisoFiltering_text.text = "On";
-        }
-        //enable
-        else {
-            toggleAnisoFilt = 0;
-            AnisoFiltering_text.text = "Off";
-        }
-
-        //setting value
-        QualitySettings.anisotropicFiltering = toggleAnisoFilt == 1 ? AnisotropicFiltering.Enable : AnisotropicFiltering.Disable;
-
-        //override new setting
-        #if !EMM_ES2
-         PlayerPrefs.SetInt("toggleAnisoFilt", toggleAnisoFilt);
-        #else
-        ES2.Save(toggleAnisoFilt, "toggleAnisoFilt");
-        #endif
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-    }
-
-    /// <summary>
-    /// Only set the value
-    /// </summary>
-    void gfx_setAnisoFiltering() {
-    
-        //if 1 = enable : disable
-        QualitySettings.anisotropicFiltering = toggleAnisoFilt == 1 ? AnisotropicFiltering.Enable : AnisotropicFiltering.Disable;
-
-        //set text
-        AnisoFiltering_text.text = toggleAnisoFilt == 1 ? "On" : "Off" ;
-    }
-
-    /// <summary>
-    /// Toggle AntiAliasing
-    /// </summary>
-    public void gfx_AntiAlias()
-    {
-       
-        if (toggleAntiAlias == 0)
-        {
-            QualitySettings.antiAliasing = 2;
-            toggleAntiAlias = 1;
-            AntiAlias_text.text = "2x";
-        }
-        else if (toggleAntiAlias == 1)
-        {
-            QualitySettings.antiAliasing = 4;
-            toggleAntiAlias = 2;
-            AntiAlias_text.text = "4x";
-        }
-        else if (toggleAntiAlias == 2)
-        {
-            QualitySettings.antiAliasing = 8;
-            toggleAntiAlias = 3;
-            AntiAlias_text.text = "8x";
-        }
-        else if (toggleAntiAlias == 3)
-        {
-            QualitySettings.antiAliasing = 0;
-            toggleAntiAlias = 0;
-            AntiAlias_text.text = "Off";
-        }
-
-        //override new setting
-        #if !EMM_ES2
-         PlayerPrefs.SetInt("toggleAntiAlias", toggleAntiAlias);
-        #else
-        ES2.Save(toggleAntiAlias, "toggleAntiAlias");
-        #endif
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-    }
-
-    /// <summary>
-    /// Only set the value
-    /// </summary>
-    void gfx_setAntiAlias() {
-
-
-        if (toggleAntiAlias == 0)
-        {
-            QualitySettings.antiAliasing = 0;
-            AntiAlias_text.text = "Off";
-        }
-        else if (toggleAntiAlias == 1)
-        {
-            QualitySettings.antiAliasing = 2;
-            AntiAlias_text.text = "2x";
-        }
-        else if (toggleAntiAlias == 2)
-        {
-            QualitySettings.antiAliasing = 4;
-            AntiAlias_text.text = "4x";
-        }
-        else if (toggleAntiAlias == 3)
-        {
-            QualitySettings.antiAliasing = 8;
-            AntiAlias_text.text = "8x";
-        }
-    }
-
-    /// <summary>
-    /// Toggle vSync
-    /// </summary>
-    public void gfx_Vsync()
-    {
-        if (toggleVsync == 0)
-        {
-            QualitySettings.vSyncCount = 1;
-            toggleVsync = 1;
-            toggleVsync_text.text = "On";
-        }
-        else
-        {
-            QualitySettings.vSyncCount = 0;
-            toggleVsync = 0;
-            toggleVsync_text.text = "Off";
-        }
-
-        //override new setting
-        #if !EMM_ES2
-        PlayerPrefs.SetInt("toggleVsync", toggleVsync);
-        #else
-        ES2.Save(toggleVsync, "toggleVsync");
-        #endif
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-    }
-
-    /// <summary>
-    /// Only set the value
-    /// </summary>
-    void gfx_setVsync()
-    {
-        QualitySettings.vSyncCount = toggleVsync == 1 ? 1 : 0;
-
-        toggleVsync_text.text = toggleVsync == 1 ? "On" : "Off";
-
-    }
-
-    /// <summary>
-    /// Toggle Shadows
-    /// </summary>
-    public void gfx_shadows()
-    {
-
-        //disable shadows
-        if (toggleShadows == 0) {
-            QualitySettings.shadows = ShadowQuality.HardOnly;
-            toggleShadows = 1;
-            toggleShadows_text.text = "Hard";
-        }
-        //Hard shadows
-        else if (toggleShadows == 1)
-        {
-            QualitySettings.shadows = ShadowQuality.All;
-            toggleShadows = 2;
-            toggleShadows_text.text = "Soft";
-        }
-        //Soft shadows
-        else if (toggleShadows == 2)
-        {
-            QualitySettings.shadows = ShadowQuality.Disable;
-            toggleShadows = 0;
-            toggleShadows_text.text = "Off";
-        }
-        //override new setting
-
-        #if !EMM_ES2
-        PlayerPrefs.SetInt("toggleShadows", toggleShadows);
-        #else
-        ES2.Save(toggleShadows, "toggleShadows");
-        #endif
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-
-    }
-
-    /// <summary>
-    /// Only sets the value
-    /// </summary>
-    void gfx_setShadows() {
-
-        if (toggleShadows == 0)
-        {
-            QualitySettings.shadows = ShadowQuality.Disable;
-            toggleShadows_text.text = "Off";
-        }
-        //Hard shadows
-        else if (toggleShadows == 1)
-        {
-            QualitySettings.shadows = ShadowQuality.HardOnly;
-            toggleShadows_text.text = "Hard";
-        }
-        //Soft shadows
-        else if (toggleShadows == 2)
-        {
-            QualitySettings.shadows = ShadowQuality.All;
-            toggleShadows_text.text = "Soft";
-        }
-    }
-
-    /// <summary>
-    /// Toggle Different Texture Resolutions
-    /// </summary>
-    public void gfx_textureQuality()
-    {
-        //0 = full 
-        //1 = half
-        //2 = quarter
-
-        if (toggleTextureQuality == 0)
-        {
-            QualitySettings.masterTextureLimit = 1;
-            toggleTextureQuality_text.text = "Half";
-            toggleTextureQuality = 1;
-        }
-        else if (toggleTextureQuality == 1)
-        {
-            QualitySettings.masterTextureLimit = 2;
-            toggleTextureQuality_text.text = "Quarter";
-            toggleTextureQuality = 2;
-        }
-        else if (toggleTextureQuality == 2)
-        {
-            QualitySettings.masterTextureLimit = 0;
-            toggleTextureQuality_text.text = "Full";
-            toggleTextureQuality = 0;
-        }
-
-        //override new setting
-        #if !EMM_ES2
-        PlayerPrefs.SetInt("toggleTextureQuality", toggleTextureQuality);
-        #else
-        ES2.Save(toggleTextureQuality, "toggleTextureQuality");
-        #endif
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-
-    }
-
-   /// <summary>
-    /// Only sets the value
-    /// </summary>
-    void gfx_setTextureQuality() {
-        //0 = full
-        if (toggleTextureQuality == 0)
-        {
-            QualitySettings.masterTextureLimit = 0;
-            toggleTextureQuality_text.text = "Full";
-        }
-        //1 = half
-        else if (toggleTextureQuality == 1)
-        {
-            QualitySettings.masterTextureLimit = 1;
-            toggleTextureQuality_text.text = "Half";
-        }
-        //2 = quarter
-        else if (toggleTextureQuality == 2)
-        {
-            QualitySettings.masterTextureLimit = 2;
-            toggleTextureQuality_text.text = "Quarter";
-        }
-    }
-
-    /// <summary>
     /// Scroll through various screen resolutions
     /// </summary>
     public void gfx_ScreenResolution()
@@ -400,9 +120,6 @@ public class OptionsController_Graphics : MonoBehaviour {
               allScreenResolutions[currentScreenResolutionCount].height, toggleFullscreen == 1 ? true : false);
         }
 
-        //set text finally
-        currentScreenResolution_text.text = Screen.currentResolution.width + " x " + Screen.currentResolution.height;
-
         //save finally
         #if !EMM_ES2
         PlayerPrefs.SetInt("currentScreenResolutionCount", currentScreenResolutionCount);
@@ -420,17 +137,13 @@ public class OptionsController_Graphics : MonoBehaviour {
     {
         //retrieve all resolutions on start
         allScreenResolutions = Screen.resolutions;
-        
+
         //set resolution
         // if the resolution has been set before
         if (PlayerPrefs.HasKey("currentScreenResolutionCount"))
         {
             Screen.SetResolution(allScreenResolutions[currentScreenResolutionCount].width,
                 allScreenResolutions[currentScreenResolutionCount].height, toggleFullscreen == 1 ? true : false);
-           
-            //set text finally
-            currentScreenResolution_text.text = allScreenResolutions[currentScreenResolutionCount].width + " x " 
-                        + allScreenResolutions[currentScreenResolutionCount].height;
         }
         else
         {
@@ -439,9 +152,6 @@ public class OptionsController_Graphics : MonoBehaviour {
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,
                                 toggleFullscreen == 1 ? true : false);
         }
-
-        //set text finally
-        currentScreenResolution_text.text = Screen.currentResolution.width + " x "  + Screen.currentResolution.height;
     }
 
     /// <summary>
@@ -475,11 +185,6 @@ public class OptionsController_Graphics : MonoBehaviour {
 
         //set values accordingly
         gfx_setFullScreen();
-        gfx_setAnisoFiltering();
-        gfx_setAntiAlias();
-        gfx_setVsync();
-        gfx_setShadows();
-        gfx_setTextureQuality();
         gfx_setScreenResolution();
     }
     #endregion

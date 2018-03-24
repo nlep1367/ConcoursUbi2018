@@ -52,156 +52,7 @@ public class OptionsController_Game : MonoBehaviour {
 
     #region _Game Options_
 
-    /// <summary>
-    /// Toggles the HUD on-off
-    /// </summary>
-    public void game_toggleHUD() {
-
-        //enable
-        if(toggleHud == 0)
-        {
-            toggleHud = 1;
-            HUD_text.text = "On";
-            //removing HUD name so that it can't be disabled 
-            #if !EMM_ES2
-            PlayerPrefs.SetString("HUD_name", "");
-            #else
-            ES2.Save("", "HUD_name");
-            #endif
-
-        }
-        //disable
-        else
-        {
-            toggleHud = 0;
-            HUD_text.text = "Off";
-            //saving HUD name so that it can be disabled 
-            #if !EMM_ES2
-            PlayerPrefs.SetString("HUD_name", HUD_name);
-            #else
-            ES2.Save(HUD_name, "HUD_name");
-            #endif
-
-           
-        }
-
-        //override new setting
-        #if !EMM_ES2
-        PlayerPrefs.SetInt("toggleHud", toggleHud);
-        #else
-        ES2.Save(toggleHud, "toggleHud");
-        #endif
-       
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
-
-    }
-
-    /// <summary>
-    ///  Only sets the value
-    /// </summary>
-    void game_setHUD() {
-        //disable
-        if (toggleHud == 0)
-        {
-            HUD_text.text = "Off";
-            
-            //removing HUD name so that it can't be disabled 
-            #if !EMM_ES2
-            PlayerPrefs.SetString("HUD_name", "");
-            #else
-            ES2.Save("", "HUD_name");
-            #endif
-
-        }
-        //enable
-        else
-        {
-            HUD_text.text = "On";
-            //saving HUD name so that it can be disabled 
-            #if !EMM_ES2
-            PlayerPrefs.SetString("HUD_name", HUD_name);
-            #else
-            ES2.Save("", "HUD_name");
-            #endif
-            
-        }
-    }
-
-    #region Brightness
-
-    ///// <summary>
-    ///// Sets the contrast
-    ///// </summary>
-    public void game_Contrast()
-    {
-
-        //directly finding and setting the value of the contrast
-       // FindObjectOfType<BrightnessEffect>()._Contrast = contrast_slider.value;
-
-        contrastValue = contrast_slider.value;
-
-        //override new setting
-        #if !EMM_ES2
-        PlayerPrefs.SetFloat("contrastValue", contrastValue);
-        #else
-        ES2.Save(contrastValue, "contrastValue");
-        #endif
-
-    }
-
-    ///// <summary>
-    /////  Only sets the value
-    ///// </summary>
-    void game_setContrast()
-    {
-        //setting default
-        if (contrastValue == 0)
-            contrastValue = 1;
-
-        //directly finding and setting the value of the contrast
-       // FindObjectOfType<BrightnessEffect>()._Contrast = contrastValue;
-        //setting slider value as well
-        contrast_slider.value = contrastValue;
-    }
-
-    ///// <summary>
-    ///// Sets the contrast
-    ///// </summary>
-    public void game_Brightness()
-    {
-
-        //directly finding and setting the value of the contrast
-       // FindObjectOfType<BrightnessEffect>()._Brightness = brightness_slider.value;
-
-        brightnessValue = brightness_slider.value;
-
-        //override new setting
-        #if !EMM_ES2
-        PlayerPrefs.SetFloat("brightnessValue", brightnessValue);
-        #else
-        ES2.Save(brightnessValue, "brightnessValue");
-        #endif
-
-    }
-
-    ///// <summary>
-    /////  Only sets the value
-    ///// </summary>
-    void game_setBrightness()
-    {
-        //setting default
-        if (brightnessValue == 0)
-            brightnessValue = 1;
-
-        //directly finding and setting the value of the contrast
-       // FindObjectOfType<BrightnessEffect>()._Brightness = brightnessValue;
-        //setting slider value as well
-        brightness_slider.value = brightnessValue;
-    }
-    #endregion
-
-    /// <summary>
+        /// <summary>
     /// Sets the Music Volume
     /// </summary>
     public void game_Music()
@@ -222,7 +73,6 @@ public class OptionsController_Game : MonoBehaviour {
     /// </summary>
     void game_setMusic()
     {
-
         //finding correct Audio Source
         EasyAudioUtility am = FindObjectOfType<EasyAudioUtility>();
         for (int i = 0; i < am.helper.Length; i++)
@@ -238,8 +88,6 @@ public class OptionsController_Game : MonoBehaviour {
 
         musicSource.volume = musicValue;
         music_slider.value = musicValue;
-
-
     }
 
     /// <summary>
@@ -315,15 +163,8 @@ public class OptionsController_Game : MonoBehaviour {
 
         #endif
         //set values accordingly
-        game_setHUD();
         game_setMusic();
         game_setSound();
-
-        /// UN-COMMENT THESE METHODS ONLY IF YOU HAVE :
-        /// 1. Imported the Brightness Effect from Standard Assets
-        /// 2. Extracted the Brightness Scripts from Brightness.rar located in 'Brightness' Folder
-        // game_setContrast();
-        // game_setBrightness();
     }
 
 #endregion
