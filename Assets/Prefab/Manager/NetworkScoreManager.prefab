@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4434809454576332}
   - component: {fileID: 114683469262241426}
-  - component: {fileID: 114273160911267280}
+  - component: {fileID: 114511544176027478}
   m_Layer: 0
   m_Name: NetworkScoreManager
   m_TagString: ScoreManager
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114273160911267280
+--- !u!114 &114511544176027478
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795846559378524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7578bc8079bff54c9a0c077462a2a9e, type: 3}
+  m_Script: {fileID: 11500000, guid: fa479ba77f5003149994c847797f4248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114683469262241426
@@ -66,21 +66,21 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 137
-    i1: 161
-    i2: 18
-    i3: 26
-    i4: 218
-    i5: 51
-    i6: 150
-    i7: 116
-    i8: 202
-    i9: 167
-    i10: 195
-    i11: 22
-    i12: 182
-    i13: 206
-    i14: 171
-    i15: 246
+    i0: 178
+    i1: 79
+    i2: 27
+    i3: 133
+    i4: 19
+    i5: 234
+    i6: 172
+    i7: 244
+    i8: 171
+    i9: 142
+    i10: 101
+    i11: 191
+    i12: 148
+    i13: 235
+    i14: 207
+    i15: 139
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0

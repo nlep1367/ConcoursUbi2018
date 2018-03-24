@@ -10,4 +10,6 @@ public enum StateEnum  {
     JUMPING,
     FALLING,
     LANDING,
+    GRABBING,
+    BARKING,
 }
