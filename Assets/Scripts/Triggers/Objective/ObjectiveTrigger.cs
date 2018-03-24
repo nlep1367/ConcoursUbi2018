@@ -19,7 +19,7 @@ public class ObjectiveTrigger : NetworkBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (networkBehaviour && other.gameObject.GetComponent<TriggerFeet>() && networkBehaviour.isLocalPlayer)
+        if (networkBehaviour && networkBehaviour.isLocalPlayer && other.gameObject.GetComponent<TriggerFeet>())
         {
             switch (Status)
             {

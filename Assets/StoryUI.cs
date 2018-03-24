@@ -36,10 +36,17 @@ public class StoryUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         messages = new Queue<Message>();
+        GameEssentials.DialogueManager.PropertyChanged += DialogueManager_PropertyChanged;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void DialogueManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        Dialogue d = GameEssentials.DialogueManager.CurrentDialogue;
+        AddMessage(d.Speaker, d.Text);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(messages.Count > 0)
         {            
             currentTime += Time.deltaTime;
