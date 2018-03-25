@@ -74615,6 +74615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881639052}
   - component: {fileID: 1881639053}
+  - component: {fileID: 1881639054}
   m_Layer: 0
   m_Name: InterestZonesManager
   m_TagString: Untagged
@@ -74649,6 +74650,38 @@ MonoBehaviour:
   keyOne: {fileID: 1832406330}
   keyTwo: {fileID: 371799256}
   squirrel: {fileID: 1624745789}
+--- !u!114 &1881639054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1881639051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &1883496927
 Prefab:
   m_ObjectHideFlags: 0
@@ -78753,7 +78786,7 @@ Prefab:
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
@@ -78763,7 +78796,7 @@ Prefab:
     - target: {fileID: 224539249411261302, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114369204495555812, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
