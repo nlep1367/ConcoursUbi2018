@@ -9,14 +9,14 @@ public class InterestZoneManager : MonoBehaviour {
     public GameObject keyTwo;
     public GameObject squirrel;
 
-    private List<GameObject> interestZones;
+    public List<GameObject> interestZones;
     private bool areZonesInitialized = false;
 
 
     // Use this for initialization
     void Start()
     {
-        interestZones = new List<GameObject>();
+        areZonesInitialized = interestZones.Count > 3;
     }
 
     void Update()
@@ -44,17 +44,33 @@ public class InterestZoneManager : MonoBehaviour {
     {
         SetUpObjectInZone(ref keyOne);
         SetUpObjectInZone(ref keyTwo);
-        SetUpObjectInZone(ref squirrel);
+        SetUpSquirrelInZone(ref squirrel);
+    }
+
+    int GetRandomIndex()
+    {
+        System.Random r = new System.Random();
+        return r.Next(0, interestZones.Count);
     }
 
     void SetUpObjectInZone(ref GameObject gameObj)
     {
-        System.Random r = new System.Random();
+        var index = GetRandomIndex();
 
-        var index = r.Next(0, interestZones.Count);
-
-        //move object to zone center
         gameObj.transform.position = interestZones[index].transform.position;
+        interestZones.RemoveAt(index);
+    }
+
+    void SetUpSquirrelInZone(ref GameObject gameObj)
+    {
+        var index = GetRandomIndex();
+
+        Transform trans = interestZones[index].transform;
+
+        FleeAI fleeAi = gameObj.GetComponent<FleeAI>();
+        fleeAi.FirstPoint = trans;
+
+        gameObj.transform.position = trans.position;
         interestZones.RemoveAt(index);
     }
 }

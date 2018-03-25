@@ -2997,6 +2997,7 @@ Transform:
   - {fileID: 266100409}
   - {fileID: 846518259}
   - {fileID: 1106175047}
+  - {fileID: 1595620810}
   m_Father: {fileID: 1921837138}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62618,6 +62619,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4185552732527252, guid: badb90e656a9c4f49a6e19e85ea06284,
     type: 2}
   m_PrefabInternal: {fileID: 1592605688}
+--- !u!1 &1595620809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1595620810}
+  m_Layer: 0
+  m_Name: SquirrelExitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595620810
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1595620809}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18, y: 1.35, z: 45}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 78994845}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1595937687
 Prefab:
   m_ObjectHideFlags: 0
@@ -64425,11 +64454,11 @@ Prefab:
         type: 2}
       propertyPath: LastPoint
       value: 
-      objectReference: {fileID: 1645128167}
+      objectReference: {fileID: 1595620810}
     - target: {fileID: 114336451965304826, guid: 1117390f584415546bb4483228b59c53,
         type: 2}
       propertyPath: Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114267074654437014, guid: 1117390f584415546bb4483228b59c53,
         type: 2}
@@ -64440,6 +64469,11 @@ Prefab:
         type: 2}
       propertyPath: FadeStartTime
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336451965304826, guid: 1117390f584415546bb4483228b59c53,
+        type: 2}
+      propertyPath: SPOOOKY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1117390f584415546bb4483228b59c53, type: 2}
@@ -74650,6 +74684,11 @@ MonoBehaviour:
   keyOne: {fileID: 1832406330}
   keyTwo: {fileID: 371799256}
   squirrel: {fileID: 1624745789}
+  interestZones:
+  - {fileID: 738293930}
+  - {fileID: 266100408}
+  - {fileID: 846518258}
+  - {fileID: 1106175046}
 --- !u!114 &1881639054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78786,7 +78825,7 @@ Prefab:
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
@@ -78796,7 +78835,7 @@ Prefab:
     - target: {fileID: 224539249411261302, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114369204495555812, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
