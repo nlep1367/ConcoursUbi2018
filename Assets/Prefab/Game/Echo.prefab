@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 114918211619297742}
   m_Layer: 8
   m_Name: DogModel
-  m_TagString: Doggo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 114720827071653202}
   m_Layer: 8
   m_Name: Feet
-  m_TagString: Doggo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   RotationSpeed: 25
   Acceleration: 15
   LandingTime: 0.5
-  MaxHeight: 3
+  MaxHeight: 2
   InAirAcceleration: 10
   FallModifier: 1.5
   LowJumpModifier: 1

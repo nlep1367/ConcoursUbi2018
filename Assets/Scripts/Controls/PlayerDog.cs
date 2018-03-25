@@ -10,7 +10,7 @@ public class PlayerDog : Player
     public float Acceleration = 30f;
 
     public float LandingTime = 0.5f;
-    public float MaxHeight = 5f;
+    public float MaxHeight = 2f;
 
     public float InAirAcceleration = 5f;
 
