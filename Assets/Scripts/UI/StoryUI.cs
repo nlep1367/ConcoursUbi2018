@@ -33,10 +33,12 @@ public class StoryUI : MonoBehaviour {
     float currentTime = 0;
     bool isShowing = false;
 
+    public DialogueManager DManager;
+
 	// Use this for initialization
 	void Start () {
         messages = new Queue<Message>();
-        GameEssentials.DialogueManager.PropertyChanged += DialogueManager_PropertyChanged;
+        DManager.PropertyChanged += DialogueManager_PropertyChanged;
 	}
 
     private void DialogueManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

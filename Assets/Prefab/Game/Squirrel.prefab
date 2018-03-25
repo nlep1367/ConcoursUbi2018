@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 23624599274581608}
   - component: {fileID: 114267074654437014}
   - component: {fileID: 114336451965304826}
+  - component: {fileID: 114975411523349698}
   m_Layer: 8
   m_Name: Squirrel
   m_TagString: Untagged
@@ -947,6 +948,18 @@ MonoBehaviour:
   ThirdPoint: {fileID: 0}
   LastPoint: {fileID: 0}
   SPOOOKY: 0
+--- !u!114 &114975411523349698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669009477016776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81adeadd9878631459b4090f9188ab48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpRate: 10
 --- !u!114 &114976408638674034
 MonoBehaviour:
   m_ObjectHideFlags: 1

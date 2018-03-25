@@ -14,10 +14,12 @@ public class ObjectivesUI : MonoBehaviour {
     List<GameObject> objectives;
     const int SHORT_SIZE = 20;
 
+    public ObjectiveManager OManager;
+
     private void Start()
     {
         objectives = new List<GameObject>();
-        GameEssentials.ObjectiveManager.PropertyChanged += ObjectiveManager_PropertyChanged;
+        OManager.PropertyChanged += ObjectiveManager_PropertyChanged;
     }
 
     private void ObjectiveManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
