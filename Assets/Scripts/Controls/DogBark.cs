@@ -40,6 +40,8 @@ public class DogBark : NetworkBehaviour {
             Echo = GameObject.FindGameObjectWithTag("Fille").GetComponent<DogBarkEcho>();
 
         Echo.StartBark(color);
-        HasBarked.Invoke(transform.position);
+
+        if(HasBarked != null)
+            HasBarked.Invoke(transform.position);
     }
 }
