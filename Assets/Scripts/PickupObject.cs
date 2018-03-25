@@ -8,10 +8,12 @@ public class PickupObject : MonoBehaviour {
     GameObject carriedObject;
     public Transform anchorPoint;
     private HintUI hintUI;
+    private Player _player;
 
     private void Start()
     {
         hintUI = FindObjectOfType<HintUI>();
+        _player = this.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class PickupObject : MonoBehaviour {
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
+                _player.ChangeState(StateEnum.GRABBING);
             }
         }
     }
