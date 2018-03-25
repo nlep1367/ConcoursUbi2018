@@ -49,7 +49,7 @@ public class FleeAI : NetworkBehaviour
     [Server]
     void Spook(Vector3 SpookyLocation)
     {
-        if (Vector3.Distance(SpookyLocation, transform.position) > Woofer.BarkRange)
+        if (Vector3.Distance(SpookyLocation, transform.position) > Adaptation.BarkRange)
             return;
 
         if (WasSpooked != null)

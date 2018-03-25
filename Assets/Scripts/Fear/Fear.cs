@@ -33,7 +33,7 @@ public class Fear : MonoBehaviour {
     {
         if (fearValue <= 100)
         {
-            fearValue = Math.Min(fearValue + value, 100);
+            fearValue = Math.Min((fearValue*Adaptation.TerrorMultiplier) + value, 100);
             UpdateFearState();
         }
     }

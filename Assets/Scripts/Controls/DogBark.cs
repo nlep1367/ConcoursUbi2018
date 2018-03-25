@@ -6,10 +6,8 @@ using UnityEngine.Networking;
 
 
 public class DogBark : NetworkBehaviour {
-    public float BarkRange;
     private DogBarkEcho Echo;
     public Action<Vector3> HasBarked;
-
 
     // Update is called once per frame
     void Update () {
@@ -31,7 +29,6 @@ public class DogBark : NetworkBehaviour {
                 HasBarked.Invoke(transform.position);
         }
     }
-
 
     [Command]
     public void Cmd_StartBark(Color color)

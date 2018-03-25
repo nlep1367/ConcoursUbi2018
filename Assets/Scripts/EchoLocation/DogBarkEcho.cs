@@ -7,7 +7,6 @@ public class DogBarkEcho : MonoBehaviour
 {
     private float BarkRadius, Contour, ContourStep, Timer = 0f;
     public Transform DogPosRef;
-    public float MaxRad = 8f;
     public float Duration = 3f;
     public float StillDuration = 2f;
     private float Increment = 0f;
@@ -16,7 +15,7 @@ public class DogBarkEcho : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Increment = MaxRad / Duration;
+        Increment = Adaptation.MaximumBarkRadius / Duration;
         Contour = ContourBegin;
        // Shader.SetGlobalColor("_ColorBark", Color.Black);
         Shader.SetGlobalFloat("_ContourWidth", Contour);
@@ -52,7 +51,7 @@ public class DogBarkEcho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BarkRadius < MaxRad)
+        if (BarkRadius < Adaptation.MaximumBarkRadius)
         {
             BarkRadius += Increment * Time.deltaTime;
             Shader.SetGlobalFloat("_BarkRadius", BarkRadius);

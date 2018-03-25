@@ -16,8 +16,18 @@ public struct ScoreObj
 }
 
 public class NetworkScoreManager : NetworkBehaviour {
+    public float BarkRangeAdaptModifier = 0.1f;
+    public float BarkRadiusAdaptModifier = 0.1f;
+    public float TerrorAdaptModifier = 0.1f;
 
-    int gameScore = 0;
+    int _gameScore = 0;
+
+    public int GameScore
+    {
+        get { return _gameScore; }
+        set { Adapt(value - _gameScore); _gameScore = value; }
+    }
+
     public System.Action<ScoreObj> displayAddScore;
     public System.Action<ScoreObj> displayLoseScore;
 
@@ -42,20 +52,27 @@ public class NetworkScoreManager : NetworkBehaviour {
 
     public void AddPoints(ScoreObj score)
     {
-        gameScore += score.points;
+        GameScore += score.points;
     }
 
     public void LosePoints(ScoreObj score)
     {
-        int currentScore = gameScore - score.points;
+        int currentScore = GameScore - score.points;
 
         if (currentScore < 0)
         {
-            gameScore = 0;
+            GameScore = 0;
         }
         else
         {
-            gameScore = currentScore;
+            GameScore = currentScore;
         }
+    }
+
+    private void Adapt(int diff)
+    {
+        Adaptation.BarkRange += diff * BarkRangeAdaptModifier;
+        Adaptation.MaximumBarkRadius += diff * BarkRadiusAdaptModifier;
+        Adaptation.TerrorMultiplier += diff * TerrorAdaptModifier;
     }
 }
