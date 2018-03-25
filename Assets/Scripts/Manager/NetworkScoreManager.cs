@@ -25,14 +25,18 @@ public class NetworkScoreManager : NetworkBehaviour {
     public void Rpc_AddPoints(ScoreObj score)
     {
         AddPoints(score);
-        displayAddScore.Invoke(score);
+
+        if(displayAddScore != null)
+            displayAddScore.Invoke(score);
     }
 
     [ClientRpc]
     public void Rpc_LosePoints(ScoreObj score)
     {
         LosePoints(score);
-        displayLoseScore.Invoke(score);
+
+        if(displayLoseScore != null)
+            displayLoseScore.Invoke(score);
     }
 
 

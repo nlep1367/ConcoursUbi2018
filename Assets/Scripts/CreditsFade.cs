@@ -87,7 +87,8 @@ public class CreditsFade : MonoBehaviour {
                 if (CurrentTime > ShowTime - FadeTime)
                 {
                     State = FadeState.FadeOut;
-                    Ending.Invoke();
+                    if(Ending != null)
+                        Ending.Invoke();
                 }
                 break;
 

@@ -102,33 +102,16 @@ public class FleeAI : NetworkBehaviour
             }
         }
 
-
-        Test();
-        /*
-        if (!sendInfo && Agent.velocity.magnitude <= 0.0f)
-        {
-            sendInfo = true;
-            Rpc_updateAnim();
-        }
-        else if(sendInfo && Agent.velocity)
-        { }*/
-
+        ServerUpdate();
     }
 
 
     [Server]
-    void Test()
+    void ServerUpdate()
     {
         Animator.SetFloat("Speed", Agent.velocity.magnitude);
 
     }
-
-    [ClientRpc]
-    void Rpc_updateAnim()
-    {
-        Animator.SetFloat("Speed", Agent.velocity.magnitude);
-    }
-
     void FinalFlee(Vector3 SpookyLocation)
     {
         Agent.SetDestination(LastPoint.position);
