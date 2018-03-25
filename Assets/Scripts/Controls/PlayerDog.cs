@@ -30,7 +30,9 @@ public class PlayerDog : Player
             { StateEnum.GROUNDED, State},
             { StateEnum.JUMPING, new PStateJumping(this, InAirAcceleration, MaxSpeed, RotationSpeed, LowJumpModifier) },
             { StateEnum.FALLING, new PStateFalling(this, FallModifier) },
-            { StateEnum.LANDING, new PStateLanding(this, Acceleration, MaxSpeed, RotationSpeed, LandingTime) }
+            { StateEnum.LANDING, new PStateLanding(this, Acceleration, MaxSpeed, RotationSpeed, LandingTime) },
+            { StateEnum.GRABBING, new PStateGrabbing(this) },
+            { StateEnum.BARKING, new PStateBarking(this, Acceleration, MaxSpeed, RotationSpeed) },
         };
     }
 
@@ -40,5 +42,6 @@ public class PlayerDog : Player
         ((PStateGroundedDog)States[StateEnum.GROUNDED]).SetCamera(camera);
         ((PStateJumping)States[StateEnum.JUMPING]).SetCamera(camera);
         ((PStateLanding)States[StateEnum.LANDING]).SetCamera(camera);
+        ((PStateBarking)States[StateEnum.BARKING]).SetCamera(camera);
     }
 }

@@ -59,7 +59,7 @@ public class ThirdPersonIndependant : ThirdPerson {
     private Vector3 SpringCamera(Vector3 offset)
     {
         RaycastHit hit;
-        if(Physics.Raycast(Player.transform.position, offset, out hit, DistanceOffset, LayerMask.GetMask("Default")))
+        if(Physics.Raycast(Player.transform.position, offset, out hit, DistanceOffset, LayerMask.GetMask("Blocker")))
         {
             return offset.normalized * hit.distance;
         }

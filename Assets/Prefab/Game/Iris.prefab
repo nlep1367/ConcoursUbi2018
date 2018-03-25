@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 114972645596128576}
   m_Layer: 8
   m_Name: Feet
-  m_TagString: Fille
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 136897398531848906}
   m_Layer: 8
   m_Name: GirlModel
-  m_TagString: Fille
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95794001824668072}
-  m_ParameterSendBits: 15
+  m_ParameterSendBits: 63
   param0: 
   param1: 
   param2: 

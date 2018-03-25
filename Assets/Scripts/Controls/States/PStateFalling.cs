@@ -8,7 +8,7 @@ public class PStateFalling : PlayerState {
     private float _fallModifier;
 
     private float _clipLength;
-
+    private float _height;
     public PStateFalling(Player player, float fallModifier) : base(player)
     {
         _fallModifier = fallModifier;
@@ -21,6 +21,9 @@ public class PStateFalling : PlayerState {
                 break;
             }
         }
+
+        // TODO : Calcul true height
+        _height = 2;
     }
     
     public override void InterpretInput()
@@ -28,6 +31,14 @@ public class PStateFalling : PlayerState {
         //Gravity tampering
         Vector3 force = Physics.gravity * _fallModifier * Time.deltaTime;
         _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
+
+        RaycastHit hit;
+        Physics.Raycast(_player.transform.position, Vector3.down, out hit);
+
+        if (hit.distance < _height)
+        {
+            _player.ChangeState(StateEnum.LANDING);
+        }
     }
     
     public override void OnEnter(object o)
