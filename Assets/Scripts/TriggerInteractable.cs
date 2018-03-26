@@ -24,7 +24,7 @@ public class TriggerInteractable : MonoBehaviour {
     {
         if (other.CompareTag("Fille") )
         {
-            if(other.GetComponentInParent<ObjectSync>().hasAuthority && Input.GetKeyDown(KeyCode.A))
+            if(other.GetComponentInParent<ObjectSync>().hasAuthority && Input.GetButtonDown("A"))
             {
                 GetComponentInParent<TrafficLightNode>().HitPedestrianButton();
                 hintUI.Hide();

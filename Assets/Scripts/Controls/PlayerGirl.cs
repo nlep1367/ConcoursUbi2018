@@ -36,13 +36,6 @@ public class PlayerGirl : Player {
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Camera cam= GetComponent<UpdateEcho>().Cam;
-            shaderActivated = !shaderActivated;
-            cam.GetComponent<ReplacementShaderCam>().enabled = shaderActivated;
-        }
-
         if(Camera != null)
         {
             if (doggo == null)

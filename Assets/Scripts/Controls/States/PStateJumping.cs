@@ -50,7 +50,7 @@ public class PStateJumping : PlayerState {
         float timeLeft;
 
         //Gravity tampering
-        if (_player.RigidBody.velocity.y > 0 && !Input.GetButton("Jump"))
+        if (_player.RigidBody.velocity.y > 0 && !Input.GetButtonDown("X"))
         {
             Vector3 force = Vector3.up * Physics.gravity.y * _lowJumpModifier * Time.deltaTime;
             _player.RigidBody.AddForce(force, ForceMode.VelocityChange);
