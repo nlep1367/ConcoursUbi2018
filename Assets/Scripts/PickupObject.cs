@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Linq;
 
-public class PickupObject : MonoBehaviour {
+public class PickupObject : NetworkBehaviour {
     bool isCarryingObject = false;
     GameObject pickableObject;
     GameObject carriedObject;
+    GameObject dropedObject;
     public Transform anchorPoint;
     private HintUI hintUI;
     private Player _player;
+
+    private float oldObjectMass = 1.0f;
+    private RigidbodyConstraints rigidbodyConstraints;
 
     private void Start()
     {
@@ -54,6 +60,8 @@ public class PickupObject : MonoBehaviour {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
                 _player.ChangeState(StateEnum.GRABBING);
+
+                CmdDisableRigidBody(carriedObject);
             }
         }
     }
@@ -68,6 +76,9 @@ public class PickupObject : MonoBehaviour {
     {   
         if (Input.GetKeyDown(KeyCode.E))
         {
+            dropedObject = carriedObject;
+            CmdEnableRigidBody(dropedObject);
+            
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
             {
@@ -79,18 +90,61 @@ public class PickupObject : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    [Command]
+    void CmdDisableRigidBody(GameObject gameObj)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
+        RpcDisableRigidBody(gameObj);
+    }
+    
+    [Command]
+    void CmdEnableRigidBody(GameObject gameObj)
+    {
+        RpcEnableRigidBody(gameObj);
+    }
+    
+    [ClientRpc]
+    void RpcDisableRigidBody(GameObject gameObject)
+    {
+        Rigidbody pickableRigidBody = gameObject.GetComponent<Rigidbody>();
+        if (pickableRigidBody != null)
         {
-            hintUI.Display(KeyCode.A, "Pick up " + collision.gameObject.name);
-            pickableObject = collision.gameObject;
+            oldObjectMass = pickableRigidBody.mass;
+            rigidbodyConstraints = pickableRigidBody.constraints;
+            Destroy(pickableRigidBody);
+        }
+
+        pickableObject.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+    }
+    
+    [ClientRpc]
+    void RpcEnableRigidBody(GameObject gameObj)
+    {
+        if(gameObj != null)
+        {
+            gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = true;
+            gameObj.AddComponent<Rigidbody>();
+    
+            Rigidbody carriedNewRigidBody = gameObj.GetComponent<Rigidbody>();
+            carriedNewRigidBody.useGravity = true;
+            carriedNewRigidBody.mass = oldObjectMass;
+            carriedNewRigidBody.constraints = rigidbodyConstraints;
+
+            gameObj = null;
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
+        {
+            hintUI.Display(KeyCode.A, "Pick up " + collider.gameObject.name);
+            pickableObject = collider.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
             hintUI.Hide();
             pickableObject = null;
