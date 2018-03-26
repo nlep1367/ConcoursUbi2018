@@ -17,6 +17,8 @@ public class AmbientMusicControl : MonoBehaviour
 		Action4
 	}
 
+	public bool IsMainMenu;
+
 	public bool ToStartStress = false;
 	public bool ToStopStress = false;
 	public bool ToNextAmbient = false;
@@ -27,6 +29,7 @@ public class AmbientMusicControl : MonoBehaviour
 	public bool ToAction3 = false;
 	public bool ToAction4 = false;
 
+	public AudioMixerSnapshot InGame;
 	public AudioMixerSnapshot[] clipTransitions;
 
 	public AudioClip StartSting;
@@ -44,6 +47,7 @@ public class AmbientMusicControl : MonoBehaviour
 	private GameObject m_StingPlayer;
 
 	private StressMusicControl m_StressController;
+	private MenuMusicControl m_MenuController;
 
 	private AudioSource m_StingSource;
 
@@ -74,6 +78,7 @@ public class AmbientMusicControl : MonoBehaviour
 		m_AmbientAudioClipIndex = 0;
 
 		m_StressController = GetComponent<StressMusicControl>(); 
+		m_MenuController = GetComponent<MenuMusicControl>(); 
 
 		m_AreAmbiantClipsPlaying = new bool[m_AmbientAudioSources.Length];
 		m_AreAmbiantClipsStopping = new bool[m_AmbientAudioSources.Length];
@@ -84,13 +89,30 @@ public class AmbientMusicControl : MonoBehaviour
 			m_AreAmbiantClipsStopping [i] = false;
 		}
 
-		_PlayAmbient (0);
-		PlaySting (StingStates.Start);
+		m_StressController.Initialize ();
+		m_MenuController.Initialize ();
+
+		if (IsMainMenu) 
+		{
+			m_MenuController.OnPlayMenuMusic ();
+		} 
+		else 
+		{
+			InGame.TransitionTo (60F/53F * 4F);
+			_PlayAmbient (0);
+			PlaySting (StingStates.Start);
+		}
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
+		if (IsMainMenu) 
+		{
+			m_MenuController.Tick ();
+			return;
+		}
+
 		_ReadCommands ();
 
 		m_StressController.Tick ();
@@ -105,6 +127,24 @@ public class AmbientMusicControl : MonoBehaviour
 				_ConcludeAmbiant (index);
 			} 
 		}
+	}
+
+	public void SetMenuMusicActive(bool val)
+	{
+		if (val)
+			OnPlayMusicMenu ();
+		else
+			OnStopMusicMenu ();
+	}
+
+	void OnPlayMusicMenu()
+	{
+		m_MenuController.OnPlayMenuMusic ();
+	}
+
+	void OnStopMusicMenu()
+	{
+		m_MenuController.OnStopMenuMusic ();
 	}
 
 	void OnChangeAmbient()
@@ -210,14 +250,14 @@ public class AmbientMusicControl : MonoBehaviour
 		// Start scared effect
 		if (ToStartStress) 
 		{
-			m_StressController.OnPlayStress (m_AmbientAudioClipIndex);
+			m_StressController.OnPlayStress ();
 			ToStartStress = false;
 		}
 
 		// Stop scared effect
 		if (ToStopStress) 
 		{
-			m_StressController.OnStopStress (m_AmbientAudioClipIndex);
+			m_StressController.OnStopStress ();
 			ToStopStress = false;
 		}
 
@@ -228,42 +268,42 @@ public class AmbientMusicControl : MonoBehaviour
 			ToNextAmbient = false;
 		}
 
-		// Go to next ambient clip
+		// Play win sting
 		if (ToWin) 
 		{
 			PlaySting (StingStates.Win);
 			ToWin = false;
 		}
 
-		// Go to next ambient clip
+		// Play fail sting
 		if (ToFail) 
 		{
 			PlaySting (StingStates.Fail);
 			ToFail = false;
 		}
 
-		// Go to next ambient clip
+		// Play Action1 sting
 		if (ToAction1) 
 		{
 			PlaySting (StingStates.Action1);
 			ToAction1 = false;
 		}
 
-		// Go to next ambient clip
+		// Play Action2 sting
 		if (ToAction2) 
 		{
 			PlaySting (StingStates.Action2);
 			ToAction2 = false;
 		}
 
-		// Go to next ambient clip
+		// Play Action3 sting
 		if (ToAction3) 
 		{
 			PlaySting (StingStates.Action3);
 			ToAction3 = false;
 		}
 
-		// Go to next ambient clip
+		// Play Action4 sting
 		if (ToAction4) 
 		{
 			PlaySting (StingStates.Action4);

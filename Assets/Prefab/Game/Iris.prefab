@@ -722,6 +722,7 @@ GameObject:
   - component: {fileID: 114816025624064074}
   - component: {fileID: 114086095479517632}
   - component: {fileID: 114647852743625292}
+  - component: {fileID: 82978245214410386}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -2754,6 +2755,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82978245214410386
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243985822652245494, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95794001824668072
 Animator:
   serializedVersion: 3
@@ -2892,14 +2974,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486837572664584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91cfeb24edff9943a477972f8376d47, type: 3}
+  m_Script: {fileID: 11500000, guid: 03bff535fae334832be91a1b07da1700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SyncVarDirtyBits: 0
-  m_LastSendTime: 0
-  m_SyncVarGuard: 0
-  m_MyView: {fileID: 0}
-  scoreManager: {fileID: 0}
+  Clips:
+  - {fileID: 8300000, guid: bd272c003a67a4ac1ae344f5df333246, type: 3}
+  - {fileID: 8300000, guid: 348a4601c7e564fe59b71bf75b5490ae, type: 3}
+  - {fileID: 8300000, guid: b1939122d8b2842bcbbeff2e59bb291e, type: 3}
 --- !u!114 &114972645596128576
 MonoBehaviour:
   m_ObjectHideFlags: 1
