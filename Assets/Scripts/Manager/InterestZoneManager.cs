@@ -9,7 +9,7 @@ public class InterestZoneManager : MonoBehaviour {
     public GameObject keyTwo;
     public GameObject squirrel;
 
-    public List<GameObject> interestZones;
+    public List<InterestZone> interestZones;
     private bool areZonesInitialized = false;
 
 
@@ -29,7 +29,7 @@ public class InterestZoneManager : MonoBehaviour {
             {
                 foreach(var zone in interestZonesFound)
                 {
-                    interestZones.Add(zone.gameObject);
+                    interestZones.Add(zone);
                 }
                 areZonesInitialized = true;
             }
@@ -68,7 +68,7 @@ public class InterestZoneManager : MonoBehaviour {
         Transform trans = interestZones[index].transform;
 
         FleeAI fleeAi = gameObj.GetComponent<FleeAI>();
-        fleeAi.FirstPoint = trans;
+        fleeAi.FirstPoint = interestZones[index].PathStart.transform;
 
         gameObj.transform.position = trans.position;
         interestZones.RemoveAt(index);
