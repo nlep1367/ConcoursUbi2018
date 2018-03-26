@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114080256696539686}
   - component: {fileID: 114554538192550414}
   m_Layer: 0
-  m_Name: Key (1)
+  m_Name: Key-Porte
   m_TagString: PickableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
