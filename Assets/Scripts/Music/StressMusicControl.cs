@@ -4,8 +4,8 @@ using UnityEngine.Audio;
 
 public class StressMusicControl : MonoBehaviour {
 
-	public AudioMixerSnapshot[] outOfStress;
-	public AudioMixerSnapshot[] inStress;
+	public AudioMixerSnapshot outOfStress;
+	public AudioMixerSnapshot inStress;
 
 	public float TransitionIn;
 	public float TransitionOut;
@@ -20,7 +20,7 @@ public class StressMusicControl : MonoBehaviour {
 	private bool m_stopping = false;
 
 	// Use this for initialization
-	void Start () 
+	public void Initialize () 
 	{
 		m_StressPlayer = transform.Find  ("StressPlayer").gameObject;
 		m_StressAudioSource = m_StressPlayer.GetComponent<AudioSource>();
@@ -41,20 +41,20 @@ public class StressMusicControl : MonoBehaviour {
 		}
 	}
 
-	public void OnPlayStress(int index)
+	public void OnPlayStress()
 	{
 		if (!m_playingStress) {
 			m_playingStress = true;
 			m_StressAudioSource.Play();
-			inStress[index].TransitionTo(TransitionIn);
+			inStress.TransitionTo(TransitionIn);
 		}
 	}
 
-	public void OnStopStress(int index)
+	public void OnStopStress()
 	{
 		if (m_playingStress && !m_stopping) {
 			m_stopping = true;
-			outOfStress[index].TransitionTo (TransitionOut);
+			outOfStress.TransitionTo (TransitionOut);
 			m_currentTime = 0;
 		}
 	}

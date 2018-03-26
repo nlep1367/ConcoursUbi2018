@@ -163,8 +163,8 @@ public class OptionsController_Game : MonoBehaviour {
 
         #endif
         //set values accordingly
-        game_setMusic();
-        game_setSound();
+//        game_setMusic();
+//        game_setSound();
     }
 
 #endregion

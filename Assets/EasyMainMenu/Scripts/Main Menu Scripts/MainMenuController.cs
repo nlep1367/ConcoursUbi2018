@@ -133,11 +133,11 @@ public class MainMenuController : MonoBehaviour {
 #region Sounds
     public void playHoverClip()
     {
-        EasyAudioUtility.instance.Play("Hover");
+//        EasyAudioUtility.instance.Play("Hover");
     }
 
     void playClickSound() {
-        EasyAudioUtility.instance.Play("Click");
+//        EasyAudioUtility.instance.Play("Click");
     }
 
 

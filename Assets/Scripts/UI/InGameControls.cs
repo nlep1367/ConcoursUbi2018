@@ -5,6 +5,7 @@ using UnityEngine;
 public class InGameControls : MonoBehaviour {
 
     public GameObject menu;
+	public AmbientMusicControl musicPlayer;
 
     bool isDisplayed = false;
 
@@ -19,6 +20,7 @@ public class InGameControls : MonoBehaviour {
         {
             isDisplayed = !isDisplayed;
             menu.SetActive(isDisplayed);
+			musicPlayer.SetMenuMusicActive (isDisplayed);
         }
 	}
 }
