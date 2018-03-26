@@ -77,7 +77,7 @@ public class DoorState : NetworkBehaviour {
 
     void Open()
     {
-        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
+        if (IsGirlInRange && Input.GetButtonDown("Y"))
         {
             if(Locked && MatchingKeyInserted)
             {
@@ -93,7 +93,7 @@ public class DoorState : NetworkBehaviour {
 
     void Close()
     {
-        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
+        if (IsGirlInRange && Input.GetButtonDown("Y"))
         {
             CloseDoor();
         }

@@ -23,6 +23,7 @@ public class PlayerScoreManager : NetworkBehaviour {
             }
         }
 
+        /*
         if(Input.GetKeyDown(KeyCode.U))
         {
             ScoreObj bob = new ScoreObj();
@@ -30,6 +31,7 @@ public class PlayerScoreManager : NetworkBehaviour {
 
             Cmd_AddPoints(bob);
         }
+        */
     }
 
     [Command]

@@ -23,11 +23,11 @@ public class PickupObject : MonoBehaviour {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
             {
-                hintUI.Display(KeyCode.A, "Throw in the garbage");
+                hintUI.Display(KeyCode.Y, "Throw in the garbage");
             }
             else
             {
-                hintUI.Display(KeyCode.A, "Drop the object");
+                hintUI.Display(KeyCode.Y, "Drop the object");
             }
 
             Carry(carriedObject);
@@ -47,7 +47,7 @@ public class PickupObject : MonoBehaviour {
 
     void Pickup()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Y"))
         {
             if(pickableObject != null)
             {
@@ -66,7 +66,7 @@ public class PickupObject : MonoBehaviour {
 
     void Drop()
     {   
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Y"))
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
@@ -83,7 +83,7 @@ public class PickupObject : MonoBehaviour {
     {
         if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
         {
-            hintUI.Display(KeyCode.A, "Pick up " + collision.gameObject.name);
+            hintUI.Display(KeyCode.Y, "Pick up " + collision.gameObject.name);
             pickableObject = collision.gameObject;
         }
     }
