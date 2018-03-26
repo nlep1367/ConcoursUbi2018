@@ -6,7 +6,8 @@ AudioMixerController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MainMixer
-  m_OutputGroup: {fileID: 0}
+  m_OutputGroup: {fileID: 243043468926809826, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}

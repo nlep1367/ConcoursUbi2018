@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PickupObject : MonoBehaviour {
     bool isCarryingObject = false;
-    bool isPickableObjectInRange = false;
     GameObject pickableObject;
     GameObject carriedObject;
     public Transform anchorPoint;
+    private HintUI hintUI;
+    private Player _player;
 
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        hintUI = FindObjectOfType<HintUI>();
+        _player = this.GetComponent<Player>();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(isCarryingObject)
         {
+            ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
+            if (thrownable != null && thrownable.IsInThrownZone)
+            {
+                hintUI.Display(KeyCode.A, "Throw in the garbage");
+            }
+            else
+            {
+                hintUI.Display(KeyCode.A, "Drop the object");
+            }
+
             Carry(carriedObject);
             Drop();
         }
@@ -21,14 +38,6 @@ public class PickupObject : MonoBehaviour {
             Pickup();
         }
 	}
-
-    private void OnGUI()
-    {
-        if(isPickableObjectInRange)
-        {
-            GUI.Box(new Rect(0, 60, 200, 25), "Press E to pickup");
-        }
-    }
 
     void Carry(GameObject obj)
     {
@@ -40,10 +49,11 @@ public class PickupObject : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(isPickableObjectInRange && pickableObject != null)
+            if(pickableObject != null)
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
+                _player.ChangeState(StateEnum.GRABBING);
             }
         }
     }
@@ -59,29 +69,30 @@ public class PickupObject : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
-            if (thrownable != null)
+            if (thrownable != null && thrownable.IsInThrownZone)
             {
                 thrownable.ThrowAway();
+                hintUI.Hide();
             }
             isCarryingObject = false;
             carriedObject = null;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
         {
-            isPickableObjectInRange = true;
+            hintUI.Display(KeyCode.A, "Pick up " + collision.gameObject.name);
             pickableObject = collision.gameObject;
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
         {
-            isPickableObjectInRange = false;
+            hintUI.Hide();
             pickableObject = null;
         }
     }

@@ -9,12 +9,12 @@ public class DangerZone : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
+        Fear fear = other.GetComponent<Fear>();
         // If the collider has the fear component (it's the girl)
-        if (other.GetComponent<Fear>())
+        if (fear != null)
         {
             if (Time.time >= nextFearUpdate)
             {
-                Fear fear = other.GetComponent<Fear>();
                 fear.IncreaseFear(fearIncrement);
                 nextFearUpdate = Time.time + 1;
             }

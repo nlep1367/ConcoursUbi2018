@@ -34,6 +34,8 @@ public class FleeAI : NetworkBehaviour
 
     public System.Action WasSpooked;
 
+    private bool sendInfo;
+
     void Start()
     {
         Animator = GetComponent<Animator>();
@@ -47,7 +49,7 @@ public class FleeAI : NetworkBehaviour
     [Server]
     void Spook(Vector3 SpookyLocation)
     {
-        if (Vector3.Distance(SpookyLocation, transform.position) > Woofer.BarkRange)
+        if (Vector3.Distance(SpookyLocation, transform.position) > Adaptation.BarkRange)
             return;
 
         if (WasSpooked != null)
@@ -99,12 +101,17 @@ public class FleeAI : NetworkBehaviour
                 Woofer.HasBarked += Spook;
             }
         }
-        Animator.SetFloat("Speed", Agent.velocity.magnitude);
 
+        ServerUpdate();
     }
 
 
+    [Server]
+    void ServerUpdate()
+    {
+        Animator.SetFloat("Speed", Agent.velocity.magnitude);
 
+    }
     void FinalFlee(Vector3 SpookyLocation)
     {
         Agent.SetDestination(LastPoint.position);

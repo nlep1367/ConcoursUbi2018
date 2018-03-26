@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FootMixer
+  m_OutputGroup: {fileID: 243985822652245494, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 9a96484ffa02c4a4abfab24d930569aa
+    - 88ec4f3290f29430199ceff45070bdf1
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 9a96484ffa02c4a4abfab24d930569aa
+  m_Children:
+  - {fileID: 243902744686021040}
+  m_Volume: 8bdcb9f7f09c24e79bb58eeb4d152c8d
+  m_Pitch: 7b2db343da95747f1a6ed65d840fd4a3
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: a17b7138ce9614c00b43a52ba28f1441
+  m_EffectName: Attenuation
+  m_MixLevel: 986237efc5b3c40a4aff8612235df594
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Snapshot
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 4af8e4be7ffa9465ea33fd23a4c9147b
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!243 &243902744686021040
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Street
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 88ec4f3290f29430199ceff45070bdf1
+  m_Children: []
+  m_Volume: 08a8fe09b18ef4e0e9fa3a8327c5f0f0
+  m_Pitch: 97aa415fb59a04a86898efa09c615fb8
+  m_Effects:
+  - {fileID: 244560149124903582}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244560149124903582
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4f1ed5db7d2a741d5a2c0a500efa9f6e
+  m_EffectName: Attenuation
+  m_MixLevel: c754cf28403dc41b9bd067da5ec3be6f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

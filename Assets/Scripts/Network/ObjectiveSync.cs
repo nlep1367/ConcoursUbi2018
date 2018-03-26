@@ -5,43 +5,26 @@ using UnityEngine.Networking;
 
 public class ObjectiveSync : NetworkBehaviour
 {
-    public enum Instruction { ADD, FAIL, COMPLETE }
-
-    private ObjectiveManager _objectiveManager;
-
-    private bool IserveNoPurpose = false;
-
     void Awake()
     {
         GameEssentials.ObjectiveSync = this;
     }
 
-    void Update()
-    {
-        if(_objectiveManager == null)
-            if(_objectiveManager = GameEssentials.ObjectiveManager)
-                _objectiveManager.CurrentObjectives.Callback = OnObjectivesChanged;
-    }
-
-    private void OnObjectivesChanged(SyncListObjectives.Operation op, int index)
-    {
-    }
-
     [Command]
     public void Cmd_AddObjectiveToServer(Objective objective)
     {
-        _objectiveManager.Rpc_AddObjectiveToServer(objective);
+        GameEssentials.ObjectiveManager.Rpc_AddObjectiveToServer(objective);
     }
 
     [Command]
     public void Cmd_CompleteObjectiveToServer(Objective objective)
     {
-        _objectiveManager.Rpc_CompleteObjectiveToServer(objective);
+        GameEssentials.ObjectiveManager.Rpc_CompleteObjectiveToServer(objective);
     }
 
     [Command]
     public void Cmd_FailObjectiveToServer(Objective objective)
     {
-        _objectiveManager.Rpc_FailObjectiveToServer(objective);
+        GameEssentials.ObjectiveManager.Rpc_FailObjectiveToServer(objective);
     }
 }

@@ -6,30 +6,29 @@ using UnityEngine.Networking;
 
 
 public class DogBark : NetworkBehaviour {
-    public float BarkRange;
     private DogBarkEcho Echo;
-
     public Action<Vector3> HasBarked;
-    
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (!hasAuthority)
             return;
 
 		if(Input.GetButtonDown("Fire1"))
         {
             Cmd_StartBark(Color.green);
+            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             Cmd_StartBark(Color.red);
+            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
 
-            if(HasBarked != null)
+            if (HasBarked != null)
                 HasBarked.Invoke(transform.position);
         }
     }
-
 
     [Command]
     public void Cmd_StartBark(Color color)
@@ -38,6 +37,8 @@ public class DogBark : NetworkBehaviour {
             Echo = GameObject.FindGameObjectWithTag("Fille").GetComponent<DogBarkEcho>();
 
         Echo.StartBark(color);
-        HasBarked.Invoke(transform.position);
+
+        if(HasBarked != null)
+            HasBarked.Invoke(transform.position);
     }
 }
