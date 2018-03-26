@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorState : NetworkBehaviour {
 
-    public List<Collider> RelatedKey;
+    public List<GameObject> RelatedKey;
     public List<GameObject> Locks;
 
     public Animator Anim;
@@ -24,6 +24,27 @@ public class DoorState : NetworkBehaviour {
         {
             OpenDoor();
             CloseDoor();
+        }
+
+        if (!isServer)
+            return;
+
+        foreach (GameObject go in RelatedKey)
+        {
+            // Bonne clef
+            if (Vector3.Distance(go.transform.position, dt.transform.position) < 1)
+            {
+                GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
+
+                GameObject lck = Locks[Locks.Count - 1];
+
+                lck.GetComponent<FadeMaterial>().Rpc_Kill();
+                go.GetComponent<FadeMaterial>().Rpc_Kill();
+                
+                Locks.Remove(lck);
+                RelatedKey.Remove(go);
+                break;
+            }
         }
 
     }
@@ -72,22 +93,8 @@ public class DoorState : NetworkBehaviour {
     [Server]
     void OnCollisionEnter(Collision collision)
     {
-        foreach(Collider c in RelatedKey)
-        {
-            // Bonne clef
-            if (collision.collider == c)
-            {
-                GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
+        if (!isServer)
+            return; 
 
-                GameObject lck = Locks[Locks.Count];
-
-                Locks.Remove(lck);
-
-                lck.GetComponent<FadeMaterial>().Rpc_Kill();
-                c.gameObject.GetComponent<FadeMaterial>().Rpc_Kill();
-
-                break;
-            }
-        }
     }
 }
