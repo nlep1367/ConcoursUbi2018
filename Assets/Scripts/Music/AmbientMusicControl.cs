@@ -48,6 +48,7 @@ public class AmbientMusicControl : MonoBehaviour
 
 	private StressMusicControl m_StressController;
 	private MenuMusicControl m_MenuController;
+	private VolumeControl m_VolumeController;
 
 	private AudioSource m_StingSource;
 
@@ -79,6 +80,7 @@ public class AmbientMusicControl : MonoBehaviour
 
 		m_StressController = GetComponent<StressMusicControl>(); 
 		m_MenuController = GetComponent<MenuMusicControl>(); 
+		m_VolumeController = GetComponent<VolumeControl>(); 
 
 		m_AreAmbiantClipsPlaying = new bool[m_AmbientAudioSources.Length];
 		m_AreAmbiantClipsStopping = new bool[m_AmbientAudioSources.Length];
@@ -98,7 +100,10 @@ public class AmbientMusicControl : MonoBehaviour
 		} 
 		else 
 		{
-			InGame.TransitionTo (60F/53F * 4F);
+			m_VolumeController.SetMusicVolume ();
+			m_VolumeController.SetSoundsVolume ();
+
+			InGame.TransitionTo (0);
 			_PlayAmbient (0);
 			PlaySting (StingStates.Start);
 		}

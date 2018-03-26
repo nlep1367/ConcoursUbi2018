@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IrisFootstepsControl : MonoBehaviour {
+public class DogMusicControl : MonoBehaviour {
 
 	public AudioClip[] Clips;
 

@@ -8,14 +8,29 @@ public class VolumeControl : MonoBehaviour {
 
 	public AudioMixer masterMixer;
 
+	private static float m_MusicVolume = 0;
+	private static float m_SoundsVolume = 0;
+
 	public void SetMusicVolume(float val)
 	{
-		masterMixer.SetFloat ("MusicVolume", EaseInExpo(val));
+		m_MusicVolume = EaseInExpo (val);
+		SetMusicVolume ();
+	}
+
+	public void SetMusicVolume()
+	{
+		masterMixer.SetFloat ("MusicVolume", m_MusicVolume);
 	}
 
 	public void SetSoundsVolume(float val)
 	{
-		masterMixer.SetFloat ("SoundsVolume", EaseInExpo(val));
+		m_SoundsVolume = EaseInExpo (val);
+		SetSoundsVolume ();
+	}
+
+	public void SetSoundsVolume()
+	{
+		masterMixer.SetFloat ("SoundsVolume", m_SoundsVolume);
 	}
 
 	private float EaseInExpo(float val) {
