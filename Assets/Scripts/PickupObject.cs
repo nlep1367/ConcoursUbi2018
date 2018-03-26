@@ -8,10 +8,16 @@ public class PickupObject : NetworkBehaviour {
     bool isCarryingObject = false;
     GameObject pickableObject;
     GameObject carriedObject;
-    GameObject dropedObject;
+    GameObject droppedObject;
     public Transform anchorPoint;
     private HintUI hintUI;
     private Player _player;
+
+    private bool isPickingUpObject = false;
+    private Vector3 lerpInitialPosition;
+    private Vector3 lerpFinalPosition;
+    private float startTime;
+    private float journeyLength;
 
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
@@ -24,7 +30,7 @@ public class PickupObject : NetworkBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(isCarryingObject)
+		if(!isPickingUpObject && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
@@ -39,11 +45,26 @@ public class PickupObject : NetworkBehaviour {
             Carry(carriedObject);
             Drop();
         }
+        else if(isPickingUpObject && isCarryingObject)
+        {
+            PickingUpAnimation(carriedObject);
+            if(Vector3.Distance(carriedObject.transform.position, lerpFinalPosition) > Vector3.kEpsilon)
+            {
+                isPickingUpObject = false;
+            }
+        }
         else
         {
             Pickup();
         }
 	}
+
+    void PickingUpAnimation(GameObject obj)
+    {
+        float fracJourney =  (startTime - Time.time)* 0.0000000000000000005f;
+
+        obj.transform.position = Vector3.Lerp(lerpInitialPosition, lerpFinalPosition, fracJourney);
+    }
 
     void Carry(GameObject obj)
     {
@@ -62,6 +83,12 @@ public class PickupObject : NetworkBehaviour {
                 _player.ChangeState(StateEnum.GRABBING);
 
                 CmdDisableRigidBody(carriedObject);
+
+                lerpInitialPosition = pickableObject.transform.position;
+                lerpFinalPosition = anchorPoint.position;
+                journeyLength = Vector3.Distance(lerpInitialPosition, lerpFinalPosition);
+                startTime = Time.time;
+                isPickingUpObject = true;
             }
         }
     }
@@ -76,8 +103,8 @@ public class PickupObject : NetworkBehaviour {
     {   
         if (Input.GetKeyDown(KeyCode.E))
         {
-            dropedObject = carriedObject;
-            CmdEnableRigidBody(dropedObject);
+            droppedObject = carriedObject;
+            CmdEnableRigidBody(droppedObject);
             
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
