@@ -62,7 +62,7 @@ public class DoorState : NetworkBehaviour {
     
     public void StopAnimating()
     {
-        Idle = true;
+         Idle = true;
     }
 
     public void OpenDoor()

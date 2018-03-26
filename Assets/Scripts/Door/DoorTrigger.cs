@@ -10,13 +10,20 @@ public class DoorTrigger : MonoBehaviour {
     {
         if(other.tag == "Fille")
             if(GirlTriggerState != null)
+            { 
                 GirlTriggerState(true);
+                Debug.Log("Fille Entered");
+
+            }
     }
 
     public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Fille")
             if (GirlTriggerState != null)
+            { 
                 GirlTriggerState(false);
+                Debug.Log("Fille Exited");
+            }
     }
 }
