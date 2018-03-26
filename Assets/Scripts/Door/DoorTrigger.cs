@@ -12,7 +12,6 @@ public class DoorTrigger : MonoBehaviour {
             if(GirlTriggerState != null)
             { 
                 GirlTriggerState(true);
-                Debug.Log("Fille Entered");
 
             }
     }
@@ -23,7 +22,6 @@ public class DoorTrigger : MonoBehaviour {
             if (GirlTriggerState != null)
             { 
                 GirlTriggerState(false);
-                Debug.Log("Fille Exited");
             }
     }
 }
