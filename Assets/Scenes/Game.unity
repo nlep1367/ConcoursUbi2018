@@ -18718,22 +18718,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 51
       objectReference: {fileID: 0}
-    - target: {fileID: 4078188596409820, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 269.999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078188596409820, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.1368823
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078188596409820, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.1368823
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078188596409820, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.8990066
-      objectReference: {fileID: 0}
     - target: {fileID: 1990059138343306, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
       propertyPath: m_Name
       value: WiredDoor (2)
@@ -40299,7 +40283,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4082644375040286, guid: d048fbe4cc3ad2a43baa9c59196cd333, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -24.047058
+      value: -20.82
       objectReference: {fileID: 0}
     - target: {fileID: 4082644375040286, guid: d048fbe4cc3ad2a43baa9c59196cd333, type: 2}
       propertyPath: m_LocalPosition.y
@@ -40307,7 +40291,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4082644375040286, guid: d048fbe4cc3ad2a43baa9c59196cd333, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 68.30588
+      value: 67.34
       objectReference: {fileID: 0}
     - target: {fileID: 4082644375040286, guid: d048fbe4cc3ad2a43baa9c59196cd333, type: 2}
       propertyPath: m_LocalRotation.x
@@ -79011,7 +78995,7 @@ Prefab:
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 224604712278621222, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
@@ -79021,7 +79005,7 @@ Prefab:
     - target: {fileID: 224539249411261302, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 114369204495555812, guid: c5b32b0451f23cb40a5d78a0d8422971,
         type: 2}
