@@ -46,7 +46,7 @@ public class InGameUI : MonoBehaviour {
         }*/
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            DisplayHint(KeyCode.B, "Interact B");
+            DisplayHint(Controls.B, "Interact B");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -72,7 +72,7 @@ public class InGameUI : MonoBehaviour {
         //scoreUI.AddScore(Random.Range(0,200), "new score");
     }*/
 
-    public void DisplayHint(KeyCode button, string action)
+    public void DisplayHint(Controls button, string action)
     {
         hintUI.Display(button, action);
     }
