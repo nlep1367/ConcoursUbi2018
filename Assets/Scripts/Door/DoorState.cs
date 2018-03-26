@@ -4,35 +4,33 @@ using UnityEngine.Networking;
 using UnityEngine;
 
 public class DoorState : NetworkBehaviour {
-    Animator Anim;
 
-    public Collider RelatedKey;
+    public List<Collider> RelatedKey;
+    public List<GameObject> Locks;
+
+    public Animator Anim;
+    public DoorTrigger dt;
 
     private bool Opened = false;
     private bool Idle = false;
-
-    private bool Locked = false;
-    private bool MatchingKeyInserted = false;
-    private bool WrongKey = false;
-
+    
     private bool IsGirlInRange = false;
 
     private ObjectSync Os;
 
     private void Update()
     {
-        if (Opened)
-            Close();
-        else
-            Open();
+        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q) && Locks.Count == 0)
+        {
+            OpenDoor();
+            CloseDoor();
+        }
+
     }
 
     void Start()
     {
-        Anim = GetComponent<Animator>();
-
-        if (RelatedKey != null)
-            Locked = true;
+        dt.GirlTriggerState += GirlInRange;
 
         if (!isServer)
         { 
@@ -40,16 +38,7 @@ public class DoorState : NetworkBehaviour {
             Destroy(this);
         }
     }
-
-    private void OnGUI()
-    {
-        if(WrongKey)
-        {
-            GUI.Box(new Rect(0, 60, 200, 25), "Wrong key");
-            WrongKey = false;
-        }
-    }
-
+    
     public void StopAnimating()
     {
         Idle = true;
@@ -74,57 +63,31 @@ public class DoorState : NetworkBehaviour {
         Idle = false;
         Opened = false;
     }
-
-    void Open()
+    
+    void GirlInRange(bool state)
     {
-        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
-        {
-            if(Locked && MatchingKeyInserted)
-            {
-                Locked = false;
-                OpenDoor();
-            }
-            else
-            {
-                OpenDoor();
-            }
-        }
-    }
+        IsGirlInRange = state;
+    }  
 
-    void Close()
-    {
-        if (IsGirlInRange && Input.GetKeyDown(KeyCode.Q))
-        {
-            CloseDoor();
-        }
-    }
-
+    [Server]
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider == RelatedKey)
+        foreach(Collider c in RelatedKey)
         {
-            GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
-            Destroy(collision.gameObject);
-            MatchingKeyInserted = true;
-        }
+            // Bonne clef
+            if (collision.collider == c)
+            {
+                GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
 
-        if (collision.gameObject.CompareTag("PickableObject"))
-        {
-            WrongKey = true;
-        }
+                GameObject lck = Locks[Locks.Count];
 
-        if (collision.gameObject.CompareTag("Fille"))
-        {
-            IsGirlInRange = true;
-        }
+                Locks.Remove(lck);
 
-    }
+                lck.GetComponent<FadeMaterial>().Rpc_Kill();
+                c.gameObject.GetComponent<FadeMaterial>().Rpc_Kill();
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Fille"))
-        {
-            IsGirlInRange = false;
+                break;
+            }
         }
     }
 }

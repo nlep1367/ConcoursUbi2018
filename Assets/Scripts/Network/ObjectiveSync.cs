@@ -9,15 +9,18 @@ public class ObjectiveSync : NetworkBehaviour
 
     private ObjectiveManager _objectiveManager;
 
+    private bool IserveNoPurpose = false;
+
     void Awake()
     {
         GameEssentials.ObjectiveSync = this;
     }
 
-    void Start()
+    void Update()
     {
-        _objectiveManager = GameEssentials.ObjectiveManager;
-        _objectiveManager.CurrentObjectives.Callback = OnObjectivesChanged;
+        if(_objectiveManager == null)
+            if(_objectiveManager = GameEssentials.ObjectiveManager)
+                _objectiveManager.CurrentObjectives.Callback = OnObjectivesChanged;
     }
 
     private void OnObjectivesChanged(SyncListObjectives.Operation op, int index)

@@ -57,8 +57,8 @@ GameObject:
   - component: {fileID: 4082644375040286}
   - component: {fileID: 54219612919163068}
   - component: {fileID: 23508540610672844}
-  - component: {fileID: 114174987108461008}
   - component: {fileID: 114786569770618240}
+  - component: {fileID: 114643093543324794}
   m_Layer: 8
   m_Name: Crate_Small
   m_TagString: Untagged
@@ -221,17 +221,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010182681, y: 0.010172246, z: 0.010392791}
   m_Center: {x: 0, y: -0.000053349173, z: 0.0051413467}
---- !u!114 &114174987108461008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1973755496877818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae7161860bed2d4d9b708cff45997c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114497179244589502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +232,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6e23fc4a69fba4dbd7e9e35e60a7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114643093543324794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973755496877818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81adeadd9878631459b4090f9188ab48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpRate: 10
 --- !u!114 &114685319056508250
 MonoBehaviour:
   m_ObjectHideFlags: 1
