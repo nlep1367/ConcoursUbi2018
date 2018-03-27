@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114463547729033316}
   - component: {fileID: 95794001824668072}
+  - component: {fileID: 114131605224860736}
   - component: {fileID: 114603672696637660}
   - component: {fileID: 114091528639082618}
   - component: {fileID: 114009191638688670}
@@ -724,6 +725,8 @@ GameObject:
   - component: {fileID: 114647852743625292}
   - component: {fileID: 82978245214410386}
   - component: {fileID: 82542170765285014}
+  - component: {fileID: 136940203398832566}
+  - component: {fileID: 114363163598819910}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -966,7 +969,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434868164697106}
-  - component: {fileID: 136897398531848906}
   m_Layer: 8
   m_Name: GirlModel
   m_TagString: Untagged
@@ -2912,7 +2914,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486837572664584}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -2963,6 +2965,19 @@ MonoBehaviour:
   Duration: 3
   StillDuration: 2
   ContourBegin: 0.2
+--- !u!114 &114131605224860736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cb0752bd7e0478284f941a356def8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicPlayerToInstantiate: {fileID: 1471484593503672, guid: fe7e738f848a446288c2bba01d0fa999,
+    type: 2}
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2976,6 +2991,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstantiate: {fileID: 1947965496318792, guid: f4e257d3395845b47b6ba38b026f447d,
     type: 2}
+--- !u!114 &114363163598819910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b1a93f4ee05504bab8d7c5901310dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114463547729033316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3007,6 +3033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 4557568045915296}
+  CanDrop: 1
 --- !u!114 &114647852743625292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3034,9 +3061,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 348a4601c7e564fe59b71bf75b5490ae, type: 3}
   - {fileID: 8300000, guid: b1939122d8b2842bcbbeff2e59bb291e, type: 3}
   CanneClips:
-  - {fileID: 8300000, guid: 2cdf188be05ba4fedbab2db64062502c, type: 3}
-  - {fileID: 8300000, guid: 5ad3c16bc0b8b40508686e8e231df12b, type: 3}
-  - {fileID: 8300000, guid: c9c0a758152f644f9bbd69e1d7a09f02, type: 3}
+  - {fileID: 8300000, guid: 49272b45a5156405880e99842b0c8c5b, type: 3}
+  - {fileID: 8300000, guid: 1c6fc2537c1d941728a701a52224c19c, type: 3}
+  - {fileID: 8300000, guid: a4935045efd944df3b246d6953b8d284, type: 3}
 --- !u!114 &114972645596128576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3081,19 +3108,19 @@ MonoBehaviour:
     i15: 234
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!136 &136897398531848906
+--- !u!136 &136940203398832566
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1684141708684176}
+  m_GameObject: {fileID: 1486837572664584}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.7
+  m_Radius: 0.5
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!137 &137250602328724232
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -8,6 +8,12 @@ public struct ScoreObj
     public int points;
     public string reason;
 
+    public ScoreObj(int p, string s)
+    {
+        points = p;
+        reason = s;
+    }
+
     public override string ToString()
     {
         string message = (points >= 0) ? "+" : "-";

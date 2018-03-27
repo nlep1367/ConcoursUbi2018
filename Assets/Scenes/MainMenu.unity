@@ -2018,12 +2018,6 @@ Prefab:
       propertyPath: IsMainMenu
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114373563748388068, guid: fe7e738f848a446288c2bba01d0fa999,
-        type: 2}
-      propertyPath: InGame
-      value: 
-      objectReference: {fileID: 24500006, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
   m_IsPrefabParent: 0
@@ -5498,23 +5492,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1668034702 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1471484593503672, guid: fe7e738f848a446288c2bba01d0fa999,
+--- !u!114 &1668034703 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114465999318478194, guid: fe7e738f848a446288c2bba01d0fa999,
     type: 2}
   m_PrefabInternal: {fileID: 705100210}
---- !u!114 &1668034703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1668034702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7914e15c3d3754ee4adfdfb05ce81736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
 --- !u!1 &1706714047
 GameObject:
   m_ObjectHideFlags: 0
@@ -7560,7 +7543,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.54
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

@@ -426,7 +426,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4630758837119808}
   - component: {fileID: 65535110378180338}
-  - component: {fileID: 114918211619297742}
   m_Layer: 8
   m_Name: DogModel
   m_TagString: Doggo
@@ -841,6 +840,7 @@ GameObject:
   - component: {fileID: 114411934110677752}
   - component: {fileID: 114250408463526852}
   - component: {fileID: 95566204552694556}
+  - component: {fileID: 114637756108716706}
   - component: {fileID: 114349675333428414}
   - component: {fileID: 114660821322061762}
   - component: {fileID: 114694318552069788}
@@ -848,6 +848,7 @@ GameObject:
   - component: {fileID: 114816760529736426}
   - component: {fileID: 82190924315444324}
   - component: {fileID: 114572756693396026}
+  - component: {fileID: 114891858256567482}
   m_Layer: 8
   m_Name: Echo
   m_TagString: Doggo
@@ -1924,6 +1925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 4621555054000886}
+  CanDrop: 1
 --- !u!114 &114616414107708196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1935,6 +1937,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a94ee0eaf8b724ab00f993527a7466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114637756108716706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960027674469962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cb0752bd7e0478284f941a356def8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicPlayerToInstantiate: {fileID: 1471484593503672, guid: fe7e738f848a446288c2bba01d0fa999,
+    type: 2}
 --- !u!114 &114660821322061762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1994,7 +2009,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17f5e3440ff1a4f4abb1f4e84f24896a, type: 3}
   - {fileID: 8300000, guid: d2fad64bec97d40508cb5c8cbb73e141, type: 3}
   CanneClips: []
---- !u!114 &114916562838526174
+--- !u!114 &114891858256567482
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2002,36 +2017,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960027674469962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: c7b1a93f4ee05504bab8d7c5901310dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 154
-    i1: 19
-    i2: 207
-    i3: 3
-    i4: 238
-    i5: 105
-    i6: 48
-    i7: 100
-    i8: 91
-    i9: 217
-    i10: 113
-    i11: 116
-    i12: 197
-    i13: 199
-    i14: 134
-    i15: 134
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
---- !u!114 &114918211619297742
+--- !u!114 &114916562838526174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1618118339527476}
+  m_GameObject: {fileID: 1960027674469962}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}

@@ -21,8 +21,7 @@ public class PStatePushing : PlayerState
         float VerticalAxis = Input.GetAxis("Vertical_Move");
         float HorizontalAxis = Input.GetAxis("Horizontal_Move");
 
-        //TODO INPUT
-        if(Input.GetButtonDown("A"))
+        if(Input.GetButtonUp("A"))
         {
             _player.ChangeState(StateEnum.GROUNDED);
         }
