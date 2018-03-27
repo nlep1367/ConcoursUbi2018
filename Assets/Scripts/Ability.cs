@@ -15,7 +15,7 @@ public class Ability
 
     [Header("Hint Display [Optional]")]
     public HintUI hintUI;
-    public KeyCode keyRef;
+    public Controls keyRef;
     public string actionText;
 
     public bool CanDoAbility()

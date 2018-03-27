@@ -4,6 +4,27 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public enum Controls
+{
+    A,
+    B,
+    X,
+    Y,
+    DownArrow,
+    LeftArrow,
+    RightArrow,
+    UpArrow,
+    LB,
+    RB,
+    LT,
+    RT,
+    LeftBump,
+    RightBump,
+    Select,
+    Menu,
+};
+
 public class HintUI : MonoBehaviour {
 
     public GameObject HintPanel;
@@ -13,7 +34,7 @@ public class HintUI : MonoBehaviour {
 
     public List<Sprite> sprites;
 
-	public void Display(KeyCode button, string action)
+	public void Display(Controls button, string action)
     {        
         Sprite sprite = FindSprite(button);
 
@@ -30,7 +51,7 @@ public class HintUI : MonoBehaviour {
         actionTxt.text = null;
     }
 
-    string FindKeyRef(KeyCode button)
+    string FindKeyRef(Controls button)
     {
         string name = "";
 
@@ -38,17 +59,53 @@ public class HintUI : MonoBehaviour {
         {
             switch (button)
             {
-                case KeyCode.Y:
-                    name = "xbox_Y";
+                case Controls.A:
+                    name = "control_a";
                     break;
-                case KeyCode.B:
-                    name = "xbox_B";
+                case Controls.B:
+                    name = "control_b";
                     break;
-                case KeyCode.A:
-                    name = "xbox_A";
+                case Controls.X:
+                    name = "control_x";
                     break;
-                case KeyCode.X:
-                    name = "xbox_X";
+                case Controls.Y:
+                    name = "control_y";
+                    break;
+                case Controls.DownArrow:
+                    name = "control_downArrow";
+                    break;
+                case Controls.LeftArrow:
+                    name = "control_leftArrow";
+                    break;
+                case Controls.RightArrow:
+                    name = "control_rightArrow";
+                    break;
+                case Controls.UpArrow:
+                    name = "control_upArrow";
+                    break;
+                case Controls.LB:
+                    name = "control_lb";
+                    break;
+                case Controls.RB:
+                    name = "control_rb";
+                    break;
+                case Controls.LT:
+                    name = "control_lt";
+                    break;
+                case Controls.RT:
+                    name = "control_rt";
+                    break;
+                case Controls.LeftBump:
+                    name = "control_leftBump";
+                    break;
+                case Controls.RightBump:
+                    name = "control_rightBump";
+                    break;
+                case Controls.Select:
+                    name = "control_select";
+                    break;
+                case Controls.Menu:
+                    name = "control_menu";
                     break;
                 default:
                     throw new ArgumentException("Hint Panel: There's no references for that keycode");
@@ -63,7 +120,7 @@ public class HintUI : MonoBehaviour {
         return name;
     }
 
-    Sprite FindSprite(KeyCode button)
+    Sprite FindSprite(Controls button)
     {
         try
         {

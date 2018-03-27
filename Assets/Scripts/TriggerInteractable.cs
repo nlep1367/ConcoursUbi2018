@@ -15,7 +15,7 @@ public class TriggerInteractable : MonoBehaviour {
     {
         if (other.CompareTag("Fille") && other.GetComponentInParent<ObjectSync>().hasAuthority)
         {
-            hintUI.Display(KeyCode.A, "Hit the button");
+            hintUI.Display(Controls.A, "Hit the button");
             GetComponent<ReplacementShaderObject>().enabled = true;
         }
     }
@@ -24,7 +24,7 @@ public class TriggerInteractable : MonoBehaviour {
     {
         if (other.CompareTag("Fille") )
         {
-            if(other.GetComponentInParent<ObjectSync>().hasAuthority && Input.GetKeyDown(KeyCode.A))
+            if(other.GetComponentInParent<ObjectSync>().hasAuthority && Input.GetButtonDown("A"))
             {
                 GetComponentInParent<TrafficLightNode>().HitPedestrianButton();
                 hintUI.Hide();

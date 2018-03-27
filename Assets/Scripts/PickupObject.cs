@@ -31,11 +31,11 @@ public class PickupObject : NetworkBehaviour {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
             {
-                hintUI.Display(KeyCode.A, "Throw in the garbage");
+                hintUI.Display(Controls.Y, "Throw in the garbage");
             }
             else
             {
-                hintUI.Display(KeyCode.A, "Drop the object");
+                hintUI.Display(Controls.Y, "Drop the object");
             }
 
             Carry(carriedObject);
@@ -60,7 +60,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Pickup()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Y"))
         {
             if(pickableObject != null)
             {
@@ -88,7 +88,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Drop()
     {   
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Y"))
         {
             droppedObject = carriedObject;
             CmdEnableRigidBody(droppedObject);
@@ -152,8 +152,8 @@ public class PickupObject : NetworkBehaviour {
     {
         if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
-            hintUI.Display(KeyCode.A, "Pick up " + collider.gameObject.name);
-            pickableObject = collider.gameObject;
+            hintUI.Display(Controls.Y, "Pick up " + collision.gameObject.name);
+            pickableObject = collision.gameObject;
         }
     }
 

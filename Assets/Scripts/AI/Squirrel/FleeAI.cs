@@ -38,14 +38,22 @@ public class FleeAI : NetworkBehaviour
 
     void Start()
     {
+        if (FirstPoint != null)
+            Initialize();
+
+    }
+
+    public void Initialize()
+    {
         Animator = GetComponent<Animator>();
 
         Agent = GetComponent<NavMeshAgent>();
         Killer = GetComponent<FadeMaterial>();
+
         CurrentPoint = FirstPoint;
         Agent.transform.position = FirstPoint.position;
     }
-    
+
     [Server]
     void Spook(Vector3 SpookyLocation)
     {
@@ -85,6 +93,9 @@ public class FleeAI : NetworkBehaviour
 
     void Update()
     {
+        if (Animator == null)
+            return;
+
         if(SPOOOKY)
         {
             SPOOOKY = false;
