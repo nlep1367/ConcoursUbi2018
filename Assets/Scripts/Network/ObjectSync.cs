@@ -14,7 +14,7 @@ public class ObjectSync : NetworkBehaviour
     [SyncVar]
     private Vector3 syncPos;
     [SyncVar]
-    private float syncYRot;
+    private Quaternion syncRot;
 
     private Vector3 lastPos;
     private Quaternion lastYRot;
@@ -38,15 +38,15 @@ public class ObjectSync : NetworkBehaviour
         if (!hasAuthority)
         {
             objTransform.position = Vector3.Lerp(objTransform.transform.position, syncPos, Time.deltaTime * lerpRate);
-            objTransform.rotation = Quaternion.Lerp(objTransform.transform.rotation, Quaternion.Euler(new Vector3(0, syncYRot, 0)), Time.deltaTime * lerpRate);
+            objTransform.rotation = Quaternion.Lerp(objTransform.transform.rotation, syncRot, Time.deltaTime * lerpRate);
         }
     }
 
     [Command]
-    void Cmd_SendMotionToServer(Vector3 pos, float rot)
+    void Cmd_SendMotionToServer(Vector3 pos, Quaternion rot)
     {
         syncPos = pos;
-        syncYRot = rot;
+        syncRot = rot;
     }
 
     [ClientCallback]
@@ -56,7 +56,7 @@ public class ObjectSync : NetworkBehaviour
         {
             if (ShouldMove() || ShouldRotate())
             {
-                Cmd_SendMotionToServer(objTransform.position, objTransform.localEulerAngles.y);
+                Cmd_SendMotionToServer(objTransform.position, objTransform.rotation);
                 lastPos = objTransform.position;
                 lastYRot = objTransform.rotation;
             }
@@ -82,7 +82,7 @@ public class ObjectSync : NetworkBehaviour
             objTransform.rotation = rot;
         }
         lastPos = syncPos = pos;
-        syncYRot = rot.eulerAngles.y;
+        syncRot = rot;
         lastYRot = rot;
     }
 
@@ -100,7 +100,7 @@ public class ObjectSync : NetworkBehaviour
         {
             objTransform.rotation = rot;
         }
-        syncYRot = rot.eulerAngles.y;
+        syncRot = rot;
         lastYRot = rot;
     }
 
