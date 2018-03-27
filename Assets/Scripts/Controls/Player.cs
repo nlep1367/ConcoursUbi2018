@@ -91,6 +91,11 @@ public abstract class Player : NetworkBehaviour
         }
     }
 
+    public bool IsState(StateEnum stateToTest)
+    {
+        return State == States[stateToTest];
+    }
+
     public abstract void SetCamera(Camera camera);
 
     public bool isActivePlayer()
