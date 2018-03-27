@@ -7,6 +7,7 @@ public static class GameEssentials {
     public static DialogueManager DialogueManager;
     public static ObjectiveSync ObjectiveSync;
     public static DialogueSync DialogueSync;
+    public static NetworkScoreManager ScoreManager;
 
     public static PlayerGirl PlayerGirl;
     public static PlayerDog PlayerDog;

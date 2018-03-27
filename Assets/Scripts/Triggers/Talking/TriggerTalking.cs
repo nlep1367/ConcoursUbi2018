@@ -21,16 +21,16 @@ public class TriggerTalking : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (Input.GetButton("Fire1") && networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
+        if (networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
         {
-            HintUI.Display(KeyCode.A, "Talk");
+            HintUI.Display(Controls.X, "Talk");
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
         NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (Input.GetButton("Fire1") && networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
+        if (Input.GetButtonDown("X") && networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
         {
             GameEssentials.PlayerGirl.ChangeState(StateEnum.TALKING);
             GameEssentials.Npc.ChangeState(StateEnum.TALKING);

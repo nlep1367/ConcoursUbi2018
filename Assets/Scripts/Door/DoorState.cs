@@ -20,7 +20,7 @@ public class DoorState : NetworkBehaviour {
 
     private void Update()
     {
-        if (IsGirlInRange && Input.GetButtonDown("Y") && Locks.Count == 0)
+        if (IsGirlInRange && Input.GetButtonDown("A") && Locks.Count == 0)
         {
             OpenDoor();
             CloseDoor();

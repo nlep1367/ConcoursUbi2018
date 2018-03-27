@@ -15,7 +15,7 @@ public class DoorTrigger : MonoBehaviour {
 
                 if (other.gameObject.GetComponent<ObjectSync>().hasAuthority)
                 {
-                    hUI.Display(Controls.Y, "Open Door");
+                    hUI.Display(Controls.A, "Open Door");
                 }
             }
     }

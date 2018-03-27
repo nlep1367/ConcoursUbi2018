@@ -26,9 +26,9 @@ public class BarrierTrigger : MonoBehaviour {
                     GameObject carried = puOb.GetCarriedObject();
                     puOb.CanDrop = false;
                     if (carried != null)
-                        hUI.Display(Controls.Y, "Activate Gate");
+                        hUI.Display(Controls.A, "Activate Gate");
                     else
-                        hUI.Display(Controls.Y, "Insert Object");
+                        hUI.Display(Controls.A, "Insert Object");
                 }
             }
         }

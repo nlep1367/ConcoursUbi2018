@@ -31,7 +31,7 @@ public class Barrier : NetworkBehaviour {
     [Server]
     private void Update()
     {
-        if(GirlIsInsideTrigger && Keys.Count == 0 && Input.GetButtonDown("Y"))
+        if(GirlIsInsideTrigger && Keys.Count == 0 && Input.GetButtonDown("X"))
         {
             if (!Anim.GetBool("Opening") && !Anim.GetBool("Closing"))
             { 
