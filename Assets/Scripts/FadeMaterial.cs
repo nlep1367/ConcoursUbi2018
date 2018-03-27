@@ -20,6 +20,11 @@ public class FadeMaterial : NetworkBehaviour {
     public void Rpc_Kill()
     {
         IsDieing = true;
+        Collider c = GetComponent<Collider>();
+        if(c != null && c.isTrigger)
+        {
+            Destroy(c);
+        }
     }
 	
 	// Update is called once per frame

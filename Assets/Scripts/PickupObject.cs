@@ -90,9 +90,24 @@ public class PickupObject : NetworkBehaviour {
 
                 StartCoroutine(WaitForPickUp());
                 CmdDisableRigidBody(carriedObject);
+                if (carriedObject.GetComponent<Collectible>() != null)
+                {
+                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(carriedObject.GetComponent<Collectible>().GetCollectibleScoreObj());
+                    CmdDestroyCollectible(carriedObject);
+                    isCarryingObject = false;
+                    carriedObject = null;
+                    hintUI.Hide();
+                }
             }
         }
     }
+
+    [Command]
+    void CmdDestroyCollectible(GameObject gameObj)
+    {
+        gameObj.GetComponent<FadeMaterial>().Rpc_Kill();
+    }
+
     
     [Command]
     public void Cmd_GetAutority(NetworkIdentity ni)

@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 65309691778463248}
   - component: {fileID: 54581707498007786}
   - component: {fileID: 65760086454193712}
+  - component: {fileID: 114432279863883690}
+  - component: {fileID: 114148076518075390}
   m_Layer: 0
   m_Name: Hat
   m_TagString: PickableObject
@@ -155,6 +157,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.23, z: 0.15}
   m_Center: {x: -0.04, y: 0, z: 0.05}
+--- !u!114 &114148076518075390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348232677949322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035c2713c482eb04c87cb4aa55e963f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBeforeDestroy: 2
+  FadeStartTime: 0
+  Render: {fileID: 23772565453705720}
+--- !u!114 &114432279863883690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348232677949322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2a8661923e92f4290b54face8b030e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsForCollectible: 50
 --- !u!114 &114601331341752914
 MonoBehaviour:
   m_ObjectHideFlags: 1
