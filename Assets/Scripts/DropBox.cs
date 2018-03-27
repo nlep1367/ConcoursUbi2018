@@ -6,14 +6,33 @@ using UnityEngine.Networking;
 public class DropBox : NetworkBehaviour {
 
     public FleeAI ai;
+    private Vector3 initialPos;
+    [SyncVar]
+    private bool shouldDrop = false;
 
     private void Start()
     {
         ai.WasSpooked += Drop;
+        initialPos = gameObject.transform.position;
+    }
+
+    void Update()
+    {
+        if (!shouldDrop)
+        {
+            gameObject.transform.position = initialPos;
+        }
     }
 
     private void Drop()
     {
-        gameObject.GetComponent<ObjectSync>().Rpc_SetObjectActive(true);
+        Cmd_Drop();
+        shouldDrop = true;
+    }
+
+    [Command]
+    private void Cmd_Drop()
+    {
+        shouldDrop = true;
     }
 }

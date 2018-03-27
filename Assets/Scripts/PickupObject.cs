@@ -211,8 +211,8 @@ public class PickupObject : NetworkBehaviour {
     {
         if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
-            hintUI.Display(Controls.Y, "Pick up " + collider.gameObject.name);
-            pickableObject = collider.gameObject;
+			hintUI.Display(Controls.Y, "Pick up " + collider.gameObject.name);
+			pickableObject = collider.gameObject;
         }
     }
 

@@ -36,7 +36,7 @@ public class DogBark : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
-		if(Input.GetButtonDown("A"))
+		if(Input.GetButtonDown("X"))
         {
             Cmd_StartBark(green);
             GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);

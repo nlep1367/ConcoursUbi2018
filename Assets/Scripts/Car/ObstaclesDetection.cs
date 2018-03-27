@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class ObstaclesDetection : MonoBehaviour {
 
-    CarAI engine;
+    public CarAI engine;
     // Collider obstacle;
     int counter = 0;
-
-    private void Start()
-    {
-        engine = GetComponentInParent<CarAI>();
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider

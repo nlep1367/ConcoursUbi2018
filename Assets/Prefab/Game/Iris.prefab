@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114463547729033316}
   - component: {fileID: 95794001824668072}
+  - component: {fileID: 114131605224860736}
   - component: {fileID: 114603672696637660}
   - component: {fileID: 114091528639082618}
   - component: {fileID: 114009191638688670}
@@ -725,7 +726,7 @@ GameObject:
   - component: {fileID: 82978245214410386}
   - component: {fileID: 82542170765285014}
   - component: {fileID: 136940203398832566}
-  - component: {fileID: 114197352631594348}
+  - component: {fileID: 114363163598819910}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -2964,7 +2965,7 @@ MonoBehaviour:
   Duration: 3
   StillDuration: 2
   ContourBegin: 0.2
---- !u!114 &114197352631594348
+--- !u!114 &114131605224860736
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2972,9 +2973,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486837572664584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b1a93f4ee05504bab8d7c5901310dc, type: 3}
+  m_Script: {fileID: 11500000, guid: b0cb0752bd7e0478284f941a356def8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MusicPlayerToInstantiate: {fileID: 1471484593503672, guid: fe7e738f848a446288c2bba01d0fa999,
+    type: 2}
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2988,6 +2991,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraToInstantiate: {fileID: 1947965496318792, guid: f4e257d3395845b47b6ba38b026f447d,
     type: 2}
+--- !u!114 &114363163598819910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b1a93f4ee05504bab8d7c5901310dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114463547729033316
 MonoBehaviour:
   m_ObjectHideFlags: 1
