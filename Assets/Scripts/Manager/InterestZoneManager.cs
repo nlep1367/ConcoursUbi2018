@@ -45,6 +45,8 @@ public class InterestZoneManager : MonoBehaviour {
         SetUpObjectInZone(ref keyOne);
         SetUpObjectInZone(ref keyTwo);
         SetUpSquirrelInZone(ref squirrel);
+
+        Destroy(this);
     }
 
     int GetRandomIndex()

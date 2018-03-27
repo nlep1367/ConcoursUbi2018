@@ -426,7 +426,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4630758837119808}
   - component: {fileID: 65535110378180338}
-  - component: {fileID: 114918211619297742}
   m_Layer: 8
   m_Name: DogModel
   m_TagString: Doggo
@@ -1924,6 +1923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 4621555054000886}
+  CanDrop: 1
 --- !u!114 &114616414107708196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2000,38 +2000,6 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960027674469962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 154
-    i1: 19
-    i2: 207
-    i3: 3
-    i4: 238
-    i5: 105
-    i6: 48
-    i7: 100
-    i8: 91
-    i9: 217
-    i10: 113
-    i11: 116
-    i12: 197
-    i13: 199
-    i14: 134
-    i15: 134
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
---- !u!114 &114918211619297742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1618118339527476}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}

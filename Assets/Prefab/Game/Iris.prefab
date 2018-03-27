@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 114647852743625292}
   - component: {fileID: 82978245214410386}
   - component: {fileID: 82542170765285014}
+  - component: {fileID: 136940203398832566}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -966,7 +967,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434868164697106}
-  - component: {fileID: 136897398531848906}
   m_Layer: 8
   m_Name: GirlModel
   m_TagString: Untagged
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486837572664584}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -3081,19 +3081,19 @@ MonoBehaviour:
     i15: 234
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!136 &136897398531848906
+--- !u!136 &136940203398832566
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1684141708684176}
+  m_GameObject: {fileID: 1486837572664584}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.7
+  m_Radius: 0.5
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!137 &137250602328724232
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

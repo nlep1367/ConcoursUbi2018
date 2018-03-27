@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
@@ -12,7 +13,8 @@ public class PickupObject : NetworkBehaviour {
     public Transform anchorPoint;
     private HintUI hintUI;
     private Player _player;
-
+    
+    public bool CanDrop = true;
     private bool isPickingUp = false;
 
     private float oldObjectMass = 1.0f;
@@ -24,8 +26,16 @@ public class PickupObject : NetworkBehaviour {
         _player = this.GetComponent<Player>();
     }
 
+    public GameObject GetCarriedObject()
+    {
+        return carriedObject;
+    }
+
     // Update is called once per frame
     void Update () {
+        if (!isLocalPlayer)
+            return;
+
 		if(isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
@@ -35,7 +45,10 @@ public class PickupObject : NetworkBehaviour {
             }
             else
             {
-                hintUI.Display(Controls.Y, "Drop the object");
+                if (CanDrop)
+                {
+                    hintUI.Display(Controls.Y, "Drop the object");
+                }
             }
 
             Carry(carriedObject);
@@ -45,12 +58,12 @@ public class PickupObject : NetworkBehaviour {
         {
             Pickup();
         }
-	}
+    }
 
     void Carry(GameObject obj)
     {
         obj.transform.position = anchorPoint.position;
-        obj.transform.rotation = anchorPoint.rotation;      
+        obj.transform.rotation = anchorPoint.rotation;
     }
 
     public void PickingUpAnimation()
@@ -62,16 +75,41 @@ public class PickupObject : NetworkBehaviour {
     {
         if (Input.GetButtonDown("Y"))
         {
-            if(pickableObject != null)
+            if (pickableObject != null)
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
                 _player.ChangeState(StateEnum.GRABBING);
+                
+                if(!isServer)
+                { 
+                    NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                    ni.localPlayerAuthority = true;
+                    Cmd_GetAutority(ni);
+                }
 
                 StartCoroutine(WaitForPickUp());
                 CmdDisableRigidBody(carriedObject);
             }
         }
+    }
+    
+    [Command]
+    public void Cmd_GetAutority(NetworkIdentity ni)
+    {
+        NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
+        ni.localPlayerAuthority = true;
+
+        ni.AssignClientAuthority(temp);
+    }
+
+
+    [Command]
+    public void Cmd_RemoveAutority(NetworkIdentity ni)
+    {
+        NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
+
+        ni.RemoveClientAuthority(temp);
     }
 
     public IEnumerator WaitForPickUp()
@@ -99,6 +137,12 @@ public class PickupObject : NetworkBehaviour {
                 thrownable.ThrowAway();
                 hintUI.Hide();
             }
+
+            if (!isServer)
+            {
+                NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                Cmd_RemoveAutority(ni);
+            }
             isCarryingObject = false;
             isPickingUp = false;
             carriedObject = null;
@@ -118,9 +162,9 @@ public class PickupObject : NetworkBehaviour {
     }
     
     [ClientRpc]
-    void RpcDisableRigidBody(GameObject gameObject)
+    void RpcDisableRigidBody(GameObject gameObj)
     {
-        Rigidbody pickableRigidBody = gameObject.GetComponent<Rigidbody>();
+        Rigidbody pickableRigidBody = gameObj.GetComponent<Rigidbody>();
         if (pickableRigidBody != null)
         {
             oldObjectMass = pickableRigidBody.mass;
@@ -128,7 +172,7 @@ public class PickupObject : NetworkBehaviour {
             Destroy(pickableRigidBody);
         }
 
-        pickableObject.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+        gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
     }
     
     [ClientRpc]

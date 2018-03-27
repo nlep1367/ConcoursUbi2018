@@ -12,7 +12,6 @@ public class DoorTrigger : MonoBehaviour {
             if(GirlTriggerState != null)
             { 
                 GirlTriggerState(true);
-
             }
     }
 
