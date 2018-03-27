@@ -17,7 +17,7 @@ public class TriggerPushable : MonoBehaviour {
 
         if (os != null && os.hasAuthority && (os.CompareTag("Doggo") || os.CompareTag("Fille")))
         {
-            hintUI.Display(KeyCode.A, "Push the box");
+            hintUI.Display(Controls.A, "Push the box");
         }
     }
 

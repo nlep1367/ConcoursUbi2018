@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Linq;
 
 public class PickupObject : NetworkBehaviour {
     bool isCarryingObject = false;
     GameObject pickableObject;
     GameObject carriedObject;
+    GameObject droppedObject;
     public Transform anchorPoint;
     private HintUI hintUI;
     private Player _player;
-
+    
     public bool CanDrop = true;
+    private bool isPickingUp = false;
+
+    private float oldObjectMass = 1.0f;
+    private RigidbodyConstraints rigidbodyConstraints;
 
     private void Start()
     {
@@ -25,23 +32,22 @@ public class PickupObject : NetworkBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-
+    void Update () {
         if (!isLocalPlayer)
             return;
 
-        if (isCarryingObject)
+		if(isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
             {
-                hintUI.Display(KeyCode.Y, "Throw in the garbage");
+                hintUI.Display(Controls.Y, "Throw in the garbage");
             }
             else
             {
                 if (CanDrop)
                 {
-                    hintUI.Display(KeyCode.Y, "Drop the object");
+                    hintUI.Display(Controls.Y, "Drop the object");
                 }
             }
 
@@ -60,6 +66,11 @@ public class PickupObject : NetworkBehaviour {
         obj.transform.rotation = anchorPoint.rotation;
     }
 
+    public void PickingUpAnimation()
+    {
+        isPickingUp = true;
+    }
+
     void Pickup()
     {
         if (Input.GetButtonDown("Y"))
@@ -69,17 +80,20 @@ public class PickupObject : NetworkBehaviour {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
                 _player.ChangeState(StateEnum.GRABBING);
-
+                
                 if(!isServer)
                 { 
                     NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
                     ni.localPlayerAuthority = true;
                     Cmd_GetAutority(ni);
                 }
+
+                StartCoroutine(WaitForPickUp());
+                CmdDisableRigidBody(carriedObject);
             }
         }
     }
-
+    
     [Command]
     public void Cmd_GetAutority(NetworkIdentity ni)
     {
@@ -98,6 +112,12 @@ public class PickupObject : NetworkBehaviour {
         ni.RemoveClientAuthority(temp);
     }
 
+    public IEnumerator WaitForPickUp()
+    {
+        yield return new WaitForSeconds(0.75f);
+        PickingUpAnimation();
+    }
+
     public void InsertKeyInDoor()
     {
         isCarryingObject = false;
@@ -108,6 +128,9 @@ public class PickupObject : NetworkBehaviour {
     {   
         if (Input.GetButtonDown("Y"))
         {
+            droppedObject = carriedObject;
+            CmdEnableRigidBody(droppedObject);
+            
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
             {
@@ -121,22 +144,66 @@ public class PickupObject : NetworkBehaviour {
                 Cmd_RemoveAutority(ni);
             }
             isCarryingObject = false;
+            isPickingUp = false;
             carriedObject = null;
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    [Command]
+    void CmdDisableRigidBody(GameObject gameObj)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
+        RpcDisableRigidBody(gameObj);
+    }
+    
+    [Command]
+    void CmdEnableRigidBody(GameObject gameObj)
+    {
+        RpcEnableRigidBody(gameObj);
+    }
+    
+    [ClientRpc]
+    void RpcDisableRigidBody(GameObject gameObj)
+    {
+        Rigidbody pickableRigidBody = gameObj.GetComponent<Rigidbody>();
+        if (pickableRigidBody != null)
         {
-            hintUI.Display(KeyCode.Y, "Pick up " + collision.gameObject.name);
-            pickableObject = collision.gameObject;
+            oldObjectMass = pickableRigidBody.mass;
+            rigidbodyConstraints = pickableRigidBody.constraints;
+            Destroy(pickableRigidBody);
+        }
+
+        gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+    }
+    
+    [ClientRpc]
+    void RpcEnableRigidBody(GameObject gameObj)
+    {
+        if(gameObj != null)
+        {
+            gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = true;
+            gameObj.AddComponent<Rigidbody>();
+    
+            Rigidbody carriedNewRigidBody = gameObj.GetComponent<Rigidbody>();
+            carriedNewRigidBody.useGravity = true;
+            carriedNewRigidBody.mass = oldObjectMass;
+            carriedNewRigidBody.constraints = rigidbodyConstraints;
+
+            gameObj = null;
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collision.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
+        {
+            hintUI.Display(Controls.Y, "Pick up " + collider.gameObject.name);
+            pickableObject = collider.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
             hintUI.Hide();
             pickableObject = null;
