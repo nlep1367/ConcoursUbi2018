@@ -9,5 +9,6 @@ public static class GameEssentials {
     public static DialogueSync DialogueSync;
 
     public static PlayerGirl PlayerGirl;
-    public static PlayerDog PlayerDog;
+	public static PlayerDog PlayerDog;
+	public static AmbientMusicControl MusicPlayer;
 }

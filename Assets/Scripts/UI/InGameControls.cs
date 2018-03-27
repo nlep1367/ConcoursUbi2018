@@ -11,16 +11,15 @@ public class InGameControls : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("PauseMenu"))
+		if (Input.GetButtonDown("PauseMenu") && GameEssentials.MusicPlayer != null)
         {
             isDisplayed = !isDisplayed;
             menu.SetActive(isDisplayed);
-			musicPlayer.SetMenuMusicActive (isDisplayed);
+			GameEssentials.MusicPlayer.SetMenuMusicActive (isDisplayed);
         }
 	}
 }

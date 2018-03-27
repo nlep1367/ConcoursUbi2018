@@ -7,6 +7,7 @@ public class MenuMusicControl : MonoBehaviour {
 
 	public AudioMixerSnapshot InMenu;
 	public AudioMixerSnapshot OutMenu;
+	public AudioMixerSnapshot InMenuIntro;
 	public AudioMixerSnapshot OutMenuIntro;
 //	public AudioMixerSnapshot inIntro;
 
@@ -42,7 +43,7 @@ public class MenuMusicControl : MonoBehaviour {
 	// Tick is called by the AmbientMusicControl::Update if necessary
 	public void Tick () 
 	{
-		if (!m_playingMenu && !m_stoppingIntro)
+		if (!m_playingMenu && !m_stoppingIntro && !m_stoppingMenu)
 			return;
 
 		if (m_stoppingIntro) {
@@ -60,7 +61,7 @@ public class MenuMusicControl : MonoBehaviour {
 		if (m_stoppingMenu) {
 			m_currentTime += Time.deltaTime;
 
-			if (m_currentTime > 60F / 53F * 8F) {
+			if (m_currentTime > 60F / 53F) {
 				OnConcludeMusic ();
 			}
 		}
@@ -68,10 +69,15 @@ public class MenuMusicControl : MonoBehaviour {
 
 	public void OnPlayMenuMusic()
 	{
+		if (m_stoppingMenu)
+			OnConcludeMusic ();
+		
 		if (!m_playingMenu && !m_stoppingIntro) {
 			InMenu.TransitionTo (0);
+			InMenuIntro.TransitionTo (0);
 
 			m_IntroAudioSource.Play ();
+
 			OutMenuIntro.TransitionTo(TransitionIn);
 			m_stoppingIntro = true;
 			m_currentTime = 0;
@@ -82,7 +88,7 @@ public class MenuMusicControl : MonoBehaviour {
 	{
 		if (m_playingMenu || m_stoppingIntro) {
 			m_playingMenu = m_stoppingIntro = false;
-			OutMenu.TransitionTo (60F/53F * 4F);
+			OutMenu.TransitionTo (60F/53F);
 
 			m_stoppingMenu = true;
 			m_currentTime = 0;

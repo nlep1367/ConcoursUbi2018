@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3832,12 +3832,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4565661327390304, guid: 14cae67d080bd8747b10dc747a25299f,
     type: 2}
   m_PrefabInternal: {fileID: 98669827}
---- !u!114 &98669829 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114990034433158750, guid: 14cae67d080bd8747b10dc747a25299f,
-    type: 2}
-  m_PrefabInternal: {fileID: 98669827}
-  m_Script: {fileID: 11500000, guid: dba2805973ef5d349a6fa0ac27df5ad2, type: 3}
 --- !u!1001 &101066379
 Prefab:
   m_ObjectHideFlags: 0
@@ -15118,7 +15112,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 899292f11613849108a3ccd053aa19fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e3383076840341f4be03721874fb2ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23907,7 +23901,7 @@ MonoBehaviour:
   ObjectiveModel: {fileID: 1466902481278686, guid: 156145ce427f3ea4db9351676ccb6f65,
     type: 2}
   ObjectiveList: {fileID: 98328035}
-  OManager: {fileID: 1155836132}
+  OManager: {fileID: 0}
 --- !u!224 &612393208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29975,54 +29969,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4531024877870296, guid: d0dc4671b4b7ea24f98ea632dfe3fba7,
     type: 2}
   m_PrefabInternal: {fileID: 774834491}
---- !u!1001 &776520994
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717266487428902, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: fe7e738f848a446288c2bba01d0fa999, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &776520996 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114188237393182248, guid: fe7e738f848a446288c2bba01d0fa999,
-    type: 2}
-  m_PrefabInternal: {fileID: 776520994}
-  m_Script: {fileID: 11500000, guid: 132b97f0cfe4d4fcb914e398ac11d688, type: 3}
 --- !u!1001 &777093280
 Prefab:
   m_ObjectHideFlags: 0
@@ -44005,7 +43951,7 @@ Transform:
   - {fileID: 994672894}
   - {fileID: 1865978422}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1095707023
 Prefab:
@@ -57685,7 +57631,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 776520996}
+        - m_Target: {fileID: 0}
           m_MethodName: OnPlayHover
           m_Mode: 1
           m_Arguments:
@@ -57702,7 +57648,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 776520996}
+        - m_Target: {fileID: 0}
           m_MethodName: OnPlayClick
           m_Mode: 1
           m_Arguments:
@@ -63611,7 +63557,7 @@ MonoBehaviour:
   StoryPanel: {fileID: 1108261551}
   characterName: {fileID: 2014729041}
   dialog: {fileID: 796471971}
-  DManager: {fileID: 98669829}
+  DManager: {fileID: 0}
 --- !u!224 &1546240545
 RectTransform:
   m_ObjectHideFlags: 0

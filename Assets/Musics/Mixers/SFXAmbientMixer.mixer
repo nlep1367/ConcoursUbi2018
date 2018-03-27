@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SFXAmbientMixer
+  m_OutputGroup: {fileID: 243111933731048082, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245682497695533940}
+  - {fileID: 245952606481752204}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 9a17352420dfd4172a24b96b7dc93ba5
+    - 9a0d5f7a4e356409aad28d4ddaa3981f
+    - cac98edda9c214bc9b04e4e0da835965
+    - bc3c58723a4494603a16b8ac991e19b3
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 9a17352420dfd4172a24b96b7dc93ba5
+  m_Children:
+  - {fileID: 243735379429195850}
+  - {fileID: 243069945293883024}
+  - {fileID: 243004081316804220}
+  m_Volume: 30a581e16165441fda980924da61e6a3
+  m_Pitch: 2cb8e0a2053db4da2b4cb19310602124
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: c3607b861094a42148406a6983554ab0
+  m_EffectName: Attenuation
+  m_MixLevel: e1d485dfaae594ef990d7a4e437da7c1
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: City
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: eb106962ffd824f269eb91659fe33369
+  m_FloatValues:
+    0809e087877664ef79c1cd79a43ee8d4: -80
+    14bd789cbbccf4a7e92a3cb13c6d194c: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243004081316804220
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Park
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: bc3c58723a4494603a16b8ac991e19b3
+  m_Children: []
+  m_Volume: 0809e087877664ef79c1cd79a43ee8d4
+  m_Pitch: 8a0d9bba7e9b34639aaf9e774625e8bb
+  m_Effects:
+  - {fileID: 244213964284296592}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243069945293883024
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: City
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: cac98edda9c214bc9b04e4e0da835965
+  m_Children: []
+  m_Volume: dafc725e606c641048dfef1c8c973026
+  m_Pitch: 36bbb27eec3224eeeac377e9de75f671
+  m_Effects:
+  - {fileID: 244098405929664378}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243735379429195850
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Alley
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 9a0d5f7a4e356409aad28d4ddaa3981f
+  m_Children: []
+  m_Volume: 14bd789cbbccf4a7e92a3cb13c6d194c
+  m_Pitch: fc4a5f7eb6f9143c3894957508d3482f
+  m_Effects:
+  - {fileID: 244664618946690622}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244098405929664378
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: e8e7d04b998c6454b9fb23c9aab03485
+  m_EffectName: Attenuation
+  m_MixLevel: 951c1004bb6914a159f867e03e33814b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244213964284296592
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 555dd32b7b1b6496ba48ac4c4fb488b4
+  m_EffectName: Attenuation
+  m_MixLevel: 04b3c8fe5865f4f31ba53d53c4499e83
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244664618946690622
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: fb3ccb0cdcc694f839c457c6d749d9d1
+  m_EffectName: Attenuation
+  m_MixLevel: d50a5a4da43dd412e93c2f575ebc9917
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245682497695533940
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Alley
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 6fa6ae6ae43554551b7f31b7d0dd1088
+  m_FloatValues:
+    0809e087877664ef79c1cd79a43ee8d4: -80
+    14bd789cbbccf4a7e92a3cb13c6d194c: 0
+    dafc725e606c641048dfef1c8c973026: -80
+  m_TransitionOverrides: {}
+--- !u!245 &245952606481752204
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Park
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7f1a221c658b2469fb6ddba8463ae210
+  m_FloatValues:
+    0809e087877664ef79c1cd79a43ee8d4: 0
+    14bd789cbbccf4a7e92a3cb13c6d194c: -80
+    dafc725e606c641048dfef1c8c973026: -80
+  m_TransitionOverrides: {}

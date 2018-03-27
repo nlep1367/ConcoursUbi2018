@@ -109,12 +109,17 @@ public class AmbientMusicControl : MonoBehaviour
 		}
 	}
 
+	void Awake()
+	{
+		GameEssentials.MusicPlayer = this;
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
+		m_MenuController.Tick ();
 		if (IsMainMenu) 
 		{
-			m_MenuController.Tick ();
 			return;
 		}
 

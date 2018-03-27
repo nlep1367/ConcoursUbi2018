@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 114257838193189078}
   - component: {fileID: 114463547729033316}
   - component: {fileID: 95794001824668072}
+  - component: {fileID: 114131605224860736}
   - component: {fileID: 114603672696637660}
   - component: {fileID: 114091528639082618}
   - component: {fileID: 114009191638688670}
@@ -2963,6 +2964,19 @@ MonoBehaviour:
   Duration: 3
   StillDuration: 2
   ContourBegin: 0.2
+--- !u!114 &114131605224860736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cb0752bd7e0478284f941a356def8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicPlayerToInstantiate: {fileID: 1471484593503672, guid: fe7e738f848a446288c2bba01d0fa999,
+    type: 2}
 --- !u!114 &114257838193189078
 MonoBehaviour:
   m_ObjectHideFlags: 1
