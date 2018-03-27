@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
+using System.Linq;
 
 public abstract class Player : NetworkBehaviour
 {
+    private List<GameObject> respawnPoints = new List<GameObject>();
+
     protected Camera Camera;
     public Rigidbody RigidBody;
 
@@ -14,6 +17,13 @@ public abstract class Player : NetworkBehaviour
     public Dictionary<StateEnum, PlayerState> States;
 
     public Animator Animator;
+
+    void Start()
+    {
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("DogRespawn");
+        respawnPoints.AddRange(temp);
+        respawnPoints = respawnPoints.OrderBy(x => x.transform.localPosition.y).ToList();
+    }
 
     // Use this for initialization
     public virtual void Awake()
@@ -31,6 +41,40 @@ public abstract class Player : NetworkBehaviour
         }
 
         State.InterpretInput();
+
+        if (GetComponent<ObjectSync>().hasAuthority)
+        {
+            int index = -1;
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                index = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.F2))
+            {
+                index = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.F3))
+            {
+                index = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.F4))
+            {
+                index = 3;
+            }
+            else if (Input.GetKeyDown(KeyCode.F5))
+            {
+                index = 4;
+            }
+            else if (Input.GetKeyDown(KeyCode.F6))
+            {
+                index = 5;
+            }
+
+            if (index != -1)
+            {
+                gameObject.transform.position = respawnPoints[index].transform.position;
+            }
+        }
     }
 
     public void ChangeState(StateEnum newStateEnum)

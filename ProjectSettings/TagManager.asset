@@ -12,6 +12,7 @@ TagManager:
   - PickableObject
   - Car
   - ScoreManager
+  - DogRespawn
   layers:
   - Default
   - TransparentFX
