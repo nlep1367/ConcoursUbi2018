@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114473400534650062}
   - component: {fileID: 114469428871915598}
   - component: {fileID: 81390475720936962}
+  - component: {fileID: 114465999318478194}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -219,7 +220,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243735379429195850, guid: 11a260495a55242e89245d4751d8d3e5,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1420037eec01c4b83a39c0b230ba1098, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 56122301cefd042c2a3d2c3b14a71c3e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -948,7 +949,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243069945293883024, guid: 11a260495a55242e89245d4751d8d3e5,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 31f8c9cb1ba9a429f9be04963e03f547, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 603904ef0e6284ee1a7fa6b2790d4be4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1110,7 +1111,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243004081316804220, guid: 11a260495a55242e89245d4751d8d3e5,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5f0d4dba35daf49d8b6e9b762dfd0311, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 229d8fa6119b44f1b8027a208872208b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1236,6 +1237,18 @@ MonoBehaviour:
   ActionSting3: {fileID: 8300000, guid: 5bb666b210e7a490fa0a476c0241eee5, type: 3}
   ActionSting4: {fileID: 8300000, guid: 6779799bc2ea947bf9aa01be42f1c188, type: 3}
   bpm: 53
+--- !u!114 &114465999318478194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471484593503672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7914e15c3d3754ee4adfdfb05ce81736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: fb197bd67a7bd4b17b6341c2c83dfeea, type: 2}
 --- !u!114 &114469428871915598
 MonoBehaviour:
   m_ObjectHideFlags: 1
