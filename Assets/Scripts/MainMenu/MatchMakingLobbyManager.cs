@@ -15,6 +15,8 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     public Button refreshButton;
     public Text newGameField;
 
+    public GameEnd gameEnd;
+
     // Use this for initialization
     void Start()
     {
@@ -63,6 +65,8 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
     public void ExitMatch()
     {
+        gameEnd.Finish();
+
         NetworkManager.singleton.StopClient();
         NetworkManager.singleton.StopHost();
 
@@ -94,12 +98,14 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
         if (matchName != "")
         {
+            gameEnd.matchName = matchName;
             singleton.matchMaker.CreateMatch(matchName, 15, true, "", "", "", 0, 0, OnMatchCreate);
         }
     }
 
     public void OnMMLMJoinMatch(MatchInfoSnapshot matchInfo)
     {
+        gameEnd.matchName = matchInfo.name;
         singleton.matchMaker.JoinMatch(matchInfo.networkId, "", "", "", 0, 0, OnMatchJoined);
     }
 
