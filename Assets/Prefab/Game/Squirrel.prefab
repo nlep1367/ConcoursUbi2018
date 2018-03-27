@@ -252,9 +252,9 @@ GameObject:
   - component: {fileID: 23624599274581608}
   - component: {fileID: 114267074654437014}
   - component: {fileID: 114336451965304826}
-  - component: {fileID: 114975411523349698}
   - component: {fileID: 135784510643933758}
   - component: {fileID: 114117318175052514}
+  - component: {fileID: 114110885702576230}
   m_Layer: 8
   m_Name: Squirrel
   m_TagString: Untagged
@@ -490,14 +490,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669009477016776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32712585, y: 0.0084999725, z: 4.4377446}
+  m_LocalRotation: {x: -0, y: 0.9914446, z: -0, w: 0.13052888}
+  m_LocalPosition: {x: -4.06, y: 0.313, z: 15.429}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4568021147569136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 165.00002, z: 0}
 --- !u!4 &4184790789543982
 Transform:
   m_ObjectHideFlags: 1
@@ -901,6 +901,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114110885702576230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669009477016776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81adeadd9878631459b4090f9188ab48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpRate: 10
 --- !u!114 &114117318175052514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -943,8 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035c2713c482eb04c87cb4aa55e963f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeBeforeDestroy: 0
-  FadeStartTime: 0
+  TimeBeforeDestroy: 5
+  FadeStartTime: 4
+  Render: {fileID: 23624599274581608}
 --- !u!114 &114336451965304826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -962,18 +975,6 @@ MonoBehaviour:
   ThirdPoint: {fileID: 0}
   LastPoint: {fileID: 0}
   SPOOOKY: 0
---- !u!114 &114975411523349698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669009477016776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81adeadd9878631459b4090f9188ab48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpRate: 10
 --- !u!114 &114976408638674034
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -29,7 +29,7 @@ public class TriggerPushable : MonoBehaviour {
         {
             Player player = triggerFeet.GetComponentInParent<Player>();
 
-            if (player.State != player.States[StateEnum.CLIMBING])
+            if (player != null && player.State != player.States[StateEnum.CLIMBING])
             {
                 if (Input.GetButtonDown("A"))
                 {
