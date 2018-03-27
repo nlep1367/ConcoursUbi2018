@@ -38,7 +38,9 @@ public class PStateGrabbing : PlayerState
 
     public override void OnEnter(object o)
     {
+        _player.RigidBody.velocity = Vector3.zero;
         _player.Animator.SetBool(AnimatorAction, true);
+        _time = 0;
     }
 
     public override void OnExit()
