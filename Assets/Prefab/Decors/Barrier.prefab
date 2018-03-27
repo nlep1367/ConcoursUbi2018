@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4401364940534478}
   - component: {fileID: 33892030197144642}
   - component: {fileID: 23539736416515402}
+  - component: {fileID: 64460482640424432}
   m_Layer: 0
   m_Name: barriere
   m_TagString: Untagged
@@ -53,6 +54,7 @@ GameObject:
   - component: {fileID: 4320968989045644}
   - component: {fileID: 33486896875981242}
   - component: {fileID: 23440796976713326}
+  - component: {fileID: 65540473434958328}
   m_Layer: 0
   m_Name: Barriere_Stick
   m_TagString: Untagged
@@ -183,3 +185,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715092192394346}
   m_Mesh: {fileID: 4300000, guid: 390a45161374b134382cc3ff25dbf1c9, type: 3}
+--- !u!64 &64460482640424432
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1715092192394346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 390a45161374b134382cc3ff25dbf1c9, type: 3}
+--- !u!65 &65540473434958328
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1728525257499352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04807406, y: 0.00056177244, z: 0.0027284678}
+  m_Center: {x: -0.02328004, y: 0.000000003594323, z: -0.0008179783}

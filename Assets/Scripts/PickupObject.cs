@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
-public class PickupObject : MonoBehaviour {
+public class PickupObject : NetworkBehaviour {
     bool isCarryingObject = false;
     GameObject pickableObject;
     GameObject carriedObject;
@@ -10,15 +11,26 @@ public class PickupObject : MonoBehaviour {
     private HintUI hintUI;
     private Player _player;
 
+    public bool CanDrop = true;
+
     private void Start()
     {
         hintUI = FindObjectOfType<HintUI>();
         _player = this.GetComponent<Player>();
     }
 
+    public GameObject GetCarriedObject()
+    {
+        return carriedObject;
+    }
+
     // Update is called once per frame
-    void Update () {
-		if(isCarryingObject)
+    void Update() {
+
+        if (!isLocalPlayer)
+            return;
+
+        if (isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
@@ -27,7 +39,10 @@ public class PickupObject : MonoBehaviour {
             }
             else
             {
-                hintUI.Display(KeyCode.Y, "Drop the object");
+                if (CanDrop)
+                {
+                    hintUI.Display(KeyCode.Y, "Drop the object");
+                }
             }
 
             Carry(carriedObject);
@@ -37,25 +52,50 @@ public class PickupObject : MonoBehaviour {
         {
             Pickup();
         }
-	}
+    }
 
     void Carry(GameObject obj)
     {
         obj.transform.position = anchorPoint.position;
-        obj.transform.rotation = anchorPoint.rotation;      
+        obj.transform.rotation = anchorPoint.rotation;
     }
 
     void Pickup()
     {
         if (Input.GetButtonDown("Y"))
         {
-            if(pickableObject != null)
+            if (pickableObject != null)
             {
                 isCarryingObject = true;
                 carriedObject = pickableObject;
                 _player.ChangeState(StateEnum.GRABBING);
+
+                if(!isServer)
+                { 
+                    NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                    ni.localPlayerAuthority = true;
+                    Cmd_GetAutority(ni);
+                }
             }
         }
+    }
+
+    [Command]
+    public void Cmd_GetAutority(NetworkIdentity ni)
+    {
+        NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
+        ni.localPlayerAuthority = true;
+
+        ni.AssignClientAuthority(temp);
+    }
+
+
+    [Command]
+    public void Cmd_RemoveAutority(NetworkIdentity ni)
+    {
+        NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
+
+        ni.RemoveClientAuthority(temp);
     }
 
     public void InsertKeyInDoor()
@@ -73,6 +113,12 @@ public class PickupObject : MonoBehaviour {
             {
                 thrownable.ThrowAway();
                 hintUI.Hide();
+            }
+
+            if (!isServer)
+            {
+                NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                Cmd_RemoveAutority(ni);
             }
             isCarryingObject = false;
             carriedObject = null;
