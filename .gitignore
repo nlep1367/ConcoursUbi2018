@@ -32,3 +32,4 @@ sysinfo.txt
 
 # Builds
 *.apk
+/Assets/JMO Assets/Editor.meta
