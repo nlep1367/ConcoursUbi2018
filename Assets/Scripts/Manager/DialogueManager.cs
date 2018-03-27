@@ -48,6 +48,13 @@ public class DialogueManager : NetworkBehaviour, INotifyPropertyChanged {
                 Speaker = "Narrator",
                 Title = "Intro text 2",
                 Text = "who couldn't see shit...",
+            },
+                        new Dialogue
+            {
+                Id = 3,
+                Speaker = "Passerby",
+                Title = "NPC dialogue",
+                Text = "Did you try finding the keys of the back alley? It's straight across the street. Watch out... I mean look out... I mean... mind the cars, will you?",
             }
         };
     }

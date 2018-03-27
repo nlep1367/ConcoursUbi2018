@@ -29,6 +29,7 @@ public class PlayerGirl : Player {
             { StateEnum.GETTING_OFF_LADDER, new PStateScriptedLadder(this) },
             { StateEnum.PUSHING, new PStatePushing(this, PushingMovementSpeed) },
             { StateEnum.GRABBING, new PStateGrabbing(this) },
+            { StateEnum.TALKING, new PStateTalking(this) }
         };
     }
 
