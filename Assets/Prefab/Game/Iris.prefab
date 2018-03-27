@@ -3057,9 +3057,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Clips:
-  - {fileID: 8300000, guid: bd272c003a67a4ac1ae344f5df333246, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 348a4601c7e564fe59b71bf75b5490ae, type: 3}
-  - {fileID: 8300000, guid: b1939122d8b2842bcbbeff2e59bb291e, type: 3}
+  - {fileID: 0}
   CanneClips:
   - {fileID: 8300000, guid: 49272b45a5156405880e99842b0c8c5b, type: 3}
   - {fileID: 8300000, guid: 1c6fc2537c1d941728a701a52224c19c, type: 3}
@@ -3135,7 +3135,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f487674b33bbaa147b069d02d72c9bef, type: 2}
+  - {fileID: 2100000, guid: 24101f24c4306694d900e51c7cadc3b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

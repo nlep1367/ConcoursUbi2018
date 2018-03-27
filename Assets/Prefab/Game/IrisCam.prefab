@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  DistanceOffset: 5
+  DistanceOffset: 8
   BaseOffsetVector: {x: 0, y: 0.3, z: 0}
   VerticalSpeed: 5
   LateralSpeed: 5

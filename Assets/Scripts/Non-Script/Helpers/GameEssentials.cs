@@ -9,6 +9,7 @@ public static class GameEssentials {
     public static DialogueSync DialogueSync;
 
     public static PlayerGirl PlayerGirl;
-	public static PlayerDog PlayerDog;
-	public static AmbientMusicControl MusicPlayer;
+    public static PlayerDog PlayerDog;
+    public static NPC Npc;
+    public static AmbientMusicControl MusicPlayer;
 }
