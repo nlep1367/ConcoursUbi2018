@@ -32861,6 +32861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816408463}
   - component: {fileID: 816408464}
+  - component: {fileID: 816408465}
   m_Layer: 0
   m_Name: Pushable
   m_TagString: Untagged
@@ -32893,6 +32894,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &816408465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816408462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6e23fc4a69fba4dbd7e9e35e60a7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &823633714
 Prefab:
   m_ObjectHideFlags: 0
@@ -60223,6 +60235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422576363}
   - component: {fileID: 1422576364}
+  - component: {fileID: 1422576365}
   m_Layer: 0
   m_Name: Pushable
   m_TagString: Untagged
@@ -60255,6 +60268,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1422576365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1422576362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6e23fc4a69fba4dbd7e9e35e60a7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1423427970
 Prefab:
   m_ObjectHideFlags: 0
@@ -68429,6 +68453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604852345}
   - component: {fileID: 1604852346}
+  - component: {fileID: 1604852347}
   m_Layer: 0
   m_Name: Pushable
   m_TagString: Untagged
@@ -68461,6 +68486,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1604852347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604852344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6e23fc4a69fba4dbd7e9e35e60a7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1605099453
 Prefab:
   m_ObjectHideFlags: 0
