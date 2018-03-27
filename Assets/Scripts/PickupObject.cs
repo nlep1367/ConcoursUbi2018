@@ -16,8 +16,10 @@ public class PickupObject : NetworkBehaviour {
     private bool isPickingUpObject = false;
     private Vector3 lerpInitialPosition;
     private Vector3 lerpFinalPosition;
+    private Quaternion lerpInitialRotation;
+    private Quaternion lerpFinalRotation;
     private float startTime;
-    private float journeyLength;
+    public float animationTime = 2.0f;
 
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
@@ -48,7 +50,7 @@ public class PickupObject : NetworkBehaviour {
         else if(isPickingUpObject && isCarryingObject)
         {
             PickingUpAnimation(carriedObject);
-            if(Vector3.Distance(carriedObject.transform.position, lerpFinalPosition) > Vector3.kEpsilon)
+            if(Vector3.Distance(carriedObject.transform.position, lerpFinalPosition) < Vector3.kEpsilon)
             {
                 isPickingUpObject = false;
             }
@@ -61,9 +63,10 @@ public class PickupObject : NetworkBehaviour {
 
     void PickingUpAnimation(GameObject obj)
     {
-        float fracJourney =  (startTime - Time.time)* 0.0000000000000000005f;
+        float timePass = (Time.time - startTime) / animationTime;
 
-        obj.transform.position = Vector3.Lerp(lerpInitialPosition, lerpFinalPosition, fracJourney);
+        obj.transform.position = Vector3.Lerp(lerpInitialPosition, lerpFinalPosition, timePass);
+        obj.transform.rotation = Quaternion.Lerp(lerpInitialRotation, lerpFinalRotation, timePass);
     }
 
     void Carry(GameObject obj)
@@ -86,9 +89,10 @@ public class PickupObject : NetworkBehaviour {
 
                 lerpInitialPosition = pickableObject.transform.position;
                 lerpFinalPosition = anchorPoint.position;
-                journeyLength = Vector3.Distance(lerpInitialPosition, lerpFinalPosition);
-                startTime = Time.time;
+                lerpInitialRotation = pickableObject.transform.rotation;
+                lerpFinalRotation = anchorPoint.rotation;
                 isPickingUpObject = true;
+                startTime = Time.time;
             }
         }
     }
