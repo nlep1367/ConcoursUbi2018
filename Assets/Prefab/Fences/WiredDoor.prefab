@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114019730732031926}
   - component: {fileID: 65400948715364752}
   - component: {fileID: 95742605030356394}
+  - component: {fileID: 114865042396317200}
   m_Layer: 0
   m_Name: WireDoor
   m_TagString: Untagged
@@ -88,15 +89,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990059138343306}
-  m_LocalRotation: {x: -0, y: 0.70711, z: -0, w: -0.70710367}
-  m_LocalPosition: {x: -15.44, y: 0.127, z: 75.003}
-  m_LocalScale: {x: 2.1368823, y: 2.1368823, z: 1.8990066}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -9.354117, y: 0.09411764, z: 142.42647}
+  m_LocalScale: {x: 2.1368868, y: 2.1368876, z: 2.1368876}
   m_Children:
   - {fileID: 4720437271579322}
   - {fileID: 4327027330315958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 269.999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!4 &4324966745022354
 Transform:
   m_ObjectHideFlags: 1
@@ -288,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8401cf02aa029429dd00a35543528c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hUI: {fileID: 0}
 --- !u!114 &114738982384146550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +322,18 @@ MonoBehaviour:
     i15: 104
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114865042396317200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939739220832700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81adeadd9878631459b4090f9188ab48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpRate: 10
 --- !u!135 &135452631210323196
 SphereCollider:
   m_ObjectHideFlags: 1
