@@ -13,13 +13,7 @@ public class PickupObject : NetworkBehaviour {
     private HintUI hintUI;
     private Player _player;
 
-    private bool isPickingUpObject = false;
-    private Vector3 lerpInitialPosition;
-    private Vector3 lerpFinalPosition;
-    private Quaternion lerpInitialRotation;
-    private Quaternion lerpFinalRotation;
-    private float startTime;
-    public float animationTime = 2.0f;
+    private bool isPickingUp = false;
 
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
@@ -32,7 +26,7 @@ public class PickupObject : NetworkBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(!isPickingUpObject && isCarryingObject)
+		if(isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
             if (thrownable != null && thrownable.IsInThrownZone)
@@ -47,32 +41,21 @@ public class PickupObject : NetworkBehaviour {
             Carry(carriedObject);
             Drop();
         }
-        else if(isPickingUpObject && isCarryingObject)
-        {
-            PickingUpAnimation(carriedObject);
-            if(Vector3.Distance(carriedObject.transform.position, lerpFinalPosition) < Vector3.kEpsilon)
-            {
-                isPickingUpObject = false;
-            }
-        }
         else
         {
             Pickup();
         }
 	}
 
-    void PickingUpAnimation(GameObject obj)
-    {
-        float timePass = (Time.time - startTime) / animationTime;
-
-        obj.transform.position = Vector3.Lerp(lerpInitialPosition, lerpFinalPosition, timePass);
-        obj.transform.rotation = Quaternion.Lerp(lerpInitialRotation, lerpFinalRotation, timePass);
-    }
-
     void Carry(GameObject obj)
     {
         obj.transform.position = anchorPoint.position;
         obj.transform.rotation = anchorPoint.rotation;      
+    }
+
+    public void PickingUpAnimation()
+    {
+        isPickingUp = true;
     }
 
     void Pickup()
@@ -85,16 +68,16 @@ public class PickupObject : NetworkBehaviour {
                 carriedObject = pickableObject;
                 _player.ChangeState(StateEnum.GRABBING);
 
+                StartCoroutine(WaitForPickUp());
                 CmdDisableRigidBody(carriedObject);
-
-                lerpInitialPosition = pickableObject.transform.position;
-                lerpFinalPosition = anchorPoint.position;
-                lerpInitialRotation = pickableObject.transform.rotation;
-                lerpFinalRotation = anchorPoint.rotation;
-                isPickingUpObject = true;
-                startTime = Time.time;
             }
         }
+    }
+
+    public IEnumerator WaitForPickUp()
+    {
+        yield return new WaitForSeconds(0.75f);
+        PickingUpAnimation();
     }
 
     public void InsertKeyInDoor()
@@ -117,6 +100,7 @@ public class PickupObject : NetworkBehaviour {
                 hintUI.Hide();
             }
             isCarryingObject = false;
+            isPickingUp = false;
             carriedObject = null;
         }
     }
