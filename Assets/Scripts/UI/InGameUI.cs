@@ -41,9 +41,9 @@ public class InGameUI : MonoBehaviour {
 
     void Init()
     {
-        objectivesUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
-        scoreUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
-        hintUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
+        objectivesUI.transform.GetChild(0).gameObject.SetActive(true);
+        scoreUI.transform.GetChild(0).gameObject.SetActive(true);
+        hintUI.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     void InitIrisUI()
@@ -58,7 +58,7 @@ public class InGameUI : MonoBehaviour {
     {
         Init();
         controlsUI.DisplayControls(false);
-        scaredEffect.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
+        scaredEffect.transform.GetChild(0).gameObject.SetActive(true);
         Destroy(heartbeatsUI.gameObject);
     }
 
