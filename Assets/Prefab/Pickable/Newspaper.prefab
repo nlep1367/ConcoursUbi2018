@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4390538945073282}
   - component: {fileID: 33978470819112200}
   - component: {fileID: 23819194664093960}
+  - component: {fileID: 114854148082964514}
   m_Layer: 0
   m_Name: sm_Newspaper
   m_TagString: Untagged
@@ -212,3 +213,18 @@ MonoBehaviour:
     i15: 137
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114854148082964514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925213515467344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0005

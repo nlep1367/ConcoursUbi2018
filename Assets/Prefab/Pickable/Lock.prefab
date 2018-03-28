@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 4017563282075954}
   - component: {fileID: 33449064463134210}
   - component: {fileID: 23738427359375544}
+  - component: {fileID: 114848639318518838}
   m_Layer: 0
   m_Name: Cadenas
   m_TagString: Untagged
@@ -199,3 +200,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!114 &114848639318518838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919578252542076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0005

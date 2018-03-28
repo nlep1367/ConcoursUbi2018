@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4788351382453912}
   - component: {fileID: 33287811312370718}
   - component: {fileID: 23643891359521412}
+  - component: {fileID: 114240626737611756}
   m_Layer: 0
   m_Name: keys
   m_TagString: Untagged
@@ -144,6 +145,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.05, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114240626737611756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159938415635362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0005
 --- !u!114 &114392880382348652
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4600921098567756}
   - component: {fileID: 33183613967642040}
   - component: {fileID: 23772565453705720}
+  - component: {fileID: 114899558769767818}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -195,6 +196,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!114 &114899558769767818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321169714521500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0005
 --- !u!114 &114972078122999060
 MonoBehaviour:
   m_ObjectHideFlags: 1
