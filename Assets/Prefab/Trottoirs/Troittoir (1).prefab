@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4929311336771386}
   - component: {fileID: 33842667579301310}
   - component: {fileID: 23935830620638966}
+  - component: {fileID: 65558247443858456}
   m_Layer: 0
   m_Name: sm_trottoir
   m_TagString: Untagged
@@ -36,7 +37,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4531024877870296}
-  - component: {fileID: 65098564723292294}
   m_Layer: 0
   m_Name: Troittoir (1)
   m_TagString: Terrain
@@ -51,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428141818311952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.57, y: 0, z: 9.05}
+  m_LocalPosition: {x: -4.57, y: 0, z: 0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4929311336771386}
@@ -112,15 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365973660625328}
   m_Mesh: {fileID: 4300000, guid: 9d64b1ab819046e4b8c7d5cf3e26650b, type: 3}
---- !u!65 &65098564723292294
+--- !u!65 &65558247443858456
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1428141818311952}
+  m_GameObject: {fileID: 1365973660625328}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 0.33, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.039999995, y: 0.03999999, z: 0.0014999998}
+  m_Center: {x: 0.0000000037252903, y: -2.3283064e-10, z: 0.0007499999}

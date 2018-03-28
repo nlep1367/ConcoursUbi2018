@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class TriggerRead : NetworkBehaviour {
+public class TriggerMorph32 : MonoBehaviour {
     public List<GameObject> MorphingObjects;
-    public HintUI HintUI;
+    public HintUI HintUI; 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,18 +12,18 @@ public class TriggerRead : NetworkBehaviour {
             HintUI.Display(Controls.X, "Read");
         }
     }
-
-
+    
     void OnTriggerStay(Collider other)
     {
-        if (GameEssentials.IsGirl(other))
+        if (Input.GetButtonDown("X") && GameEssentials.IsGirl(other))
         {
             GameEssentials.PlayerGirl.ChangeState(StateEnum.READING);
             foreach (GameObject go in MorphingObjects)
             {
-                Rpc_SetMorphActiveToServer(go);
+                go.GetComponent<MorphMaterial>().Rpc_SetActive();
             }
             HintUI.Hide();
+            Destroy(this);
         }
     }
 
@@ -34,11 +33,5 @@ public class TriggerRead : NetworkBehaviour {
         {
             HintUI.Hide();
         }
-    }
-
-    [ClientRpc]
-    public void Rpc_SetMorphActiveToServer(GameObject go)
-    {
-        go.GetComponent<MorphMaterial>().IsActive = true;
     }
 }

@@ -728,6 +728,7 @@ GameObject:
   - component: {fileID: 136940203398832566}
   - component: {fileID: 114363163598819910}
   - component: {fileID: 114113253177008070}
+  - component: {fileID: 114445859608549456}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -3036,6 +3037,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2cdf188be05ba4fedbab2db64062502c, type: 3}
   - {fileID: 8300000, guid: 5ad3c16bc0b8b40508686e8e231df12b, type: 3}
   - {fileID: 8300000, guid: c9c0a758152f644f9bbd69e1d7a09f02, type: 3}
+--- !u!114 &114445859608549456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fd1d8c2c4a4d24692f36853ac69ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 10
 --- !u!114 &114463547729033316
 MonoBehaviour:
   m_ObjectHideFlags: 1

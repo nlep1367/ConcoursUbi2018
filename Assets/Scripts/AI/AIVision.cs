@@ -13,18 +13,20 @@ public class AIVision : MonoBehaviour {
     private float NormalizedDist;
 
     private List<Transform> Players;
-
+    /*
     private Transform GirlTransform;
-    private Transform DoggoTransform;
+    private Transform DoggoTransform;*/
 
     // Use this for initialization
     void Start () {
-        GirlTransform = GameObject.FindGameObjectWithTag("Fille").transform;
-        DoggoTransform = GameObject.FindGameObjectWithTag("Doggo").transform;
+    /*    GirlTransform = GameObject.FindGameObjectWithTag("Fille").transform;
+        DoggoTransform = GameObject.FindGameObjectWithTag("Doggo").transform;*/
     }
 
     public void Update()
     {
+
+
         // Given an angle from 90 degree we find the sin that we require to determine if something is in vision radius
         NormalizedDist = Mathf.Sin((90 - (SightDegreeAngle / 2)) * Mathf.Deg2Rad);
     }
@@ -41,7 +43,13 @@ public class AIVision : MonoBehaviour {
 
     public bool SeeSomething(out Vector3 Target)
     {
-        if (Vector3.Distance(GirlTransform.position, DoggoTransform.position) < GirlDogProximityDistance)
+        if (GameEssentials.PlayerGirl == null || GameEssentials.PlayerDog == null)
+        {
+            Target = transform.position;
+            return false;
+        }
+
+        if (Vector3.Distance(GameEssentials.PlayerGirl.transform.position, GameEssentials.PlayerDog.transform.position) < GirlDogProximityDistance)
         {
             Target = transform.position;
             return false;
@@ -52,12 +60,12 @@ public class AIVision : MonoBehaviour {
     
     public bool IsDoggoInSight(out Vector3 Target)
     {
-        Vector3 Result =   DoggoTransform.position - transform.position;
+        Vector3 Result = GameEssentials.PlayerDog.transform.position - transform.position;
         float targetDistance = Result.magnitude;
             
         if (targetDistance < SightDistance && InsideVision(Result)) //Guard see the doggo
         {
-            Target = DoggoTransform.position;
+            Target = GameEssentials.PlayerDog.transform.position;
             return true;
         }
         else

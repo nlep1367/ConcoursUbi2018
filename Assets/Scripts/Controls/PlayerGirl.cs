@@ -44,7 +44,9 @@ public class PlayerGirl : Player {
         {
             if (doggoOS == null)
             {
-                doggoOS = GameObject.FindGameObjectWithTag("Doggo").GetComponent<ObjectSync>();
+                GameObject OB = GameObject.FindGameObjectWithTag("Doggo");
+                if (OB != null)
+                    doggoOS = OB.GetComponent<ObjectSync>();
             }
             else
             {

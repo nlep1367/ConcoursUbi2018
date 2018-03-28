@@ -71,6 +71,7 @@ public static class MovementMode {
         cameraRightProjection.y = 0;
         cameraRightProjection.Normalize();
 
+        Vector3 ySpeed = new Vector3(0, player.RigidBody.velocity.y,0);
         player.RigidBody.velocity = Vector3.zero;
 
         if (horizontalAxis >= float.Epsilon || horizontalAxis <= -float.Epsilon)
@@ -93,6 +94,7 @@ public static class MovementMode {
             player.RigidBody.velocity = velocityProjection.normalized * maxSpeed;
         }
 
+        player.RigidBody.velocity += ySpeed;
         velocityProjection.y = 0;
 
         if (velocityProjection != Vector3.zero)
