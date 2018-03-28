@@ -14,7 +14,8 @@ public class PlayerGirl : Player {
 
     public bool shaderActivated = true;
 
-    private GameObject doggo;
+    private ObjectSync doggoOS;
+    public Fear fear;
 
     new private void Awake()
     {
@@ -41,13 +42,13 @@ public class PlayerGirl : Player {
 
         if(Camera != null)
         {
-            if (doggo == null)
+            if (doggoOS == null)
             {
-                doggo = GameObject.FindGameObjectWithTag("Doggo");
+                doggoOS = GameObject.FindGameObjectWithTag("Doggo").GetComponent<ObjectSync>();
             }
             else
             {
-                doggo.GetComponent<ObjectSync>().Rpc_SetScaredEffectColor(Camera.backgroundColor);
+                doggoOS.Rpc_SetScaredEffectColor(Camera.backgroundColor);
             }
         }
 
@@ -62,37 +63,31 @@ public class PlayerGirl : Player {
 
     public void AdjustMovementSpeed()
     {
-        Fear f = GetComponent<Fear>();
-
-        if(f != null)
+        float ratio = 0;
+        switch (fear.fearState)
         {
-            float ratio = 0;
-            switch (f.fearState)
-            {
-                case Fear.FearState.Calm:
-                    ratio = 1f;
-                    break;
+            case Fear.FearState.Calm:
+                ratio = 1f;
+                break;
 
-                case Fear.FearState.Anxious:
-                    ratio = .75f;
-                    break;
+            case Fear.FearState.Anxious:
+                ratio = .75f;
+                break;
 
-                case Fear.FearState.Stress:
-                    ratio = .5f;
-                    break;
+            case Fear.FearState.Stress:
+                ratio = .5f;
+                break;
 
-                case Fear.FearState.Panic:
-                    ratio = .25f;
-                    break;
+            case Fear.FearState.Panic:
+                ratio = .25f;
+                break;
 
-                case Fear.FearState.NearDeath:
-                    ratio = .1f;
-                    break;
-            }
-
-            MovementSpeed = MaxMovementSpeed * ratio;
-            PStateGrounded a = States[StateEnum.GROUNDED] as PStateGrounded;
-            a.SetMovementSpeed(MovementSpeed);
+            case Fear.FearState.NearDeath:
+                ratio = .1f;
+                break;
         }
+
+        PStateGrounded state = States[StateEnum.GROUNDED] as PStateGrounded;
+        state.SetMovementSpeed(MaxMovementSpeed * ratio);
     }
 }
