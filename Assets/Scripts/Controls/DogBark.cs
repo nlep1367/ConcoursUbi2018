@@ -42,6 +42,15 @@ public class DogBark : NetworkBehaviour {
 			GetComponent<EchoSoundsControl> ().BarkJoyfully ();
             GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
         }
+
+        /*
+        if (Input.GetButtonDown("Y"))
+        {
+            Cmd_StartBark(yellow);
+            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+        }
+        */
+
         if (Input.GetButtonDown("B"))
         {
 			Cmd_StartBark(red);

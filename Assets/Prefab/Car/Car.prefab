@@ -703,9 +703,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0056f7cbdca444982bd2531bfd1a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 1, g: 1, b: 1, a: 0}
+  RandomMaterial:
+  - {fileID: 2100000, guid: 67750c9b4b7628c4da5e0a1b4dbdae9a, type: 2}
+  - {fileID: 2100000, guid: 1ba82a401f722934db75e12c15cf41f4, type: 2}
+  - {fileID: 2100000, guid: e068ca7d4db19f94a9bca487a3e5e8eb, type: 2}
+  - {fileID: 2100000, guid: 79fb886e7b8063d4aa98eaedc495bf9d, type: 2}
+  - {fileID: 2100000, guid: 68297276ffa71f04e9021a916a1239ba, type: 2}
+  - {fileID: 2100000, guid: 007b9e2941f2b684881c8cac958bfb57, type: 2}
   isBreaking: 0
   Speed: 10
   Agent: {fileID: 195041114819494638}

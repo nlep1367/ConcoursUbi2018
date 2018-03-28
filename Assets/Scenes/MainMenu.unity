@@ -7574,7 +7574,7 @@ MonoBehaviour:
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
-  m_LogLevel: 0
+  m_LogLevel: 4
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
@@ -7653,9 +7653,9 @@ MonoBehaviour:
   hostPool: {fileID: 713423045}
   waitingPanel: {fileID: 1947545211}
   content: {fileID: 1820080629}
-  createButton: {fileID: 0}
-  refreshButton: {fileID: 0}
-  newGameField: {fileID: 0}
+  createButton: {fileID: 1808322252}
+  refreshButton: {fileID: 1849165006}
+  newGameField: {fileID: 2058042682}
   gameEnd: {fileID: 511509788}
 --- !u!1 &2005311281
 GameObject:
