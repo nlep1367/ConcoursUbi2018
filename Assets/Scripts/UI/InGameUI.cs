@@ -38,7 +38,7 @@ public class InGameUI : MonoBehaviour {
         {
             string s = (Random.Range(0f, 1f) < 0.5f) ? "Get a GF" : " This is a long objective! Name that should use the long prefab";
             objectives.Add(s);
-            UpdateObjective(objectives);
+            //UpdateObjective(objectives);
         }
         /*else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -62,10 +62,10 @@ public class InGameUI : MonoBehaviour {
         }
     }
 
-    public void UpdateObjective(List<string> messages)
+   /* public void UpdateObjective(List<string> messages)
     {
-        objectivesUI.UpdateObjectives(messages);
-    }
+       // objectivesUI.UpdateObjectives(messages);
+    }*/
 
     /*public void AddScore(int points, string message)
     {

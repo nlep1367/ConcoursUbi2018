@@ -19,7 +19,7 @@ public class PStateGroundedDog : PStateGrounded
         base.InterpretInput();
         _player.Animator.SetFloat("Speed", _player.RigidBody.velocity.magnitude);
 
-        if (Input.GetButtonDown("X"))
+        if (Input.GetButtonDown("A"))
         {
             _player.RigidBody.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
             _player.ChangeState(StateEnum.JUMPING);

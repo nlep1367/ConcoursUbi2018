@@ -26,6 +26,12 @@ public class NetworkScoreManager : NetworkBehaviour {
     public float BarkRadiusAdaptModifier = 0.1f;
     public float TerrorAdaptModifier = 0.1f;
 
+
+    private void Awake()
+    {
+        GameEssentials.ScoreManager = this;
+    }
+
     int _gameScore = 0;
 
     public int GameScore
