@@ -91,7 +91,6 @@ public class AmbientMusicControl : MonoBehaviour
 			m_AreAmbiantClipsStopping [i] = false;
 		}
 
-		m_StressController.Initialize ();
 		m_MenuController.Initialize ();
 
 		if (IsMainMenu) 
@@ -100,6 +99,7 @@ public class AmbientMusicControl : MonoBehaviour
 		} 
 		else 
 		{
+			m_StressController.Initialize ();
 			m_VolumeController.SetMusicVolume ();
 			m_VolumeController.SetSoundsVolume ();
 
