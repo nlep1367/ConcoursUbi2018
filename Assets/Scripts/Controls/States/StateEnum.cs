@@ -12,4 +12,5 @@ public enum StateEnum  {
     LANDING,
     GRABBING,
     BARKING,
+    TALKING,
 }

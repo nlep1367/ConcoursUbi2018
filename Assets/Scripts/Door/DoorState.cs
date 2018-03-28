@@ -32,7 +32,7 @@ public class DoorState : NetworkBehaviour {
         foreach (GameObject go in RelatedKey)
         {
             // Bonne clef
-            if (Vector3.Distance(go.transform.position, dt.transform.position) < 1)
+            if (Vector3.Distance(go.transform.position, dt.transform.position) < 3)
             {
                 GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
 

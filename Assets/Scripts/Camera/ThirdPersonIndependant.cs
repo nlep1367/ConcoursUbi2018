@@ -22,7 +22,7 @@ public class ThirdPersonIndependant : ThirdPerson {
 
         if (verticalRotation != 0)
         {
-            _offsetVector = Quaternion.AngleAxis(verticalRotation * VerticalSpeed, Vector3.right) * _offsetVector;
+            _offsetVector = Quaternion.AngleAxis(verticalRotation * VerticalSpeed, this.transform.right) * _offsetVector;
             _offsetVector.y = Mathf.Clamp(_offsetVector.y, MinY, MaxY);
             _offsetVector.Normalize();
         }

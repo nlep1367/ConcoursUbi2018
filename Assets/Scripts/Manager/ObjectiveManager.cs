@@ -51,6 +51,14 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
                 Description = "Press the traffic light button in order to change the traffic lights to red and make cars stop.",
                 SuccessPoints = 300,
                 FailurePoints = -200,
+            },
+            new Objective
+            {
+                Id = 3,
+                Title = "Get to the chopper!",
+                Description = "The dude told you to go in some shady back alley. Now do it!",
+                SuccessPoints = 1500,
+                FailurePoints = 0,
             }
         };
     }
