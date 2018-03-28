@@ -129,6 +129,11 @@ public class MainMenuController : MonoBehaviour {
         SceneManager.LoadSceneAsync("Credits");
     }
 
+    public void Leaderboard()
+    {
+        SceneManager.LoadSceneAsync("Leaderboard");
+    }
+
     public void Quit()
     {
         Application.Quit();

@@ -87,8 +87,11 @@ public class FleeAI : NetworkBehaviour
                 break;
         }
 
-        if(Mode != SquirrelMode.Over)
-            Agent.SetDestination(CurrentPoint.position);
+		if (Mode != SquirrelMode.Over) {
+			Agent.SetDestination (CurrentPoint.position);
+		}
+
+		transform.GetComponent<SquirrelSoundControl> ().PlaySpooked ();
     }
 
     void Update()
@@ -100,6 +103,7 @@ public class FleeAI : NetworkBehaviour
         {
             SPOOOKY = false;
             Spook(new Vector3( 0, 0, 0 ));
+			transform.GetComponent<SquirrelSoundControl> ().PlayInitSpooked ();
         }
         
         if(!Woofer)
@@ -129,7 +133,7 @@ public class FleeAI : NetworkBehaviour
 
         Mode = SquirrelMode.Over;
 
-        Woofer.HasBarked -= Spook;
+		Woofer.HasBarked -= Spook;
         Killer.Rpc_Kill();
     }
 }
