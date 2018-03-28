@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4722343401541360}
   - component: {fileID: 136632454752339636}
   - component: {fileID: 114749930959515280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dumpster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4016459185290858}
   - component: {fileID: 33627653854882244}
   - component: {fileID: 23046734440026960}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sm_Dumpster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
