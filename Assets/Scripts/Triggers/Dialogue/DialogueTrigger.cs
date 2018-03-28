@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class DialogueTrigger : MonoBehaviour {
     public List<int> DialoguesId;
 
     private void OnTriggerEnter(Collider other)
     {
-        NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (networkBehaviour && networkBehaviour.isLocalPlayer && other.tag == "Fille")
+        if (GameEssentials.IsGirl(other))
         {
 
             foreach (int i in DialoguesId)

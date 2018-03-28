@@ -13,4 +13,5 @@ public enum StateEnum  {
     GRABBING,
     BARKING,
     TALKING,
+    READING,
 }

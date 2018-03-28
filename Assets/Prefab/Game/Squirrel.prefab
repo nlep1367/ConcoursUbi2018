@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1669009477016776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c1ded6aaba842b49687dba8c2e5917, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ca93aab296875746a5b42b077ca18c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InitialSpookedNoise: {fileID: 8300000, guid: 2e174f6b09ffd4d8284f9d842753ceb2, type: 3}
