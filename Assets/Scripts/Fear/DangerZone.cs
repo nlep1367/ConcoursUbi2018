@@ -5,6 +5,8 @@ using UnityEngine;
 public class DangerZone : MonoBehaviour {
 
     public float fearIncrement = 10f;
+    public string reasonPointLoss = "";
+    public int pointLoss = 10;
     private float nextFearUpdate = 1;
 
     private void OnTriggerStay(Collider other)
@@ -16,6 +18,9 @@ public class DangerZone : MonoBehaviour {
             if (Time.time >= nextFearUpdate)
             {
                 fear.IncreaseFear(fearIncrement);
+
+                GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_LosePoints(new ScoreObj(pointLoss * ((fear.fearState >= Fear.FearState.Stress) ? 2 : 1), reasonPointLoss));
+
                 nextFearUpdate = Time.time + 1;
             }
         }
