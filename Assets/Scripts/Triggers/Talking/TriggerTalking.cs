@@ -8,13 +8,12 @@ public class TriggerTalking : MonoBehaviour {
     public int DialogueId;
     public int ObjectiveId;
     public Dialogue Dialogue;
-    public Objective Objective;
+    public int[] Objectives;
     public HintUI HintUI;
     public ObjectiveStateEnum ObjectiveState;
 
     private void Start()
     {
-        Objective = GameEssentials.ObjectiveManager.Objectives.Where(objective => objective.Id == Objective.Id).First();
         Dialogue = GameEssentials.DialogueManager.Dialogues.Where(dialogue => dialogue.Id == DialogueId).First();
     }
 
@@ -38,22 +37,13 @@ public class TriggerTalking : MonoBehaviour {
             GameEssentials.DialogueSync.Cmd_ChangeDialogueToServer(Dialogue);
             HintUI.Hide();
 
-            switch (ObjectiveState)
+            GameEssentials.ObjectiveSync.Cmd_RemoveObjectives();
+
+            foreach (int i in Objectives)
             {
-                case ObjectiveStateEnum.FAIL:
-                    GameEssentials.ObjectiveSync.Cmd_FailObjectiveToServer(Objective);
-
-                    break;
-                case ObjectiveStateEnum.SUCCESS:
-                    GameEssentials.ObjectiveSync.Cmd_CompleteObjectiveToServer(Objective);
-                    break;
-                case ObjectiveStateEnum.PROGRESS:
-                    GameEssentials.ObjectiveSync.Cmd_AddObjectiveToServer(Objective);
-
-                    break;
-                default:
-                    break;
+                GameEssentials.ObjectiveSync.Cmd_AddObjectiveToServer(GameEssentials.ObjectiveManager.Objectives.Where(d => d.Id == i).First());
             }
+
         }
     }
 

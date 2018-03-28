@@ -338,6 +338,13 @@ public class DialogueManager : NetworkBehaviour, INotifyPropertyChanged
                     Speaker = "Iris",
                     Title = "End",
                     Text = "Psssht. Who needs Google Maps when you've got Echo Maps. Good boi!",
+                },
+                new Dialogue
+                {
+                    Id = 43,
+                    Speaker = "Iris",
+                    Title = "End",
+                    Text = "How is there so much to do in such a small street?",
                 }
             };
     }

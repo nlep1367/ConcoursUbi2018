@@ -4,39 +4,31 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Networking;
 
-public class ObjectiveTrigger : NetworkBehaviour {
-    public int ObjectiveId;
+public class ObjectiveTrigger : NetworkBehaviour
+{
+    public int[] ObjectiveId;
     public Objective Objective;
-    public ObjectiveStateEnum Status;
-    private ObjectiveManager _objectiveManager;
 
     private void Start()
     {
-        _objectiveManager = GameEssentials.ObjectiveManager;
-        Objective = _objectiveManager.Objectives.Where(obj => obj.Id == ObjectiveId).First();
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        ObjectiveManager _objectiveManager = GameEssentials.ObjectiveManager;
+
         NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
         if (networkBehaviour && networkBehaviour.isLocalPlayer && other.gameObject.GetComponent<TriggerFeet>())
         {
-            switch (Status)
+            GameEssentials.ObjectiveSync.Cmd_RemoveObjectives();
+            
+            foreach (int i in ObjectiveId)
             {
-                case ObjectiveStateEnum.FAIL:
-                    GameEssentials.ObjectiveSync.Cmd_FailObjectiveToServer(Objective);
-
-                    break;
-                case ObjectiveStateEnum.SUCCESS:
-                    GameEssentials.ObjectiveSync.Cmd_CompleteObjectiveToServer(Objective);
-                    break;
-                case ObjectiveStateEnum.PROGRESS:
-                    GameEssentials.ObjectiveSync.Cmd_AddObjectiveToServer(Objective);
-
-                    break;
-                default:
-                    break;
+                GameEssentials.ObjectiveSync.Cmd_AddObjectiveToServer(_objectiveManager.Objectives.Where(d => d.Id == i).First());
             }
+
+            Destroy(this);
         }
     }
 }
