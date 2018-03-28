@@ -22,6 +22,8 @@ public class TrafficLightNode : NetworkBehaviour {
     private bool isReadyP = true;
     public bool hasPedestrian = false;
 
+	private TrafficLightSoundsControl soundController;
+
     public override void OnStartServer()
     {
         InitLight();
@@ -154,6 +156,10 @@ public class TrafficLightNode : NetworkBehaviour {
 
     public void HitPedestrianButton()
     {
+		if (soundController == null)
+			soundController = GetComponent<TrafficLightSoundsControl> ();
+		
+		soundController.PlayButtonPressed ();
         hasPedestrian = true;
     }
 }
