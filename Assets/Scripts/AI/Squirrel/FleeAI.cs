@@ -38,7 +38,7 @@ public class FleeAI : NetworkBehaviour
 
     void Start()
     {
-//        if (FirstPoint != null)
+        if (FirstPoint != null)
             Initialize();
 
     }
@@ -57,8 +57,8 @@ public class FleeAI : NetworkBehaviour
     [Server]
     void Spook(Vector3 SpookyLocation)
     {
-//        if (Vector3.Distance(SpookyLocation, transform.position) > Adaptation.BarkRange)
-//            return;
+        if (Vector3.Distance(SpookyLocation, transform.position) > Adaptation.BarkRange)
+            return;
 
         if (WasSpooked != null)
             WasSpooked.Invoke();
@@ -91,7 +91,7 @@ public class FleeAI : NetworkBehaviour
 			Agent.SetDestination (CurrentPoint.position);
 		}
 
-		transform.GetComponent<SquirelSoundControl> ().PlaySpooked ();
+		transform.GetComponent<SquirrelSoundControl> ().PlaySpooked ();
     }
 
     void Update()
@@ -103,7 +103,7 @@ public class FleeAI : NetworkBehaviour
         {
             SPOOOKY = false;
             Spook(new Vector3( 0, 0, 0 ));
-			transform.GetComponent<SquirelSoundControl> ().PlayInitSpooked ();
+			transform.GetComponent<SquirrelSoundControl> ().PlayInitSpooked ();
         }
         
         if(!Woofer)
@@ -134,7 +134,6 @@ public class FleeAI : NetworkBehaviour
         Mode = SquirrelMode.Over;
 
 		Woofer.HasBarked -= Spook;
-
         Killer.Rpc_Kill();
     }
 }
