@@ -727,6 +727,7 @@ GameObject:
   - component: {fileID: 82542170765285014}
   - component: {fileID: 136940203398832566}
   - component: {fileID: 114363163598819910}
+  - component: {fileID: 114113253177008070}
   m_Layer: 8
   m_Name: Iris
   m_TagString: Fille
@@ -2965,6 +2966,19 @@ MonoBehaviour:
   Duration: 3
   StillDuration: 2
   ContourBegin: 0.2
+--- !u!114 &114113253177008070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b298f50498e21846addb7f3838b5bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearState: 15
+  fearValue: 0
 --- !u!114 &114131605224860736
 MonoBehaviour:
   m_ObjectHideFlags: 1
