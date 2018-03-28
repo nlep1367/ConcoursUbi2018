@@ -37,4 +37,9 @@ public class PStateGrounded : PlayerState {
     {
         _camera = camera;
     }
+
+    public void SetMovementSpeed(float speed)
+    {
+        _maxSpeed = speed;
+    }
 }
