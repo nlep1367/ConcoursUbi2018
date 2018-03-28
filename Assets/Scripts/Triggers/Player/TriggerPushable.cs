@@ -17,7 +17,7 @@ public class TriggerPushable : MonoBehaviour {
 
         if (os != null && os.hasAuthority && os.CompareTag("Fille"))
         {
-            hintUI.Display(Controls.A, "Push the box");
+            hintUI.Display(Controls.B, "Push the box");
         }
     }
 
@@ -31,7 +31,7 @@ public class TriggerPushable : MonoBehaviour {
 
             if (player != null && player.State != player.States[StateEnum.CLIMBING])
             {
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("B"))
                 {
                     
                     Vector3 pushDirection = this.transform.parent.position - this.transform.position;

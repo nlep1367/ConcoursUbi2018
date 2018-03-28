@@ -41,6 +41,15 @@ public class DogBark : NetworkBehaviour {
             Cmd_StartBark(green);
             GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
         }
+
+        /*
+        if (Input.GetButtonDown("Y"))
+        {
+            Cmd_StartBark(yellow);
+            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+        }
+        */
+
         if (Input.GetButtonDown("B"))
         {
             Cmd_StartBark(red);
@@ -58,8 +67,29 @@ public class DogBark : NetworkBehaviour {
             Echo = GameObject.FindGameObjectWithTag("Fille").GetComponent<DogBarkEcho>();
 
         Echo.StartBark(color);
+        RpcBarkVisible(color);
 
-        if(HasBarked != null)
+        if (HasBarked != null)
             HasBarked.Invoke(transform.position);
+    }
+
+    [ClientRpc]
+    void RpcBarkVisible(Color color)
+    {
+        GameObject PlaneBark = GameObject.FindGameObjectWithTag("DogEcho");
+        if (PlaneBark)
+        {
+            Vector3 pos = GameObject.FindGameObjectWithTag("Doggo").transform.position;
+            pos.y += 0.1f;
+            PlaneBark.transform.position = pos;
+            Renderer Rend = PlaneBark.GetComponent<Renderer>();
+            if (Rend)
+            {
+                Rend.material.SetColor("_Color", color);
+                Rend.material.SetVector("_EchoCenter", pos);
+                Rend.material.SetFloat("_EchoRadius", Adaptation.MaximumBarkRadius);
+                Rend.enabled = true;
+            }
+        }
     }
 }

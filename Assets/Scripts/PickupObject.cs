@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
@@ -16,6 +15,7 @@ public class PickupObject : NetworkBehaviour {
     
     public bool CanDrop = true;
     private bool isPickingUp = false;
+    private bool isForceHideHintUi = false;
 
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
@@ -31,6 +31,11 @@ public class PickupObject : NetworkBehaviour {
         return carriedObject;
     }
 
+    public void SetForceHideHintUi(bool value)
+    {
+        isForceHideHintUi = value;
+    }
+
     // Update is called once per frame
     void Update () {
         if (!isLocalPlayer)
@@ -39,15 +44,19 @@ public class PickupObject : NetworkBehaviour {
 		if(isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
-            if (thrownable != null && thrownable.IsInThrownZone)
+
+            if(!isForceHideHintUi)
             {
-                hintUI.Display(Controls.Y, "Throw in the garbage");
-            }
-            else
-            {
-                if (CanDrop)
+                if (thrownable != null && thrownable.IsInThrownZone)
                 {
-                    hintUI.Display(Controls.Y, "Drop the object");
+                    hintUI.Display(Controls.X, "Throw in the garbage");
+                }
+                else
+                {
+                    if (CanDrop)
+                    {
+                        hintUI.Display(Controls.X, "Drop the object");
+                    }
                 }
             }
 
@@ -73,7 +82,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Pickup()
     {
-        if (Input.GetButtonDown("Y"))
+        if (Input.GetButtonDown("X"))
         {
             if (pickableObject != null)
             {
@@ -135,13 +144,14 @@ public class PickupObject : NetworkBehaviour {
 
     public void InsertKeyInDoor()
     {
+        SetForceHideHintUi(false);
         isCarryingObject = false;
         carriedObject = null;
     }
 
     void Drop()
     {   
-        if (Input.GetButtonDown("Y"))
+        if (Input.GetButtonDown("X"))
         {
             droppedObject = carriedObject;
             CmdEnableRigidBody(droppedObject);
@@ -211,7 +221,7 @@ public class PickupObject : NetworkBehaviour {
     {
         if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
-			hintUI.Display(Controls.Y, "Pick up " + collider.gameObject.name);
+			hintUI.Display(Controls.X, "Pick up " + collider.gameObject.name);
 			pickableObject = collider.gameObject;
         }
     }

@@ -20,7 +20,7 @@ public class DoorState : NetworkBehaviour {
 
     private void Update()
     {
-        if (IsGirlInRange && Input.GetButtonDown("Y") && Locks.Count == 0)
+        if (IsGirlInRange && Input.GetButtonDown("A") && Locks.Count == 0)
         {
             OpenDoor();
             CloseDoor();
@@ -34,19 +34,38 @@ public class DoorState : NetworkBehaviour {
             // Bonne clef
             if (Vector3.Distance(go.transform.position, dt.transform.position) < 3)
             {
-                GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
+                if(IsGirlInRange && Input.GetButtonDown("A") && Locks.Count > 0)
+                {
+                    GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
+                    dt.hUI.Display(Controls.A, "Open Door");
 
-                GameObject lck = Locks[Locks.Count - 1];
+                    GameObject lck = Locks[Locks.Count - 1];
 
-                lck.GetComponent<FadeMaterial>().Rpc_Kill();
-                go.GetComponent<FadeMaterial>().Rpc_Kill();
+                    lck.GetComponent<FadeMaterial>().Rpc_Kill();
+                    go.GetComponent<FadeMaterial>().Rpc_Kill();
                 
-                Locks.Remove(lck);
-                RelatedKey.Remove(go);
-                break;
+                    Locks.Remove(lck);
+                    RelatedKey.Remove(go);
+                    break;
+                }
             }
         }
 
+    }
+
+    //Always call this funtion if you are sure that the girl is in range of the door
+    public bool IsKeyRelatedToLocks()
+    {
+        GameObject carriedObj = GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().GetCarriedObject();
+
+        foreach (GameObject go in RelatedKey)
+        {
+            if (carriedObj == go)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void Start()

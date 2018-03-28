@@ -13,8 +13,10 @@ public class Barrier : NetworkBehaviour {
     public Animator Anim;
     public BarrierTrigger BT;
 
-    public List<GameObject> Keys;
+    public GameObject Key;
     public bool Locked;
+
+    public bool hasBeenUnlocked = false;
 
     private bool GirlIsInsideTrigger = false;
     private BarrierState CurrentState = BarrierState.Closed;
@@ -31,7 +33,17 @@ public class Barrier : NetworkBehaviour {
     [Server]
     private void Update()
     {
-        if(GirlIsInsideTrigger && Keys.Count == 0 && Input.GetButtonDown("Y"))
+        if (!hasBeenUnlocked)
+        {
+            GameObject po = BT.GetPickupObject();
+            if (Key == po && Input.GetButtonDown("A"))
+            {
+                po.GetComponent<ObjectSync>().Rpc_Destroy();
+                hasBeenUnlocked = true;
+            }
+        }
+
+        if (GirlIsInsideTrigger && hasBeenUnlocked && Input.GetButtonDown("A"))
         {
             if (!Anim.GetBool("Opening") && !Anim.GetBool("Closing"))
             { 
