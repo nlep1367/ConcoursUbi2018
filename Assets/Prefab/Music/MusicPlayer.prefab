@@ -625,7 +625,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243245914454205122, guid: 479e74bf947e747d0a7738f03f9e977e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 556f79757ca73407b9ba40c585656318, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1290,6 +1290,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outOfStress: {fileID: 24500006, guid: 479e74bf947e747d0a7738f03f9e977e, type: 2}
+  inAnxious: {fileID: 245972978293227168, guid: 479e74bf947e747d0a7738f03f9e977e,
+    type: 2}
   inStress: {fileID: 245260932203028854, guid: 479e74bf947e747d0a7738f03f9e977e, type: 2}
-  TransitionIn: 1
-  TransitionOut: 5
+  inPanic: {fileID: 245900425096702836, guid: 479e74bf947e747d0a7738f03f9e977e, type: 2}
+  inNearDeath: {fileID: 245383612633738092, guid: 479e74bf947e747d0a7738f03f9e977e,
+    type: 2}
+  TransitionInBetweenStates: 0.5

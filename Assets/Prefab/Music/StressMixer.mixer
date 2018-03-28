@@ -11,7 +11,10 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 245972978293227168}
   - {fileID: 245260932203028854}
+  - {fileID: 245900425096702836}
+  - {fileID: 245383612633738092}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -24,7 +27,7 @@ AudioMixerController:
     - ba8c55e9321dd4cbe88fe091a7a62515
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 245260932203028854}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -62,7 +65,7 @@ AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Normal
+  m_Name: Calm
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: be79c5b22f8934b0cae4c5f7ecc09715
   m_FloatValues:
@@ -138,4 +141,38 @@ AudioMixerSnapshotController:
   m_SnapshotID: f30daa006e21b4c5b95a6724638431f8
   m_FloatValues:
     0831c702b22f645ecafdd3736fe275ce: -10
+  m_TransitionOverrides: {}
+--- !u!245 &245383612633738092
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: NearDeath
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: b9af94871a14f4eb881e1028357a487e
+  m_FloatValues:
+    0831c702b22f645ecafdd3736fe275ce: -15
+  m_TransitionOverrides: {}
+--- !u!245 &245900425096702836
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Panic
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7b6bbce71c89844298dfca2d5c4ab9dd
+  m_FloatValues:
+    0831c702b22f645ecafdd3736fe275ce: -10
+  m_TransitionOverrides: {}
+--- !u!245 &245972978293227168
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Anxious
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7b1989dde5ec7428f85f32f8576859d3
+  m_FloatValues:
+    0831c702b22f645ecafdd3736fe275ce: 0
+    618298669c83b4113ae306023b362d62: -20
   m_TransitionOverrides: {}
