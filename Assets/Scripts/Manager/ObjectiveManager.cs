@@ -20,14 +20,13 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
     void Awake()
     {
         GameEssentials.ObjectiveManager = this;
-        PropertyChanged = delegate { };
         CurrentObjectives = new List<Objective>();
         Objectives = new List<Objective> {
             new Objective
             {
                 Id = 0,
-                Title = "Escape the Lot",
-                Description = "Escape the Parking Lot",
+                Title = "Leave the Lot",
+                Description = "Leave the Parking Lot",
                 SuccessPoints = 500,
                 FailurePoints = 0,
             },
@@ -43,7 +42,7 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
             {
                 Id = 2,
                 Title = "Dodge the holes",
-                Description = "Get through the parking lot without hitting any holes",
+                Description = "Bonus: Don't fall in any hole",
                 SuccessPoints = 0,
                 FailurePoints = 0,
             },
@@ -146,57 +145,75 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
         };
     }
 
+    private void NotifyPropertyChanged(string propertyName)
+    {
+        if (PropertyChanged != null)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
     public void Add(Objective objective)
     {
+        objective.Status = ObjectiveStateEnum.PROGRESS;
         CurrentObjectives.Add(objective);
-        //objective.Status = ObjectiveStateEnum.PROGRESS;
-        //CurrentObjectives.Add(objective);
-        if(ObjectivesChanged != null)
-            ObjectivesChanged.Invoke(CurrentObjectives);
+        NotifyPropertyChanged("Add");
     }
 
-    public void RemoveObjectives()
+    public void RemoveObjective(Objective objective)
     {
-        foreach(Objective obj in CurrentObjectives)
+        if(IsCurrentObjective(objective))
         {
-            GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_AddPoints(
-                new ScoreObj( obj.SuccessPoints, "Objective Completed"));
+            CurrentObjectives.Remove(objective);
         }
-
-        CurrentObjectives.Clear();
-
-        if (ObjectivesChanged != null)
-            ObjectivesChanged.Invoke(CurrentObjectives);
     }
-    /*
+
+    //public void RemoveObjectives()
+    //{
+    //    foreach(Objective obj in CurrentObjectives)
+    //    {
+    //        GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_AddPoints(
+    //            new ScoreObj( obj.SuccessPoints, "Objective Completed"));
+    //    }
+
+    //    CurrentObjectives.Clear();
+
+    //    if (ObjectivesChanged != null)
+    //        ObjectivesChanged.Invoke(CurrentObjectives);
+    //}
+
     public int Complete(Objective objective)
     {
         if (IsCurrentObjective(objective))
         {
             RemoveObjective(objective);
-            PropertyChanged(this, new PropertyChangedEventArgs("Complete"));
+            NotifyPropertyChanged("Complete");
+            GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_AddPoints(
+                new ScoreObj(objective.SuccessPoints, "Objective Completed"));
             return objective.Succeed();
         }
         return 0;
     }
-    */
-    /*
+
+
     public int Fail(Objective objective)
     {
         if (IsCurrentObjective(objective))
         {
             RemoveObjective(objective);
-            PropertyChanged(this, new PropertyChangedEventArgs("Fail"));
+            NotifyPropertyChanged("Fail");
 
+            GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_AddPoints(
+                new ScoreObj(objective.FailurePoints, "Objective Failed"));
             return objective.Fail();
         }
         return 0;
     }
-    */
-   /* public bool IsCurrentObjective(Objective objective)
+    
+    public bool IsCurrentObjective(Objective objective)
     {
         return CurrentObjectives.Where(obj => obj == objective).Any();
-    }*/
+    }
 
     [ClientRpc]
     public void Rpc_AddObjectiveToServer(Objective objectives)
@@ -204,16 +221,22 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
         Add(objectives);
     }
 
+    //[ClientRpc]
+    //public void Rpc_RemoveObjectives()
+    //{
+    //    RemoveObjectives();
+    //}
+
     [ClientRpc]
-    public void Rpc_RemoveObjectives()
+    public void Rpc_CompleteObjectiveToServer(Objective objective)
     {
-        RemoveObjectives();
+        Complete(objective);
     }
-    /*
+
     [ClientRpc]
     public void Rpc_FailObjectiveToServer(Objective objective)
     {
         Fail(objective);
     }
-    */
+
 }

@@ -5,22 +5,22 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class TriggerTalking : MonoBehaviour {
-    public int DialogueId;
-    public int ObjectiveId;
-    public Dialogue Dialogue;
-    public int[] Objectives;
+    public GameObject NpcGo;
+
+    public List<int> DialoguesId;
+    public List<int> ObjectivesId;
     public HintUI HintUI;
     public ObjectiveStateEnum ObjectiveState;
 
+    private NPC _npc;
     private void Start()
     {
-        Dialogue = GameEssentials.DialogueManager.Dialogues.Where(dialogue => dialogue.Id == DialogueId).First();
+        _npc = NpcGo.GetComponent<NPC>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
+        if (GameEssentials.IsGirl(other))
         {
             HintUI.Display(Controls.X, "Talk");
         }
@@ -28,27 +28,30 @@ public class TriggerTalking : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
-        if (Input.GetButtonDown("X") && networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
+        if (Input.GetButtonDown("X") && GameEssentials.IsGirl(other))
         {
             GameEssentials.PlayerGirl.ChangeState(StateEnum.TALKING);
-            GameEssentials.Npc.ChangeState(StateEnum.TALKING);
+            _npc.ChangeState(StateEnum.TALKING);
 
-            GameEssentials.DialogueSync.Cmd_ChangeDialogueToServer(Dialogue);
             HintUI.Hide();
 
-            GameEssentials.ObjectiveSync.Cmd_RemoveObjectives();
+            //GameEssentials.ObjectiveSync.Cmd_RemoveObjectives();
 
-            foreach (int i in Objectives)
+            foreach (int i in DialoguesId)
             {
-                GameEssentials.ObjectiveSync.Cmd_AddObjectiveToServer(GameEssentials.ObjectiveManager.Objectives.Where(d => d.Id == i).First());
+                GameEssentials.DialogueSync.Cmd_ChangeDialogueToServer(GameEssentials.DialogueManager.Dialogues.Where(dialogue => dialogue.Id == i).First());
             }
+
+            GameEssentials.ApplyObjectives(ObjectivesId, ObjectiveState);
 
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        HintUI.Hide();
+        if (GameEssentials.IsGirl(other))
+        {
+            HintUI.Hide();
+        }
     }
 }

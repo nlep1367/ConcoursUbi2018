@@ -20,7 +20,6 @@ public class DialogueManager : NetworkBehaviour, INotifyPropertyChanged
         set { _currentDialogue = value; NotifyPropertyChanged("CurrentDialogue"); }
     }
 
-
     private void NotifyPropertyChanged(string propertyName)
     {
         if (PropertyChanged != null)
@@ -28,7 +27,6 @@ public class DialogueManager : NetworkBehaviour, INotifyPropertyChanged
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 
     void Awake()
     {
