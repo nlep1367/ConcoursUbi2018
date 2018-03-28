@@ -1008,6 +1008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fearIncrement: 10
+  reasonPointLoss: IT'S A DARN SQUIRREL
+  pointLoss: 10
 --- !u!114 &114221647944379846
 MonoBehaviour:
   m_ObjectHideFlags: 1

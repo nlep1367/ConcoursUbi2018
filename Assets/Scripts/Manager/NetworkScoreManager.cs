@@ -85,6 +85,6 @@ public class NetworkScoreManager : NetworkBehaviour {
     {
         Adaptation.BarkRange += diff * BarkRangeAdaptModifier;
         Adaptation.MaximumBarkRadius += diff * BarkRadiusAdaptModifier;
-        Adaptation.TerrorMultiplier += diff * TerrorAdaptModifier;
+        //Adaptation.TerrorMultiplier += diff * TerrorAdaptModifier;
     }
 }

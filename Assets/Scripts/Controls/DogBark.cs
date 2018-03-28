@@ -13,6 +13,9 @@ public class DogBark : NetworkBehaviour {
     private Color yellow;
     private Color red;
 
+    public float Cooldown = 10f;
+    private float _time = 10f;
+
     private void Start()
     {
         green.r = 66.0f / 255;
@@ -36,29 +39,34 @@ public class DogBark : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
-		if(Input.GetButtonDown("Y"))
+        if (Time.time > Cooldown + _time)
         {
-            Cmd_StartBark(green);
-			GetComponent<EchoSoundsControl> ().BarkJoyfully ();
-            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
-        }
+            if (Input.GetButtonDown("Y") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
+            {
+                Cmd_StartBark(green);
+                GetComponent<EchoSoundsControl>().BarkJoyfully();
+                GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+                _time = Time.time;
+            }
 
-        /*
-        if (Input.GetButtonDown("Y"))
-        {
-            Cmd_StartBark(yellow);
-            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
-        }
-        */
+            /*
+            if (Input.GetButtonDown("Y"))
+            {
+                Cmd_StartBark(yellow);
+                GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+            }
+            */
 
-        if (Input.GetButtonDown("B"))
-        {
-			Cmd_StartBark(red);
-			GetComponent<EchoSoundsControl> ().BarkAggressively ();
-            GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+            if (Input.GetButtonDown("B") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
+            {
+                Cmd_StartBark(red);
+                GetComponent<EchoSoundsControl>().BarkAggressively();
+                GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
+                _time = Time.time;
 
-            if (HasBarked != null)
-                HasBarked.Invoke(transform.position);
+                if (HasBarked != null)
+                    HasBarked.Invoke(transform.position);
+            }
         }
     }
 
