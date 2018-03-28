@@ -76,6 +76,10 @@ public class ScoreUI : MonoBehaviour {
     public void UpdateScore()
     {
         score += pointsToShow.Peek().points;
+
+        if (score < 0)
+            score = 0;
+
         scoreText.text = score.ToString() + " pts";
     }
 

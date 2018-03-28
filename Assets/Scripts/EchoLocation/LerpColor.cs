@@ -93,4 +93,9 @@ public class LerpColor : MonoBehaviour {
 
         Cam.backgroundColor = Color.Lerp(StartColor, EndColor, CurrentTime / duration); 
     }
+
+    public Emotion GetCurrentEmotion()
+    {
+        return CurrentEmotion;
+    }
 }

@@ -71,16 +71,21 @@ public static class MovementMode {
         cameraRightProjection.y = 0;
         cameraRightProjection.Normalize();
 
+        Vector3 ySpeed = new Vector3(0, player.RigidBody.velocity.y,0);
+        player.RigidBody.velocity = Vector3.zero;
+
         if (horizontalAxis >= float.Epsilon || horizontalAxis <= -float.Epsilon)
         {
-            player.RigidBody.AddForce(horizontalAxis * cameraRightProjection * acceleration * Time.deltaTime, ForceMode.VelocityChange);
+            player.RigidBody.velocity += (horizontalAxis * cameraRightProjection * maxSpeed);
+           // player.RigidBody.AddForce(horizontalAxis * cameraRightProjection * acceleration * Time.deltaTime, ForceMode.VelocityChange);
         }
 
         float verticalAxis = Input.GetAxis("Vertical_Move");
 
         if (verticalAxis >= float.Epsilon || verticalAxis <= -float.Epsilon)
         {
-            player.RigidBody.AddForce(verticalAxis * cameraForwardProjection * acceleration * Time.deltaTime, ForceMode.VelocityChange);
+            player.RigidBody.velocity += (verticalAxis * cameraForwardProjection * maxSpeed);
+           // player.RigidBody.AddForce(verticalAxis * cameraForwardProjection * acceleration * Time.deltaTime, ForceMode.VelocityChange);
         }
 
         Vector3 velocityProjection = player.RigidBody.velocity;
@@ -89,6 +94,7 @@ public static class MovementMode {
             player.RigidBody.velocity = velocityProjection.normalized * maxSpeed;
         }
 
+        player.RigidBody.velocity += ySpeed;
         velocityProjection.y = 0;
 
         if (velocityProjection != Vector3.zero)

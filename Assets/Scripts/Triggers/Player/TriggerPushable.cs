@@ -27,7 +27,7 @@ public class TriggerPushable : MonoBehaviour {
 
         if (!(triggerFeet == null))
         {
-            Player player = triggerFeet.GetComponentInParent<Player>();
+            Player player = triggerFeet.GetComponentInParent<PlayerGirl>();
 
             if (player != null && player.State != player.States[StateEnum.CLIMBING])
             {

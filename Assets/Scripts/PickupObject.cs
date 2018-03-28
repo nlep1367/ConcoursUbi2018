@@ -219,18 +219,24 @@ public class PickupObject : NetworkBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject") && pickableObject == null)
         {
 			hintUI.Display(Controls.X, "Pick up " + collider.gameObject.name);
 			pickableObject = collider.gameObject;
+            pickableObject.GetComponentInChildren<HighlightObject>().ToggleHighlight(true);
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
+        if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject") && collider.gameObject == pickableObject)
         {
             hintUI.Hide();
+            HighlightObject hob = pickableObject.GetComponentInChildren<HighlightObject>();
+
+            if(hob != null)
+                hob.ToggleHighlight(false);
+
             pickableObject = null;
         }
     }

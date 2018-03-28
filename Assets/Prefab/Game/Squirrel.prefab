@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 114110885702576230}
   - component: {fileID: 114310645176281610}
   - component: {fileID: 82060969122717026}
+  - component: {fileID: 114611295589103132}
   m_Layer: 8
   m_Name: Squirrel
   m_TagString: Untagged
@@ -493,7 +494,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669009477016776}
   m_LocalRotation: {x: -0, y: 0.9914446, z: -0, w: 0.13052888}
-  m_LocalPosition: {x: -4.06, y: 0.313, z: 15.429}
+  m_LocalPosition: {x: -15.28109, y: 79.57238, z: 105.02646}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4568021147569136}
@@ -1008,6 +1009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fearIncrement: 10
+  reasonPointLoss: IT'S A DARN SQUIRREL
+  pointLoss: 10
 --- !u!114 &114221647944379846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1073,6 +1076,19 @@ MonoBehaviour:
   ThirdPoint: {fileID: 0}
   LastPoint: {fileID: 0}
   SPOOOKY: 0
+--- !u!114 &114611295589103132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669009477016776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c15afcc75b5a194f93a3864fc65ca68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FleeAI: {fileID: 114336451965304826}
+  ObjId: 1
 --- !u!114 &114976408638674034
 MonoBehaviour:
   m_ObjectHideFlags: 1
