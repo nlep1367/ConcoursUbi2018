@@ -16,15 +16,21 @@ public class ObjectiveSync : NetworkBehaviour
         GameEssentials.ObjectiveManager.Rpc_AddObjectiveToServer(objectives);
     }
 
+    //[Command]
+    //public void Cmd_RemoveObjectives()
+    //{
+    //    GameEssentials.ObjectiveManager.Rpc_RemoveObjectives();
+    //}
+
     [Command]
-    public void Cmd_RemoveObjectives()
+    public void Cmd_CompleteObjectiveToServer(Objective objective)
     {
-        GameEssentials.ObjectiveManager.Rpc_RemoveObjectives();
+        GameEssentials.ObjectiveManager.Rpc_CompleteObjectiveToServer(objective);
     }
-    /*
+
     [Command]
     public void Cmd_FailObjectiveToServer(Objective objective)
     {
         GameEssentials.ObjectiveManager.Rpc_FailObjectiveToServer(objective);
-    }*/
+    }
 }

@@ -19,8 +19,8 @@ public class ObjectivesUI : MonoBehaviour {
     private void Start()
     {
         objectives = new List<GameObject>();
-        OManager.ObjectivesChanged += UpdateObjectives;
-        //OManager.PropertyChanged += ObjectiveManager_PropertyChanged;
+        //OManager.ObjectivesChanged += UpdateObjectives;
+        OManager.PropertyChanged += ObjectiveManager_PropertyChanged;
     }
 
     private void ObjectiveManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -38,8 +38,7 @@ public class ObjectivesUI : MonoBehaviour {
         //{
 
         //}
-       // IEnumerable<string> objs = GameEssentials.ObjectiveManager.CurrentObjectives.Select<Objective, string>(obj => obj.Title);
-       // UpdateObjectives(objs);
+        UpdateObjectives(GameEssentials.ObjectiveManager.CurrentObjectives);
     }
 
     private void ClearObjectives()
@@ -50,7 +49,7 @@ public class ObjectivesUI : MonoBehaviour {
         }
     }
 
-    public void UpdateObjectives(List<Objective> objs)
+    public void UpdateObjectives(IEnumerable<Objective> objs)
     {
         ClearObjectives();
 
