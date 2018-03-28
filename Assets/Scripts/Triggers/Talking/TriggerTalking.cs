@@ -43,7 +43,7 @@ public class TriggerTalking : MonoBehaviour {
             }
 
             GameEssentials.ApplyObjectives(ObjectivesId, ObjectiveState);
-
+            Destroy(this);
         }
     }
 
