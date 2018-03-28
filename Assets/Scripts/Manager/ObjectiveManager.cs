@@ -186,6 +186,7 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
     {
         if (IsCurrentObjective(objective))
         {
+			GameEssentials.MusicPlayer.ToWin = true;
             RemoveObjective(objective);
             NotifyPropertyChanged("Complete");
             GameEssentials.PlayerGirl.GetComponent<PlayerScoreManager>().Cmd_AddPoints(
@@ -199,7 +200,8 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
     public int Fail(Objective objective)
     {
         if (IsCurrentObjective(objective))
-        {
+		{
+			GameEssentials.MusicPlayer.ToFail = true;
             RemoveObjective(objective);
             NotifyPropertyChanged("Fail");
 
