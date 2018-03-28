@@ -7642,7 +7642,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 2
+  m_MinPlayers: 1
   m_LobbyPlayerPrefab: {fileID: 114059799678306186, guid: 0111da0d3e9c82847a3c2d943bd5786e,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea,
@@ -7668,7 +7668,6 @@ GameObject:
   - component: {fileID: 2005311285}
   - component: {fileID: 2005311284}
   - component: {fileID: 2005311283}
-  - component: {fileID: 2005311282}
   m_Layer: 0
   m_Name: Background Image
   m_TagString: MainCamera
@@ -7676,13 +7675,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2005311282
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2005311281}
-  m_Enabled: 1
 --- !u!124 &2005311283
 Behaviour:
   m_ObjectHideFlags: 0

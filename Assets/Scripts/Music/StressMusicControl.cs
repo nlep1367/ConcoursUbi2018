@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class StressMusicControl : MonoBehaviour {
 
@@ -9,6 +10,12 @@ public class StressMusicControl : MonoBehaviour {
 	public AudioMixerSnapshot inStress;
 	public AudioMixerSnapshot inPanic;
 	public AudioMixerSnapshot inNearDeath;
+
+	public bool ToCalm = false;
+	public bool ToAnxious = false;
+	public bool ToStress = false;
+	public bool ToPanic = false;
+	public bool ToNearDeath = false;
 
 	public float TransitionInBetweenStates;
 
@@ -33,20 +40,23 @@ public class StressMusicControl : MonoBehaviour {
 		m_isInitialized = true;
 	}
 
-	void Awake()
-	{
-		if (m_isInitialized) {
-			m_IrisFear = GetComponentInParent<InGameUI>().fille.GetComponent<Fear>();
-			m_ActualFearState = m_IrisFear.fearState;
-			PlayStress(m_ActualFearState);
-		}
-	}
-
 	// Tick is called by the AmbientMusicControl::Update if necessary
 	public void Tick () 
 	{	
 		if (!m_isInitialized)
 			return;
+
+		if (m_IrisFear == null) {
+			try{	
+				m_IrisFear = GameObject.Find("InGameUI").GetComponent<InGameUI>().fille.GetComponent<Fear>();
+				m_ActualFearState = m_IrisFear.fearState;
+				PlayStress(m_ActualFearState);
+			} catch (NullReferenceException) {
+			}
+			return;
+		}
+
+		ReadCommands ();
 		
 		if(m_ActualFearState != m_IrisFear.fearState)
 		{
@@ -114,5 +124,34 @@ public class StressMusicControl : MonoBehaviour {
 		m_stopping = false;
 
 		m_StressAudioSource.Stop();
+	}
+
+	void ReadCommands()
+	{
+		if (ToCalm) 
+		{
+			PlayStress (Fear.FearState.Calm);
+			ToCalm = false;
+		}
+		if (ToAnxious) 
+		{
+			PlayStress (Fear.FearState.Anxious);
+			ToAnxious = false;
+		}
+		if (ToStress) 
+		{
+			PlayStress (Fear.FearState.Stress);
+			ToStress = false;
+		}
+		if (ToPanic) 
+		{
+			PlayStress (Fear.FearState.Panic);
+			ToPanic = false;
+		}
+		if (ToNearDeath) 
+		{
+			PlayStress (Fear.FearState.NearDeath);
+			ToNearDeath = false;
+		}
 	}
 }
