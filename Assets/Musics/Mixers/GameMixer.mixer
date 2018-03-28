@@ -42,7 +42,18 @@ AudioMixerController:
     - a2c3ba01fac9546279d9aa3baa198e0f
     - e1fcb7746e33e4004a7b19653aa3f088
     name: Music
-  m_CurrentViewIndex: 1
+  - guids:
+    - 477c5294bd30e478f9fd5439829b3f52
+    - 7d951f06ff7df43dd83190a227537635
+    - 73ef4911684cd47ebb0d10f3cb8df721
+    - 168e4b974292b46bb9635554465dd360
+    - 64395c238e961431391ce4925f40de51
+    - de705b656d6824d28a4717dc7f017a72
+    - 78291723d59ae45cab95c2d3c658c11c
+    - a2c3ba01fac9546279d9aa3baa198e0f
+    - e1fcb7746e33e4004a7b19653aa3f088
+    name: All
+  m_CurrentViewIndex: 3
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
@@ -92,7 +103,7 @@ AudioMixerSnapshotController:
     a3992f78f23974bb7933724dd3d4dfc9: -80
     4cbca2e8142f2402089facfd424cadbc: -0.003893068
     1a3e03f80695d41a8a840ca02467775f: 0
-    4b7bd7c9372754a7297fbbeefb467a18: 0.025578512
+    4b7bd7c9372754a7297fbbeefb467a18: 20
     e27102fb0a6cb4646ba88edfa925dd3d: -10
     fc4efd6d9a5c54ce19587b36c50ddbb9: -80
     50496c4ea903d44988f0caf725e0cfb0: -80

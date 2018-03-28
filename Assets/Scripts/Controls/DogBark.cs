@@ -39,6 +39,7 @@ public class DogBark : NetworkBehaviour {
 		if(Input.GetButtonDown("X"))
         {
             Cmd_StartBark(green);
+			GetComponent<EchoSoundsControl> ().BarkJoyfully ();
             GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
         }
 
@@ -50,7 +51,8 @@ public class DogBark : NetworkBehaviour {
 
         if (Input.GetButtonDown("B"))
         {
-            Cmd_StartBark(red);
+			Cmd_StartBark(red);
+			GetComponent<EchoSoundsControl> ().BarkAggressively ();
             GameEssentials.PlayerDog.ChangeState(StateEnum.BARKING);
 
             if (HasBarked != null)

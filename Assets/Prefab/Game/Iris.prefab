@@ -720,9 +720,9 @@ GameObject:
   - component: {fileID: 114603672696637660}
   - component: {fileID: 114091528639082618}
   - component: {fileID: 114009191638688670}
-  - component: {fileID: 114816025624064074}
   - component: {fileID: 114086095479517632}
   - component: {fileID: 114647852743625292}
+  - component: {fileID: 114421759755967658}
   - component: {fileID: 82978245214410386}
   - component: {fileID: 82542170765285014}
   - component: {fileID: 136940203398832566}
@@ -3002,6 +3002,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b1a93f4ee05504bab8d7c5901310dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114421759755967658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486837572664584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356b8fc89240d40919043ec7778dde3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootstepsClips:
+  - {fileID: 8300000, guid: bd272c003a67a4ac1ae344f5df333246, type: 3}
+  - {fileID: 8300000, guid: 348a4601c7e564fe59b71bf75b5490ae, type: 3}
+  - {fileID: 8300000, guid: b1939122d8b2842bcbbeff2e59bb291e, type: 3}
+  CanneClips:
+  - {fileID: 8300000, guid: 2cdf188be05ba4fedbab2db64062502c, type: 3}
+  - {fileID: 8300000, guid: 5ad3c16bc0b8b40508686e8e231df12b, type: 3}
+  - {fileID: 8300000, guid: c9c0a758152f644f9bbd69e1d7a09f02, type: 3}
 --- !u!114 &114463547729033316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3045,25 +3064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a94ee0eaf8b724ab00f993527a7466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114816025624064074
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486837572664584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ffb73a67b704cbca7dd98b01d85c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Clips:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 348a4601c7e564fe59b71bf75b5490ae, type: 3}
-  - {fileID: 0}
-  CanneClips:
-  - {fileID: 8300000, guid: 49272b45a5156405880e99842b0c8c5b, type: 3}
-  - {fileID: 8300000, guid: 1c6fc2537c1d941728a701a52224c19c, type: 3}
-  - {fileID: 8300000, guid: a4935045efd944df3b246d6953b8d284, type: 3}
 --- !u!114 &114972645596128576
 MonoBehaviour:
   m_ObjectHideFlags: 1

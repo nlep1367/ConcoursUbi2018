@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 114563373075430868}
   - component: {fileID: 95213488633638674}
   - component: {fileID: 114766370769130836}
-  - component: {fileID: 114387548150006874}
+  - component: {fileID: 114826163572010880}
   - component: {fileID: 82794905364800304}
   m_Layer: 0
   m_Name: Blocker
@@ -2316,21 +2316,6 @@ MonoBehaviour:
     i15: 32
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114387548150006874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1704704836532306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ffb73a67b704cbca7dd98b01d85c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Clips:
-  - {fileID: 8300000, guid: 018bd370e1a9e47458918242b29859b8, type: 3}
-  - {fileID: 8300000, guid: 34401fec42abb498bbe07b71c57db94a, type: 3}
-  CanneClips: []
 --- !u!114 &114563373075430868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2374,6 +2359,20 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &114826163572010880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704704836532306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e43d39e277a4db28e61b404b39fb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootstepsClips:
+  - {fileID: 8300000, guid: 018bd370e1a9e47458918242b29859b8, type: 3}
+  - {fileID: 8300000, guid: 34401fec42abb498bbe07b71c57db94a, type: 3}
 --- !u!137 &137533309419805634
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
