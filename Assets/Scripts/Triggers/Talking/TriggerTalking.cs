@@ -23,7 +23,7 @@ public class TriggerTalking : MonoBehaviour {
         NetworkBehaviour networkBehaviour = other.GetComponentInParent<NetworkBehaviour>();
         if (Input.GetButton("Fire1") && networkBehaviour && networkBehaviour.isLocalPlayer && other.CompareTag(ConstantsHelper.PlayerGirlTag))
         {
-            HintUI.Display(KeyCode.A, "Talk");
+			HintUI.Display(Controls.A, "Talk");
         }
     }
 
