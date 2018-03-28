@@ -6,8 +6,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class CarAI : NetworkBehaviour {
-
-    // switch for randomtexture
     public Material[] RandomMaterial;
 
     public bool isBreaking = false;
