@@ -198,7 +198,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 0}
-  shouldDrop: 0
 --- !u!114 &114268761066244480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,7 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 0}
-  shouldDrop: 0
 --- !u!114 &114415798200241636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 0}
-  shouldDrop: 0
 --- !u!114 &114650816366102748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,7 +308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 0}
-  shouldDrop: 0
 --- !u!114 &114688054135689038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +320,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 0}
-  shouldDrop: 0
 --- !u!114 &114933597059025364
 MonoBehaviour:
   m_ObjectHideFlags: 1

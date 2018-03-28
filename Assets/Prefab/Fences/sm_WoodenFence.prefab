@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33758207239746510}
   - component: {fileID: 23417551601692902}
   - component: {fileID: 64870920349844004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sm_WoodenFence
   m_TagString: Terrain
   m_Icon: {fileID: 0}

@@ -39,19 +39,26 @@ public class FleeAI : NetworkBehaviour
     void Start()
     {
         if (FirstPoint != null)
-            Initialize();
+            Initialize(FirstPoint);
 
     }
 
-    public void Initialize()
+    public void Initialize(Transform FirstPosition)
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        FirstPoint = FirstPosition;
+
         Animator = GetComponent<Animator>();
 
         Agent = GetComponent<NavMeshAgent>();
         Killer = GetComponent<FadeMaterial>();
+        Agent.enabled = false;
 
         CurrentPoint = FirstPoint;
         Agent.transform.position = FirstPoint.position;
+        rb.isKinematic = false;
+        Agent.enabled = true;
     }
 
     [Server]

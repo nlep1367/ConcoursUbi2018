@@ -70,9 +70,8 @@ public class InterestZoneManager : MonoBehaviour {
         Transform trans = interestZones[index].transform;
 
         FleeAI fleeAi = gameObj.GetComponent<FleeAI>();
-        fleeAi.FirstPoint = interestZones[index].PathStart.transform;
+        fleeAi.Initialize(interestZones[index].PathStart.transform);
 
-        gameObj.transform.position = trans.position;
         interestZones.RemoveAt(index);
     }
 }

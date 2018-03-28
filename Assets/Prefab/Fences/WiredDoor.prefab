@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990059138343306}
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -9.354117, y: 0.09411764, z: 142.42647}
+  m_LocalPosition: {x: -15.313238, y: 0.07352551, z: 60.119057}
   m_LocalScale: {x: 2.1368868, y: 2.1368876, z: 2.1368876}
   m_Children:
   - {fileID: 4720437271579322}
@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hUI: {fileID: 0}
+  DoorS: {fileID: 114019730732031926}
 --- !u!114 &114738982384146550
 MonoBehaviour:
   m_ObjectHideFlags: 1

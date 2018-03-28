@@ -12,7 +12,7 @@ public class DoorTrigger : MonoBehaviour {
     {
         if(DoorS == null)
         {
-            Debug.LogError("Veuillez ajouter la référence au DoorState SVP.");
+            Debug.LogError("Veuillez ajouter la référence du DoorState au DoorTrigger SVP.");
         }
     }
 
