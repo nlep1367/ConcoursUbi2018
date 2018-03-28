@@ -44,7 +44,7 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
                 Title = "Dodge the holes",
                 Description = "Bonus: Don't fall in any hole",
                 SuccessPoints = 0,
-                FailurePoints = -30,
+                FailurePoints = 0,
             },
             new Objective
             {
