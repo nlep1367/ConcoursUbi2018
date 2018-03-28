@@ -1301,4 +1301,4 @@ MonoBehaviour:
   ToStress: 0
   ToPanic: 0
   ToNearDeath: 0
-  TransitionInBetweenStates: 0.5
+  TransitionInBetweenStates: 1
