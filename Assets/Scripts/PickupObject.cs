@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
@@ -16,6 +15,7 @@ public class PickupObject : NetworkBehaviour {
     
     public bool CanDrop = true;
     private bool isPickingUp = false;
+    private bool isForceHideHintUi = false;
 
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
@@ -31,6 +31,11 @@ public class PickupObject : NetworkBehaviour {
         return carriedObject;
     }
 
+    public void SetForceHideHintUi(bool value)
+    {
+        isForceHideHintUi = value;
+    }
+
     // Update is called once per frame
     void Update () {
         if (!isLocalPlayer)
@@ -39,15 +44,19 @@ public class PickupObject : NetworkBehaviour {
 		if(isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
-            if (thrownable != null && thrownable.IsInThrownZone)
+
+            if(!isForceHideHintUi)
             {
-                hintUI.Display(Controls.X, "Throw in the garbage");
-            }
-            else
-            {
-                if (CanDrop)
+                if (thrownable != null && thrownable.IsInThrownZone)
                 {
-                    hintUI.Display(Controls.X, "Drop the object");
+                    hintUI.Display(Controls.X, "Throw in the garbage");
+                }
+                else
+                {
+                    if (CanDrop)
+                    {
+                        hintUI.Display(Controls.X, "Drop the object");
+                    }
                 }
             }
 
@@ -135,6 +144,7 @@ public class PickupObject : NetworkBehaviour {
 
     public void InsertKeyInDoor()
     {
+        SetForceHideHintUi(false);
         isCarryingObject = false;
         carriedObject = null;
     }

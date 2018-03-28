@@ -6,6 +6,16 @@ public class DoorTrigger : MonoBehaviour {
     public HintUI hUI;
     public System.Action<bool> GirlTriggerState;
 
+    public DoorState DoorS;
+
+    public void Start()
+    {
+        if(DoorS == null)
+        {
+            Debug.LogError("Veuillez ajouter la référence au DoorState SVP.");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Fille")
@@ -15,7 +25,15 @@ public class DoorTrigger : MonoBehaviour {
 
                 if (other.gameObject.GetComponent<ObjectSync>().hasAuthority)
                 {
-                    hUI.Display(Controls.A, "Open Door");
+                    if(DoorS.Locks.Count > 0 && DoorS.IsKeyRelatedToLocks())
+                    {
+                        GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().SetForceHideHintUi(true);
+                        hUI.Display(Controls.A, "Use Key");
+                    }
+                    else
+                    {
+                        hUI.Display(Controls.A, "Open Door");
+                    }
                 }
             }
     }
@@ -29,6 +47,7 @@ public class DoorTrigger : MonoBehaviour {
 
                 if (other.gameObject.GetComponent<ObjectSync>().hasAuthority)
                 {
+                    GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().SetForceHideHintUi(false);
                     hUI.Hide();
                 }
             }
