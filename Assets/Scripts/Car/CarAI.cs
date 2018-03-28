@@ -7,7 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshAgent))]
 public class CarAI : NetworkBehaviour {
 
-    public Color[] RandomColor;
+    // switch for randomtexture
+    public Material[] RandomMaterial;
 
     public bool isBreaking = false;
     private Path path;
@@ -20,8 +21,8 @@ public class CarAI : NetworkBehaviour {
     private NetworkSpawner carSpawner;
 
     // Use this for initialization
-    void Awake() {
-        Render.material.color = RandomColor[Random.Range(0, RandomColor.Length)];
+    void Awake() {     
+        Render.material = RandomMaterial[Random.Range(0, RandomMaterial.Length)];
     }
 	
 	// Update is called once per frame
