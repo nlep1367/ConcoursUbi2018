@@ -223,6 +223,7 @@ public class PickupObject : NetworkBehaviour {
         {
 			hintUI.Display(Controls.X, "Pick up " + collider.gameObject.name);
 			pickableObject = collider.gameObject;
+            pickableObject.GetComponentInChildren<HighlightObject>().ToggleHighlight(true);
         }
     }
 
@@ -231,6 +232,7 @@ public class PickupObject : NetworkBehaviour {
         if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject"))
         {
             hintUI.Hide();
+            pickableObject.GetComponentInChildren<HighlightObject>().ToggleHighlight(false);
             pickableObject = null;
         }
     }
