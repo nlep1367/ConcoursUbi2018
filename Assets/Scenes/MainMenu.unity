@@ -1702,12 +1702,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &511509788 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114405558902886594, guid: 4073ec91e928cf149a7b2517b68ae381,
-    type: 2}
-  m_PrefabInternal: {fileID: 1668034702}
-  m_Script: {fileID: 11500000, guid: bce54b1b251469d43b8703a298014b9d, type: 3}
 --- !u!1 &638676709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7642,7 +7636,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 1
+  m_MinPlayers: 2
   m_LobbyPlayerPrefab: {fileID: 114059799678306186, guid: 0111da0d3e9c82847a3c2d943bd5786e,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea,
@@ -7656,7 +7650,7 @@ MonoBehaviour:
   createButton: {fileID: 0}
   refreshButton: {fileID: 0}
   newGameField: {fileID: 0}
-  gameEnd: {fileID: 511509788}
+  gameEnd: {fileID: 0}
 --- !u!1 &2005311281
 GameObject:
   m_ObjectHideFlags: 0
