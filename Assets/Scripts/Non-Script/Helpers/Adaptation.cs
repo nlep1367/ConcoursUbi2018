@@ -25,7 +25,7 @@ public static class Adaptation {
         set { _maxBarkRange = Mathf.Clamp(value, MinBarkRange, MaxBarkRange); }
     }
 
-    private static float _terrorMultiplier = 5f;
+    private static float _terrorMultiplier = 1f;
     public static float TerrorMultiplier
     {
         get { return _terrorMultiplier; }

@@ -2962,6 +2962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e440df606884e794181760a4943b3fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarkRadius: 0
   DogPosRef: {fileID: 0}
   Duration: 3
   StillDuration: 2
@@ -3048,7 +3049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 54044941502602314}
   Animator: {fileID: 95794001824668072}
-  MovementSpeed: 25
+  MaxMovementSpeed: 5
+  MovementSpeed: 5
   RotationSpeed: 60
   Acceleration: 30
   PushingMovementSpeed: 10

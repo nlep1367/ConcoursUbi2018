@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerGirl : Player {
+    public float MaxMovementSpeed = 25f;
     public float MovementSpeed = 10f;
     public float RotationSpeed = 45f;
     public float Acceleration = 30f;
@@ -49,11 +50,49 @@ public class PlayerGirl : Player {
                 doggo.GetComponent<ObjectSync>().Rpc_SetScaredEffectColor(Camera.backgroundColor);
             }
         }
+
+        AdjustMovementSpeed();
     }
 
     public override void SetCamera(Camera camera)
     {
         Camera = camera;
         ((PStateGrounded)States[StateEnum.GROUNDED]).SetCamera(camera);
+    }
+
+    public void AdjustMovementSpeed()
+    {
+        Fear f = GetComponent<Fear>();
+
+        if(f != null)
+        {
+            float ratio = 0;
+            switch (f.fearState)
+            {
+                case Fear.FearState.Calm:
+                    ratio = 1f;
+                    break;
+
+                case Fear.FearState.Anxious:
+                    ratio = .75f;
+                    break;
+
+                case Fear.FearState.Stress:
+                    ratio = .5f;
+                    break;
+
+                case Fear.FearState.Panic:
+                    ratio = .25f;
+                    break;
+
+                case Fear.FearState.NearDeath:
+                    ratio = .1f;
+                    break;
+            }
+
+            MovementSpeed = MaxMovementSpeed * ratio;
+            PStateGrounded a = States[StateEnum.GROUNDED] as PStateGrounded;
+            a.SetMovementSpeed(MovementSpeed);
+        }
     }
 }
