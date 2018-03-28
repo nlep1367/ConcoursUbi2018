@@ -12,11 +12,6 @@ public class GameEnd : MonoBehaviour {
 	void Start () {
         DontDestroyOnLoad(gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void Finish()
     {
