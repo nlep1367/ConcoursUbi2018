@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public static class GameEssentials {
     public static ObjectiveManager ObjectiveManager;
@@ -13,4 +12,11 @@ public static class GameEssentials {
     public static PlayerDog PlayerDog;
     public static NPC Npc;
     public static AmbientMusicControl MusicPlayer;
+
+
+    public static bool IsGirl(Collider c)
+    {
+        NetworkBehaviour networkBehaviour = c.GetComponentInParent<NetworkBehaviour>();
+        return networkBehaviour && networkBehaviour.isLocalPlayer && c.CompareTag(ConstantsHelper.PlayerGirlTag);
+    }
 }
