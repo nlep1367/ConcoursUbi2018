@@ -7,31 +7,18 @@ public class ControlsUI : MonoBehaviour {
     public GameObject EchoControls;
     public GameObject IrisControls;
 
-    bool isActive = false;
-    bool isIris = false;
+    bool wasSet = false;
 
-    public GameObject Iris;
-
-    private void Update()
+    public void DisplayControls(bool isIris)
     {
-        if(Iris == null)
+        if (!wasSet)
         {
-            GameObject temp = GameObject.FindGameObjectWithTag("Fille");
-            if(temp != null)
-            {
-                Iris = temp;
-                isIris = Iris.GetComponent<ObjectSync>().hasAuthority;
-            }
+            wasSet = true;
+
+            if (isIris)  // If Iris -> Display Iris Controls
+                IrisControls.SetActive(true);
+            else        // else -> Display Echo
+                EchoControls.SetActive(true);
         }
-    }
-
-    public void ToggleControls()
-    {
-        isActive = !isActive;
-
-        if(isIris)  // If Iris -> Display Iris Controls
-            IrisControls.SetActive(isActive);
-        else        // else -> Display Echo
-            EchoControls.SetActive(isActive);        
     }
 }

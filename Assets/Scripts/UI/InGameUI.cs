@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InGameUI : MonoBehaviour {
 
+    public ScaredEffect scaredEffect;
     public ObjectivesUI objectivesUI;
     public ScoreUI scoreUI;
     public HintUI hintUI;
     public StoryUI storyUI;
     public ControlsUI controlsUI;
+    public HeartbeatsUI heartbeatsUI;
 
     public GameObject fille;
 
@@ -27,71 +29,38 @@ public class InGameUI : MonoBehaviour {
         {
             fille = GameObject.FindGameObjectWithTag("Fille");
 
-            if(fille != null && fille.GetComponent<ObjectSync>().hasAuthority)
+            if(fille != null)
             {
-                Destroy(GetComponent<Transform>().Find("ScaredEffect").gameObject);
+                if (fille.GetComponent<ObjectSync>().hasAuthority)
+                    InitIrisUI();
+                else
+                    InitEchoUI();
             }
         }
-
-        //Cheats to test UI
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            string s = (Random.Range(0f, 1f) < 0.5f) ? "Get a GF" : " This is a long objective! Name that should use the long prefab";
-            objectives.Add(s);
-            //UpdateObjective(objectives);
-        }
-        /*else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            //AddScore(100, "Good boi");
-        }*/
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            DisplayHint(Controls.B, "Interact B");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            HideHint();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            AddMessage("Georgio", "Abedelapoupi! VANDETTA VANDETTA!");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            ToggleControls();
-        }
     }
 
-   /* public void UpdateObjective(List<string> messages)
+    void Init()
     {
-       // objectivesUI.UpdateObjectives(messages);
-    }*/
-
-    /*public void AddScore(int points, string message)
-    {
-        //scoreUI.AddScore(Random.Range(0,200), "new score");
-    }*/
-
-    public void DisplayHint(Controls button, string action)
-    {
-        hintUI.Display(button, action);
-    }
-    public void HideHint()
-    {
-        hintUI.Hide();
+        objectivesUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
+        scoreUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
+        hintUI.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
     }
 
-    public void AddMessage(string name, string message)
+    void InitIrisUI()
     {
-        storyUI.AddMessage(name, message);
-    }
-    public void AddMessages(List<Message> messages)
-    {
-        storyUI.AddMessages(messages);
+        Init();
+        controlsUI.DisplayControls(true);
+        heartbeatsUI.gameObject.SetActive(true);
+        Destroy(scaredEffect.gameObject);
     }
 
-    public void ToggleControls()
+    void InitEchoUI()
     {
-        controlsUI.ToggleControls(); 
+        Init();
+        controlsUI.DisplayControls(false);
+        scaredEffect.gameObject.GetComponentInChildren<Transform>().gameObject.SetActive(true);
+        Destroy(heartbeatsUI.gameObject);
     }
+
+    
 }

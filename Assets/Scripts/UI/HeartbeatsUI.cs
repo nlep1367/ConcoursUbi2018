@@ -7,8 +7,6 @@ public class HeartbeatsUI : MonoBehaviour {
 
 	public GameObject HeartImage;
 
-	public bool IncreaseStress = false;
-
 	private const int CALM_BPM = 65;
 	private const int ANXIOUS_BPM = 85;
 	private const int STRESS_BPM = 115;
@@ -30,6 +28,7 @@ public class HeartbeatsUI : MonoBehaviour {
 	private float m_currentValue;
 	private float m_duration; // In seconds
 
+    private Fear m_IrisFear;
 	private Fear.FearState m_ActualFearState;
 
 	// Use this for initialization
@@ -40,7 +39,11 @@ public class HeartbeatsUI : MonoBehaviour {
 		m_currentTime = 0;
 		m_currentValue = m_minScale;
 		m_duration = 60.0f / CALM_BPM;
-	}
+
+        m_IrisFear = GetComponentInParent<InGameUI>().fille.GetComponent<Fear>();
+        m_ActualFearState = m_IrisFear.fearState;
+        ChangeRate(m_ActualFearState);
+    }
 
 	void Awake()
 	{
@@ -56,54 +59,60 @@ public class HeartbeatsUI : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-		
-		// Start scared effect
-		if (IncreaseStress) 
-		{
-			++m_rateIndex;
-			if (m_rateIndex > 4)
-				m_rateIndex = 0;
-			
-			ChangeRate (m_rateIndex);
-			IncreaseStress = false;
-		}
+	void Update () {		
+
+        if(m_ActualFearState != m_IrisFear.fearState)
+        {
+            m_ActualFearState = m_IrisFear.fearState;
+            ChangeRate(m_ActualFearState);
+        }
 
 		if (!m_isActive)
 			return;
 
-		m_currentTime += Time.deltaTime ;
-
-		if (m_currentTime <= m_duration) {
-			// Interpolate
-			float t = m_currentTime * 2 / m_duration;
-
-			if (m_currentTime * 2 < m_duration) {
-				// Bounce In
-
-				if(t < 0.5f)
-				{
-					t = (t == 0.0f) ? t : 0.5f * (float)Math.Pow(2, (20 * t) - 10);
-				}
-				else
-				{
-					t = (t == 1.0f) ? t : -0.5f * (float)Math.Pow(2, (-20 * t) + 10) + 1;
-				}
-
-				m_currentValue = (m_maxScale - m_minScale) * t + m_minScale;
-			} else {
-				// Bounce Out
-				t = t - 1.0f;
-				t = (t == 0.0f) ? t : (float)Math.Pow(2, 10 * (t - 1));
-
-				m_currentValue = (m_minScale - m_maxScale) * t + m_maxScale;
-			}
-			HeartImage.transform.GetComponent<RectTransform>().localScale = new Vector2 (m_currentValue, m_currentValue);
-		} else {
-			HeartImage.transform.GetComponent<RectTransform>().localScale = new Vector2 (m_minScale, m_minScale);
-			m_currentTime = 0;
-		}
+        BeatAnimation();
 	}
+
+    void BeatAnimation()
+    {
+        m_currentTime += Time.deltaTime;
+
+        if (m_currentTime <= m_duration)
+        {
+            // Interpolate
+            float t = m_currentTime * 2 / m_duration;
+
+            if (m_currentTime * 2 < m_duration)
+            {
+                // Bounce In
+
+                if (t < 0.5f)
+                {
+                    t = (t == 0.0f) ? t : 0.5f * (float)Math.Pow(2, (20 * t) - 10);
+                }
+                else
+                {
+                    t = (t == 1.0f) ? t : -0.5f * (float)Math.Pow(2, (-20 * t) + 10) + 1;
+                }
+
+                m_currentValue = (m_maxScale - m_minScale) * t + m_minScale;
+            }
+            else
+            {
+                // Bounce Out
+                t = t - 1.0f;
+                t = (t == 0.0f) ? t : (float)Math.Pow(2, 10 * (t - 1));
+
+                m_currentValue = (m_minScale - m_maxScale) * t + m_maxScale;
+            }
+            HeartImage.transform.GetComponent<RectTransform>().localScale = new Vector2(m_currentValue, m_currentValue);
+        }
+        else
+        {
+            HeartImage.transform.GetComponent<RectTransform>().localScale = new Vector2(m_minScale, m_minScale);
+            m_currentTime = 0;
+        }
+    }
 
 	public void ChangeRate(Fear.FearState state)
 	{
@@ -127,39 +136,6 @@ public class HeartbeatsUI : MonoBehaviour {
 			maxScale = NEARDEATH_SCALE;
 			break;
 		case Fear.FearState.Calm:
-		default:
-			bpm = CALM_BPM;
-			maxScale = CALM_SCALE;
-			break;
-		}
-
-		m_duration = 60.0f / bpm;
-		m_maxScale = maxScale;
-	}	
-
-	// For testing
-	public void ChangeRate(uint index)
-	{
-		float bpm, maxScale;
-
-		switch (index) {
-		case 1:
-			bpm = ANXIOUS_BPM;
-			maxScale = ANXIOUS_SCALE;
-			break;
-		case 2:
-			bpm = STRESS_BPM;
-			maxScale = STRESS_SCALE;
-			break;
-		case 3:
-			bpm = PANIC_BPM;
-			maxScale = PANIC_SCALE;
-			break;
-		case 4:
-			bpm = NEARDEATH_BPM;
-			maxScale = NEARDEATH_SCALE;
-			break;
-		case 0:
 		default:
 			bpm = CALM_BPM;
 			maxScale = CALM_SCALE;

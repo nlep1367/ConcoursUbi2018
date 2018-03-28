@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncState: 0
+  lights: {fileID: 0}
 --- !u!135 &135916875385199090
 SphereCollider:
   m_ObjectHideFlags: 1
