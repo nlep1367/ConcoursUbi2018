@@ -9,7 +9,6 @@ public class MenuMusicControl : MonoBehaviour {
 	public AudioMixerSnapshot OutMenu;
 	public AudioMixerSnapshot InMenuIntro;
 	public AudioMixerSnapshot OutMenuIntro;
-//	public AudioMixerSnapshot inIntro;
 
 	public float TransitionIn;
 	public float TransitionOut;
@@ -52,10 +51,6 @@ public class MenuMusicControl : MonoBehaviour {
 			if (m_currentTime > TransitionIn + 60F / 53F) {
 				OnConcludeIntroMusic ();
 			}
-			else if (!m_playingMenu && (m_currentTime >= TransitionIn - 15F / 53F)) {
-				m_playingMenu = true;
-				m_BackgroundAudioSource.Play();
-			} 
 		}
 
 		if (m_stoppingMenu) {
@@ -74,12 +69,13 @@ public class MenuMusicControl : MonoBehaviour {
 		
 		if (!m_playingMenu && !m_stoppingIntro) {
 			InMenu.TransitionTo (0);
-			InMenuIntro.TransitionTo (0);
+			OutMenuIntro.TransitionTo (0);
 
+			m_BackgroundAudioSource.PlayDelayed (3.92f);
 			m_IntroAudioSource.Play ();
 
-			OutMenuIntro.TransitionTo(TransitionIn);
 			m_stoppingIntro = true;
+			m_playingMenu = true;
 			m_currentTime = 0;
 		}
 	}
