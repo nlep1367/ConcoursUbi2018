@@ -21,7 +21,7 @@ public class Fear : MonoBehaviour {
     {
         foreach (FearState fs in Enum.GetValues(typeof(FearState)))
         {
-            if (fearValue < (int)fs)
+            if (fearValue <= (int)fs)
             {
                 fearState = fs;
                 break;
@@ -33,7 +33,7 @@ public class Fear : MonoBehaviour {
     {
         if (fearValue <= 100)
         {
-            fearValue = Math.Min((fearValue*Adaptation.TerrorMultiplier) + value, 100);
+            fearValue = Math.Min(fearValue + value, 100);
             UpdateFearState();
         }
     }

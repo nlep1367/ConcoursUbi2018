@@ -3056,6 +3056,7 @@ MonoBehaviour:
   PushingMovementSpeed: 10
   ClimbingSpeed: 10
   shaderActivated: 1
+  fear: {fileID: 114113253177008070}
 --- !u!114 &114603672696637660
 MonoBehaviour:
   m_ObjectHideFlags: 1
