@@ -10,7 +10,9 @@ public class DoorState : NetworkBehaviour {
 
     public Animator Anim;
     public DoorTrigger dt;
+    public GameObject blockingObj;
 
+    private bool isDoorBlocked = false;
     private bool Opened = false;
     private bool Idle = false;
     
@@ -20,7 +22,12 @@ public class DoorState : NetworkBehaviour {
 
     private void Update()
     {
-        if (IsGirlInRange && Input.GetButtonDown("A") && Locks.Count == 0)
+        if(isDoorBlocked)
+        {
+            CheckIfDoorStillBlocked();
+        }
+
+        if (IsGirlInRange && Input.GetButtonDown("A") && Locks.Count == 0 && !isDoorBlocked)
         {
             OpenDoor();
             CloseDoor();
@@ -53,6 +60,11 @@ public class DoorState : NetworkBehaviour {
 
     }
 
+    public void CheckIfDoorStillBlocked()
+    {
+        isDoorBlocked = Vector3.Distance(gameObject.transform.position, blockingObj.transform.position) < 3;
+    }
+
     //Always call this funtion if you are sure that the girl is in range of the door
     public bool IsKeyRelatedToLocks()
     {
@@ -76,6 +88,11 @@ public class DoorState : NetworkBehaviour {
         { 
             Destroy(Anim);
             Destroy(this);
+        }
+
+        if(blockingObj != null)
+        {
+            isDoorBlocked = true;
         }
     }
     
