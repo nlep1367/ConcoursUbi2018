@@ -71,7 +71,7 @@ public class MenuMusicControl : MonoBehaviour {
 			InMenu.TransitionTo (0);
 			OutMenuIntro.TransitionTo (0);
 
-			m_BackgroundAudioSource.PlayDelayed (3.95f);
+			m_BackgroundAudioSource.PlayDelayed (3.92f);
 			m_IntroAudioSource.Play ();
 
 			m_stoppingIntro = true;
