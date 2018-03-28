@@ -5987,7 +5987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 3.0999756, y: 0}
+  m_AnchoredPosition: {x: 3.1000977, y: 0}
   m_SizeDelta: {x: 307, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1764326014
@@ -7642,7 +7642,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 1
+  m_MinPlayers: 2
   m_LobbyPlayerPrefab: {fileID: 114059799678306186, guid: 0111da0d3e9c82847a3c2d943bd5786e,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1486837572664584, guid: 658fab7cbbe264548bd150fa0de154ea,
