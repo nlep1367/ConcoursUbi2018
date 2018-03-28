@@ -49,4 +49,9 @@ public class BarrierTrigger : MonoBehaviour {
             }
         }
     }
+
+    public GameObject GetPickupObject()
+    {
+        return puOb.GetCarriedObject();
+    }
 }
