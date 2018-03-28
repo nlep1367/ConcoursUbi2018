@@ -75,6 +75,7 @@ public class MenuMusicControl : MonoBehaviour {
 			m_IntroAudioSource.Play ();
 
 			m_stoppingIntro = true;
+			m_playingMenu = true;
 			m_currentTime = 0;
 		}
 	}
