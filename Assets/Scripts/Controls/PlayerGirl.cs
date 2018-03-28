@@ -87,6 +87,20 @@ public class PlayerGirl : Player {
                 break;
         }
 
+        if (Camera != null)
+        {
+            LerpColor lc = Camera.GetComponent<LerpColor>();
+            if (ratio <= 0.5f && lc.GetCurrentEmotion() == Emotion.Positive)
+            {
+                lc.SetEmotions(Emotion.Negative);
+            }
+            else if (ratio > 0.5f && lc.GetCurrentEmotion() == Emotion.Negative)
+            {
+                lc.SetEmotions(Emotion.Positive);
+            }
+        }
+
+
         PStateGrounded state = States[StateEnum.GROUNDED] as PStateGrounded;
         state.SetMovementSpeed(MaxMovementSpeed * ratio);
     }
