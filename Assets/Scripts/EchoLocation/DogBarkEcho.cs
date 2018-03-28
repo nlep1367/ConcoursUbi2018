@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [ExecuteInEditMode]
-public class DogBarkEcho : MonoBehaviour
+public class DogBarkEcho : NetworkBehaviour
 {
-    private float BarkRadius, Contour, ContourStep, Timer = 0f;
+    public float BarkRadius;
+    private float Contour, ContourStep, Timer = 0f;
     public Transform DogPosRef;
     public float Duration = 3f;
     public float StillDuration = 2f;
@@ -17,12 +19,11 @@ public class DogBarkEcho : MonoBehaviour
     {
         Increment = Adaptation.MaximumBarkRadius / Duration;
         Contour = ContourBegin;
-       // Shader.SetGlobalColor("_ColorBark", Color.Black);
         Shader.SetGlobalFloat("_ContourWidth", Contour);
         ContourStep = Contour / StillDuration;
 
     }
-    
+
     public void StartBark(Color color)
     {
         if (!DogPosRef)
@@ -32,7 +33,7 @@ public class DogBarkEcho : MonoBehaviour
 
         if (enabled)
             StopBark();
-        
+
         Shader.SetGlobalVector("_DogPosition", DogPosRef.position);
         Shader.SetGlobalColor("_ColorBark", color);
 
@@ -43,9 +44,11 @@ public class DogBarkEcho : MonoBehaviour
     {
         Contour = ContourBegin;
         Shader.SetGlobalFloat("_BarkRadius", 0.0f);
-        Shader.SetGlobalFloat("_ContourWidth", 0);
+        Shader.SetGlobalFloat("_ContourWidth", Contour);
         BarkRadius = 0;
         Timer = 0;
+
+        RpcStopDogVisual();
     }
 
     // Update is called once per frame
@@ -63,13 +66,19 @@ public class DogBarkEcho : MonoBehaviour
             Shader.SetGlobalFloat("_ContourWidth", Contour);
             if (Timer >= StillDuration)
             {
-                Contour = ContourBegin;
+                StopBark();
                 enabled = false;
-                Shader.SetGlobalFloat("_BarkRadius", 0);
-                Shader.SetGlobalFloat("_ContourWidth", Contour);
-                BarkRadius = 0;
-                Timer = 0;
             }
+        }
+    }
+
+    [ClientRpc]
+    void RpcStopDogVisual()
+    {
+        GameObject PlaneBark = GameObject.FindGameObjectWithTag("DogEcho");
+        if (PlaneBark)
+        {
+            PlaneBark.GetComponent<Renderer>().enabled = false;
         }
     }
 }
