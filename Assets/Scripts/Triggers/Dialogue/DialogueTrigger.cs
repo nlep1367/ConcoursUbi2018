@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DialogueTrigger : MonoBehaviour {
     public List<int> DialoguesId;
