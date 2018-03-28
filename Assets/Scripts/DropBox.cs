@@ -16,23 +16,32 @@ public class DropBox : NetworkBehaviour {
         initialPos = gameObject.transform.position;
     }
 
-    void Update()
-    {
-        if (!shouldDrop)
-        {
-            gameObject.transform.position = initialPos;
-        }
-    }
+    //void Update()
+    //{
+    //    /*
+    //    if (!shouldDrop)
+    //    {
+    //        gameObject.transform.position = initialPos;
+    //    }
+    //    */
+    //}
 
     private void Drop()
     {
         Cmd_Drop();
-        shouldDrop = true;
+        StartCoroutine(Wait());
     }
 
     [Command]
     private void Cmd_Drop()
     {
+        StartCoroutine(Wait());
+    }
+
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1.0f);
         shouldDrop = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
