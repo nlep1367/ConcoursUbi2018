@@ -16,16 +16,6 @@ public class DropBox : NetworkBehaviour {
         initialPos = gameObject.transform.position;
     }
 
-    //void Update()
-    //{
-    //    /*
-    //    if (!shouldDrop)
-    //    {
-    //        gameObject.transform.position = initialPos;
-    //    }
-    //    */
-    //}
-
     private void Drop()
     {
         Cmd_Drop();
