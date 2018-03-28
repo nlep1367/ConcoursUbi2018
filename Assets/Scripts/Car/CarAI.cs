@@ -28,11 +28,19 @@ public class CarAI : NetworkBehaviour {
 	void Update () {
         if (isBreaking || path.GetWayPoint(CurrentWaypoint).ShouldStop(transform.position))
         {
+			// Stop
             Agent.speed = 0;
             Agent.velocity = Vector3.zero;
+
+
         }
         else
         {
+			// Avance
+			if (Agent.velocity = Vector3.zero) {
+				// Redemarre
+				// Run
+			}
             Agent.speed = Speed;
         }
 

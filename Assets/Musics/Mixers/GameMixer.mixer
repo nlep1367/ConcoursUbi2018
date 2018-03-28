@@ -52,9 +52,10 @@ AudioMixerController:
     - 78291723d59ae45cab95c2d3c658c11c
     - a2c3ba01fac9546279d9aa3baa198e0f
     - e1fcb7746e33e4004a7b19653aa3f088
+    - fa1e8ac7690e74016b4f0e107b6e1804
     name: All
   m_CurrentViewIndex: 3
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 245946970634211302}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ AudioMixerGroupController:
   - {fileID: 243111933731048082}
   - {fileID: 243772536611744834}
   - {fileID: 243789518315457314}
+  - {fileID: 243775870548086760}
   m_Volume: 71ff10516dfe04cc0b3fde3d75c4249a
   m_Pitch: cb1a13aafaec84cbfa7fdf71c67b63b2
   m_Effects:
@@ -213,6 +215,23 @@ AudioMixerGroupController:
   m_Pitch: c4bfbb6567ccb43cba69b1bdb0dd7fe0
   m_Effects:
   - {fileID: 244375881701538480}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243775870548086760
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Car
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: fa1e8ac7690e74016b4f0e107b6e1804
+  m_Children: []
+  m_Volume: 4a283f84513c240e58f9e36f4cc06c18
+  m_Pitch: 615583a2332bc47159dc52c2399775d1
+  m_Effects:
+  - {fileID: 244092964489741974}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -273,6 +292,19 @@ AudioMixerEffectController:
   m_EffectID: e1a1138efcf9c4f5abfd26a5c10f80a5
   m_EffectName: Attenuation
   m_MixLevel: 40addcfb6bdb849c0af9e617fbdcb4a2
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244092964489741974
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1e8852567707a47c48e7960e562e02c1
+  m_EffectName: Attenuation
+  m_MixLevel: 04c2fb1cdfbe84bf0a5f17e7a56de017
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -367,8 +399,10 @@ AudioMixerSnapshotController:
     71ff10516dfe04cc0b3fde3d75c4249a: 0
     106bf83398d444981ac36b6323dd4b5b: -80
     569e22933881842a6a1338ed1ed6f35c: -80
+    4a283f84513c240e58f9e36f4cc06c18: -80
     4cbca2e8142f2402089facfd424cadbc: -0.003893068
     1a3e03f80695d41a8a840ca02467775f: -80
+    fc501c99ec81c4eb5b0764f5957143ae: -80
     4b7bd7c9372754a7297fbbeefb467a18: -80
     e27102fb0a6cb4646ba88edfa925dd3d: -10
     fc4efd6d9a5c54ce19587b36c50ddbb9: -80
