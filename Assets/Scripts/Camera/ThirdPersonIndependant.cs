@@ -22,8 +22,28 @@ public class ThirdPersonIndependant : ThirdPerson {
 
         if (verticalRotation != 0)
         {
-            _offsetVector = Quaternion.AngleAxis(verticalRotation * VerticalSpeed, this.transform.right) * _offsetVector;
-            _offsetVector.y = Mathf.Clamp(_offsetVector.y, MinY, MaxY);
+            Vector3 tryOffset =  Quaternion.AngleAxis(verticalRotation * VerticalSpeed, this.transform.right) * _offsetVector;
+            float tryOffsetY = Vector3.Dot(tryOffset, Vector3.up);
+
+            if(tryOffsetY > MaxY)
+            {
+                float offsetY = Vector3.Dot(_offsetVector, Vector3.up);
+                float target = (MaxY - offsetY) / (tryOffsetY - offsetY);
+
+                tryOffset = Vector3.Slerp(_offsetVector, tryOffset, target);
+
+            }
+
+            if (tryOffsetY < MinY)
+            {
+                float offsetY = Vector3.Dot(_offsetVector, Vector3.up);
+                float target = (MinY - offsetY) / (tryOffsetY - offsetY);
+
+                tryOffset = Vector3.Slerp(_offsetVector, tryOffset, target);
+
+            }
+
+            _offsetVector = tryOffset;
             _offsetVector.Normalize();
         }
 

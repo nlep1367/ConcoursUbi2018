@@ -1985,7 +1985,7 @@ MonoBehaviour:
   MaxSpeed: 5
   RotationSpeed: 25
   Acceleration: 15
-  LandingTime: 0.5
+  LandingTime: 0.3
   MaxHeight: 2.7
   InAirAcceleration: 10
   FallModifier: 1.5
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95566204552694556}
-  m_ParameterSendBits: 31
+  m_ParameterSendBits: 127
   param0: 
   param1: 
   param2: 
@@ -2110,6 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade8f101f951c4f48a12add6c1199cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  From: 5
   SwapState: 6
 --- !u!114 &114836553238543468
 MonoBehaviour:
