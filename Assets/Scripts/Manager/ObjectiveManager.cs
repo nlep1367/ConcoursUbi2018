@@ -51,7 +51,7 @@ public class ObjectiveManager : NetworkBehaviour, INotifyPropertyChanged
                 Id = 3,
                 Title = "Save the Environment",
                 Description = "Bonus : Save the environment",
-                SuccessPoints = 50,
+                SuccessPoints = 0,
                 FailurePoints = 0,
             },
             new Objective

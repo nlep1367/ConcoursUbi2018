@@ -6,21 +6,21 @@ public class Garbage : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        ThrownableObject thrownable = other.GetComponent<ThrownableObject>();
+        PickupObject po = other.GetComponent<PickupObject>();
 
-        if (thrownable != null)
+        if (po != null)
         {
-            thrownable.IsInThrownZone = true;
+            po.GetCarriedObject().GetComponent<ThrownableObject>().IsInThrownZone = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        ThrownableObject thrownable = other.GetComponent<ThrownableObject>();
+        PickupObject po = other.GetComponent<PickupObject>();
 
-        if (thrownable != null)
+        if (po != null)
         {
-            thrownable.IsInThrownZone = false;
+            po.GetCarriedObject().GetComponent<ThrownableObject>().IsInThrownZone = false;
         }
     }
 }
