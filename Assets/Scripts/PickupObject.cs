@@ -209,6 +209,7 @@ public class PickupObject : NetworkBehaviour {
         }
 
         gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+        gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = false;
     }
     
     [ClientRpc]
@@ -217,6 +218,7 @@ public class PickupObject : NetworkBehaviour {
         if(gameObj != null)
         {
             gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = true;
+            gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = true;
             gameObj.AddComponent<Rigidbody>();
     
             Rigidbody carriedNewRigidBody = gameObj.GetComponent<Rigidbody>();
