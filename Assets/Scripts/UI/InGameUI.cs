@@ -11,6 +11,7 @@ public class InGameUI : MonoBehaviour {
     public StoryUI storyUI;
     public ControlsUI controlsUI;
     public HeartbeatsUI heartbeatsUI;
+    public Storyboard endStoryboard;
 
     public GameObject fille;
 
