@@ -114,9 +114,12 @@ public class PickupObject : NetworkBehaviour {
     [Command]
     void CmdDestroyCollectible(GameObject gameObj)
     {
-        FadeMaterial fm = gameObj.GetComponent<FadeMaterial>();
-        if (fm != null)
-            fm.Rpc_Kill();
+        if(gameObj != null)
+        { 
+            FadeMaterial fm = gameObj.GetComponent<FadeMaterial>();
+            if (fm != null)
+                fm.Rpc_Kill();
+        }
     }
 
     
