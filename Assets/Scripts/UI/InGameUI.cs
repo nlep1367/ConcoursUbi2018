@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameUI : MonoBehaviour {
-
-    public ScaredEffect scaredEffect;
+    
     public ObjectivesUI objectivesUI;
     public ScoreUI scoreUI;
     public HintUI hintUI;
@@ -52,14 +51,12 @@ public class InGameUI : MonoBehaviour {
         Init();
         controlsUI.DisplayControls(true);
         heartbeatsUI.gameObject.SetActive(true);
-        Destroy(scaredEffect.gameObject);
     }
 
     void InitEchoUI()
     {
         Init();
         controlsUI.DisplayControls(false);
-        scaredEffect.transform.GetChild(0).gameObject.SetActive(true);
         Destroy(heartbeatsUI.gameObject);
     }
 
