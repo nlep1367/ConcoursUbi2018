@@ -8,9 +8,13 @@ public class Garbage : MonoBehaviour {
     {
         PickupObject po = other.GetComponent<PickupObject>();
 
-        if (po != null)
+        if (other.CompareTag("Fille") && po != null)
         {
-            po.GetCarriedObject().GetComponent<ThrownableObject>().IsInThrownZone = true;
+            GameObject go = po.GetCarriedObject();
+            if(go != null)
+            {
+                go.GetComponent<ThrownableObject>().IsInThrownZone = true;
+            }
         }
     }
 
@@ -18,9 +22,13 @@ public class Garbage : MonoBehaviour {
     {
         PickupObject po = other.GetComponent<PickupObject>();
 
-        if (po != null)
+        if (other.CompareTag("Fille") && po != null)
         {
-            po.GetCarriedObject().GetComponent<ThrownableObject>().IsInThrownZone = false;
+            GameObject go = po.GetCarriedObject();
+            if (go != null)
+            {
+                go.GetComponent<ThrownableObject>().IsInThrownZone = false;
+            }
         }
     }
 }
