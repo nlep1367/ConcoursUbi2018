@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4452941662344770}
   - component: {fileID: 114531663993140058}
   - component: {fileID: 114620227509403480}
+  - component: {fileID: 65406145952297446}
   - component: {fileID: 54641336431057832}
   - component: {fileID: 65552423337661296}
-  - component: {fileID: 135947048462800248}
   m_Layer: 0
   m_Name: Lock
   m_TagString: PickableObject
@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183242900180442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.134644, y: 0.103, z: 43.4145}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -5.5390573, y: 2.141, z: 27.602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4017563282075954}
   m_Father: {fileID: 0}
@@ -132,6 +132,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65406145952297446
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183242900180442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65552423337661296
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -203,15 +215,3 @@ MonoBehaviour:
   HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
   HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
   OutlineWidth: 0.0002
---- !u!135 &135947048462800248
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183242900180442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
