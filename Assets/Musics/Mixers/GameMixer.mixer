@@ -11,6 +11,7 @@ AudioMixerController:
   m_Snapshots:
   - {fileID: 24500006}
   - {fileID: 245946970634211302}
+  - {fileID: 245506723831056648}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -420,6 +421,30 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &245506723831056648
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Storyboard
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7d666bcf6f9de4a3c87dc05a637d32e0
+  m_FloatValues:
+    6ee0c5925d7e642319750da68ab3d5bd: 0
+    106bf83398d444981ac36b6323dd4b5b: -80
+    569e22933881842a6a1338ed1ed6f35c: -10
+    be2e79a35c42f49fc843d5b82edff578: -80
+    e3cd89f31d7d741e3a73a6bb339a9a80: -80
+    a3992f78f23974bb7933724dd3d4dfc9: -80
+    4cbca2e8142f2402089facfd424cadbc: -0.003893068
+    1a3e03f80695d41a8a840ca02467775f: 0
+    9cb768f899cd84edfb17b2ea1f514834: -80
+    fc501c99ec81c4eb5b0764f5957143ae: -80
+    4b7bd7c9372754a7297fbbeefb467a18: -80
+    e27102fb0a6cb4646ba88edfa925dd3d: -10
+    fc4efd6d9a5c54ce19587b36c50ddbb9: -80
+    50496c4ea903d44988f0caf725e0cfb0: -80
+  m_TransitionOverrides: {}
 --- !u!245 &245946970634211302
 AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
