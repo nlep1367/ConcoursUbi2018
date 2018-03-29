@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 23908102444054648}
   - component: {fileID: 65939609557120826}
   - component: {fileID: 114685319056508250}
+  - component: {fileID: 114119756618399874}
   m_Layer: 8
   m_Name: crate_1x1
   m_TagString: Untagged
@@ -221,6 +222,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010182681, y: 0.010172246, z: 0.010392791}
   m_Center: {x: 0, y: -0.000053349173, z: 0.0051413467}
+--- !u!114 &114119756618399874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631151540625840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0005
 --- !u!114 &114497179244589502
 MonoBehaviour:
   m_ObjectHideFlags: 1
