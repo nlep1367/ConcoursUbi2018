@@ -34,10 +34,11 @@ public class BlockerAI : BaseAI {
         Vector3 Target;
         Vector3 LookAt;
 
+        Vector3 Path = EndPosition.position - StartPosition.position;
+
         if (Vision.SeeSomething(out Target))
         {
             Rpc_SetActiveWall(true);
-            Vector3 Path = EndPosition.position - StartPosition.position;
             float Magnitude = Path.magnitude;
             Path.Normalize();
 
@@ -74,7 +75,7 @@ public class BlockerAI : BaseAI {
         }
 
         Vector3 Direction = Destination - transform.position;
-
+        float signedDistance = Vector3.Dot(Direction, Path);
         if ((Direction).magnitude > MinDistance)
         {
             Direction.Normalize();
@@ -82,7 +83,7 @@ public class BlockerAI : BaseAI {
             transform.position += (Direction * speed * Time.deltaTime);
         }
 
-        Animator.SetFloat("Speed", Direction.magnitude > MinDistance? 1 : 0);
+        Animator.SetFloat("Speed", Direction.magnitude > MinDistance? Mathf.Sign(signedDistance): 0);
         transform.LookAt(LookAt);
     }
 
