@@ -1011,6 +1011,7 @@ MonoBehaviour:
   fearIncrement: 10
   reasonPointLoss: IT'S A DARN SQUIRREL
   pointLoss: 10
+  isStay: 1
 --- !u!114 &114221647944379846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1044,6 +1045,7 @@ MonoBehaviour:
   TimeBeforeDestroy: 5
   FadeStartTime: 4
   Render: {fileID: 23624599274581608}
+  hui: {fileID: 0}
 --- !u!114 &114310645176281610
 MonoBehaviour:
   m_ObjectHideFlags: 1

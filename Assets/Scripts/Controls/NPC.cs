@@ -14,7 +14,7 @@ public class NPC : Player {
         States = new Dictionary<StateEnum, PlayerState>
         {
             { StateEnum.GROUNDED, State},
-            { StateEnum.TALKING, new PStateTalking(this) }
+            { StateEnum.TALKING, new PStateTalking(this, 6f) }
         };
     }
 

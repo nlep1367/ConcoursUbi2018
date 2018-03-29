@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4773926939118314}
   - component: {fileID: 114770643603005002}
   - component: {fileID: 114859702957838900}
-  - component: {fileID: 65438773451842734}
   - component: {fileID: 54282251985413408}
   - component: {fileID: 65068851200336386}
+  - component: {fileID: 135361158645493402}
   m_Layer: 0
   m_Name: Bone
   m_TagString: PickableObject
@@ -55,8 +55,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387906769027630}
-  m_LocalRotation: {x: -0, y: 0.49999917, z: -0, w: 0.8660259}
-  m_LocalPosition: {x: -7.762848, y: 0.11508, z: 66.91}
+  m_LocalRotation: {x: -0, y: -0.4144202, z: -0, w: 0.9100857}
+  m_LocalPosition: {x: -31.358997, y: 0.088869, z: 42.262985}
   m_LocalScale: {x: 2.4025426, y: 2.4025419, z: 2.4025424}
   m_Children:
   - {fileID: 4877531388148992}
@@ -144,18 +144,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.08, z: 0.06}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65438773451842734
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387906769027630}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114420634459960416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,3 +203,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpRate: 10
+--- !u!135 &135361158645493402
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387906769027630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

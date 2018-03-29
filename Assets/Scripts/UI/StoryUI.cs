@@ -7,7 +7,8 @@ public class Message
 {
     public string name;
     public string content;
-    private const float DURATION = 0.75f; 
+    private const float DURATION = 0.35f; 
+    private const float MIN_DURATION = 1f;
 
     public Message(string n, string c)
     {
@@ -17,7 +18,7 @@ public class Message
     public float GetDuration()
     {
         int wordCount = content.Split(' ').Length;
-        return wordCount * DURATION;
+        return Mathf.Max(wordCount * DURATION, MIN_DURATION);
     }
 };
 

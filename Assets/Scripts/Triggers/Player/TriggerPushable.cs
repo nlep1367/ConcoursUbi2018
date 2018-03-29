@@ -32,7 +32,7 @@ public class TriggerPushable : MonoBehaviour {
 
             if (player != null && player.State != player.States[StateEnum.CLIMBING])
             {
-                if (Input.GetButtonDown("B"))
+                if (StaticInput.GetButtonDown("B"))
                 {
                     
                     Vector3 pushDirection = this.transform.parent.position - this.transform.position;

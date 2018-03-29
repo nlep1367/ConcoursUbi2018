@@ -1229,6 +1229,8 @@ MonoBehaviour:
   - {fileID: 245852786181371158, guid: 9e1f57bbcbf324168aa229017eeaaad6, type: 2}
   - {fileID: 245820668544480464, guid: 9e1f57bbcbf324168aa229017eeaaad6, type: 2}
   - {fileID: 245048928031858634, guid: 9e1f57bbcbf324168aa229017eeaaad6, type: 2}
+  InStoryboard: {fileID: 245506723831056648, guid: fb197bd67a7bd4b17b6341c2c83dfeea,
+    type: 2}
   StartSting: {fileID: 8300000, guid: 775d66a34515949f68dc8422788a5890, type: 3}
   WinSting: {fileID: 8300000, guid: 4eb22de3f5c0046a68192d286b07eb2c, type: 3}
   FailSting: {fileID: 8300000, guid: 9f3a4323906d64ab99daf3ba5b30cc17, type: 3}

@@ -17,6 +17,7 @@ public class PickupObject : NetworkBehaviour {
     private bool isPickingUp = false;
     private bool isForceHideHintUi = false;
 
+    public float FailSafePickup = 0.75f;
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
 
@@ -41,7 +42,7 @@ public class PickupObject : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
-		if(isPickingUp && isCarryingObject)
+		if(isPickingUp && isCarryingObject && carriedObject != null)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
 
@@ -63,6 +64,10 @@ public class PickupObject : NetworkBehaviour {
             Carry(carriedObject);
             Drop();
         }
+        else if (isCarryingObject)
+        {
+            isCarryingObject = false;
+        }
         else
         {
             Pickup();
@@ -82,7 +87,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Pickup()
     {
-        if (Input.GetButtonDown("X"))
+        if (StaticInput.GetButtonDown("X"))
         {
             if (pickableObject != null)
             {
@@ -146,7 +151,7 @@ public class PickupObject : NetworkBehaviour {
 
     public IEnumerator WaitForPickUp()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(FailSafePickup);
         PickingUpAnimation();
     }
 
@@ -159,7 +164,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Drop()
     {   
-        if (Input.GetButtonDown("X"))
+        if (StaticInput.GetButtonDown("X"))
         {
             droppedObject = carriedObject;
             CmdEnableRigidBody(droppedObject);
@@ -209,6 +214,7 @@ public class PickupObject : NetworkBehaviour {
         }
 
         gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+        gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = false;
     }
     
     [ClientRpc]
@@ -217,6 +223,7 @@ public class PickupObject : NetworkBehaviour {
         if(gameObj != null)
         {
             gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = true;
+            gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = true;
             gameObj.AddComponent<Rigidbody>();
     
             Rigidbody carriedNewRigidBody = gameObj.GetComponent<Rigidbody>();

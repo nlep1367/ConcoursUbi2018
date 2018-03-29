@@ -18,6 +18,10 @@ public class DoorState : NetworkBehaviour {
     
     private bool IsGirlInRange = false;
 
+    public float Cooldown = 5.0f;
+
+    private float _startTime = 0.0f;
+
     private ObjectSync Os;
 
     private void Update()
@@ -27,10 +31,25 @@ public class DoorState : NetworkBehaviour {
             CheckIfDoorStillBlocked();
         }
 
-        if (IsGirlInRange && Input.GetButtonDown("A") && Locks.Count == 0 && !isDoorBlocked)
+        if (IsGirlInRange && StaticInput.GetButtonDown("A"))
         {
-            OpenDoor();
-            CloseDoor();
+            if(isDoorBlocked && (Time.time - _startTime) > Cooldown)
+            {
+                _startTime = Time.time;
+
+                GameEssentials.DialogueSync.Cmd_ChangeDialogueToServer(
+                    new Dialogue {  Title = "Door blocked",
+                                    Speaker = "Iris",
+                                    Text = "It seems like the door is blocked."
+                    });
+
+            }
+
+            if(Locks.Count == 0 && !isDoorBlocked)
+            {
+                OpenDoor();
+                CloseDoor();
+            }
         }
 
         if (!isServer)
@@ -41,7 +60,7 @@ public class DoorState : NetworkBehaviour {
             // Bonne clef
             if (Vector3.Distance(go.transform.position, dt.transform.position) < 3)
             {
-                if(IsGirlInRange && Input.GetButtonDown("A") && Locks.Count > 0)
+                if(IsGirlInRange && StaticInput.GetButtonDown("A") && Locks.Count > 0)
                 {
                     GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
                     dt.hUI.Display(Controls.A, "Open Door");

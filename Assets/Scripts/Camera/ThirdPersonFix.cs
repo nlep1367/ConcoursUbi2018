@@ -24,7 +24,7 @@ public class ThirdPersonFix : ThirdPerson {
     void Update()
     {
 
-        float VerticalRotation = Input.GetAxis("Vertical_Rotation");
+        float VerticalRotation = StaticInput.GetAxis("Vertical_Rotation");
 
         if (VerticalRotation != 0)
         {
