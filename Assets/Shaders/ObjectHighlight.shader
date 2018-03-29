@@ -14,7 +14,7 @@
 	_Ramp("Toon Ramp (RGB)", 2D) = "gray" {}
 
 	_OutlineColor("Outline color", Color) = (0, 0, 0, 1)
-		_OutlineWidth("Outlines width", Range(0.0, 0.03)) = 0.0005
+		_OutlineWidth("Outlines width", Range(0.0, 0.03)) = 0.0003
 	}
 
 		CGINCLUDE

@@ -18,6 +18,7 @@ public class TriggerPushable : MonoBehaviour {
         if (os != null && os.hasAuthority && os.CompareTag("Fille"))
         {
             hintUI.Display(Controls.B, "Push the box");
+            this.transform.parent.GetComponentInChildren<HighlightObject>().ToggleHighlight(true);
         }
     }
 
@@ -52,5 +53,6 @@ public class TriggerPushable : MonoBehaviour {
         {
             hintUI.Hide();
         }
+        this.transform.parent.GetComponentInChildren<HighlightObject>().ToggleHighlight(false);
     }
 }
