@@ -72,6 +72,7 @@ public abstract class Player : NetworkBehaviour
 
             if (index != -1)
             {
+                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 gameObject.transform.position = respawnPoints[index].transform.position;
             }
         }

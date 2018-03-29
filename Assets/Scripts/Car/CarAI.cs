@@ -17,22 +17,33 @@ public class CarAI : NetworkBehaviour {
     public NavMeshAgent Agent;
     public Renderer Render;
     private NetworkSpawner carSpawner;
+	public CarSoundsControl soundControl;
 
     // Use this for initialization
     void Awake() {     
         Render.material = RandomMaterial[Random.Range(0, RandomMaterial.Length)];
     }
 	
+
+
 	// Update is called once per frame
     [Server]
 	void Update () {
         if (isBreaking || path.GetWayPoint(CurrentWaypoint).ShouldStop(transform.position))
         {
+			// Stop
+			soundControl.Brake();
             Agent.speed = 0;
             Agent.velocity = Vector3.zero;
+
+
         }
         else
         {
+			// Avance
+			if (Agent.velocity == Vector3.zero) {
+				soundControl.StartMoving ();
+			}
             Agent.speed = Speed;
         }
 

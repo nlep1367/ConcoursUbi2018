@@ -3062,12 +3062,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 54044941502602314}
   Animator: {fileID: 95794001824668072}
-  MaxMovementSpeed: 25
+  MaxMovementSpeed: 5
   MovementSpeed: 5
   RotationSpeed: 60
   Acceleration: 30
-  PushingMovementSpeed: 10
-  ClimbingSpeed: 10
+  PushingMovementSpeed: 2.5
+  ClimbingSpeed: 2.5
   shaderActivated: 1
   fear: {fileID: 114113253177008070}
 --- !u!114 &114603672696637660

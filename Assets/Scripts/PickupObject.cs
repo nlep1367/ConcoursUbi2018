@@ -114,7 +114,12 @@ public class PickupObject : NetworkBehaviour {
     [Command]
     void CmdDestroyCollectible(GameObject gameObj)
     {
-        gameObj.GetComponent<FadeMaterial>().Rpc_Kill();
+        if(gameObj != null)
+        { 
+            FadeMaterial fm = gameObj.GetComponent<FadeMaterial>();
+            if (fm != null)
+                fm.Rpc_Kill();
+        }
     }
 
     
@@ -122,9 +127,12 @@ public class PickupObject : NetworkBehaviour {
     public void Cmd_GetAutority(NetworkIdentity ni)
     {
         NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
-        ni.localPlayerAuthority = true;
+        if(ni != null)
+        { 
+            ni.localPlayerAuthority = true;
 
-        ni.AssignClientAuthority(temp);
+            ni.AssignClientAuthority(temp);
+        }
     }
 
 
@@ -189,6 +197,9 @@ public class PickupObject : NetworkBehaviour {
     [ClientRpc]
     void RpcDisableRigidBody(GameObject gameObj)
     {
+        if (gameObj == null)
+            return;
+
         Rigidbody pickableRigidBody = gameObj.GetComponent<Rigidbody>();
         if (pickableRigidBody != null)
         {
