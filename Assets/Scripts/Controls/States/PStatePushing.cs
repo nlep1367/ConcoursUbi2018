@@ -50,12 +50,6 @@ public class PStatePushing : PlayerState
 			IrisSoundsControl soundControl = girl.gameObject.GetComponent<IrisSoundsControl> ();
 			soundControl.StartPush ();
 
-		} 
-		else if (_player is PlayerDog)
-		{
-			PlayerDog dog = _player as PlayerDog;
-			EchoSoundsControl soundControl = dog.gameObject.GetComponent<EchoSoundsControl> ();
-			soundControl.StartPush ();
 		}
     }
 
@@ -71,12 +65,6 @@ public class PStatePushing : PlayerState
 			IrisSoundsControl soundControl = girl.gameObject.GetComponent<IrisSoundsControl> ();
 			soundControl.StopPush ();
 
-		} 
-		else if (_player is PlayerDog)
-		{
-			PlayerDog dog = _player as PlayerDog;
-			EchoSoundsControl soundControl = dog.gameObject.GetComponent<EchoSoundsControl> ();
-			soundControl.StopPush ();
 		}
     }
 }
