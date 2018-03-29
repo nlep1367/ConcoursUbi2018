@@ -77972,7 +77972,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1176997625252800, guid: 7155054c9da6c23489eeab127b45d037, type: 2}
       propertyPath: m_Name
-      value: WoodStick (1)
+      value: WoodStick42
       objectReference: {fileID: 0}
     - target: {fileID: 4575250029572900, guid: 7155054c9da6c23489eeab127b45d037, type: 2}
       propertyPath: m_LocalScale.x
@@ -78011,6 +78011,11 @@ Prefab:
 --- !u!4 &1717660031 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4575250029572900, guid: 7155054c9da6c23489eeab127b45d037,
+    type: 2}
+  m_PrefabInternal: {fileID: 1717660030}
+--- !u!1 &1717660032 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1176997625252800, guid: 7155054c9da6c23489eeab127b45d037,
     type: 2}
   m_PrefabInternal: {fileID: 1717660030}
 --- !u!1001 &1723236086
@@ -95892,6 +95897,11 @@ Prefab:
       propertyPath: hUI
       value: 
       objectReference: {fileID: 1436726167}
+    - target: {fileID: 114019730732031926, guid: 9d12e34e8c1af3a46b02711ef20c1f68,
+        type: 2}
+      propertyPath: blockingObj
+      value: 
+      objectReference: {fileID: 1717660032}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d12e34e8c1af3a46b02711ef20c1f68, type: 2}
   m_IsPrefabParent: 0
