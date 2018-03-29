@@ -16,7 +16,7 @@ public class PlayPanelGUI : GUIControls {
 	void Update () {
         if (newGameInput.GetComponent<InputField>().isFocused)
         {
-            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel"))
+            if (StaticInput.GetButtonDown("Submit") || StaticInput.GetButtonDown("Cancel"))
             {
                 onEnableSelect.Select();
             }

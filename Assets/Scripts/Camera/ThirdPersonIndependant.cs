@@ -18,7 +18,7 @@ public class ThirdPersonIndependant : ThirdPerson {
 
 	// Update is called once per frame
 	void Update () {
-        float verticalRotation = Input.GetAxis("Vertical_Rotation");
+        float verticalRotation = StaticInput.GetAxis("Vertical_Rotation");
 
         if (verticalRotation != 0)
         {
@@ -47,7 +47,7 @@ public class ThirdPersonIndependant : ThirdPerson {
             _offsetVector.Normalize();
         }
 
-        float horizontalRotation = Input.GetAxis("Horizontal_Rotation");
+        float horizontalRotation = StaticInput.GetAxis("Horizontal_Rotation");
 
         if (horizontalRotation != 0)
         {
@@ -56,7 +56,7 @@ public class ThirdPersonIndependant : ThirdPerson {
         }
         Vector3 offset = (_offsetVector + BaseOffsetVector).normalized*DistanceOffset;
 
-        if(Input.GetButton("ReturnCamera"))
+        if(StaticInput.GetButton("ReturnCamera"))
         {
             GoBackToFront();
         }

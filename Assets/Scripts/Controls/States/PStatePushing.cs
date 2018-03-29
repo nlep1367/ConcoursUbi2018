@@ -18,10 +18,10 @@ public class PStatePushing : PlayerState
 
     public override void InterpretInput()
     {
-        float VerticalAxis = Input.GetAxis("Vertical_Move");
-        float HorizontalAxis = Input.GetAxis("Horizontal_Move");
+        float VerticalAxis = StaticInput.GetAxis("Vertical_Move");
+        float HorizontalAxis = StaticInput.GetAxis("Horizontal_Move");
 
-        if(Input.GetButtonUp("A"))
+        if(StaticInput.GetButtonUp("A"))
         {
             _player.ChangeState(StateEnum.GROUNDED);
         }

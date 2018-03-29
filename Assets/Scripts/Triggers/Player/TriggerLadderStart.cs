@@ -20,7 +20,7 @@ public class TriggerLadderStart : MonoBehaviour {
 
             if (player.State != player.States[StateEnum.CLIMBING])
             {
-                if (Input.GetButtonDown("A"))
+                if (StaticInput.GetButtonDown("A"))
                 {
                     //Teleport player to ladder
                     player.RigidBody.velocity = Vector3.zero;

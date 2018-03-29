@@ -18,14 +18,14 @@ public class PStateClimbing : PlayerState
 
 public override void InterpretInput()
     {
-        float VerticalAxis = Input.GetAxis("Vertical_Move");
+        float VerticalAxis = StaticInput.GetAxis("Vertical_Move");
 
         if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
         {
             _player.RigidBody.AddForce(VerticalAxis * _player.transform.up * ClimbingSpeed * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
+        float HorizontalRotation = StaticInput.GetAxis("Horizontal_Rotation");
 
         if (HorizontalRotation != 0)
         {
