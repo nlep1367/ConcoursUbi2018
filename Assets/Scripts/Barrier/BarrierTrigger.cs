@@ -52,6 +52,9 @@ public class BarrierTrigger : MonoBehaviour {
 
     public GameObject GetPickupObject()
     {
-        return puOb.GetCarriedObject();
+        if (puOb != null)
+            return puOb.GetCarriedObject();
+        else
+            return null;
     }
 }

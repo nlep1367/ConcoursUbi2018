@@ -55,14 +55,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387906769027630}
-  m_LocalRotation: {x: -0, y: -0.4144202, z: -0, w: 0.9100857}
-  m_LocalPosition: {x: -31.358997, y: 0.088869, z: 42.262985}
-  m_LocalScale: {x: 2.4025426, y: 2.4025419, z: 2.4025424}
+  m_LocalRotation: {x: -0, y: 0.38268274, z: -0, w: 0.9238798}
+  m_LocalPosition: {x: -2.5560012, y: 0.212, z: 9.843211}
+  m_LocalScale: {x: 1.5928891, y: 1.5928887, z: 1.5928885}
   m_Children:
   - {fileID: 4877531388148992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 60.000004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.000004, z: 0}
 --- !u!4 &4877531388148992
 Transform:
   m_ObjectHideFlags: 1
@@ -210,7 +210,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387906769027630}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
