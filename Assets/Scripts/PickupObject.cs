@@ -122,9 +122,12 @@ public class PickupObject : NetworkBehaviour {
     public void Cmd_GetAutority(NetworkIdentity ni)
     {
         NetworkConnection temp = GetComponent<NetworkIdentity>().connectionToClient;
-        ni.localPlayerAuthority = true;
+        if(ni != null)
+        { 
+            ni.localPlayerAuthority = true;
 
-        ni.AssignClientAuthority(temp);
+            ni.AssignClientAuthority(temp);
+        }
     }
 
 
