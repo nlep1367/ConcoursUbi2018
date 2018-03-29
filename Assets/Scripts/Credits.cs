@@ -15,8 +15,18 @@ public class Credits : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Submit"))
         {
-            if(exit.DoAction())
-                SceneManager.LoadSceneAsync("MainMenu");
+            if (exit.DoAction())
+            {
+                if(FindObjectsOfType<CustomNetworkLobbyPlayer>().Length >= 0)
+                {
+                    FindObjectOfType<MatchMakingLobbyManager>().ExitMatch();
+                }
+                else
+                {
+                    SceneManager.LoadSceneAsync("MainMenu");
+                }
+
+            }
         }
 	}
 }

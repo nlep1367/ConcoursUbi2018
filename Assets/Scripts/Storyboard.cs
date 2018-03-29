@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class Storyboard : MonoBehaviour {
 
@@ -40,7 +41,7 @@ public class Storyboard : MonoBehaviour {
             {
 				//Fin
                 // Somthing else, like changing scene to credits
-                Destroy(gameObject);
+                SceneManager.LoadSceneAsync("Credits");
             }
             else
             {

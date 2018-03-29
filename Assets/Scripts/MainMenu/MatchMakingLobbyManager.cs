@@ -65,7 +65,7 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
 
     public void ExitMatch()
     {
-        gameEnd.Finish();
+        gameEnd.ExitToLoby();
 
         NetworkManager.singleton.StopClient();
         NetworkManager.singleton.StopHost();

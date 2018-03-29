@@ -11,12 +11,25 @@ public class GameEnd : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(gameObject);
-	}    
+	}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Finish();
+        }
+    }
 
     public void Finish()
     {
         FindObjectOfType<InGameUI>().endStoryboard.gameObject.SetActive(true);
         leaderboard.SavePlayerProgress(matchName);
+
+    }
+
+    public void ExitToLoby()
+    {
 
     }
 
