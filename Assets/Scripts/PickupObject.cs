@@ -42,7 +42,7 @@ public class PickupObject : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
-		if(isPickingUp && isCarryingObject)
+		if(isPickingUp && isCarryingObject && carriedObject != null)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
 
@@ -63,6 +63,10 @@ public class PickupObject : NetworkBehaviour {
 
             Carry(carriedObject);
             Drop();
+        }
+        else if (isCarryingObject)
+        {
+            isCarryingObject = false;
         }
         else
         {
