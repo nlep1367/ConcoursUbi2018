@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95794001824668072}
-  m_ParameterSendBits: 63
+  m_ParameterSendBits: 255
   param0: 
   param1: 
   param2: 
@@ -3037,6 +3037,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2cdf188be05ba4fedbab2db64062502c, type: 3}
   - {fileID: 8300000, guid: 5ad3c16bc0b8b40508686e8e231df12b, type: 3}
   - {fileID: 8300000, guid: c9c0a758152f644f9bbd69e1d7a09f02, type: 3}
+  PushClip: {fileID: 0}
 --- !u!114 &114445859608549456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3105,6 +3106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade8f101f951c4f48a12add6c1199cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  From: 0
   SwapState: 0
 --- !u!114 &114983938147061660
 MonoBehaviour:

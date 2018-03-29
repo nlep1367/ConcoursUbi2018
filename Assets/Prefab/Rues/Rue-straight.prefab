@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585369819595300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.70588, y: 0.754706, z: 34.65882}
+  m_LocalPosition: {x: -7.6470585, y: 0.754706, z: 34.65882}
   m_LocalScale: {x: 1.1764704, y: 1.1764704, z: 1.1764704}
   m_Children:
   - {fileID: 4525576779778152}
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac502c17af29249ad622690cc5f5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearIncrement: 10
+  fearIncrement: 15
   reasonPointLoss: Jaywalking
   pointLoss: 25
+  isStay: 1
