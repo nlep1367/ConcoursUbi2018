@@ -11,7 +11,7 @@ public class ObstaclesDetection : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if(other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
+        if(other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("DoggoFeet"))
         {
             //obstacle = other;
             counter++;
@@ -22,7 +22,7 @@ public class ObstaclesDetection : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         // To ignore the collision with the other 'Trigger' collider
-        if (other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("Doggo"))
+        if (other.CompareTag("Fille") || other.CompareTag("Car") || other.CompareTag("DoggoFeet"))
         {
             //obstacle = null;
             counter--;

@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4926951256818310}
   - component: {fileID: 114811112478996742}
   - component: {fileID: 114536869218098022}
-  - component: {fileID: 65076803135641696}
   - component: {fileID: 54653810109841150}
   - component: {fileID: 65143790052146448}
   - component: {fileID: 114605767264423838}
+  - component: {fileID: 135755159251017822}
   m_Layer: 0
   m_Name: Newspaper
   m_TagString: PickableObject
@@ -69,14 +69,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1674478797990748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.1, y: 0.77, z: -32.21973}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.25881857, z: -0, w: 0.965926}
+  m_LocalPosition: {x: 3.2859, y: 0.105, z: 8.0028}
+  m_LocalScale: {x: 1.7389922, y: 1.7389919, z: 1.7389922}
   m_Children:
   - {fileID: 4390538945073282}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30.000002, z: 0}
 --- !u!23 &23819194664093960
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -133,18 +133,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65076803135641696
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1674478797990748}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65143790052146448
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -228,3 +216,15 @@ MonoBehaviour:
   HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
   HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
   OutlineWidth: 0.0002
+--- !u!135 &135755159251017822
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674478797990748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -14,6 +14,7 @@ TagManager:
   - ScoreManager
   - DogRespawn
   - DogEcho
+  - DoggoFeet
   layers:
   - Default
   - TransparentFX
