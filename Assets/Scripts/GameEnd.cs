@@ -1,23 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameEnd : MonoBehaviour {
 
     public string matchName;
 
     public Leaderboard leaderboard;
+    
 
-	// Use this for initialization
-	void Start () {
+    GameEnd ge;
+
+    // Use this for initialization
+    void Start() {
         DontDestroyOnLoad(gameObject);
-	}
-
-    private void Update()
+    }
+    
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        EndGame ge = GameObject.FindObjectOfType<EndGame>();
+        if(ge != null && ge.Ended)
         {
             Finish();
+            ge.Ended = false;
         }
     }
 
@@ -32,8 +38,5 @@ public class GameEnd : MonoBehaviour {
     {
 
     }
-
-
-
 
 }
