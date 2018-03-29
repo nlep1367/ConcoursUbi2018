@@ -15,7 +15,7 @@ public class TriggerMorph32 : MonoBehaviour {
     
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetButtonDown("X") && GameEssentials.IsGirl(other))
+        if (StaticInput.GetButtonDown("X") && GameEssentials.IsGirl(other))
         {
             GameEssentials.PlayerGirl.ChangeState(StateEnum.READING);
             foreach (GameObject go in MorphingObjects)

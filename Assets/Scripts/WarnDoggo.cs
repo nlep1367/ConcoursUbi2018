@@ -55,7 +55,7 @@ public class WarnDoggo : NetworkBehaviour {
     [Client]
     // Update is called once per frame
     void Update () {
-        if (Input.GetButtonDown("Y") && (Time.time - _startTime) > Cooldown && GameEssentials.PlayerGirl.hasAuthority)
+        if (StaticInput.GetButtonDown("Y") && (Time.time - _startTime) > Cooldown && GameEssentials.PlayerGirl.hasAuthority)
         {
             _startTime = Time.time;
             GameEssentials.DialogueSync.Cmd_ChangeDialogueToServer(_dialogues[Random.Range(0, _dialogues.Count-1)]);

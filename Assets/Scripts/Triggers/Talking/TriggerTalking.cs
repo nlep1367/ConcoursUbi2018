@@ -28,7 +28,7 @@ public class TriggerTalking : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetButtonDown("X") && GameEssentials.IsGirl(other))
+        if (StaticInput.GetButtonDown("X") && GameEssentials.IsGirl(other))
         {
             GameEssentials.PlayerGirl.ChangeState(StateEnum.TALKING);
             _npc.ChangeState(StateEnum.TALKING);

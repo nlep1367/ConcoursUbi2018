@@ -27,14 +27,14 @@ public class ThirdPersonFree : ThirdPerson {
     // Update is called once per frame
     void Update()
     {
-        float VerticalAxis = Input.GetAxis("Vertical_Move");
+        float VerticalAxis = StaticInput.GetAxis("Vertical_Move");
 
         if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
         {
             ReturnToOriginal(VerticalAxis);
         }
 
-        float VerticalRotation = Input.GetAxis("Vertical_Rotation");
+        float VerticalRotation = StaticInput.GetAxis("Vertical_Rotation");
 
         if (VerticalRotation >= float.Epsilon || VerticalRotation <= -float.Epsilon)
         {
@@ -43,7 +43,7 @@ public class ThirdPersonFree : ThirdPerson {
             CameranAngleDegree = Mathf.Clamp(CameranAngleDegree, StartDegree - CameraAngleDegreeMinMax, StartDegree + CameraAngleDegreeMinMax);
         }
 
-        float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
+        float HorizontalRotation = StaticInput.GetAxis("Horizontal_Rotation");
 
         if (HorizontalRotation >= float.Epsilon || HorizontalRotation <= -float.Epsilon)
         {

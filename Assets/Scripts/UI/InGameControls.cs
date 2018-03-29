@@ -15,7 +15,7 @@ public class InGameControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("PauseMenu") && GameEssentials.MusicPlayer != null)
+		if (StaticInput.GetButtonDown("PauseMenu") && GameEssentials.MusicPlayer != null)
         {
             isDisplayed = !isDisplayed;
             menu.SetActive(isDisplayed);
