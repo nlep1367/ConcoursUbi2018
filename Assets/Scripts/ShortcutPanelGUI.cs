@@ -11,7 +11,7 @@ public class ShortcutPanelGUI : GUIControls {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Cancel"))
+        if (StaticInput.GetButtonDown("Cancel"))
         {
             gameObject.SetActive(false);
         }

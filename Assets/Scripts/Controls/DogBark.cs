@@ -41,7 +41,7 @@ public class DogBark : NetworkBehaviour {
 
         if (Time.time > Cooldown + _time)
         {
-            if (Input.GetButtonDown("Y") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
+            if (StaticInput.GetButtonDown("Y") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
             {
                 Cmd_StartBark(green);
                 GetComponent<EchoSoundsControl>().BarkJoyfully();
@@ -57,7 +57,7 @@ public class DogBark : NetworkBehaviour {
             }
             */
 
-            if (Input.GetButtonDown("B") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
+            if (StaticInput.GetButtonDown("B") && GameEssentials.PlayerDog.IsState(StateEnum.GROUNDED))
             {
                 Cmd_StartBark(red);
                 GetComponent<EchoSoundsControl>().BarkAggressively();

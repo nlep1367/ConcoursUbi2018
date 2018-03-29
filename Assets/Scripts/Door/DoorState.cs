@@ -31,7 +31,7 @@ public class DoorState : NetworkBehaviour {
             CheckIfDoorStillBlocked();
         }
 
-        if (IsGirlInRange && Input.GetButtonDown("A"))
+        if (IsGirlInRange && StaticInput.GetButtonDown("A"))
         {
             if(isDoorBlocked && (Time.time - _startTime) > Cooldown)
             {
@@ -60,7 +60,7 @@ public class DoorState : NetworkBehaviour {
             // Bonne clef
             if (Vector3.Distance(go.transform.position, dt.transform.position) < 3)
             {
-                if(IsGirlInRange && Input.GetButtonDown("A") && Locks.Count > 0)
+                if(IsGirlInRange && StaticInput.GetButtonDown("A") && Locks.Count > 0)
                 {
                     GameObject.FindGameObjectWithTag("Fille").GetComponent<PickupObject>().InsertKeyInDoor();
                     dt.hUI.Display(Controls.A, "Open Door");
