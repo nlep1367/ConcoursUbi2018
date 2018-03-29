@@ -13,7 +13,9 @@ public class Garbage : MonoBehaviour {
             GameObject go = po.GetCarriedObject();
             if(go != null)
             {
-                go.GetComponent<ThrownableObject>().IsInThrownZone = true;
+                ThrownableObject to = go.GetComponent<ThrownableObject>();
+                if (to != null)
+                    to.IsInThrownZone = true;
             }
         }
     }
