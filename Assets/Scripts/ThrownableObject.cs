@@ -9,6 +9,7 @@ public class ThrownableObject : NetworkBehaviour {
 
     public void ThrowAway()
     {
+        GameEssentials.ObjectiveSync.Cmd_CompleteObjectiveToServer(GameEssentials.ObjectiveManager.Objectives[3]);
         gameObject.GetComponent<ObjectSync>().Rpc_Destroy();
     }
 }
