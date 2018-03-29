@@ -74278,7 +74278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1132496175100986, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
-  maxInstances: 5
+  maxInstances: 40
   spawnPoint: {fileID: 267860633}
   angleSpawn: 180
 --- !u!114 &1639873718
@@ -90626,7 +90626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee161980700233419c1af9e5ad84f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectivesId: 0000000002000000
+  ObjectivesId: 00000000010000000200000003000000
   state: 3
 --- !u!114 &2003019274
 MonoBehaviour:
@@ -95661,7 +95661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1132496175100986, guid: e91bda28bd2bd55479f71e52ad09c516, type: 2}
-  maxInstances: 5
+  maxInstances: 40
   spawnPoint: {fileID: 1893062320}
   angleSpawn: 0
 --- !u!114 &2091206034
@@ -96803,6 +96803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1738104338be01b44b035aff8571998a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ended: 0
 --- !u!114 &2134036462
 MonoBehaviour:
   m_ObjectHideFlags: 0

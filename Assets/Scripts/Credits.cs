@@ -13,7 +13,7 @@ public class Credits : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (StaticInput.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit"))
         {
             if (exit.DoAction())
             {

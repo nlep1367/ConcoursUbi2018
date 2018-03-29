@@ -103,14 +103,16 @@ public class PickupObject : NetworkBehaviour {
                     Cmd_GetAutority(ni);
                 }
 
-                StartCoroutine(WaitForPickUp());
+                if (carriedObject.GetComponent<Collectible>() == null)
+                    StartCoroutine(WaitForPickUp());
+
                 CmdDisableRigidBody(carriedObject);
                 if (carriedObject.GetComponent<Collectible>() != null)
                 {
-                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(carriedObject.GetComponent<Collectible>().GetCollectibleScoreObj());
                     CmdDestroyCollectible(carriedObject);
-                    isCarryingObject = false;
+                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(carriedObject.GetComponent<Collectible>().GetCollectibleScoreObj());
                     carriedObject = null;
+                    isCarryingObject = false;
                     hintUI.Hide();
                 }
             }
