@@ -69,7 +69,8 @@ public class TrafficLightNode : NetworkBehaviour {
         {
             if (isReadyP)
             {
-                isReadyP = false;
+				isReadyP = false;
+				soundController.PlayBeep ();
                 CountdownPedestrian();
             }   
         }
