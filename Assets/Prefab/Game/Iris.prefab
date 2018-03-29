@@ -3062,7 +3062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 54044941502602314}
   Animator: {fileID: 95794001824668072}
-  MaxMovementSpeed: 5
+  MaxMovementSpeed: 25
   MovementSpeed: 5
   RotationSpeed: 60
   Acceleration: 30

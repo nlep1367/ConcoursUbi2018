@@ -17,7 +17,9 @@ public class TriggerInteractable : MonoBehaviour {
         {
             hintUI.Display(Controls.X, "Hit the button");
             GetComponent<ReplacementShaderObject>().enabled = true;
-            GetComponent<HighlightObject>().ToggleHighlight(true);
+            HighlightObject hob = GetComponent<HighlightObject>();
+            if(hob)
+                hob.ToggleHighlight(true);
         }
     }
 
