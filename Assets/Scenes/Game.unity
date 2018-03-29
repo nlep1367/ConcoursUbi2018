@@ -76711,6 +76711,7 @@ MonoBehaviour:
   Anim: {fileID: 1693816165}
   dt: {fileID: 309935319}
   blockingObj: {fileID: 0}
+  Cooldown: 5
 --- !u!114 &1693816163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83820,7 +83821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1837129619
 RectTransform:
   m_ObjectHideFlags: 0
