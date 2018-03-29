@@ -44,7 +44,9 @@ public class Storyboard : MonoBehaviour {
             }
             else
             {
-				// ChangeAmbient
+                StaticInput.InputInactive = false;
+
+                // ChangeAmbient
                 Destroy(gameObject);
             }
 		}
