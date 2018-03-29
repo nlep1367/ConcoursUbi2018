@@ -33,6 +33,16 @@ public class ThirdPersonIndependant : ThirdPerson {
                 tryOffset = Vector3.Slerp(_offsetVector, tryOffset, target);
 
             }
+
+            if (tryOffsetY < MinY)
+            {
+                float offsetY = Vector3.Dot(_offsetVector, Vector3.up);
+                float target = (MinY - offsetY) / (tryOffsetY - offsetY);
+
+                tryOffset = Vector3.Slerp(_offsetVector, tryOffset, target);
+
+            }
+
             _offsetVector = tryOffset;
             _offsetVector.Normalize();
         }
