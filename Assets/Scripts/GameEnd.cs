@@ -11,11 +11,13 @@ public class GameEnd : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(gameObject);
-	}
+	}    
 
     public void Finish()
     {
+        FindObjectOfType<InGameUI>().endStoryboard.gameObject.SetActive(true);
         leaderboard.SavePlayerProgress(matchName);
+
     }
 
 
