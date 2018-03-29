@@ -17,13 +17,15 @@ public class CarAI : NetworkBehaviour {
     public NavMeshAgent Agent;
     public Renderer Render;
     private NetworkSpawner carSpawner;
-	private CarSoundsControl soundControl;
+	public CarSoundsControl soundControl;
 
     // Use this for initialization
     void Awake() {     
         Render.material = RandomMaterial[Random.Range(0, RandomMaterial.Length)];
     }
 	
+
+
 	// Update is called once per frame
     [Server]
 	void Update () {
