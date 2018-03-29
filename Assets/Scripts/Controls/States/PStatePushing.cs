@@ -42,13 +42,41 @@ public class PStatePushing : PlayerState
         _mass = _rigidBodyToPush.mass;
         _rigidBodyToPush.mass = 0.01f;
 
-        _player.Animator.SetBool(AnimatorAction, true);
+		_player.Animator.SetBool(AnimatorAction, true);
+
+		if (_player is PlayerGirl)
+		{
+			PlayerGirl girl = _player as PlayerGirl;
+			IrisSoundsControl soundControl = girl.gameObject.GetComponent<IrisSoundsControl> ();
+			soundControl.StartPush ();
+
+		} 
+		else if (_player is PlayerDog)
+		{
+			PlayerDog dog = _player as PlayerDog;
+			EchoSoundsControl soundControl = dog.gameObject.GetComponent<EchoSoundsControl> ();
+			soundControl.StartPush ();
+		}
     }
 
     public override void OnExit()
     {
         _rigidBodyToPush.mass = _mass;
 
-        _player.Animator.SetBool(AnimatorAction, false);
+		_player.Animator.SetBool(AnimatorAction, false);
+
+		if (_player is PlayerGirl)
+		{
+			PlayerGirl girl = _player as PlayerGirl;
+			IrisSoundsControl soundControl = girl.gameObject.GetComponent<IrisSoundsControl> ();
+			soundControl.StopPush ();
+
+		} 
+		else if (_player is PlayerDog)
+		{
+			PlayerDog dog = _player as PlayerDog;
+			EchoSoundsControl soundControl = dog.gameObject.GetComponent<EchoSoundsControl> ();
+			soundControl.StopPush ();
+		}
     }
 }
