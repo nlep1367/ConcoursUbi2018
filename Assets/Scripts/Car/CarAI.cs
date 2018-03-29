@@ -17,6 +17,7 @@ public class CarAI : NetworkBehaviour {
     public NavMeshAgent Agent;
     public Renderer Render;
     private NetworkSpawner carSpawner;
+	private CarSoundsControl soundControl;
 
     // Use this for initialization
     void Awake() {     
@@ -28,11 +29,19 @@ public class CarAI : NetworkBehaviour {
 	void Update () {
         if (isBreaking || path.GetWayPoint(CurrentWaypoint).ShouldStop(transform.position))
         {
+			// Stop
+			soundControl.Brake();
             Agent.speed = 0;
             Agent.velocity = Vector3.zero;
+
+
         }
         else
         {
+			// Avance
+			if (Agent.velocity == Vector3.zero) {
+				soundControl.StartMoving ();
+			}
             Agent.speed = Speed;
         }
 
