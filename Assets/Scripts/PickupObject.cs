@@ -114,7 +114,9 @@ public class PickupObject : NetworkBehaviour {
     [Command]
     void CmdDestroyCollectible(GameObject gameObj)
     {
-        gameObj.GetComponent<FadeMaterial>().Rpc_Kill();
+        FadeMaterial fm = gameObj.GetComponent<FadeMaterial>();
+        if (fm != null)
+            fm.Rpc_Kill();
     }
 
     
@@ -192,6 +194,9 @@ public class PickupObject : NetworkBehaviour {
     [ClientRpc]
     void RpcDisableRigidBody(GameObject gameObj)
     {
+        if (gameObj == null)
+            return;
+
         Rigidbody pickableRigidBody = gameObj.GetComponent<Rigidbody>();
         if (pickableRigidBody != null)
         {
