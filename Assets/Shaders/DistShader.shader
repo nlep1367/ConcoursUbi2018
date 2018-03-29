@@ -23,6 +23,7 @@ Shader "Custom/DistShader" {
 	}
 		Blend SrcAlpha OneMinusSrcAlpha
 		ZWrite On
+		
 		Offset -1, -1
 		Pass
 	{
@@ -90,7 +91,7 @@ Shader "Custom/DistShader" {
 	invert = valBark > 0 ? 1 - (valBark - (valCirc*(dist / _BarkRadius))) : invert;
 
 	//Get base color
-	fixed4 endcolor = valBark > 0 ? fixed4(_ColorBark.r, _ColorBark.g, _ColorBark.b, 1 - invert) : _ColorBG;
+	fixed4 endcolor = valBark > 0 ? fixed4(_ColorBark.r, _ColorBark.g, _ColorBark.b, 1 - invert) : fixed4(_ColorBG.r, _ColorBG.g, _ColorBG.b, 0);
 	//If in girl visible radius and no bark
 	if (val > 0 && valBark < 1)
 	{
@@ -99,7 +100,7 @@ Shader "Custom/DistShader" {
 		endcolor = invert*_ColorBG + (1 - invert)*endcolor;
 		endcolor.a = 1;
 	}
-
+	clip(endcolor.a - 0.2);
 	return endcolor;
 	}
 		ENDCG

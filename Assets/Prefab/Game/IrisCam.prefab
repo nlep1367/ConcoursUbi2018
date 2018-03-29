@@ -62,9 +62,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 6
-  far clip plane: 15
-  field of view: 60
+  near clip plane: 0.01
+  far clip plane: 30
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   DistanceOffset: 8
-  BaseOffsetVector: {x: 0, y: 0.3, z: 0}
+  BaseOffsetVector: {x: 0, y: 0.6, z: 0}
   VerticalSpeed: 5
   LateralSpeed: 5
   ReturnSpeed: 0.1
