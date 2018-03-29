@@ -31,6 +31,7 @@ public class AmbientMusicControl : MonoBehaviour
 
 	public AudioMixerSnapshot InGame;
 	public AudioMixerSnapshot[] clipTransitions;
+	public AudioMixerSnapshot InStoryboard;
 
 	public AudioClip StartSting;
 	public AudioClip WinSting;

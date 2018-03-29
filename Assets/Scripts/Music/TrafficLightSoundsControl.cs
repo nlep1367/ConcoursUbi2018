@@ -44,7 +44,6 @@ public class TrafficLightSoundsControl : MonoBehaviour {
 
 			if (m_currentTime > ButtonPressedNoise.length) {
 				m_isInitBeepPlaying = false;
-				PlayBeep ();
 			}
 		}
 
