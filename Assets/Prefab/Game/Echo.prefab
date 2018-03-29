@@ -2019,6 +2019,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17f5e3440ff1a4f4abb1f4e84f24896a, type: 3}
   JoyfulBarkClip: {fileID: 8300000, guid: 6ffae6c1b7fce4b9690d2ef32925b697, type: 3}
   AggressiveBarkClip: {fileID: 8300000, guid: c7acb6f2a4282454284dd3a7cd10df70, type: 3}
+  PushClip: {fileID: 0}
 --- !u!114 &114411934110677752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2045,6 +2046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 4621555054000886}
   CanDrop: 1
+  FailSafePickup: 3
 --- !u!114 &114616414107708196
 MonoBehaviour:
   m_ObjectHideFlags: 1

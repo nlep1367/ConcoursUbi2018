@@ -80,10 +80,6 @@ public class OptionsController_Graphics : MonoBehaviour {
         #else
         ES2.Save(toggleFullscreen, "toggleFullscreen");
         #endif
-       
-
-        //play click sound
-        EasyAudioUtility.instance.Play("Hover");
     }
 
     /// <summary>

@@ -17,6 +17,7 @@ public class PickupObject : NetworkBehaviour {
     private bool isPickingUp = false;
     private bool isForceHideHintUi = false;
 
+    public float FailSafePickup = 0.75f;
     private float oldObjectMass = 1.0f;
     private RigidbodyConstraints rigidbodyConstraints;
 
@@ -146,7 +147,7 @@ public class PickupObject : NetworkBehaviour {
 
     public IEnumerator WaitForPickUp()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(FailSafePickup);
         PickingUpAnimation();
     }
 
@@ -209,6 +210,7 @@ public class PickupObject : NetworkBehaviour {
         }
 
         gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = false;
+        gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = false;
     }
     
     [ClientRpc]
@@ -217,6 +219,7 @@ public class PickupObject : NetworkBehaviour {
         if(gameObj != null)
         {
             gameObj.GetComponents<Collider>().Where((c) => !c.isTrigger).First().enabled = true;
+            gameObj.GetComponents<Collider>().Where((c) => c.isTrigger).First().enabled = true;
             gameObj.AddComponent<Rigidbody>();
     
             Rigidbody carriedNewRigidBody = gameObj.GetComponent<Rigidbody>();
