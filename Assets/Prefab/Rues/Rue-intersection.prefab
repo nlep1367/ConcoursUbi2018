@@ -150,7 +150,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1592604875999226}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12, y: 1, z: 12}
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac502c17af29249ad622690cc5f5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearIncrement: 10
-  reasonPointLoss: 
-  pointLoss: 10
+  fearIncrement: 15
+  reasonPointLoss: Jaywalking
+  pointLoss: 25
+  isStay: 1

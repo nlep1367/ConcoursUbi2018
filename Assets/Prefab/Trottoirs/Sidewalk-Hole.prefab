@@ -150,3 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fearIncrement: 25
+  reasonPointLoss: 
+  pointLoss: 10
+  isStay: 0
