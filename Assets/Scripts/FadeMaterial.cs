@@ -11,6 +11,7 @@ public class FadeMaterial : NetworkBehaviour {
     private bool IsDieing;
     private float CurrentTime = 0;
     public MeshRenderer Render;
+    public HintUI hui;
     
     void Start()
     {
@@ -24,6 +25,7 @@ public class FadeMaterial : NetworkBehaviour {
         if(c != null && c.isTrigger)
         {
             Destroy(c);
+            hui.Hide();
         }
     }
 	
@@ -34,12 +36,12 @@ public class FadeMaterial : NetworkBehaviour {
             CurrentTime += Time.deltaTime;
 
             if(CurrentTime > FadeStartTime)
-            {
+            {/*
                 float alpha = (TimeBeforeDestroy - CurrentTime) / (TimeBeforeDestroy - FadeStartTime);
 
                 Color currentColor = Render.material.color;
 
-                Render.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+                Render.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);*/
             }
         }
 
