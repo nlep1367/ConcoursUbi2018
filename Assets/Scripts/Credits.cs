@@ -13,10 +13,20 @@ public class Credits : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Submit"))
+        if (StaticInput.GetButtonDown("Submit"))
         {
-            if(exit.DoAction())
-                SceneManager.LoadSceneAsync("MainMenu");
+            if (exit.DoAction())
+            {
+                if(FindObjectsOfType<CustomNetworkLobbyPlayer>().Length >= 0)
+                {
+                    FindObjectOfType<MatchMakingLobbyManager>().ExitMatch();
+                }
+                else
+                {
+                    SceneManager.LoadSceneAsync("MainMenu");
+                }
+
+            }
         }
 	}
 }

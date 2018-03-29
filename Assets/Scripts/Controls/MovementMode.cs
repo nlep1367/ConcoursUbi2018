@@ -5,21 +5,21 @@ using UnityEngine;
 public static class MovementMode {
     public static void StrafeMode(Player player, float movementSpeed, float rotationSpeed)
     {
-        float HorizontalAxis = Input.GetAxis("Horizontal_Move");
+        float HorizontalAxis = StaticInput.GetAxis("Horizontal_Move");
 
         if (HorizontalAxis >= float.Epsilon || HorizontalAxis <= -float.Epsilon)
         {
             player.RigidBody.AddForce(HorizontalAxis * player.transform.right * movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        float VerticalAxis = Input.GetAxis("Vertical_Move");
+        float VerticalAxis = StaticInput.GetAxis("Vertical_Move");
 
         if (VerticalAxis >= float.Epsilon || VerticalAxis <= -float.Epsilon)
         {
             player.RigidBody.AddForce(VerticalAxis * player.transform.forward * movementSpeed * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        float HorizontalRotation = Input.GetAxis("Horizontal_Rotation");
+        float HorizontalRotation = StaticInput.GetAxis("Horizontal_Rotation");
 
         if (HorizontalRotation != 0)
         {
@@ -29,14 +29,14 @@ public static class MovementMode {
 
     public static void ForwardMode(Player player, float acceleration, float maxSpeed, float rotationSpeed)
     {
-        float horizontalAxis = Input.GetAxis("Horizontal_Move");
+        float horizontalAxis = StaticInput.GetAxis("Horizontal_Move");
 
         if (horizontalAxis >= float.Epsilon || horizontalAxis <= -float.Epsilon)
         {
             player.RigidBody.AddForce(horizontalAxis * player.transform.right * acceleration * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        float verticalAxis = Input.GetAxis("Vertical_Move");
+        float verticalAxis = StaticInput.GetAxis("Vertical_Move");
 
         if (verticalAxis >= float.Epsilon || verticalAxis <= -float.Epsilon)
         {
@@ -61,7 +61,12 @@ public static class MovementMode {
 
     public static void ForwardModeCamRelative(Player player, float acceleration, float maxSpeed, float rotationSpeed, Camera camera)
     {
-        float horizontalAxis = Input.GetAxis("Horizontal_Move");
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            StaticInput.InputInactive = false;
+        }
+
+        float horizontalAxis = StaticInput.GetAxis("Horizontal_Move");
 
         Vector3 cameraForwardProjection = camera.transform.forward;
         cameraForwardProjection.y = 0;
@@ -80,7 +85,7 @@ public static class MovementMode {
            // player.RigidBody.AddForce(horizontalAxis * cameraRightProjection * acceleration * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        float verticalAxis = Input.GetAxis("Vertical_Move");
+        float verticalAxis = StaticInput.GetAxis("Vertical_Move");
 
         if (verticalAxis >= float.Epsilon || verticalAxis <= -float.Epsilon)
         {

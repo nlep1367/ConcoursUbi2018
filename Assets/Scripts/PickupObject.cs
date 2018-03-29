@@ -87,7 +87,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Pickup()
     {
-        if (Input.GetButtonDown("X"))
+        if (StaticInput.GetButtonDown("X"))
         {
             if (pickableObject != null)
             {
@@ -164,7 +164,7 @@ public class PickupObject : NetworkBehaviour {
 
     void Drop()
     {   
-        if (Input.GetButtonDown("X"))
+        if (StaticInput.GetButtonDown("X"))
         {
             droppedObject = carriedObject;
             CmdEnableRigidBody(droppedObject);
