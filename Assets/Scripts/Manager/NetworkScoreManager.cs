@@ -16,8 +16,14 @@ public struct ScoreObj
 
     public override string ToString()
     {
-        string message = (points >= 0) ? "+" : "-";
-        return message + points.ToString() + " " + reason;
+        string message = "";
+        if (points > 0)
+            message += "+" + points.ToString();
+        else if (points < 0)
+            message += points.ToString();
+
+
+        return message + " " + reason;
     }
 }
 
