@@ -1044,6 +1044,7 @@ MonoBehaviour:
   Speed: 10
   Agent: {fileID: 195041114819494638}
   Render: {fileID: 23704962492400638}
+  soundControl: {fileID: 114458956397050352}
 --- !u!114 &114405858586475074
 MonoBehaviour:
   m_ObjectHideFlags: 1
