@@ -27,6 +27,7 @@ Shader "Toony Colors Free/Regular"
 	{
 		Tags { "RenderType"="Opaque" }
 		
+		Offset -1, 1
 		CGPROGRAM
 		
 		#pragma surface surf ToonyColorsCustom
