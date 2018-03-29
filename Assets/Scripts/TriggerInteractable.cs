@@ -42,7 +42,9 @@ public class TriggerInteractable : MonoBehaviour {
         {
             hintUI.Hide();
             GetComponent<ReplacementShaderObject>().enabled = false;
-            GetComponent<HighlightObject>().ToggleHighlight(false);
+            HighlightObject hob = GetComponent<HighlightObject>();
+            if(hob != null)
+                hob.ToggleHighlight(false);
         }
     }
 }
