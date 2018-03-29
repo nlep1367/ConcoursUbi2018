@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4885181667849396}
   - component: {fileID: 20473920071580532}
   - component: {fileID: 124290182026614970}
-  - component: {fileID: 81448558585016448}
   - component: {fileID: 45487710958286744}
   - component: {fileID: 114324584476933136}
   m_Layer: 0
@@ -88,13 +87,6 @@ Skybox:
   m_GameObject: {fileID: 1538573636552538}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 215c42725ed80f847af3ef75b778bf4b, type: 2}
---- !u!81 &81448558585016448
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1538573636552538}
-  m_Enabled: 1
 --- !u!114 &114324584476933136
 MonoBehaviour:
   m_ObjectHideFlags: 1
