@@ -92,28 +92,28 @@ public class PickupObject : NetworkBehaviour {
         {
             if (pickableObject != null)
             {
-                isCarryingObject = true;
-                carriedObject = pickableObject;
-                _player.ChangeState(StateEnum.GRABBING);
-                
-                if(!isServer)
-                { 
-                    NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
-                    ni.localPlayerAuthority = true;
-                    Cmd_GetAutority(ni);
+                if (pickableObject.GetComponent<Collectible>() != null)
+                {
+                    CmdDestroyCollectible(pickableObject);
+                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(pickableObject.GetComponent<Collectible>().GetCollectibleScoreObj());
+                    hintUI.Hide();
                 }
+                else
+                {
+                    isCarryingObject = true;
+                    carriedObject = pickableObject;
+                    _player.ChangeState(StateEnum.GRABBING);
 
-                if (carriedObject.GetComponent<Collectible>() == null)
+                    if (!isServer)
+                    {
+                        NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                        ni.localPlayerAuthority = true;
+                        Cmd_GetAutority(ni);
+                    }
+
                     StartCoroutine(WaitForPickUp());
 
-                CmdDisableRigidBody(carriedObject);
-                if (carriedObject.GetComponent<Collectible>() != null)
-                {
-                    CmdDestroyCollectible(carriedObject);
-                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(carriedObject.GetComponent<Collectible>().GetCollectibleScoreObj());
-                    carriedObject = null;
-                    isCarryingObject = false;
-                    hintUI.Hide();
+                    CmdDisableRigidBody(carriedObject);
                 }
             }
         }
