@@ -38,7 +38,7 @@ public class PickupObject : NetworkBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (!isLocalPlayer)
             return;
 
@@ -71,14 +71,45 @@ public class PickupObject : NetworkBehaviour {
         }
         else
         {
-            Pickup();
+            if (pickableObject != null && !pickableObject.GetComponent<ObjectSync>().test)
+                Pickup();
+            else
+            {
+                if (pickableObject != null)
+                {
+                    hintUI.Hide();
+                    HighlightObject hob = pickableObject.GetComponentInChildren<HighlightObject>();
+
+                    if (hob != null)
+                        hob.ToggleHighlight(false);
+
+                    pickableObject = null;
+                }          
+            }
+                
         }
+    }
+
+    [Command]
+    public void Cmd_SetAuth(GameObject g, bool t)
+    {
+        g.GetComponent<ObjectSync>().test = t;
     }
 
     void Carry(GameObject obj)
     {
-        obj.transform.position = anchorPoint.position;
-        obj.transform.rotation = anchorPoint.rotation;
+        NetworkIdentity nid = obj.GetComponent<NetworkIdentity>();
+        if (nid != null && nid.hasAuthority)
+        {
+            obj.transform.position = anchorPoint.position;
+            obj.transform.rotation = anchorPoint.rotation;
+        }
+        else
+        {
+            Debug.LogError("Carrying an object that you dont have the authority of.");
+            isCarryingObject = false;
+            carriedObject = null;
+        }
     }
 
     public void PickingUpAnimation()
@@ -96,19 +127,21 @@ public class PickupObject : NetworkBehaviour {
                 {
                     CmdDestroyCollectible(pickableObject);
                     GetComponent<PlayerScoreManager>().Cmd_AddPoints(pickableObject.GetComponent<Collectible>().GetCollectibleScoreObj());
+                    pickableObject = null;
                     hintUI.Hide();
                 }
                 else
                 {
                     isCarryingObject = true;
                     carriedObject = pickableObject;
+                    Cmd_SetAuth(carriedObject, true);
                     _player.ChangeState(StateEnum.GRABBING);
 
                     if (!isServer)
                     {
-                        NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
-                        ni.localPlayerAuthority = true;
-                        Cmd_GetAutority(ni);
+                            NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                            ni.localPlayerAuthority = true;
+                            Cmd_GetAutority(ni);
                     }
 
                     StartCoroutine(WaitForPickUp());
@@ -184,6 +217,8 @@ public class PickupObject : NetworkBehaviour {
                 NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
                 Cmd_RemoveAutority(ni);
             }
+
+            Cmd_SetAuth(carriedObject, false);
             isCarryingObject = false;
             isPickingUp = false;
             carriedObject = null;
@@ -242,7 +277,7 @@ public class PickupObject : NetworkBehaviour {
     {
         if (GetComponent<ObjectSync>().hasAuthority && collider.gameObject.CompareTag("PickableObject") && pickableObject == null)
         {
-			hintUI.Display(Controls.X, "Pick up " + collider.gameObject.name);
+			hintUI.Display(Controls.X, "Pick up object");
 			pickableObject = collider.gameObject;
             pickableObject.GetComponentInChildren<HighlightObject>().ToggleHighlight(true);
         }

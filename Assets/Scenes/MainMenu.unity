@@ -1625,7 +1625,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.85, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2433,7 +2433,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.54, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2942,8 +2942,8 @@ RectTransform:
   m_Father: {fileID: 479391364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.54, y: 0}
-  m_AnchorMax: {x: 0.54, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -7.2, y: 0}
   m_SizeDelta: {x: 20.3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3273,7 +3273,6 @@ GameObject:
   m_Component:
   - component: {fileID: 930807522}
   - component: {fileID: 930807523}
-  - component: {fileID: 930807524}
   m_Layer: 5
   m_Name: _SoundOptions
   m_TagString: Untagged
@@ -3314,17 +3313,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 1
---- !u!114 &930807524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 930807521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbcac08010a8ed841976eb30e53c0efd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &952810550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,8 +4678,8 @@ RectTransform:
   m_Father: {fileID: 2078128129}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.85, y: 0}
-  m_AnchorMax: {x: 0.85, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -7.200001, y: 0}
   m_SizeDelta: {x: 20.3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7590,10 +7578,10 @@ MonoBehaviour:
     m_PacketSize: 1440
     m_FragmentSize: 500
     m_ResendTimeout: 1200
-    m_DisconnectTimeout: 2000
-    m_ConnectTimeout: 2000
-    m_MinUpdateTimeout: 10
-    m_PingTimeout: 500
+    m_DisconnectTimeout: 10000
+    m_ConnectTimeout: 10000
+    m_MinUpdateTimeout: 100
+    m_PingTimeout: 2000
     m_ReducedPingTimeout: 100
     m_AllCostTimeout: 20
     m_NetworkDropThreshold: 5

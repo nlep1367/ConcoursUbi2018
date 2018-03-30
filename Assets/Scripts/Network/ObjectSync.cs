@@ -16,11 +16,14 @@ public class ObjectSync : NetworkBehaviour
     [SyncVar]
     private Quaternion syncRot;
 
+    [SyncVar]
+    public bool test = false;
+
     private Vector3 lastPos;
     private Quaternion lastYRot;
 
     public float lerpRate = 10.0f;
-
+    private int skipFrame = 0;
     void Start()
     {
         objTransform = GetComponent<Transform>();
@@ -29,8 +32,15 @@ public class ObjectSync : NetworkBehaviour
 
     void FixedUpdate()
     {
-        SendMotion();
-        LerpMotion();
+        if (skipFrame != 2)
+        {
+            SendMotion();
+            LerpMotion();
+        }
+        else
+            skipFrame = -1;
+
+        skipFrame++;
     }
 
     void LerpMotion()

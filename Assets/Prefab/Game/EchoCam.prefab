@@ -101,8 +101,9 @@ MonoBehaviour:
   Player: {fileID: 0}
   DistanceOffset: 7
   BaseOffsetVector: {x: 0, y: 0.4, z: 0}
-  VerticalSpeed: 5
-  LateralSpeed: 5
+  LookAtOffset: {x: 0, y: 0.5, z: 0}
+  VerticalSpeed: 2
+  LateralSpeed: 3
   ReturnSpeed: 0.1
   MaxY: 0.8
   MinY: -0.2

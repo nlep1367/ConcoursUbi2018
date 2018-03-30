@@ -28,7 +28,7 @@ public class CarAI : NetworkBehaviour {
 
 	// Update is called once per frame
     [Server]
-	void Update () {
+	void FixedUpdate () {
         if (isBreaking || path.GetWayPoint(CurrentWaypoint).ShouldStop(transform.position))
         {
 			// Stop

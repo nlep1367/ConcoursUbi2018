@@ -7,8 +7,8 @@ public class Message
 {
     public string name;
     public string content;
-    private const float DURATION = 0.35f; 
-    private const float MIN_DURATION = 1f;
+    private const float DURATION = 0.5f; 
+    private const float MIN_DURATION = 1.5f;
 
     public Message(string n, string c)
     {

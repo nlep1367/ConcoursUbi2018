@@ -25,14 +25,15 @@ GameObject:
   - component: {fileID: 114547390709987634}
   - component: {fileID: 135916875385199090}
   - component: {fileID: 114166120343857390}
-  - component: {fileID: 114134105961613286}
   - component: {fileID: 64288215851871820}
+  - component: {fileID: 114279688039115134}
+  - component: {fileID: 114099593180651450}
   m_Layer: 0
   m_Name: TrafficLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4235924353914020
 Transform:
@@ -41,8 +42,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024859612868772}
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.7072302}
-  m_LocalPosition: {x: 3.614756, y: 0.041950732, z: -10.899632}
-  m_LocalScale: {x: 419.50748, y: 279.67166, z: 419.5075}
+  m_LocalPosition: {x: 6.43, y: -0.085, z: -8.3}
+  m_LocalScale: {x: 246.5525, y: 164.3684, z: 246.5525}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,18 +104,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 6d2d2a3b006ec874faa66dd9b70e4b77, type: 3}
---- !u!114 &114134105961613286
+--- !u!114 &114099593180651450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024859612868772}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b122708c1349fce43915d7787f93c370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replacementShader: {fileID: 4800000, guid: a6a1a3bc6e1d85147b6ad9f31e3cf4be, type: 3}
+  replacementShader: {fileID: 0}
 --- !u!114 &114166120343857390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +127,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc859353c23ee2b44997ce37be6f7529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114279688039115134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024859612868772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def4373e401d95a418edb950744c126b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToonShader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  HighlightShader: {fileID: 4800000, guid: 05a2f172d456e77448cc28b53b83c9c5, type: 3}
+  HighlightColor: {r: 0.972, g: 0.728, b: 0.166, a: 0.972}
+  OutlineWidth: 0.0002
 --- !u!114 &114469269775539342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,5 +197,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.005
+  m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0.005}

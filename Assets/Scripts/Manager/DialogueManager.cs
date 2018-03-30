@@ -51,7 +51,7 @@ public class DialogueManager : NetworkBehaviour, INotifyPropertyChanged
                     Id = 2,
                     Speaker = "Iris",
                     Title = "Intro3",
-                    Text = "Well, I heard of a dog cafe on the other side of town. How about that?",
+                    Text = "Lets go to the cafe.",
                 },
                 new Dialogue
                 {

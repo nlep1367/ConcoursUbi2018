@@ -24,7 +24,7 @@ public class LeaderboardUI : MonoBehaviour {
             leaderboard.Display(content);
         }
 
-        if (StaticInput.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit"))
         {
             if (exit.DoAction())
                 SceneManager.LoadSceneAsync("MainMenu");

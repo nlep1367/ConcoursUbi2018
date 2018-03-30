@@ -6,6 +6,8 @@ public class ThirdPersonIndependant : ThirdPerson {
     public float DistanceOffset = 5;
     public Vector3 BaseOffsetVector = new Vector3(0,1,0);
 
+    public Vector3 LookAtOffset = new Vector3(0, 1, 0);
+
     public float VerticalSpeed = 5f;
     public float LateralSpeed = 5f;
 
@@ -62,7 +64,7 @@ public class ThirdPersonIndependant : ThirdPerson {
         }
 
         this.transform.position = Player.transform.position + SpringCamera(offset);
-        this.transform.LookAt(Player);
+        this.transform.LookAt(Player.position + LookAtOffset);
     }
 
     public override void SetPlayer(Transform Player)

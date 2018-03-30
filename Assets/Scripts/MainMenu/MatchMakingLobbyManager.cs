@@ -20,6 +20,10 @@ public class MatchMakingLobbyManager : NetworkLobbyManager
     // Use this for initialization
     void Start()
     {
+        ConnectionConfig cc = new ConnectionConfig();
+        cc.PacketSize = 1470;
+        cc.MaxSentMessageQueueSize = 256;
+        NetworkServer.Configure(cc, 2);
     }
 
     public void InitComponents()

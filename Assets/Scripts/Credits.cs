@@ -17,7 +17,7 @@ public class Credits : MonoBehaviour {
         {
             if (exit.DoAction())
             {
-                if(FindObjectsOfType<CustomNetworkLobbyPlayer>().Length >= 0)
+                if(FindObjectsOfType<CustomNetworkLobbyPlayer>().Length > 0)
                 {
                     FindObjectOfType<MatchMakingLobbyManager>().ExitMatch();
                 }
