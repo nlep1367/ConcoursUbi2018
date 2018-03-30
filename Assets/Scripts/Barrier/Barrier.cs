@@ -36,7 +36,7 @@ public class Barrier : NetworkBehaviour {
         if (!hasBeenUnlocked)
         {
             GameObject po = BT.GetPickupObject();
-            if (Key == po && StaticInput.GetButtonDown("A"))
+            if (po != null && Key == po && StaticInput.GetButtonDown("A"))
             {
                 po.GetComponent<ObjectSync>().Rpc_Destroy();
                 hasBeenUnlocked = true;

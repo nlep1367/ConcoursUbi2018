@@ -42,7 +42,12 @@ public class PickupObject : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
-		if(isPickingUp && isCarryingObject && carriedObject != null)
+        if (isCarryingObject && carriedObject == null)
+        {
+            isCarryingObject = false;
+        }
+
+        if (isPickingUp && isCarryingObject)
         {
             ThrownableObject thrownable = carriedObject.GetComponentInParent<ThrownableObject>();
 
@@ -63,10 +68,6 @@ public class PickupObject : NetworkBehaviour {
 
             Carry(carriedObject);
             Drop();
-        }
-        else if (isCarryingObject)
-        {
-            isCarryingObject = false;
         }
         else
         {
@@ -91,26 +92,28 @@ public class PickupObject : NetworkBehaviour {
         {
             if (pickableObject != null)
             {
-                isCarryingObject = true;
-                carriedObject = pickableObject;
-                _player.ChangeState(StateEnum.GRABBING);
-                
-                if(!isServer)
-                { 
-                    NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
-                    ni.localPlayerAuthority = true;
-                    Cmd_GetAutority(ni);
-                }
-
-                StartCoroutine(WaitForPickUp());
-                CmdDisableRigidBody(carriedObject);
-                if (carriedObject.GetComponent<Collectible>() != null)
+                if (pickableObject.GetComponent<Collectible>() != null)
                 {
-                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(carriedObject.GetComponent<Collectible>().GetCollectibleScoreObj());
-                    CmdDestroyCollectible(carriedObject);
-                    isCarryingObject = false;
-                    carriedObject = null;
+                    CmdDestroyCollectible(pickableObject);
+                    GetComponent<PlayerScoreManager>().Cmd_AddPoints(pickableObject.GetComponent<Collectible>().GetCollectibleScoreObj());
                     hintUI.Hide();
+                }
+                else
+                {
+                    isCarryingObject = true;
+                    carriedObject = pickableObject;
+                    _player.ChangeState(StateEnum.GRABBING);
+
+                    if (!isServer)
+                    {
+                        NetworkIdentity ni = carriedObject.GetComponent<NetworkIdentity>();
+                        ni.localPlayerAuthority = true;
+                        Cmd_GetAutority(ni);
+                    }
+
+                    StartCoroutine(WaitForPickUp());
+
+                    CmdDisableRigidBody(carriedObject);
                 }
             }
         }

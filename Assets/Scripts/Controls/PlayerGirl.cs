@@ -40,20 +40,6 @@ public class PlayerGirl : Player {
     {
         base.Update();
 
-        if(Camera != null)
-        {
-            if (doggoOS == null)
-            {
-                GameObject OB = GameObject.FindGameObjectWithTag("Doggo");
-                if (OB != null)
-                    doggoOS = OB.GetComponent<ObjectSync>();
-            }
-            else
-            {
-                doggoOS.Rpc_SetScaredEffectColor(Camera.backgroundColor);
-            }
-        }
-
         AdjustMovementSpeed();
     }
 

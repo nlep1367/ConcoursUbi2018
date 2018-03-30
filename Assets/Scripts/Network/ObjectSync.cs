@@ -109,18 +109,4 @@ public class ObjectSync : NetworkBehaviour
     {
         Destroy(gameObject);
     }
-
-    [ClientRpc]
-    public void Rpc_SetScaredEffectColor(Color c)
-    {
-        if(inGameUi != null)
-        {
-            ScaredEffect se = inGameUi.GetComponentInChildren<ScaredEffect>();
-
-            if(se != null)
-            {
-                se.MaskColor = c;
-            }
-        }
-    }
 }
